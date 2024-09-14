@@ -26,7 +26,7 @@ namespace RA2Mod.Survivors.Conscript
 
             Garrison = assetBundle.LoadAsset<GameObject>("Garrison");
             Garrison.GetComponent<BuffWard>().buffDef = ConscriptBuffs.magazineBuff;
-            Molotov = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Molotov/MolotovSingleProjectile.prefab").WaitForCompletion();
+            Molotov = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Molotov/MolotovSingleProjectile.prefab").WaitForCompletion().InstantiateClone("ConscriptMolotov");
         }
     }
 }

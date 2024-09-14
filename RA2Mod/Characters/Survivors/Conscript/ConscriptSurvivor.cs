@@ -135,7 +135,7 @@ namespace RA2Mod.Survivors.Conscript
                 interruptPriority = EntityStates.InterruptPriority.Skill,
 
                 baseRechargeInterval = 0,
-                baseMaxStock = 10,
+                baseMaxStock = 16,
 
                 rechargeStock = 0,
                 requiredStock = 1,
@@ -361,7 +361,12 @@ namespace RA2Mod.Survivors.Conscript
             if (sender.HasBuff(ConscriptBuffs.armorBuff))
             {
                 args.armorAdd += 100;
-                args.moveSpeedMultAdd += 0.5f;
+                args.moveSpeedMultAdd += 0.65f;
+            }
+
+            if (sender.HasBuff(ConscriptBuffs.magazineBuff))
+            {
+                args.armorAdd += 25;
             }
         }
     }

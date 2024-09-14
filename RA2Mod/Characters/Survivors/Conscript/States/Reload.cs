@@ -5,7 +5,7 @@ namespace RA2Mod.Survivors.Conscript.States
 {
     public class Reload : BaseTimedSkillState
     {
-        public override float TimedBaseDuration => 3;
+        public override float TimedBaseDuration => 3.5f;
         public override float TimedBaseCastStartPercentTime => 0.5f;
 
         public override void OnEnter()
