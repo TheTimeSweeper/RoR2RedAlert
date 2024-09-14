@@ -176,12 +176,16 @@ MonoBehaviour:
   spawns:
   - objectToSpawn: {fileID: 4276864414949331109, guid: 104d17473f2931c47a724c7e60bb6520, type: 3}
     transformPath: MainContainer/MainUIArea/CrosshairCanvas
+    spawnedInstance: {fileID: 0}
   - objectToSpawn: {fileID: 46121782375230269, guid: e16ef087293e45b4b835761d8f4fb555, type: 3}
     transformPath: MainContainer/MainUIArea/CrosshairCanvas
+    spawnedInstance: {fileID: 0}
   - objectToSpawn: {fileID: 2629756624332126520, guid: 7bcbdafd70e2faf458211c23fa5801b3, type: 3}
     transformPath: MainContainer/MainUIArea/CrosshairCanvas
+    spawnedInstance: {fileID: 0}
   - objectToSpawn: {fileID: 9203253919670751210, guid: 1f3f1279143a02541ad2ed2cbc688345, type: 3}
     transformPath: MainContainer/MainUIArea/CrosshairCanvas
+    spawnedInstance: {fileID: 0}
 --- !u!114 &203773590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +214,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1001 &242021440
 PrefabInstance:
   m_ObjectHideFlags: 0
