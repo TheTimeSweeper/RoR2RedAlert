@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.kingenderbrine.prefabchildreference": "https://github.com/KingEnderBrine/PrefabChildReference.git",
-    "com.passivepicasso.thunderkit": "https://github.com/PassivePicasso/ThunderKit.git",
     "com.unity.assetbundlebrowser": "https://github.com/Unity-Technologies/AssetBundles-Browser.git",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.development": "1.0.1",
@@ -14,7 +13,6 @@
     "com.unity.timeline": "1.6.5",
     "com.unity.ugui": "1.0.0",
     "riskofthunder-ror2editorkit": "https://github.com/risk-of-thunder/RoR2EditorKit.git#5.1.1",
-    "riskofthunder-ror2importextensions": "https://github.com/risk-of-thunder/RoR2ImportExtensions.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
