@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class SpawnObjectOnHud : MonoBehaviour
@@ -17,15 +18,11 @@ public class SpawnObjectOnHud : MonoBehaviour
 
     public void OnInstantiated()
     {
-        SpawnLaterIG();
-    }
-
-    private void SpawnLaterIG()
-    {
-        Debug.Log("uh");
+#if UNITY_EDITOR    
         for (int i = 0; i < spawns.Length; i++)
         {
-            spawns[i].spawnedInstance = Instantiate(spawns[i].objectToSpawn, transform.GetChild(0).Find(spawns[i].transformPath));
+            spawns[i].spawnedInstance = PrefabUtility.InstantiatePrefab(spawns[i].objectToSpawn, transform.GetChild(0).Find(spawns[i].transformPath)) as GameObject;
         }
+#endif
     }
 }

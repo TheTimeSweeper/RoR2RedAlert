@@ -23,6 +23,8 @@ namespace RA2Mod.Survivors.Chrono.States
         private float timeSpent = -1;
         protected virtual float timeSpentMultiplier => ChronoConfig.M0_SprintTeleport_TimeTimeMulti.Value;
         protected virtual float distMultiplier => ChronoConfig.M0_SprintTeleport_DistTimeMulti.Value;
+        protected virtual ChronoProjectionMotor projectionPrefab => ChronoAssets.sprintProjectionPrefab;
+        protected virtual BuffDef briefBuff => RoR2Content.Buffs.ArmorBoost;
 
         public PhaseIndicatorController componentFromSkillDef1 { get; set; }
         private PhaseIndicatorController phaseIndicator => componentFromSkillDef1;
@@ -52,8 +54,8 @@ namespace RA2Mod.Survivors.Chrono.States
             }
             if (NetworkServer.active && projectionSpawner != null)
             {
-                projectionSpawner.SpawnProjectionServer(modelLocator.modelBaseTransform.position, transform.rotation);
-                characterBody.AddTimedBuff(RoR2Content.Buffs.ArmorBoost, 0.5f);
+                projectionSpawner.SpawnProjectionServer(projectionPrefab, modelLocator.modelBaseTransform.position, transform.rotation);
+                characterBody.AddTimedBuff(briefBuff, 0.5f);
             }
             if (interactor != null)
             {
@@ -79,7 +81,7 @@ namespace RA2Mod.Survivors.Chrono.States
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-
+            
             base.characterBody.isSprinting = true;
 
             marker = projectionSpawner.marker;

@@ -10,7 +10,7 @@ namespace RA2Mod.Survivors.Conscript.Achievements
         public const string identifier = ConscriptSurvivor.TOKEN_PREFIX + "masteryAchievement";
         public const string unlockableIdentifier = ConscriptSurvivor.TOKEN_PREFIX + "masteryUnlockable";
 
-        public override string RequiredCharacterBody => ConscriptSurvivor.instance.bodyName;
+        public override string RequiredCharacterBody => ConscriptSurvivor.GetBodyNameSafe();
 
         //difficulty coeff 3 is monsoon. 3.5 is typhoon for grandmastery skins
         public override float RequiredDifficultyCoefficient => 3;

@@ -46,7 +46,7 @@ namespace RA2Mod.Survivors.Chrono
             sortPosition = 69.3f,
 
             characterPortraitBundlePath = General.GeneralConfig.RA2Icon.Value ? "texIconChronoRA2" : "texIconChrono",
-            crosshairAddressablePath = "RoR2/Base/UI/StandardCrosshair.prefab",
+            crosshairBundlePath = "ChronoCrosshair",
             podPrefabAddressablePath = "RoR2/Base/SurvivorPod/SurvivorPod.prefab",
 
             //characterPortrait = assetBundle.LoadAsset<Texture>("texIconChrono"),
@@ -78,7 +78,7 @@ namespace RA2Mod.Survivors.Chrono
 
         public override UnlockableDef characterUnlockableDef => ChronoUnlockables.characterUnlockableDef;
 
-        public override ItemDisplaysBase itemDisplays { get; } = new RA2Mod.General.JoeItemDisplays();
+        public override ItemDisplaysBase itemDisplays { get; } = new ChronoItemDisplays();
 
         public override void Initialize()
         {
@@ -207,7 +207,7 @@ namespace RA2Mod.Survivors.Chrono
 
             Skills.AddSkillsToFamily(passiveSkill.skillFamily, sprintSkillDef);
 
-            if (GeneralCompat.ScepterInstalled)
+            if (GeneralCompat.ScepterInstalled && ChronoConfig.M0_SprintTeleport_Scepter.Value)
             {
                 AddScepterPassiveSkill(sprintSkillDef);
             }
@@ -306,7 +306,6 @@ namespace RA2Mod.Survivors.Chrono
         
         private void AddUtiitySkills()
         {
-            //here's a skilldef of a typical movement skill. some fields are omitted and will just have default values
             SkillDef utilitySkillDef = Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = "chronosphere",
@@ -370,12 +369,11 @@ namespace RA2Mod.Survivors.Chrono
                 skillIcon = assetBundle.LoadAsset<Sprite>("texIconChronoSpecial"),
 
                 activationState = new EntityStates.SerializableEntityStateType(typeof(States.Vanish)),
-                //setting this to the "weapon2" EntityStateMachine allows us to cast this skill at the same time primary, which is set to the "weapon" EntityStateMachine
                 activationStateMachineName = "Weapon",
                 interruptPriority = EntityStates.InterruptPriority.Skill,
 
-                baseMaxStock = 1,
-                baseRechargeInterval = 6f,
+                baseMaxStock = 3,
+                baseRechargeInterval = 2f,
 
                 isCombatSkill = true,
                 mustKeyPress = true,
@@ -384,7 +382,7 @@ namespace RA2Mod.Survivors.Chrono
 
             Skills.AddSpecialSkills(bodyPrefab, vanishSkillDef);
             
-            Config.ConfigureSkillDef(vanishSkillDef, ChronoConfig.SectionBody, "M4 Vanish");
+            Config.ConfigureSkillDef(vanishSkillDef, ChronoConfig.SectionBody, "M4 Deconstructing");
         }
 
         private void AddRecolorSkills()
@@ -574,7 +572,7 @@ namespace RA2Mod.Survivors.Chrono
                     }
 
                     float eliteFraction = attackerBody != null ? attackerBody.executeEliteHealthFraction : 0;
-                    if (self.combinedHealthFraction < ((count / (ChronoConfig.M4_Vanish_ChronoStacksRequired.Value * 2)) + eliteFraction))
+                    if (self.combinedHealthFraction < ((count / (ChronoConfig.M4_Deconstructing_ChronoStacksRequired.Value * 2)) + eliteFraction))
                     {
                         flag5 = true;
                         damageInfo.damageType |= DamageType.VoidDeath;
@@ -603,7 +601,7 @@ namespace RA2Mod.Survivors.Chrono
             //    {
             //        count = self.body.inventory.GetItemCount(ChronoItems.chronoSicknessItemDef.itemIndex);
             //    }
-            //    if (self.combinedHealthFraction < count / (ChronoConfig.M4_Vanish_ChronoStacksRequired.Value * 2))
+            //    if (self.combinedHealthFraction < count / (ChronoConfig.M4_Deconstructing_ChronoStacksRequired.Value * 2))
             //    {
             //        EffectManager.SimpleEffect(ChronoAssets.vanishEffect, self.transform.position, Quaternion.identity, true);
             //        if (self.body.modelLocator && self.body.modelLocator.modelTransform)

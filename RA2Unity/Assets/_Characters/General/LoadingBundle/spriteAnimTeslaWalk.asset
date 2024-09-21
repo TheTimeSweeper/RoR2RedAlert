@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2054123791, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: spriteAnimTeslaWalk
+  m_EditorClassIdentifier: 
+  frameRate: 12
+  frames:
+  - sprite: {fileID: 452812647, guid: 9270d8877f8c95b438cb5d094b1ca85c, type: 3}
+    duration: 0
+  - sprite: {fileID: -1517428736, guid: 9270d8877f8c95b438cb5d094b1ca85c, type: 3}
+    duration: 0
+  - sprite: {fileID: 593821775, guid: 9270d8877f8c95b438cb5d094b1ca85c, type: 3}
+    duration: 0
+  - sprite: {fileID: 1927142834, guid: 9270d8877f8c95b438cb5d094b1ca85c, type: 3}
+    duration: 0
+  - sprite: {fileID: -1482523473, guid: 9270d8877f8c95b438cb5d094b1ca85c, type: 3}
+    duration: 0
+  - sprite: {fileID: 777758053, guid: 9270d8877f8c95b438cb5d094b1ca85c, type: 3}
+    duration: 0
+  - sprite: {fileID: 166242004, guid: 9270d8877f8c95b438cb5d094b1ca85c, type: 3}
+    duration: 0
+  - sprite: {fileID: 311664660, guid: 9270d8877f8c95b438cb5d094b1ca85c, type: 3}
+    duration: 0

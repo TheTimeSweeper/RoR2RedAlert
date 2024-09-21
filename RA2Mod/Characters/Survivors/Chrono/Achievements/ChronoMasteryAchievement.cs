@@ -10,7 +10,7 @@ namespace RA2Mod.Survivors.Chrono.Achievements
         public const string identifier = ChronoSurvivor.TOKEN_PREFIX + "masteryAchievement";
         public const string unlockableIdentifier = ChronoSurvivor.TOKEN_PREFIX + "masteryUnlockable";
 
-        public override string RequiredCharacterBody => ChronoSurvivor.instance.bodyName;
+        public override string RequiredCharacterBody => ChronoSurvivor.GetBodyNameSafe();
 
         //difficulty coeff 3 is monsoon. 3.5 is typhoon for grandmastery skins
         public override float RequiredDifficultyCoefficient => 3;

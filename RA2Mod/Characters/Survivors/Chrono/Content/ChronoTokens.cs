@@ -66,8 +66,8 @@ namespace RA2Mod.Survivors.Chrono
 
             #region Special
             Language.Add(prefix + "SPECIAL_VANISH_NAME", "Deconstructing");
-            int ticks = UnityEngine.Mathf.RoundToInt(ChronoConfig.M4_Vanish_Duration.Value / ChronoConfig.M4_Vanish_TickInterval.Value);
-            Language.Add(prefix + "SPECIAL_VANISH_DESCRIPTION", $"Deal {Tokens.DamageValueText(ChronoConfig.M4_Vanish_TickDamage.Value * ticks)} and apply {Tokens.UtilityText("Chrono Sickness")} over {ChronoConfig.M4_Vanish_Duration.Value} seconds. If an enemy’s health is below the {Tokens.UtilityText("Chrono Sickness")} threshold, they vanish from existence.");
+            int ticks = UnityEngine.Mathf.RoundToInt(ChronoConfig.M4_Deconstructing_Duration.Value / ChronoConfig.M4_Deconstructing_TickInterval.Value);
+            Language.Add(prefix + "SPECIAL_VANISH_DESCRIPTION", $"Deal {Tokens.DamageValueText(ChronoConfig.M4_Deconstructing_TickDamage.Value * ticks)} and apply {Tokens.UtilityText("Chrono Sickness")} over {ChronoConfig.M4_Deconstructing_Duration.Value} seconds. If an enemy’s health is below the {Tokens.UtilityText("Chrono Sickness")} threshold, they vanish from existence.");
             #endregion
 
             #region Achievements

@@ -186,6 +186,9 @@ MonoBehaviour:
   - objectToSpawn: {fileID: 9203253919670751210, guid: 1f3f1279143a02541ad2ed2cbc688345, type: 3}
     transformPath: MainContainer/MainUIArea/CrosshairCanvas
     spawnedInstance: {fileID: 0}
+  - objectToSpawn: {fileID: 5429088297134742303, guid: c7e1c66ed63582f41a54c80639de8c4a, type: 3}
+    transformPath: MainContainer/MainUIArea/CrosshairCanvas
+    spawnedInstance: {fileID: 0}
 --- !u!114 &203773590
 MonoBehaviour:
   m_ObjectHideFlags: 0

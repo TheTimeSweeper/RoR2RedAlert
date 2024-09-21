@@ -9,9 +9,9 @@ namespace RA2Mod.Survivors.Chrono.Components
         public ChronoProjectionMotor marker;
         
         [Server]
-        public void SpawnProjectionServer(Vector3 position, Quaternion rotation)
+        public void SpawnProjectionServer(ChronoProjectionMotor prefab, Vector3 position, Quaternion rotation)
         {
-            marker = Object.Instantiate(ChronoAssets.markerPrefab, position, rotation, null);
+            marker = Object.Instantiate(prefab, position, rotation, null);
 
             NetworkServer.Spawn(marker.gameObject);
             RpcSendMarker(marker.gameObject);

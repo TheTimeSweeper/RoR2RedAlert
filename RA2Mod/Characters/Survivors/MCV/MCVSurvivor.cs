@@ -258,8 +258,8 @@ namespace RA2Mod.Survivors.MCV
             SkillDef specialSkillDef1 = Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = "conscript_garrison",
-                skillNameToken = TOKEN_PREFIX + "Garrison",
-                skillDescriptionToken = TOKEN_PREFIX + "m1 and m2 reload faster",
+                skillNameToken = /*TOKEN_PREFIX +*/ "Summon",
+                skillDescriptionToken = /*TOKEN_PREFIX +*/ "spawn a commando",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texSpecialIcon"),
 
                 activationState = new EntityStates.SerializableEntityStateType(typeof(States.SummonAGuy)),

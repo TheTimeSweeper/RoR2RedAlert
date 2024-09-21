@@ -6,6 +6,8 @@ namespace RA2Mod.Survivors.Chrono
     {
         public static ConfigEntry<float> M0_JumpMultiplier;
 
+        public static ConfigEntry<bool> M0_SprintTeleport_Scepter;
+
         public static ConfigEntry<bool> M0_SprintTeleport_OnRelease;
 
         public static ConfigEntry<float> M0_SprintTeleport_ProjectionSpeed;
@@ -27,16 +29,23 @@ namespace RA2Mod.Survivors.Chrono
         public static ConfigEntry<float> M3_Freezosphere_FreezeDuration;
         public static ConfigEntry<float> M3_Freezosphere_CastDuration;
 
-        public static ConfigEntry<float> M4_Vanish_TickInterval;
-        public static ConfigEntry<float> M4_Vanish_TickDamage;
-        public static ConfigEntry<float> M4_Vanish_Duration;
-        public static ConfigEntry<float> M4_Vanish_ChronoStacksRequired;
+        public static ConfigEntry<float> M4_Deconstructing_TickInterval;
+        public static ConfigEntry<float> M4_Deconstructing_TickDamage;
+        public static ConfigEntry<float> M4_Deconstructing_Duration;
+        public static ConfigEntry<float> M4_Deconstructing_ChronoStacksRequired;
         public const string ConfigVersion = " 0.0";
         public const string SectionSkills = "1-3. Chrono Skills" + ConfigVersion;
         public const string SectionBody = "1-3. Chrono Body" + ConfigVersion;
 
         public static void Init()
         {
+            M0_SprintTeleport_Scepter = Config.BindAndOptions(
+                SectionSkills,
+                "M0_SprintTeleport_Scepter",
+                true,
+                "adds ancient scepter upgrade to chrono's sprint teleport",
+                true);
+
             M0_SprintTeleport_OnRelease = Config.BindAndOptions(
                 SectionSkills,
                 "M0_SprintTeleport_OnRelease",
@@ -162,33 +171,33 @@ namespace RA2Mod.Survivors.Chrono
                 "");
 
             //
-            M4_Vanish_TickInterval = Config.BindAndOptionsSlider(
+            M4_Deconstructing_TickInterval = Config.BindAndOptionsSlider(
                 SectionSkills,
-                "M4_Vanish_TickInterval",
+                "M4_Deconstructing_TickInterval",
                 0.3f,
                 0,
                 1,
                 "");
 
-            M4_Vanish_Duration = Config.BindAndOptionsSlider(
+            M4_Deconstructing_Duration = Config.BindAndOptionsSlider(
                 SectionSkills,
-                "M4_Vanish_Duration",
-                3f,
+                "M4_Deconstructing_Duration",
+                1f,
                 0,
                 10,
                 "");
 
-            M4_Vanish_TickDamage = Config.BindAndOptionsSlider(
+            M4_Deconstructing_TickDamage = Config.BindAndOptionsSlider(
                 SectionSkills,
-                "M4_Vanish_TickDamage",
+                "M4_Deconstructing_TickDamage",
                 0.8f,
                 0,
                 10,
                 "");
 
-            M4_Vanish_ChronoStacksRequired = Config.BindAndOptionsSlider(
+            M4_Deconstructing_ChronoStacksRequired = Config.BindAndOptionsSlider(
                 SectionSkills,
-                "chronoStacksToVanish",
+                nameof(M4_Deconstructing_ChronoStacksRequired),
                 100f,
                 0,
                 200,

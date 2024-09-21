@@ -27,7 +27,7 @@ namespace RA2Mod.Modules
         public static void PrintUnused(IEnumerable<ItemDisplayRuleSet.KeyAssetRuleGroup> ruleSet = null, string bodyName = "")
         {
             string missingDisplays = $"generating item displays for {bodyName}";
-
+            
             //grab all keyassets
             if(allDisplayedItems == null)
                 LazyGatherAllItems();

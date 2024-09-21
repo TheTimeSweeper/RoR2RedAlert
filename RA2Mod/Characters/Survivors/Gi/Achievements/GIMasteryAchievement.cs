@@ -10,7 +10,7 @@ namespace RA2Mod.Survivors.GI.Achievements
         public const string identifier = GISurvivor.GI_PREFIX + "masteryAchievement";
         public const string unlockableIdentifier = GISurvivor.GI_PREFIX + "masteryUnlockable";
 
-        public override string RequiredCharacterBody => GISurvivor.instance.bodyName;
+        public override string RequiredCharacterBody => GISurvivor.GetBodyNameSafe();
 
         //difficulty coeff 3 is monsoon. 3.5 is typhoon for grandmastery skins
         public override float RequiredDifficultyCoefficient => 3;

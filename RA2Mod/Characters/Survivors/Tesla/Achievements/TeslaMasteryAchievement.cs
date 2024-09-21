@@ -10,7 +10,7 @@ namespace RA2Mod.Survivors.Tesla.Achievements
         public const string identifier = TeslaTrooperSurvivor.TOKEN_PREFIX + "MASTERYUNLOCKABLE_ACHIEVEMENT_ID";
         public const string unlockableIdentifier = TeslaTrooperSurvivor.TOKEN_PREFIX + "MASTERYUNLOCKABLE_REWARD_ID";
 
-        public override string RequiredCharacterBody => TeslaTrooperSurvivor.instance.bodyName;
+        public override string RequiredCharacterBody => TeslaTrooperSurvivor.GetBodyNameSafe();
 
         //difficulty coeff 3 is monsoon. 3.5 is typhoon for grandmastery skins
         public override float RequiredDifficultyCoefficient => 3;

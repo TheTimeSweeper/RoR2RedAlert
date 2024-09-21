@@ -7,8 +7,11 @@ using RA2Mod.Survivors.Desolator;
 using RA2Mod.Survivors.GI;
 using RA2Mod.Survivors.MCV;
 using RA2Mod.Survivors.Tesla;
+using RoR2;
+using System;
 using System.Security;
 using System.Security.Permissions;
+using UnityEngine;
 
 [module: UnverifiableCode]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
@@ -30,7 +33,7 @@ namespace RA2Mod
     {
         public const string MODUID = "com.TheTimesweeper.RedAlert";
         public const string MODNAME = "Red Alert";
-        public const string MODVERSION = "3.0.1";
+        public const string MODVERSION = "3.0.6";
 
         public const string DEVELOPER_PREFIX = "HABIBI";
 
@@ -48,7 +51,6 @@ namespace RA2Mod
         {
             instance = this;
             Log.Init(Logger);
-            Log.Warning("the thingy worked");
 
             //async load hopoo shader
             Modules.Materials.Init();
@@ -76,6 +78,18 @@ namespace RA2Mod
             {
                 UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             }
+
+            On.LoadingScreenCanvas.Awake += LoadingScreenCanvas_Awake;
+        }
+
+        private void LoadingScreenCanvas_Awake(On.LoadingScreenCanvas.orig_Awake orig, LoadingScreenCanvas self)
+        {
+            PickRandomObjectOnAwake miniScene = self.GetComponentInChildren<PickRandomObjectOnAwake>();
+            AssetBundle loadingBundle = Modules.Asset.LoadAssetBundle("ra2loading");
+
+            Array.Resize(ref miniScene.ObjectsToSelect, miniScene.ObjectsToSelect.Length + 1);
+            miniScene.ObjectsToSelect[miniScene.ObjectsToSelect.Length - 1] = Instantiate(loadingBundle.LoadAsset<GameObject>("TeslaTrooperSprite"), miniScene.transform);
+            orig(self);
         }
 
         private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)

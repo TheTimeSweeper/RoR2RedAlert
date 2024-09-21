@@ -3,6 +3,7 @@ using RoR2;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace RA2Mod.Modules.Characters
@@ -54,12 +55,12 @@ namespace RA2Mod.Modules.Characters
                 {
                     if(bodyPrefab == null)
                     {
-                        Log.Error("Cannot get BodyIndex. Body has not been created.");
+                        Log.Error($"Cannot get BodyIndex for {bodyName}. Body has not been created.");
                         return default(BodyIndex);
                     }
                     BodyIndex bodyIndex = bodyPrefab.GetComponent<CharacterBody>().bodyIndex;
                     if (bodyIndex == default(BodyIndex)) {
-                        Log.Error("Cannot get BodyIndex. Body has not been registered.");
+                        Log.Error($"Cannot get BodyIndex for {bodyName}. Body has not been registered.");
                         return bodyIndex;
                     }
 
@@ -67,6 +68,24 @@ namespace RA2Mod.Modules.Characters
                 }
                 return _lazyBodyIndex.Value;
             }
+        }
+
+        public static BodyIndex GetBodyIndexSafe()
+        {
+            if(instance != null)
+            {
+                return instance.bodyIndex;
+            }
+            return default;
+        }
+
+        public static string GetBodyNameSafe()
+        {
+            if (instance != null)
+            {
+                return instance.bodyName;
+            }
+            return "";
         }
 
         public virtual void Initialize()

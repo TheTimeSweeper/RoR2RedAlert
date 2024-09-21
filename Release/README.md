@@ -66,7 +66,7 @@ ___
 Chrono doesn't have screenshots yet but I assure you he is very cool
 ___ 
 ## Credits
-SkeletorChampion - Made the character models (which kicked off the mod. Without him, the mod wouldn't exist.), and grandmastery skin  
+SkeletorChampion - Made the character models (which kicked off the mod. Without him, the mod wouldn't exist.), and Tesla grandmastery skin  
 Violet Chaolan - wwise sound help  
 SweeperSecret - icons,  <3  
 Mr.Bones - mastery skins  
@@ -74,6 +74,7 @@ Jaysian - Lores
 SOM - animation help  
 Domi - Chrono Animations  
 Blast - Chrono Sounds  
+GoodGuy - Chrono Icons
 Moffein - consult, savior  
 DeegerDill - consult  
 Westwood Studios - sounds, inspiration  
@@ -111,35 +112,3 @@ ___
 for no particular reason I made a cool skin for minecraft check it out   
 ![](https://raw.githubusercontent.com/TheTimeSweeper/the/master/theUnityProject/Assets/_Kniggas/TeslaTrooper/TeslaBundle/textures/MC/MCSkin.png)
 ___
-## Changelog
-see Changelog tab for more  
-
-`3.0.5`
-- fixed all deployables (desolator irradiators, engi mines, everything) being set to the laws of tesla trooper's towers
-
-`3.0.4`
-- added AI for chrono (goobo and vengeance)
-- fixed tesla and deso goobo and vengeance being broken
-- temporarily removed deployable restriction on desolator glow sticks
-    - *couldn't figure out how to fix it right so for now grab some brain stalks and go crazy*
-
-`3.0.3`
-- fixed tesla trooper (and some other moves I think) not scaling with attack speed
-
-`3.0.2`
-- illegally forced compat with autosprint for chrono
-- fix error with m2 bombs when deputy was installed
-
-`3.0.1`
-- fixed conflict with riskytweaks removing something from frost relic that I was cloning
-- fixed some issues with scepter even though it's not working yet
-
-`3.0.0` new mod new us
-- added Chrono Legionnaire, still Beta but all working and multiplayer compatible
-- added G.I., still alpha but all working and multiplayer compatible (afaik)
-- added Conscript, not even alpha lol, but hey if you're curious
-- Completely revamped code behind the scenes. some things may be improved some things may still be missing.
-- Character creation and some assets are now loaded async. this should improve load times by probably 0.0001%
-- Risk of options support for configs
-- I spent like months on this update there's no way it's like 5 lines
-  

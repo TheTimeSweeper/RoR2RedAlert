@@ -24,6 +24,22 @@ namespace RA2Mod.Modules
         internal static Dictionary<string, Action<AssetBundle>> loadingBundles = new Dictionary<string, Action<AssetBundle>>();
 
         #region bundle
+
+        internal static AssetBundle LoadAssetBundle(string bundleName)
+        {
+
+            AssetBundle assetBundle = null;
+            try
+            {
+                assetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(RA2Plugin.instance.Info.Location), "AssetBundles", bundleName));
+            }
+            catch (System.Exception e)
+            {
+                Log.Error($"Error loading asset bundle, {bundleName}. Your asset bundle must be in a folder next to your mod dll called 'AssetBundles'. Follow the guide to build and install your mod correctly!\n{e}");
+            }
+            return assetBundle;
+        }
+
         internal static void LoadAssetBundleAsync(string bundleName, Action<AssetBundle> onComplete)
         {
             if (bundleName == "myassetbundle")

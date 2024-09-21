@@ -51,7 +51,7 @@ namespace RA2Mod.Survivors.Chrono
             {
                 base.CheckInventory(ref info, body);
                 sickness = body.inventory.GetItemCount(ChronoItems.chronoSicknessItemDef.itemIndex);
-                sickness = sickness / (ChronoConfig.M4_Vanish_ChronoStacksRequired.Value * 2);
+                sickness = sickness / (ChronoConfig.M4_Deconstructing_ChronoStacksRequired.Value * 2);
             }
         }
     }

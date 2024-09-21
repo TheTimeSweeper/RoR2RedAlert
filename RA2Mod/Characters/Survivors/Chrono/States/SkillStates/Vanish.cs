@@ -10,13 +10,14 @@ namespace RA2Mod.Survivors.Chrono.States
 {
     public class Vanish : BaseSkillState, IHasSkillDefComponent<ChronoTrackerVanish>
     {
-        public virtual float damageCoefficient => ChronoConfig.M4_Vanish_TickDamage.Value;
+        public virtual float damageCoefficient => ChronoConfig.M4_Deconstructing_TickDamage.Value;
         public static float procCoefficient = 1;
-        public virtual float baseDuration => ChronoConfig.M4_Vanish_Duration.Value;
+        public virtual float baseDuration => ChronoConfig.M4_Deconstructing_Duration.Value;
         
-        public virtual float baseTickInterval => ChronoConfig.M4_Vanish_TickInterval.Value;
+        public virtual float baseTickInterval => ChronoConfig.M4_Deconstructing_TickInterval.Value;
 
-        private float duration;
+        private float chargeDuration;
+        private float totalDuration;
         private float tickInterval;
 
         private float nextInterval;
@@ -36,7 +37,8 @@ namespace RA2Mod.Survivors.Chrono.States
         public override void OnEnter()
         {
             base.OnEnter();
-            duration = baseDuration / attackSpeedStat;
+            chargeDuration = baseDuration / attackSpeedStat;
+            totalDuration = chargeDuration;
             tickInterval = baseTickInterval / attackSpeedStat;
             StartAimMode(4);
 
@@ -61,7 +63,7 @@ namespace RA2Mod.Survivors.Chrono.States
             {
                 if (NetworkServer.active)
                 {
-                    targetHurtBox.healthComponent.body.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, duration);
+                    targetHurtBox.healthComponent.body.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, chargeDuration);
                 }
                 return;
             }
@@ -112,7 +114,7 @@ namespace RA2Mod.Survivors.Chrono.States
 
         protected virtual void PlayShootAnimation()
         {
-            PlayAnimation("Arms, Override", "cast 2", "cast.playbackRate", duration);
+            PlayAnimation("Arms, Override", "cast 2", "cast.playbackRate", chargeDuration);
         }
 
         public virtual void DoDamage()
@@ -156,7 +158,16 @@ namespace RA2Mod.Survivors.Chrono.States
         {
             base.FixedUpdate();
 
-            if (fixedAge >= duration || targetHurtBox == null || !targetHurtBox.healthComponent.alive)
+            if(fixedAge >= totalDuration)
+            {
+                if(activatorSkillSlot.stock > 0)
+                {
+                    activatorSkillSlot.DeductStock(1);
+                    totalDuration += chargeDuration;
+                }
+            }
+
+            if (fixedAge >= totalDuration || targetHurtBox == null || !targetHurtBox.healthComponent.alive)
             {
                 if (isAuthority)
                 {
@@ -164,6 +175,7 @@ namespace RA2Mod.Survivors.Chrono.States
                 }
                 return;
             }
+
             if (!targetingAlly)
             {
                 while (fixedAge >= nextInterval)

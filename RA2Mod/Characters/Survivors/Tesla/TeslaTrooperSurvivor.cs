@@ -22,6 +22,7 @@ using RA2Mod.Survivors.Tesla.SkillDefs;
 using RA2Mod.Survivors.Tesla.Orbs;
 using RA2Mod.Minions.TeslaTower;
 using RA2Mod.Survivors.Tesla.Components;
+using System.Linq;
 
 namespace RA2Mod.Survivors.Tesla
 {

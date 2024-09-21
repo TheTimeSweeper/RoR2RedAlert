@@ -19,7 +19,8 @@ namespace RA2Mod.Survivors.Chrono
 
         public static List<IEnumerator> loads => Modules.ContentPacks.asyncLoadCoroutines;
 
-        public static ChronoProjectionMotor markerPrefab;
+        public static ChronoProjectionMotor sprintProjectionPrefab;
+        public static ChronoProjectionMotor sprintProjectionPrefabScepter;
         public static GameObject chronoBombProjectile;
         public static GameObject lunarSunExplosion;
 
@@ -128,10 +129,16 @@ namespace RA2Mod.Survivors.Chrono
             assetBundle.LoadAssetAsync("ChronoProjection",
                 (GameObject result) =>
                 {
-                    markerPrefab = result.GetComponent<ChronoProjectionMotor>();
-                    markerPrefab.GetComponent<KinematicCharacterMotor>().playerCharacter = true;//todo set in editor when ror2 lib is updated
-                    R2API.PrefabAPI.RegisterNetworkPrefab(markerPrefab.gameObject);
-                    Modules.Content.AddNetworkedObject(markerPrefab.gameObject);
+                    sprintProjectionPrefab = result.GetComponent<ChronoProjectionMotor>();
+                    R2API.PrefabAPI.RegisterNetworkPrefab(sprintProjectionPrefab.gameObject);
+                    Modules.Content.AddNetworkedObject(sprintProjectionPrefab.gameObject);
+                });
+            assetBundle.LoadAssetAsync("ChronoProjectionScepter",
+                (GameObject result) =>
+                {
+                    sprintProjectionPrefabScepter = result.GetComponent<ChronoProjectionMotor>();
+                    R2API.PrefabAPI.RegisterNetworkPrefab(sprintProjectionPrefabScepter.gameObject);
+                    Modules.Content.AddNetworkedObject(sprintProjectionPrefabScepter.gameObject);
                 });
 
             //Ivan bomb
@@ -286,10 +293,15 @@ namespace RA2Mod.Survivors.Chrono
             //projection
             loads.Add(assetBundle.LoadAssetCoroutine("ChronoProjection", (GameObject result) =>
             {
-                markerPrefab = result.GetComponent<ChronoProjectionMotor>();
-                markerPrefab.GetComponent<KinematicCharacterMotor>().playerCharacter = true;//todo set in editor when ror2 lib is updated
-                R2API.PrefabAPI.RegisterNetworkPrefab(markerPrefab.gameObject);
-                Modules.Content.AddNetworkedObject(markerPrefab.gameObject);
+                sprintProjectionPrefab = result.GetComponent<ChronoProjectionMotor>();
+                R2API.PrefabAPI.RegisterNetworkPrefab(sprintProjectionPrefab.gameObject);
+                Modules.Content.AddNetworkedObject(sprintProjectionPrefab.gameObject);
+            }));
+            loads.Add(assetBundle.LoadAssetCoroutine("ChronoProjectionScepter", (GameObject result) =>
+            {
+                sprintProjectionPrefabScepter = result.GetComponent<ChronoProjectionMotor>();
+                R2API.PrefabAPI.RegisterNetworkPrefab(sprintProjectionPrefabScepter.gameObject);
+                Modules.Content.AddNetworkedObject(sprintProjectionPrefabScepter.gameObject);
             }));
 
             //ivan bomb
