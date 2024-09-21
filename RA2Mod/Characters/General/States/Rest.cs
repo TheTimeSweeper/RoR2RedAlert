@@ -14,7 +14,7 @@ namespace RA2Mod.General.States
             duration = 0;
             base.OnEnter();
 
-            isDesolator = characterBody.bodyIndex == Survivors.Desolator.DesolatorSurvivor.instance.bodyIndex;
+            isDesolator = characterBody.bodyIndex == Survivors.Desolator.DesolatorSurvivor.GetBodyIndexSafe();
 
             //todo not this lol
             if (isDesolator)

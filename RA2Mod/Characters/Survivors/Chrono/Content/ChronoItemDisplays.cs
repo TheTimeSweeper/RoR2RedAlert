@@ -91,241 +91,226 @@ namespace RA2Mod.Survivors.Chrono
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Bear"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBear"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.33214F, -0.33418F, 0.1566F),
+                    new Vector3(10.03311F, 278.4412F, 359.9647F),
+                    new Vector3(0.32136F, 0.32136F, 0.317F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BearVoid"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBearVoid"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.33214F, -0.33418F, 0.1566F),
+                    new Vector3(10.03311F, 278.4412F, 359.9647F),
+                    new Vector3(0.32136F, 0.32136F, 0.317F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BeetleGland"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBeetleGland"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Pelvis",
+                    new Vector3(0.19942F, 0.06873F, 0.29803F),
+                    new Vector3(7.18841F, 119.0995F, 356.3386F),
+                    new Vector3(0.09067F, 0.09067F, 0.09067F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Behemoth"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBehemoth"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weaponLens2",
+                    new Vector3(-0.28625F, -0.03764F, -0.25799F),
+                    new Vector3(0F, 225.3975F, 0F),
+                    new Vector3(0.10125F, 0.10125F, 0.10125F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BleedOnHit"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayTriTip"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
-                    )
-                ));
-            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BleedOnHitAndExplode"],
-                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBleedOnHitAndExplode"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weaponLens3",
+                    new Vector3(0.00002F, -0.00003F, -0.18617F),
+                    new Vector3(270F, 0F, 0F),
+                    new Vector3(0.73578F, 0.73578F, 0.73578F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BleedOnHitVoid"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayTriTipVoid"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weaponLens3",
+                    new Vector3(0.00002F, -0.00003F, -0.18617F),
+                    new Vector3(270F, 170.8299F, 0F),
+                    new Vector3(0.73578F, 0.73578F, 0.73578F)
+                    )
+                ));
+            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BleedOnHitAndExplode"],
+                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBleedOnHitAndExplode"),
+                    "weapon_base",
+                    new Vector3(-0.00871F, 0.66698F, -0.30955F),
+                    new Vector3(0F, 185.9906F, 0F),
+                    new Vector3(0.11402F, 0.11402F, 0.11402F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BonusGoldPackOnKill"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayTome"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.31398F, -0.03188F, 0.38987F),
+                    new Vector3(0F, 290.6997F, 0F),
+                    new Vector3(0.09011F, 0.09011F, 0.09011F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BoostAllStats"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGrowthNectar"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.32172F, 0.30398F, -0.19047F),
+                    new Vector3(0F, 240.1703F, 0F),
+                    new Vector3(2.48287F, 2.48287F, 2.48287F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BossDamageBonus"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayAPRound"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "UpperArmR",
+                    new Vector3(-0.10858F, 0.15211F, 0.16529F),
+                    new Vector3(74.80302F, 290.9568F, 352.3151F),
+                    new Vector3(1F, 1F, 1F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BounceNearby"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayHook"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.15033F, 0.42169F, -0.00372F),
+                    new Vector3(0F, 358.5722F, 0F),
+                    new Vector3(0.59841F, 0.59841F, 0.59841F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ChainLightning"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayUkulele"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weapon_base",
+                    new Vector3(-0.24836F, 0.57837F, -0.0086F),
+                    new Vector3(0F, 277.7447F, 284.5695F),
+                    new Vector3(0.64047F, 0.64047F, 0.64047F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ChainLightningVoid"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayUkuleleVoid"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weapon_base",
+                    new Vector3(-0.24836F, 0.57837F, -0.0086F),
+                    new Vector3(0F, 277.7447F, 284.5695F),
+                    new Vector3(0.64047F, 0.64047F, 0.64047F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Clover"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayClover"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(-0.12325F, 0.28181F, -0.15532F),
+                    new Vector3(286.8319F, 65.97968F, 342.6355F),
+                    new Vector3(0.44747F, 0.44747F, 0.44747F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["CloverVoid"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayCloverVoid"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(-0.12325F, 0.28181F, -0.15532F),
+                    new Vector3(286.8319F, 65.97968F, 342.6355F),
+                    new Vector3(0.44747F, 0.44747F, 0.44747F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["CooldownOnCrit"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplaySkull"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weapon_base",
+                    new Vector3(-0.44689F, -0.06921F, -0.22833F),
+                    new Vector3(0F, 0F, 272.9147F),
+                    new Vector3(0.26049F, 0.26049F, 0.26049F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["CritDamage"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayLaserSight"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weaponLens2",
+                    new Vector3(0.00005F, 0.00002F, 0.14001F),
+                    new Vector3(0F, 270F, 270F),
+                    new Vector3(0.11454F, 0.11454F, 0.11454F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["CritGlasses"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGlasses"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.25792F, 0.17959F, 0.07896F),
+                    new Vector3(0F, 90F, 0F),
+                    new Vector3(0.35645F, 0.3887F, 0.38387F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["CritGlassesVoid"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGlassesVoid"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.25792F, 0.17959F, 0.07896F),
+                    new Vector3(0F, 90F, 0F),
+                    new Vector3(0.35645F, 0.3887F, 0.38387F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Crowbar"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayCrowbar"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weapon_base",
+                    new Vector3(-0.2627F, 0.98521F, -0.19948F),
+                    new Vector3(36.24606F, 288.0356F, 298.8418F),
+                    new Vector3(0.48691F, 0.48691F, 0.48691F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Dagger"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayDagger"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "UpperArmR",
+                    new Vector3(-0.09978F, -0.17532F, 0.07187F),
+                    new Vector3(9.13394F, 43.92914F, 127.8636F),
+                    new Vector3(1F, 1F, 1F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["DeathMark"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayDeathMark"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weapon_gripfront",
+                    new Vector3(-0.19493F, 0.06741F, 0.0958F),
+                    new Vector3(0F, 0F, 270F),
+                    new Vector3(0.0683F, 0.0683F, 0.0683F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["DelayedDamage"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayDelayedDamage"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "ThighL",
+                    new Vector3(0.12451F, 0.25891F, -0.1361F),
+                    new Vector3(0F, 141.5322F, 0F),
+                    new Vector3(0.43604F, 0.43604F, 0.43604F)
                     )
                 ));
-            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ElementalRingVoid"],
+            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ElementalRingVoid"],//re
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayVoidRing"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
-                    )
-                ));
-            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EmpowerAlways"],
-                ItemDisplays.CreateLimbMaskDisplayRule(LimbFlags.Head),
-                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplaySunHeadNeck"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
-                    ),
-                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplaySunHead"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weaponLens1",
+                    new Vector3(0F, 0F, 0F),
+                    new Vector3(270.6104F, 180F, 180F),
+                    new Vector3(1.84075F, 1.84075F, 1.84075F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EnergizedOnEquipmentUse"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayWarHorn"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "ThighR",
+                    new Vector3(0.00449F, 0.19772F, -0.30572F),
+                    new Vector3(8.0111F, 231.5167F, 143.45F),
+                    new Vector3(0.44253F, 0.44253F, 0.44253F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EquipmentMagazine"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBattery"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.27495F, 0.02307F, -0.42621F),
+                    new Vector3(275.6131F, 319.1859F, 262.9353F),
+                    new Vector3(0.22781F, 0.22781F, 0.22781F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EquipmentMagazineVoid"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayFuelCellVoid"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.27495F, 0.02307F, -0.42621F),
+                    new Vector3(275.6131F, 319.1859F, 262.9353F),
+                    new Vector3(0.22781F, 0.22781F, 0.22781F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ExecuteLowHealthElite"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGuillotine"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weapon_base",
+                    new Vector3(-0.49295F, 0.21382F, -0.40428F),
+                    new Vector3(52.9192F, 331.128F, 251.0603F),
+                    new Vector3(0.24505F, 0.24505F, 0.24505F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ExplodeOnDeath"],
@@ -363,8 +348,8 @@ namespace RA2Mod.Survivors.Chrono
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ExtraShrineItem"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayChanceDoll"),
                     "backpack_base",
-                    new Vector3(-0.18939F, -0.09105F, 0.45864F),
-                    new Vector3(0F, 0F, 0F),
+                    new Vector3(-0.18938F, -0.34151F, 0.40997F),
+                    new Vector3(344.1418F, 0F, 0F),
                     new Vector3(0.34055F, 0.34055F, 0.34055F)
                     )
                 ));
@@ -381,13 +366,13 @@ namespace RA2Mod.Survivors.Chrono
                     "CalfL",
                     new Vector3(-0.00001F, 0.65305F, -0.00599F),
                     new Vector3(0.78281F, 258.9019F, 183.9842F),
-                    new Vector3(0.54037F, 0.54037F, 0.54037F)
+                    new Vector3(0.3963854f, 0.3963854f, 0.3963854f)
                     ),
-                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGravBoots"),//re
+                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGravBoots"),
                     "CalfR",
                     new Vector3(-0.00001F, 0.65305F, -0.00599F),
                     new Vector3(0.78281F, 258.9019F, 183.9842F),
-                    new Vector3(0.54037F, 0.54037F, 0.54037F)
+                    new Vector3(0.3963854f, 0.3963854f, 0.3963854f)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Feather"],
@@ -537,9 +522,9 @@ namespace RA2Mod.Survivors.Chrono
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Hoof"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayHoof"),
                     "CalfR",
-                    new Vector3(-0.10592F, 0.49372F, 0.0462F),
-                    new Vector3(76.55177F, 113.3775F, 7.46313F),
-                    new Vector3(0.13298F, 0.13298F, 0.12472F)
+                    new Vector3(-0.09803F, 0.47872F, 0.0435F),
+                    new Vector3(75.68243F, 112.9173F, 7.01632F),
+                    new Vector3(0.14222F, 0.14222F, 0.14268F)
                     ),
                 ItemDisplays.CreateLimbMaskDisplayRule(LimbFlags.RightCalf)
                 ));
@@ -717,7 +702,22 @@ namespace RA2Mod.Survivors.Chrono
                     new Vector3(0.38831F, 0.38831F, 0.38831F)
                     )
                 ));
-            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["LunarSun"],//re
+            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["LunarSun"],
+                ItemDisplays.CreateLimbMaskDisplayRule(LimbFlags.Head),
+                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplaySunHeadNeck"),
+                    "Head",
+                    new Vector3(0.02733F, -0.07127F, 0.01671F),
+                    new Vector3(14.2767F, 160.5365F, 27.32745F),
+                    new Vector3(1.70347F, 1.70347F, 1.70347F)
+                    ),
+                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplaySunHead"),
+                    "Head",
+                    new Vector3(0.00001F, 0.15891F, 0F),
+                    new Vector3(0F, 0F, 0F),
+                    new Vector3(1.51016F, 1.51016F, 1.51016F)
+                    )
+                ));
+            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EmpowerAlways"],
                 ItemDisplays.CreateLimbMaskDisplayRule(LimbFlags.Head),
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplaySunHeadNeck"),
                     "Head",
@@ -796,12 +796,12 @@ namespace RA2Mod.Survivors.Chrono
                     new Vector3(0.15539F, 0.15539F, 0.15539F)
                     )
                 ));
-            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["MoreMissile"],//re
+            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["MoreMissile"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayICBM"),
-                    "Chest",
-                    new Vector3(0.00001F, 0.94572F, -0.00008F),
+                    "weaponLens3",
+                    new Vector3(0.00015F, 0.10143F, 0.16869F),
                     new Vector3(0F, 0F, 0F),
-                    new Vector3(0.23312F, 0.23312F, 0.23312F)
+                    new Vector3(0.17849F, 0.17849F, 0.17849F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["MoveSpeedOnKill"],
@@ -906,7 +906,15 @@ namespace RA2Mod.Survivors.Chrono
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayPearl"),
                     "backpack_spinner",
                     new Vector3(-0.24906F, -0.00005F, 0.00001F),
-                    new Vector3(0F, 90F, 0F),
+                    new Vector3(0F, 270F, 0F),
+                    new Vector3(0.0881F, 0.0881F, 0.0881F)
+                    )
+                ));
+            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ShinyPearl"],
+                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayShinyPearl"),
+                    "backpack_spinner",
+                    new Vector3(-0.3326F, -0.0001F, 0.00002F),
+                    new Vector3(0F, 270F, 0F),
                     new Vector3(0.0881F, 0.0881F, 0.0881F)
                     )
                 ));
@@ -1001,9 +1009,9 @@ namespace RA2Mod.Survivors.Chrono
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["SecondarySkillMagazine"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayDoubleMag"),
                     "weapon_base",
-                    new Vector3(0.00002F, 0.45184F, -0.55366F),
-                    new Vector3(339.1245F, 0F, 0F),
-                    new Vector3(0.19181F, 0.19181F, 0.19181F)
+                    new Vector3(-0.04193F, 1.04671F, -0.45012F),
+                    new Vector3(275.1106F, 134.4021F, 42.90421F),
+                    new Vector3(0.13261F, 0.13261F, 0.13261F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Seed"],
@@ -1026,14 +1034,6 @@ namespace RA2Mod.Survivors.Chrono
                     new Vector3(0.12279F, 0.36443F, 0.11873F),
                     new Vector3(6.20601F, 0.93935F, 359.2854F),
                     new Vector3(0.51685F, 0.51685F, -0.51685F)
-                    )
-                ));
-            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ShinyPearl"],//re
-                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayShinyPearl"),
-                    "backpack_spinner",
-                    new Vector3(-0.24906F, -0.00005F, 0.00001F),
-                    new Vector3(0F, 90F, 0F),
-                    new Vector3(0.0881F, 0.0881F, 0.0881F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ShockNearby"],
@@ -1159,7 +1159,7 @@ namespace RA2Mod.Survivors.Chrono
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Talisman"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayTalisman"),
                     "backpack_base",
-                    new Vector3(-0.32181F, -0.13679F, -0.3796F),
+                    new Vector3(-0.48735F, -0.82299F, -0.04948F),
                     new Vector3(8.76722F, 226.548F, 343.5572F),
                     new Vector3(0.63902F, 0.63902F, 0.63902F)
                     )
@@ -1195,29 +1195,29 @@ namespace RA2Mod.Survivors.Chrono
                     new Vector3(7.66177F, 0F, 0F),
                     new Vector3(3.58014F, 3.58014F, 3.58014F)
                     ),
-                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayToothMeshSmall1"),//re
+                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayToothMeshSmall1"),
                     "Chest_Item",
-                    new Vector3(-0.00001F, 0.00323F, 0.00491F),
-                    new Vector3(7.66177F, 0F, 0F),
-                    new Vector3(3.58014F, 3.58014F, 3.58014F)
+                    new Vector3(0.09109F, -0.02416F, 0.00123F),
+                    new Vector3(7.66177F, 0F, 340.3589F),
+                    new Vector3(2.88983F, 2.88983F, 2.88983F)
                     ),
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayToothMeshSmall2"),
                     "Chest_Item",
-                    new Vector3(-0.00001F, 0.00323F, 0.00491F),
-                    new Vector3(7.66177F, 0F, 0F),
-                    new Vector3(3.58014F, 3.58014F, 3.58014F)
+                    new Vector3(0.1526F, -0.05828F, -0.00336F),
+                    new Vector3(7.66178F, 0F, 346.9604F),
+                    new Vector3(2.54944F, 2.54944F, 2.54944F)
                     ),
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayToothMeshSmall2"),
                     "Chest_Item",
-                    new Vector3(-0.00001F, 0.00323F, 0.00491F),
-                    new Vector3(7.66177F, 0F, 0F),
-                    new Vector3(3.58014F, 3.58014F, 3.58014F)
+                    new Vector3(-0.18801F, -0.05602F, -0.01578F),
+                    new Vector3(10.006F, 345.6985F, 8.26586F),
+                    new Vector3(2.80169F, 2.80169F, 2.80169F)
                     ),
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayToothMeshSmall1"),
                    "Chest_Item",
-                    new Vector3(-0.00001F, 0.00323F, 0.00491F),
-                    new Vector3(7.66177F, 0F, 0F),
-                    new Vector3(3.58014F, 3.58014F, 3.58014F)
+                    new Vector3(-0.1072F, -0.02392F, 0.00126F),
+                    new Vector3(7.66177F, 0F, 21.52076F),
+                    new Vector3(3.31853F, 3.31853F, 3.31853F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["TreasureCache"],
@@ -1239,9 +1239,9 @@ namespace RA2Mod.Survivors.Chrono
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["TriggerEnemyDebuffs"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayNoxiousThorn"),
                     "backpack_base",
-                    new Vector3(-0.29338F, 0.10177F, -0.30578F),
+                    new Vector3(-0.29423F, 0.17726F, -0.25085F),
                     new Vector3(24.0023F, 306.8707F, 62.29744F),
-                    new Vector3(1F, 1F, 1F)
+                    new Vector3(0.80834F, 0.80834F, 0.80834F) 
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["UtilitySkillMagazine"],
@@ -1252,9 +1252,9 @@ namespace RA2Mod.Survivors.Chrono
                     new Vector3(1.20726F, 1.20726F, 1.20726F)
                     ),
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayAfterburnerShoulderRing"),
-                    "UpperArmL",//re
-                    new Vector3(0.04858F, -0.0686F, -0.08941F),
-                    new Vector3(280.4542F, -0.00007F, 311.8234F),
+                    "UpperArmL",
+                    new Vector3(0.00224F, -0.0584F, -0.14457F),
+                    new Vector3(280.4542F, -0.00007F, 32.59544F),
                     new Vector3(1.20726F, 1.20726F, 1.20726F)
                     )
                 ));
@@ -1292,265 +1292,265 @@ namespace RA2Mod.Survivors.Chrono
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Blackhole"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGravCube"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Root",
+                    new Vector3(-0.17085F, 1.65166F, -1.02707F),
+                    new Vector3(0F, 0F, 0F),
+                    new Vector3(0.57087F, 0.57087F, 0.57087F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BossHunter"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayTricornGhost"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(-0.04608F, 0.42399F, 0F),
+                    new Vector3(26.1535F, 90F, 0F),
+                    new Vector3(1.12654F, 1.12654F, 1.12654F)
                     ),
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBlunderbuss"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Root",
+                    new Vector3(-1.43696F, 2.16611F, 0F),
+                    new Vector3(90F, 0F, 0F),
+                    new Vector3(1F, 1F, 1F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BossHunterConsumed"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayTricornUsed"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(-0.04608F, 0.42399F, 0F),
+                    new Vector3(26.1535F, 90F, 0F),
+                    new Vector3(1.12654F, 1.12654F, 1.12654F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["BurnNearby"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayPotion"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.09018F, -0.52487F, -0.39686F),
+                    new Vector3(0F, 0F, 0F),
+                    new Vector3(0.06722F, 0.06722F, 0.06722F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Cleanse"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayWaterPack"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.34328F, -0.24068F, 0.0001F),
+                    new Vector3(0F, 270F, 0F),
+                    new Vector3(0.19179F, 0.19179F, 0.19179F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["CommandMissile"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayMissileRack"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.04994F, -0.49996F, -0.30668F),
+                    new Vector3(81.34052F, 348.5397F, 168.667F),
+                    new Vector3(0.64514F, 0.64514F, 0.64514F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["CrippleWard"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEffigy"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.0021F, -0.80086F, -0.35547F),
+                    new Vector3(0F, 0F, 32.95721F),
+                    new Vector3(0.97368F, 0.97368F, 0.97368F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["CritOnUse"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayNeuralImplant"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.38545F, 0.19161F, 0F),
+                    new Vector3(0F, 90F, 0F),
+                    new Vector3(0.26725F, 0.26725F, 0.26725F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["DeathProjectile"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayDeathProjectile"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.08228F, -0.63321F, -0.43666F),
+                    new Vector3(349.3648F, 199.0677F, 327.2069F),
+                    new Vector3(0.18149F, 0.18149F, 0.18149F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["DroneBackup"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayRadio"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.09999F, -0.5135F, -0.3768F),
+                    new Vector3(5.93354F, 183.7227F, 323.1921F),
+                    new Vector3(1F, 1F, 1F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteAurelioniteEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteAurelioniteEquipment"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.24442F, 0.36429F, -0.0197F),
+                    new Vector3(349.1216F, 90.24615F, 356.5761F),
+                    new Vector3(0.54549F, 0.54549F, 0.54549F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteBeadEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteBeadSpike"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0F, 0.3557F, 0F),
+                    new Vector3(0F, 0F, 0F),
+                    new Vector3(0.02939F, 0.02939F, 0.02939F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteEarthEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteMendingAntlers"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.13817F, 0.27868F, 0F),
+                    new Vector3(0F, 270F, 0F),
+                    new Vector3(1F, 1F, 1F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteFireEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteHorn"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.14555F, 0.19775F, -0.00844F),
+                    new Vector3(12.7201F, 91.43581F, 9.26119F),
+                    new Vector3(-0.17967F, 0.17967F, 0.17967F)
                     ),
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteHorn"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.14555F, 0.19775F, -0.00844F),
+                    new Vector3(12.7201F, 91.43581F, 9.26119F),
+                    new Vector3(-0.17967F, 0.17967F, 0.17967F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteHauntedEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteStealthCrown"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.00002F, 0.5416F, 0F),
+                    new Vector3(270F, 90F, 0F),
+                    new Vector3(0.09371F, 0.09371F, 0.09371F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteIceEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteIceCrown"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                   "Head",
+                    new Vector3(-0.02763F, 0.52251F, -0.00001F),
+                    new Vector3(270F, 90F, 0F),
+                    new Vector3(0.03862F, 0.04063F, 0.04063F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteLightningEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteRhinoHorn"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.219F, 0.33842F, -0.00001F),
+                    new Vector3(282.1982F, 90F, 0F),
+                    new Vector3(0.44255F, 0.44255F, 0.44255F)
                     ),
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteRhinoHorn"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(-0.0137F, 0.42972F, -0.00001F),
+                    new Vector3(283.4476F, 270F, 180F),
+                    new Vector3(0.26967F, 0.26967F, 0.26967F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteLunarEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteLunar,Eye"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.48685F, 0.20181F, 0F),
+                    new Vector3(0F, 90F, 0F),
+                    new Vector3(0.4823F, 0.4823F, 0.4823F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["ElitePoisonEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEliteUrchinCrown"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.00001F, 0.36824F, 0F),
+                    new Vector3(270F, 90F, 0F),
+                    new Vector3(0.1062F, 0.1062F, 0.1062F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["EliteVoidEquipment"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayAffixVoid"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Head",
+                    new Vector3(0.21665F, 0.13638F, 0F),
+                    new Vector3(90F, 90F, 0F),
+                    new Vector3(0.30466F, 0.30466F, 0.30466F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["FireBallDash"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayEgg"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.05645F, -0.58237F, -0.35628F),
+                    new Vector3(308.5075F, 243.2431F, 111.3534F),
+                    new Vector3(0.52895F, 0.52895F, 0.52895F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Fruit"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayFruit"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(0.10146F, -1.02881F, -0.23801F),
+                    new Vector3(331.9561F, 68.85749F, 31.35033F),
+                    new Vector3(0.37767F, 0.37767F, 0.37767F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["GainArmor"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayElephantFigure"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.02746F, -0.59112F, -0.36794F),
+                    new Vector3(332.3364F, 280.3968F, 10.94887F),
+                    new Vector3(1F, 1F, 1F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Gateway"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayVase"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(0.00004F, -0.69054F, -0.37137F),
+                    new Vector3(346.4803F, 180F, 180F),
+                    new Vector3(0.37623F, 0.37623F, 0.37623F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["GoldGat"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGoldGat"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "UpperArmL",
+                    new Vector3(-0.11984F, -0.43291F, 0.07181F),
+                    new Vector3(358.5466F, 233.9762F, 190.1096F),
+                    new Vector3(0.15652F, 0.15652F, 0.15652F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["GummyClone"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayGummyClone"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.19417F, -0.44061F, -0.33637F),
+                    new Vector3(0F, 0F, 55.49944F),
+                    new Vector3(0.39912F, 0.39912F, 0.39912F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["HealAndRevive"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayHealAndRevive"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.06655F, -0.5302F, -0.35405F),
+                    new Vector3(29.55474F, 257.6591F, 28.99035F),
+                    new Vector3(1.50213F, 1.50213F, 1.50213F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["IrradiatingLaser"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayIrradiatingLaser"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "weapon_base",
+                    new Vector3(-0.47928F, -0.01859F, -0.24851F),
+                    new Vector3(280.7621F, 113.9172F, 336.4574F),
+                    new Vector3(0.33411F, 0.33411F, 0.33411F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Jetpack"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBugWings"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.41577F, 0.01412F, 0.00005F),
+                    new Vector3(345.9272F, 90F, 0F),
+                    new Vector3(0.24957F, 0.24957F, 0.24957F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["LifestealOnHit"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayLifestealOnHit"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.08077F, -0.58527F, -0.48743F),
+                    new Vector3(327.5999F, 0.00001F, 330.5048F),
+                    new Vector3(0.1455F, 0.1455F, 0.1455F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Lightning"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayLightningArmRight"),
-                    "Chest",
+                    "backpack_base",
                     new Vector3(2, 2, 2),
                     new Vector3(0, 0, 0),
                     new Vector3(1, 1, 1)
@@ -1559,90 +1559,90 @@ namespace RA2Mod.Survivors.Chrono
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["LunarPortalOnUse"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayLunarPortalOnUse"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Root",
+                    new Vector3(-0.24301F, 1.54877F, -1.08539F),
+                    new Vector3(0F, 0F, 0F),
+                    new Vector3(0.70109F, 0.70109F, 0.70109F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Meteor"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayMeteor"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Root",
+                    new Vector3(-0.14477F, 1.79951F, -1.12184F),
+                    new Vector3(0F, 0F, 0F),
+                    new Vector3(0.75924F, 0.75924F, 0.75924F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Molotov"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayMolotov"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(0.0078F, -0.6384F, -0.31966F),
+                    new Vector3(32.4553F, 213.793F, 321.2761F),
+                    new Vector3(0.44261F, 0.44261F, 0.44261F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["MultiShopCard"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayExecutiveCard"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.00017F, -0.52701F, -0.32454F),
+                    new Vector3(82.67574F, 83.80247F, 270F),
+                    new Vector3(1.65121F, 1.65121F, 1.65121F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["QuestVolatileBattery"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayBatteryArray"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_spinner",
+                    new Vector3(-0.17771F, -0.00012F, -0.00457F),
+                    new Vector3(0F, 268.5137F, 0F),
+                    new Vector3(0.55286F, 0.55286F, 0.55286F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Recycle"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayRecycler"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.02735F, -0.56458F, -0.40139F),
+                    new Vector3(0F, 95.83913F, 0F),
+                    new Vector3(0.11574F, 0.10498F, 0.10498F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Saw"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplaySawmerangFollower"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "Root",
+                    new Vector3(-0.85487F, 2.30484F, 0.94187F),
+                    new Vector3(86.31735F, 180F, 180F),
+                    new Vector3(0.18444F, 0.18444F, 0.18444F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Scanner"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayScanner"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.09659F, -0.6237F, -0.28054F),
+                    new Vector3(2.41636F, 221.3338F, 184.845F),
+                    new Vector3(0.24427F, 0.24427F, 0.24427F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["TeamWarCry"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayTeamWarCry"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.06176F, -0.59324F, -0.36515F),
+                    new Vector3(10.57515F, 178.9739F, 3.08356F),
+                    new Vector3(0.10728F, 0.10728F, 0.10728F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["Tonic"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayTonic"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.13736F, -0.51023F, -0.37626F),
+                    new Vector3(0F, 0F, 42.70369F),
+                    new Vector3(0.44476F, 0.44476F, 0.44476F)
                     )
                 ));
             itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets["VendingMachine"],
                 ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayVendingMachine"),
-                    "Chest",
-                    new Vector3(2, 2, 2),
-                    new Vector3(0, 0, 0),
-                    new Vector3(1, 1, 1)
+                    "backpack_base",
+                    new Vector3(-0.13422F, -0.4276F, -0.32188F),
+                    new Vector3(21.3583F, 165.6164F, 318.935F),
+                    new Vector3(0.29607F, 0.29607F, 0.29607F)
                     )
                 ));
         }

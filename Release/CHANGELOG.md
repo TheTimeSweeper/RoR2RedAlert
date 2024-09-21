@@ -1,10 +1,14 @@
 ## Changelog
+`3.0.7`
+- added Chrono item displays
+- fixed achievements on disabled characters destroying the mod. happy I didn't get any reports of this.
 
 `3.0.6`
 - split up Chrono's special into 3 charges
 - added stock display to crosshair for special charges
 - made scepter teleport purple to distinguish you got scepter
 - made chrono scepter disable-able in config if you don't like it
+- added temp chrono icons
 
 `3.0.5`
 - fixed all deployables (desolator irradiators, engi mines, everything) being set to the laws of tesla trooper's towers
