@@ -36,7 +36,7 @@ namespace RA2Mod.Survivors.Conscript
             M3_Buff_Duration = Config.BindAndOptions(
                 SectionSkills,
                 "M3_Buff_Duration",
-                4f,
+                6f,
                 0,
                 20,
                 "");
