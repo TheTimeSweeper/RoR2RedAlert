@@ -119,8 +119,13 @@ namespace RA2Mod.Modules
         {
             ContentPacks.effectDefs.Add(effectDef);
         }
-        internal static EffectDef CreateAndAddEffectDef(GameObject effectPrefab)
+        internal static EffectDef CreateAndAddEffectDef(GameObject effectPrefab, bool donotPool = false)
         {
+            if (donotPool)
+            {
+                VFXAttributes vfxAttributes = effectPrefab.GetOrAddComponent<VFXAttributes>();
+                vfxAttributes.DoNotPool = true;
+            }
             EffectDef effectDef = new EffectDef(effectPrefab);
 
             AddEffectDef(effectDef);

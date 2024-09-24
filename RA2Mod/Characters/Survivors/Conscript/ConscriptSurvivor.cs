@@ -73,6 +73,7 @@ namespace RA2Mod.Survivors.Conscript
 
             ConscriptStates.Init();
             ConscriptTokens.Init();
+            Modules.Language.PrintOutput("concsript.txt");
 
             ConscriptBuffs.Init(assetBundle);
             ConscriptAssets.Init(assetBundle);

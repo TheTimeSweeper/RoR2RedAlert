@@ -2,6 +2,7 @@
 using RA2Mod.Survivors.Desolator.Achievements;
 using RA2Mod.Survivors.Desolator.States;
 using System;
+using UnityEngine;
 
 namespace RA2Mod.Survivors.Desolator
 {
@@ -17,13 +18,14 @@ namespace RA2Mod.Survivors.Desolator
             string prefix = DesolatorSurvivor.TOKEN_PREFIX;
 
             string desc = "The Desolator is a walking powerhouse of radiation and area of effect.<color=#CCD3E0>" + Environment.NewLine + Environment.NewLine
-                        + "< ! > Rad-Cannon applies two stacks of Radiation, helping other abilities deal more damage." + Environment.NewLine + Environment.NewLine
-                        + "< ! > Scorched Earth is a simple heavy damage dealer, especially on an enemy with a lot of stacks of Radiation." + Environment.NewLine + Environment.NewLine
+                        + "< ! > Rad-Cannon applies three stacks of Radiation, helping other abilities deal more damage." + Environment.NewLine + Environment.NewLine
+                        + "< ! > Scorched Earth is a heavy damage dealer, and builds plenty of stacks of radiation as well." + Environment.NewLine + Environment.NewLine
                         + "< ! > Use the movement speed from Reactor to get you out of a pinch, but you can instead use its weakening properties to help deal extra damage." + Environment.NewLine + Environment.NewLine
-                        + "< ! > Spread the Doom leaves you vulnerable to attack, but you're rewarded for staying deployed longer to ramp up damage and radiation." + Environment.NewLine + Environment.NewLine;
+                        + "< ! > Spread the Doom leaves you vulnerable to attack, but you're rewarded for staying deployed longer to ramp up damage and radiation." + Environment.NewLine + Environment.NewLine
+                        + "< ! > The key to dealing the most damage is stacking up Radiation on enemies to boost the damage of your abilities." + Environment.NewLine + Environment.NewLine;
 
             string outro = "..and so he left, behind him, an oasis of death.";
-            string outroFailure = "..and so he vanished, there goes the neighborhood.";
+            string outroFailure = "..and so he vanished, the end was near.";
 
             string fullName = "Desolator";
             LanguageAPI.Add(prefix + "NAME", fullName);
@@ -81,9 +83,9 @@ namespace RA2Mod.Survivors.Desolator
 
             #region Primary
             LanguageAPI.Add(prefix + "PRIMARY_BEAM_NAME", "Rad-Cannon");
-            LanguageAPI.Add(prefix + "PRIMARY_BEAM_DESCRIPTION", $"<style=cIsHealing>Irradiating</style>. Shoot an enemy with a beam of radiation for {Tokens.DamageValueText(RadBeam.DamageCoefficient)}.");// Reduces armor by {Tokens.UtilityText($"{DesolatorSurvivor.ArmorShredAmount}")} for {Tokens.UtilityText($"{DesolatorSurvivor.ArmorShredDuration} seconds")}.");
+            LanguageAPI.Add(prefix + "PRIMARY_BEAM_DESCRIPTION", $"<style=cIsHealing>Irradiating</style>. Shoot an enemy with a beam of radiation for {Tokens.DamageValueText(RadBeam.DamageCoefficient)} and {RadBeam.RadPrimaryStacks} stacks of <style=cIsHealing>Radiation</style>.");// Reduces armor by {Tokens.UtilityText($"{DesolatorSurvivor.ArmorShredAmount}")} for {Tokens.UtilityText($"{DesolatorSurvivor.ArmorShredDuration} seconds")}.");
 
-            LanguageAPI.Add("KEYWORD_RADIATION_PRIMARY", Tokens.KeywordText("Irradiating", $"Inflicts 2 stacks of <style=cIsHealing>Radiation</style>, each dealing {Tokens.DamageText($"{DesolatorSurvivor.DotDamage * 2 * RadBeam.RadDamageMultiplier * 100}% damage per second")} for {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}."));
+            LanguageAPI.Add("KEYWORD_RADIATION_PRIMARY", Tokens.KeywordText("Irradiating", $"Inflicts {RadBeam.RadPrimaryStacks} stacks of <style=cIsHealing>Radiation</style>, dealing {Tokens.DamageText($"{Mathf.FloorToInt(RadBeam.RadPrimaryStacks * RadBeam.RadDamageMultiplier * DesolatorSurvivor.TotalDotDamage * 100)}% damage")} over {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}."));
             #endregion
 
             #region Secondary
@@ -92,8 +94,8 @@ namespace RA2Mod.Survivors.Desolator
                 $"<style=cIsHealing>Irradiating</style>. Blast an area for {Tokens.DamageValueText(AimBigRadBeam.BlastDamageCoefficient)}, and cover the area in radiation for {Tokens.UtilityText($"{AimBigRadBeam.DotZoneLifetime} seconds")}. " +
                 $"Enemies in contact take {Tokens.DamageText($"{AimBigRadBeam.PoolDamageCoefficient * 100}% damage twice per second")}");
 
-            LanguageAPI.Add("KEYWORD_RADIATION_SECONDARY", Tokens.KeywordText("Irradiating", $"Initial Blast: Inflicts {Tokens.DamageText($"{DesolatorSurvivor.DotDamage * 2 * 100}% damage per second")} for {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}.\n" +
-                $"Lingering Area: Each tick inflicts {Tokens.DamageText($"{DesolatorSurvivor.DotDamage * 2 * 0.5f * 100}% damage per second")} for {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}."));
+            LanguageAPI.Add("KEYWORD_RADIATION_SECONDARY", Tokens.KeywordText("Irradiating", $"{Tokens.HealthText("Initial Blast")}: Inflicts {Tokens.DamageText($"{DesolatorSurvivor.TotalDotDamage * 100}% damage")} over {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}.\n" +
+                $"{Tokens.HealthText("Lingering Area")}: Each tick inflicts {Tokens.DamageText($"{Mathf.FloorToInt(DesolatorSurvivor.TotalDotDamage * AimBigRadBeam.PoolProcCoefficient * 100)}% damage")} over {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}."));
             #endregion
 
             #region Utility
@@ -138,7 +140,7 @@ namespace RA2Mod.Survivors.Desolator
             LanguageAPI.Add(prefix + "SPECIAL_SCEPTER_IRRADIATOR_DESCRIPTION_FUN", specialDescScepter.Replace(name, name2));
 
 
-            LanguageAPI.Add("KEYWORD_RADIATION_SPECIAL", Tokens.KeywordText("Irradiating", $"Each tick inflicts {Tokens.DamageText($"{DesolatorSurvivor.DotDamage * 2 * 0.7f * 100}% damage per second")} for {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}."));
+            LanguageAPI.Add("KEYWORD_RADIATION_SPECIAL", Tokens.KeywordText("Irradiating", $"Each tick inflicts {Tokens.DamageText($"{Mathf.FloorToInt(DesolatorSurvivor.TotalDotDamage * DesolatorSurvivor.DotSpecialProcCoefficient * 100)}% damage")} over {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}."));
             #endregion
 
             #region Achievements

@@ -199,7 +199,7 @@ namespace RA2Mod.Survivors.Chrono
                     tracerLine.sharedMaterial.SetTexture("_NormalTex", beamMatResult.GetTexture("_NormalTex"));
                     tracerLine.sharedMaterial.SetTexture("_Cloud1Tex", beamMatResult.GetTexture("_Cloud1Tex"));
                     tracerLine.sharedMaterial.SetTexture("_Cloud2Tex", beamMatResult.GetTexture("_Cloud2Tex"));
-                    Content.CreateAndAddEffectDef(chronoTracer);
+                    Content.CreateAndAddEffectDef(chronoTracer, true);
                 });
 
             //tether 2
@@ -226,7 +226,7 @@ namespace RA2Mod.Survivors.Chrono
                             line.sharedMaterial.SetTexture("_NormalTex", beamMat.GetTexture("_NormalTex"));
                             line.sharedMaterial.SetTexture("_Cloud1Tex", beamMat.GetTexture("_Cloud1Tex"));
                             line.sharedMaterial.SetTexture("_Cloud2Tex", beamMat.GetTexture("_Cloud2Tex"));
-                            Content.CreateAndAddEffectDef(chronoTracer);
+                            Content.CreateAndAddEffectDef(chronoTracer, true);
                         });
                 });
 
@@ -375,7 +375,7 @@ namespace RA2Mod.Survivors.Chrono
                     line.sharedMaterial.SetTexture("_NormalTex", beamMat.GetTexture("_NormalTex"));
                     line.sharedMaterial.SetTexture("_Cloud1Tex", beamMat.GetTexture("_Cloud1Tex"));
                     line.sharedMaterial.SetTexture("_Cloud2Tex", beamMat.GetTexture("_Cloud2Tex"));
-                    Content.CreateAndAddEffectDef(chronoTracer);
+                    Content.CreateAndAddEffectDef(chronoTracer, true);
                 }));
             }));
 

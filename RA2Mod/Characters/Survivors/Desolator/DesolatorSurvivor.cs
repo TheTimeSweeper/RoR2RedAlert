@@ -1,31 +1,19 @@
-﻿using BepInEx.Configuration;
-using Mono.Cecil.Cil;
-using MonoMod.Cil;
-using RA2Mod.Modules;
+﻿using RA2Mod.Modules;
 using RA2Mod.Modules.Characters;
 using RoR2;
 using RoR2.Skills;
-using RoR2.UI;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using R2API;
-using UnityEngine.SceneManagement;
 using RA2Mod.General.Components;
 using System.Runtime.CompilerServices;
-using R2API.Utils;
 using System.Collections;
 using RA2Mod.General;
-using RoR2.Orbs;
-using RA2Mod.Survivors.Tesla.States;
-using RA2Mod.Survivors.Tesla.SkillDefs;
-using RA2Mod.Survivors.Tesla.Orbs;
-using RA2Mod.Minions.TeslaTower;
-using RA2Mod.Survivors.Tesla.Components;
 using RA2Mod.Survivors.Desolator.States;
 using RA2Mod.Survivors.Desolator.Components;
 using RA2Mod.Survivors.Desolator.SkillDefs;
 using EntityStates;
+using RA2Mod.Survivors.Chrono.States;
 
 namespace RA2Mod.Survivors.Desolator
 {
@@ -47,6 +35,8 @@ namespace RA2Mod.Survivors.Desolator
         public static float DotDamage = 0.07f;
         public static float DotInterval = 0.5f;
         public static float DotDuration = 8f;
+        public static float TotalDotDamage => DotDamage / DotInterval * DotDuration;
+        public static float DotSpecialProcCoefficient = 0.7f;
 
         public static float DamageMultiplierPerIrradiatedStack = 0.04f;
 
@@ -579,7 +569,6 @@ namespace RA2Mod.Survivors.Desolator
 
         private void HealthComponent_TakeDamage(HealthComponent self, DamageInfo damageInfo)
         {
-
             if (DamageAPI.HasModdedDamageType(damageInfo, DesolatorDamageTypes.DesolatorDot) || DamageAPI.HasModdedDamageType(damageInfo, DesolatorDamageTypes.DesolatorDotPrimary))
             {
                 int radStacks;

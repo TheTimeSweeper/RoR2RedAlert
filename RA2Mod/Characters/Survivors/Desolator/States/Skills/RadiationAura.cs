@@ -13,7 +13,6 @@ namespace RA2Mod.Survivors.Desolator.States
 
         public RoR2.CameraTargetParams.AimRequest aimRequest;
 
-        //todo desomove
         private DesolatorAuraHolder _auraHolder;
 
         public override void OnEnter() {

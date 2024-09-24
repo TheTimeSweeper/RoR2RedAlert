@@ -14,7 +14,7 @@
     "HABIBI_DESOLATOR_BODY_PASSIVE_DESCRIPTION" : "Los ataques de Desolador infligen más daño a <style=cIsHealing>objetivos irradiados</style>: <style=cIsDamage>+0.04x</style> por acumulacion de <style=cIsHealing>Radiacion</style>.",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_NAME" : "Rad-Cannon",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_DESCRIPTION" : "<style=cIsHealing>Irradiando</style>. Dispara a un enemigo con un rayo de radiación que causa <style=cIsDamage>100% de daño</style>.",
-    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>Irradiando</style><style=cSub>Inflige 2 acumulaciones de <style=cIsHealing>Radiación</style>, cada una infligiendo <style=cIsDamage>9.8% daño por segundo</style> por <style=cIsUtility>8 segundos</style>.</style>",
+    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>Irradiando</style><style=cSub>Inflige 3 acumulaciones de <style=cIsHealing>Radiación</style>, cada una infligiendo <style=cIsDamage>8.4% daño por segundo</style> por <style=cIsUtility>8 segundos</style>.</style>",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_NAME" : "Tierra Quemada",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_DESCRIPTION" : "<style=cIsHealing>Irradiando</style>. Explota un área para infligir <style=cIsDamage>320% de daño</style>, y cubrirla de radiación durante <style=cIsUtility>2 segundos</style>. Los enemigos en contacto reciben  <style=cIsDamage>20% de daño dos veces por segundo</style>",
     "KEYWORD_RADIATION_SECONDARY" : "<style=cKeywordName>Irradiando</style><style=cSub>Explosión inicial: Inflige <style=cIsDamage>14% de daño por segundo</style> por <style=cIsUtility>8 segundos</style>.\nÁrea persistente: Cada tick inflige <style=cIsDamage>7% de daño por segundo</style> por <style=cIsUtility>8 segundos</style>.</style>",

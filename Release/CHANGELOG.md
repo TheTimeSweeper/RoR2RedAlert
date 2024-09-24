@@ -1,4 +1,23 @@
 ## Changelog
+`3.0.10`
+- removed log spam on all damage instances. woopsies
+
+`3.0.9`
+- fixed desolator utility for real, effect is back
+- adjusted desolator m1 from from 100% + 156% in 2 stacks of radiation -> 80% + 201% in 3 stacks of radiation
+    - configs coming eventually
+- reworded desolator's irradiating tooltips so you dont have to pull out a calculator to know what damage it does lol
+    - nah you'll still probably need a calculator what with all the dots and ticks
+    - will probably do the same for the base move descriptions later
+    - not applied to other languages
+- fixed desolator m1 tracer being missing
+- fixed chrono m1 tracer being missing
+- changed ukranian folder from UA to UK as I heard that is the thing to do now
+
+`3.0.8`
+- added safety checks for desolator's utility to work in multiplayer
+    - visual is still bugged until I can fully figure this out but the move will hopefully always work, gameplay-wise
+
 `3.0.7`
 - added Chrono item displays
 - fixed achievements on disabled characters destroying the mod. happy I didn't get any reports of this.

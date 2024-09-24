@@ -14,7 +14,7 @@
     "HABIBI_DESOLATOR_BODY_PASSIVE_DESCRIPTION" : "Les attaques de Désolateur infligent plus de dégâts aux <style=cIsHealing>Irradiated</style> cibles: <style=cIsDamage>+0.04x</style> par cumul de <style=cIsHealing>Radiation</style>.",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_NAME" : "Rad-Canon",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_DESCRIPTION" : "<style=cIsHealing>Irradiant</style>. Tire sur un ennemi avec un faisceau de radiation pour <style=cIsDamage>100% de dégâts</style>.",
-    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>Irradiant</style><style=cSub>Inflige 2 cumuls de <style=cIsHealing>Radiation</style>, chacun infligeant <style=cIsDamage>9.8% de dégâts par seconde</style> pour <style=cIsUtility>8 secondes</style>.</style>",
+    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>Irradiant</style><style=cSub>Inflige 3 cumuls de <style=cIsHealing>Radiation</style>, chacun infligeant <style=cIsDamage>8.4% de dégâts par seconde</style> pour <style=cIsUtility>8 secondes</style>.</style>",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_NAME" : "Terre Brûlée",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_DESCRIPTION" : "<style=cIsHealing>Irradiant</style>. Explose une zone pour <style=cIsDamage>320% de dégâts</style>, et couvre la zone de radiation pour <style=cIsUtility>2 secondes</style>. Les ennemis en contact subissent <style=cIsDamage>20% de dégâts 2 fois par seconde</style>",
     "KEYWORD_RADIATION_SECONDARY" : "<style=cKeywordName>Irradiant</style><style=cSub>Explosion Initiale: Inflige <style=cIsDamage>14% de démgâts par seconde</style> pour <style=cIsUtility>8 secondes</style>.\nZone Persistante: Chaque coup inflige <style=cIsDamage>7% de dégâts par seconde</style> pour <style=cIsUtility>8 secondes</style>.</style>",

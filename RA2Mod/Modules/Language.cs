@@ -50,7 +50,7 @@ namespace RA2Mod.Modules
 
             //write a language file next to your mod. must have a folder called Language next to your mod dll.
             if (!string.IsNullOrEmpty(fileName)) {
-                string path = Path.Combine(Directory.GetParent(RA2Plugin.instance.Info.Location).FullName, "Language", "en", fileName);
+                string path = Path.Combine(Directory.GetParent(RA2Plugin.instance.Info.Location).FullName, "Language", "english", fileName);
                 File.WriteAllText(path, strings);
             }
 

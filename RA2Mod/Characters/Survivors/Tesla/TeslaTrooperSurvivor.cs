@@ -112,8 +112,8 @@ namespace RA2Mod.Survivors.Tesla
             TeslaAssets.OnCharacterInitialized(assetBundle);
             TeslaStates.Init();
             TeslaTokens.Init();
-            TeslaColors.Init();
             Modules.Language.PrintOutput("tesla.txt");
+            TeslaColors.Init();
             
             TeslaBuffs.Init(assetBundle);
             TeslaCompat.Init();

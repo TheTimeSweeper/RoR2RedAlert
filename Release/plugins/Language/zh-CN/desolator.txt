@@ -14,7 +14,7 @@
     "HABIBI_DESOLATOR_BODY_PASSIVE_DESCRIPTION" : "辐射工兵的攻击对遭受<style=cIsHealing>辐射</style>的敌人伤害提高：每层<style=cIsHealing>辐射</style> <style=cIsDamage>+0.04x</style>。",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_NAME" : "辐射炮",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_DESCRIPTION" : "<style=cIsHealing>辐射</style>。用辐射光束射击敌人，造成<style=cIsDamage>100%伤害</style>。",
-    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>辐射</style><style=cSub>施加2层<style=cIsHealing>辐射</style>，每层<style=cIsDamage>每秒造成9.8%伤害</style>，持续<style=cIsUtility>8秒</style>。</style>",
+    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>辐射</style><style=cSub>施加3层<style=cIsHealing>辐射</style>，每层<style=cIsDamage>每秒造成8.4%伤害</style>，持续<style=cIsUtility>8秒</style>。</style>",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_NAME" : "辐射焦土",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_DESCRIPTION" : "<style=cIsHealing>辐射</style>。在目标区域爆炸，造成<style=cIsDamage>320%伤害</style>并在该区域留下辐射场，持续<style=cIsUtility>2秒</style>。接触辐射场的敌人<style=cIsDamage>每秒受到2次20%伤害。</style>",
     "KEYWORD_RADIATION_SECONDARY" : "<style=cKeywordName>辐射</style><style=cSub>初始爆炸：施加<style=cIsDamage>每秒14%伤害</style>的<style=cIsHealing>辐射</style>，持续<style=cIsUtility>8秒</style>。\n辐射场：每次伤害施加<style=cIsDamage>每秒造成7%伤害</style>的<style=cIsHealing>辐射</style>，持续<style=cIsUtility>8秒</style>。</style>",

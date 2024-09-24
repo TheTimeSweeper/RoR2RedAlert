@@ -33,7 +33,7 @@ namespace RA2Mod
     {
         public const string MODUID = "com.TheTimesweeper.RedAlert";
         public const string MODNAME = "Red Alert";
-        public const string MODVERSION = "3.0.6";
+        public const string MODVERSION = "3.0.10";
 
         public const string DEVELOPER_PREFIX = "HABIBI";
 
@@ -60,6 +60,7 @@ namespace RA2Mod
             GeneralStates.Init();
             GeneralHooks.Init();
             GeneralTokens.Init();
+            Modules.Language.PrintOutput("shared.txt");
 
             Log.CurrentTime("START " + MODVERSION);
 

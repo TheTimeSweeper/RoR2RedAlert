@@ -1,45 +1,57 @@
-﻿using UnityEngine;
+﻿using RA2Mod.Survivors.Chrono.Components;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.Networking;
 
 namespace RA2Mod.Survivors.Desolator.Components
 {
     public class DesolatorAuraHolder : NetworkBehaviour
     {
-        [SyncVar]
-        private GameObject _spawnedAuraObject = null;
         private DesolatorAuraController _spawnedAura = null;
 
-        void Awake()
-        {
-            SpawnAura();
-        }
-
-        public void SpawnAura()
+        void Start()
         {
             if (NetworkServer.active)
             {
-                GameObject spawnedAuraObject = Instantiate(DesolatorAssets.DesolatorAuraPrefab, base.transform.position, Quaternion.identity);
-                NetworkServer.Spawn(spawnedAuraObject);
-                _spawnedAuraObject = spawnedAuraObject;
+                SpawnAuraServer();
+            }
+        }
+
+        [Server]
+        public void SpawnAuraServer()
+        {
+            GameObject spawnedAuraObject = Instantiate(DesolatorAssets.DesolatorAuraPrefab, base.transform.position, Quaternion.identity);
+            _spawnedAura = spawnedAuraObject.GetComponent<DesolatorAuraController>();
+            NetworkServer.Spawn(spawnedAuraObject);
+            RpcSendAura(spawnedAuraObject);
+        }
+
+        [ClientRpc]
+        private void RpcSendAura(GameObject spawnedAuraObject)
+        {
+            _spawnedAura = spawnedAuraObject.GetComponent<DesolatorAuraController>();
+            if (NetworkServer.active)
+            {
+                _spawnedAura.RpcSetOwner(gameObject);
             }
         }
 
         public void ActivateAura()
         {
-            if (_spawnedAura == null)
+            if (_spawnedAura.Owner == null)
             {
-                _spawnedAura = _spawnedAuraObject.GetComponent<DesolatorAuraController>();
                 if (NetworkServer.active)
                 {
                     _spawnedAura.RpcSetOwner(gameObject);
                 }
             }
 
-            if (_spawnedAura == null)
-            {
-                Log.Warning("trying to activate null aura. send this log to timesweeper pls");
-            }
             _spawnedAura?.Activate(true);
+
+            if(_spawnedAura == null)
+            {
+                Log.Warning("aura is null. help");
+            }
         }
 
         public void DeactivateAura()
@@ -49,9 +61,9 @@ namespace RA2Mod.Survivors.Desolator.Components
 
         void OnDestroy()
         {
-            if (_spawnedAuraObject)
+            if (_spawnedAura)
             {
-                NetworkServer.Destroy(_spawnedAuraObject);
+                NetworkServer.Destroy(_spawnedAura.gameObject);
             }
         }
     }

@@ -73,6 +73,7 @@ namespace RA2Mod.Survivors.GI
 
             GIStates.Init();
             GITokens.Init();
+            Modules.Language.PrintOutput("gi.txt");
 
             GIAssets.Init(assetBundle);
             GIBuffs.Init(assetBundle);

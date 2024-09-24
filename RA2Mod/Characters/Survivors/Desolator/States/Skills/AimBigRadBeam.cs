@@ -10,6 +10,7 @@ namespace RA2Mod.Survivors.Desolator.States
 
         public static float BlastDamageCoefficient = 3.2f;
         public static float PoolDamageCoefficient = 0.2f;
+        public static float PoolProcCoefficient = 0.5f;
         public static float DotZoneLifetime = 2;
         public static float BaseAttackRadius = 14.5f;
 

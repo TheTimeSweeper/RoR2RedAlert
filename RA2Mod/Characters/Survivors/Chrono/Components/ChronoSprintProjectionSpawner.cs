@@ -37,7 +37,6 @@ namespace RA2Mod.Survivors.Chrono.Components
             }
 
             marker.SimpleMove(deltaPosition);
-
             if (NetworkServer.active)
             {
                 RpcMove(deltaPosition);

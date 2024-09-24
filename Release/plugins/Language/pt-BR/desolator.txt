@@ -14,7 +14,7 @@
     "HABIBI_DESOLATOR_BODY_PASSIVE_DESCRIPTION" : "Os ataques do Desolador causam mais dano à alvos <style=cIsHealing>Irradiados</style>: <style=cIsDamage>+0.04x</style> por acúmulo de <style=cIsHealing>Radiação</style>.",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_NAME" : "Canhão de Radiação",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_DESCRIPTION" : "<style=cIsHealing>Irradiante</style>. Dispare um feixe de radiação que causa <style=cIsDamage>100% de dano</style>.",
-    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>Irradiante</style><style=cSub>Inflige 2 acúmulos de <style=cIsHealing>Radiação</style>, cada acúmulo causa <style=cIsDamage>9.8% de dano por segundo</style> por <style=cIsUtility>8 segundos</style>.</style>",
+    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>Irradiante</style><style=cSub>Inflige 3 acúmulos de <style=cIsHealing>Radiação</style>, cada acúmulo causa <style=cIsDamage>8.4% de dano por segundo</style> por <style=cIsUtility>8 segundos</style>.</style>",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_NAME" : "Terra Desolada",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_DESCRIPTION" : "<style=cIsHealing>Irradiante</style>. Explode uma área, causando <style=cIsDamage>320% de dano</style>, cobrindo a área com radiação por <style=cIsUtility>2 segundos</style>. Inimigos em contato recebem <style=cIsDamage>20% de dano duas vezes por segundo</style>.",
     "KEYWORD_RADIATION_SECONDARY" : "<style=cKeywordName>Irradiante</style><style=cSub>Explosão Inicial: Inflige <style=cIsDamage>14% de dano por segundo</style> por <style=cIsUtility>8 segundos</style>.\n Área Persistente: Cada tique inflige <style=cIsDamage>7% de dano por segundo</style> por <style=cIsUtility>8 segundos</style>.</style>",

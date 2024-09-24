@@ -15,10 +15,11 @@ using UnityEngine.Networking;
 
 namespace RA2Mod.Survivors.Desolator
 {
-    public class DesolatorAssets
+    public static class DesolatorAssets
     {
         public static GameObject DesolatorTracerRebar;
         public static GameObject DesolatorTracerSnipe;
+        public static GameObject DesolatorSmokeRing;
 
         public static TeamAreaIndicator DesolatorTeamAreaIndicatorPrefab;
 
@@ -50,6 +51,7 @@ namespace RA2Mod.Survivors.Desolator
 
             DesolatorTracerRebar = CreateDesolatorTracerRebar();
             DesolatorTracerSnipe = CreateDesolatorTracerSnipe();
+            DesolatorSmokeRing = CreateDesolatorSmokeRing();
 
             DesolatorTeamAreaIndicatorPrefab = CreateDesolatorTeamAreaIndicator();
 
@@ -69,11 +71,19 @@ namespace RA2Mod.Survivors.Desolator
             DesolatorDeployProjectileEmote = CreateDesolatorDeployProjectileEmote();
         }
 
+        private static GameObject CreateDesolatorSmokeRing()
+        {
+            GameObject ring = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Common/VFX/MuzzleflashSmokeRing.prefab").WaitForCompletion().InstantiateClone("DesolatorSmokeRing", false);
+            ColorThings(ring, Color.green);
+            Content.CreateAndAddEffectDef(ring);
+            return ring;
+        }
+
         #region desolator stuff
 
         private static GameObject CreateDesolatorTracerRebar()
         {
-            GameObject tracer = CloneTracer("TracerToolbotRebar", "TracerDeslotorRebar", Color.green, 3);
+            GameObject tracer = CloneTracer("RoR2/Base/Toolbot/TracerToolbotRebar.prefab", "TracerDeslotorRebar", Color.green, 3);
 
             UnityEngine.Object.Destroy(tracer.transform.Find("StickEffect").gameObject);
 
@@ -82,7 +92,7 @@ namespace RA2Mod.Survivors.Desolator
 
         private static GameObject CreateDesolatorTracerSnipe()
         {
-            GameObject tracer = CloneTracer("TracerHuntressSnipe", "TracerDeslotorHuntressSnipe", Color.green, 3);
+            GameObject tracer = CloneTracer("RoR2/Base/Huntress/TracerHuntressSnipe.prefab", "TracerDeslotorHuntressSnipe", Color.green, 3);
 
             UnityEngine.Object.Destroy(tracer.transform.Find("TracerHead").gameObject);
 
@@ -106,6 +116,8 @@ namespace RA2Mod.Survivors.Desolator
 
             GameObject DeployProjectile = PrefabAPI.InstantiateClone(assetBundle.LoadAsset<GameObject>("DeployProjectile"), "DeployProjectile", true);
 
+            DeployProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
+
             DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = DeployProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
             damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
 
@@ -125,8 +137,9 @@ namespace RA2Mod.Survivors.Desolator
 
         private static GameObject CreateDesolatorDeployProjectileEmote()
         {
-
             GameObject DeployProjectile = PrefabAPI.InstantiateClone(assetBundle.LoadAsset<GameObject>("DeployProjectileEmote"), "DeployProjectileEmote", true);
+
+            DeployProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
 
             DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = DeployProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
             damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
@@ -150,6 +163,7 @@ namespace RA2Mod.Survivors.Desolator
             GameObject DeployProjectile = PrefabAPI.InstantiateClone(assetBundle.LoadAsset<GameObject>("DeployProjectile"), "DeployProjectileScepter", true);
 
             DeployProjectile.GetComponent<ProjectileDotZone>().resetFrequency = 1.5f;
+            DeployProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
 
             DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = DeployProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
             damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
@@ -175,15 +189,10 @@ namespace RA2Mod.Survivors.Desolator
             Renderer ghostRenderer = irradiatorProjectile.GetComponent<ProjectileController>().ghostPrefab.GetComponentInChildren<Renderer>();
             ghostRenderer.material = ghostRenderer.material.ConvertDefaultShaderToHopoo();
 
+            irradiatorProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
+
             DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = irradiatorProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
             damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
-
-            //todo deso fix this shit
-            //Log.Warning($"irradiatorDeployableSlot {DesolatorDeployables.irradiatorDeployableSlot}");
-            //irradiatorProjectile.GetComponent<ProjectileDeployToOwner>().deployableSlot = DesolatorDeployables.irradiatorDeployableSlot;
-            //Log.Warning($"deployableSlot {DesolatorAssets.DesolatorIrradiatorProjectile.GetComponent<ProjectileDeployToOwner>().deployableSlot}");
-            //UnityEngine.Object.Destroy(irradiatorProjectile.GetComponent<Deployable>());
-            //UnityEngine.Object.Destroy(irradiatorProjectile.GetComponent<ProjectileDeployToOwner>());
 
             TeamAreaIndicator areaIndicator = UnityEngine.Object.Instantiate(DesolatorTeamAreaIndicatorPrefab, irradiatorProjectile.transform);
             areaIndicator.teamFilter = irradiatorProjectile.GetComponent<TeamFilter>();
@@ -202,13 +211,10 @@ namespace RA2Mod.Survivors.Desolator
         {
             GameObject irradiatorProjectileScepter = PrefabAPI.InstantiateClone(assetBundle.LoadAsset<GameObject>("IrradiatorProjectileScepter"), "IrradiatorProjectileScepter", true);
 
-            //todo deso fix this shit
-            //irradiatorProjectileScepter.GetComponent<ProjectileDeployToOwner>().deployableSlot = DesolatorDeployables.irradiatorDeployableSlot;
-            //UnityEngine.Object.Destroy(irradiatorProjectileScepter.GetComponent<Deployable>());
-            //UnityEngine.Object.Destroy(irradiatorProjectileScepter.GetComponent<ProjectileDeployToOwner>());
-
             Renderer ghostRenderer = irradiatorProjectileScepter.GetComponent<ProjectileController>().ghostPrefab.GetComponentInChildren<Renderer>();
             ghostRenderer.material = ghostRenderer.material.ConvertDefaultShaderToHopoo();
+
+            irradiatorProjectileScepter.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
 
             DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = irradiatorProjectileScepter.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
             damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
@@ -241,7 +247,7 @@ namespace RA2Mod.Survivors.Desolator
             projectileDotZone.impactEffect = IrradiatedImpactEffect;
             projectileDotZone.lifetime = AimBigRadBeam.DotZoneLifetime;
             projectileDotZone.damageCoefficient = 1;
-            projectileDotZone.overlapProcCoefficient = 0.5f;
+            projectileDotZone.overlapProcCoefficient = AimBigRadBeam.PoolProcCoefficient;
             projectileDotZone.resetFrequency = 2F;
 
             leapAcidProjectile.GetComponent<ProjectileDamage>().damageType = DamageType.Generic;
@@ -279,6 +285,7 @@ namespace RA2Mod.Survivors.Desolator
         private static GameObject CreateDesolatorAura()
         {
             GameObject aura = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/IcicleAura"), "DesolatorAura", true);
+            Content.AddNetworkedObject(aura);
             
             UnityEngine.Object.Destroy(aura.GetComponent<IcicleAuraController>());
             aura.AddComponent<DesolatorAuraController>();
@@ -311,24 +318,37 @@ namespace RA2Mod.Survivors.Desolator
             particleSystem.transform.localScale = new Vector3(0.8f, 1, 0.8f);
         }
 
-        //todo deso move ugh
         private static GameObject CloneTracer(string originalTracerName, string newTracerName, Color? color = null, float widthMultiplierMultiplier = 1, float? speed = null, float? length = null)
         {
-            if (RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/Tracers/" + originalTracerName) == null) return null;
+            var originalTracer = Addressables.LoadAssetAsync<GameObject>(originalTracerName).WaitForCompletion();
+            if (!Log.CheckNullAndWarn(originalTracerName, originalTracer))
+            {
+                return null;
+            }
 
-            GameObject newTracer = PrefabAPI.InstantiateClone(RoR2.LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/Tracers/" + originalTracerName), newTracerName, true);
+            GameObject newTracer = PrefabAPI.InstantiateClone(originalTracer, newTracerName, false);
 
             if (!newTracer.GetComponent<EffectComponent>()) newTracer.AddComponent<EffectComponent>();
             if (!newTracer.GetComponent<VFXAttributes>()) newTracer.AddComponent<VFXAttributes>();
             newTracer.GetComponent<VFXAttributes>().vfxPriority = VFXAttributes.VFXPriority.Always;
+            newTracer.GetComponent<VFXAttributes>().DoNotPool = true;
             if (!newTracer.GetComponent<NetworkIdentity>()) newTracer.AddComponent<NetworkIdentity>();
 
             newTracer.GetComponent<Tracer>().speed = speed.HasValue ? speed.Value : newTracer.GetComponent<Tracer>().speed;
             newTracer.GetComponent<Tracer>().length = length.HasValue ? length.Value : newTracer.GetComponent<Tracer>().length;
 
+            ColorThings(newTracer, color, widthMultiplierMultiplier);
+
+            Content.CreateAndAddEffectDef(newTracer);
+
+            return newTracer;
+        }
+
+        private static void ColorThings(this GameObject thingToColor, Color? color, float widthMultiplierMultiplier = 1)
+        {
             if (color.HasValue || widthMultiplierMultiplier != 1)
             {
-                foreach (var lineREnderer in newTracer.GetComponentsInChildren<LineRenderer>())
+                foreach (var lineREnderer in thingToColor.GetComponentsInChildren<LineRenderer>())
                 {
                     if (color.HasValue)
                     {
@@ -341,7 +361,7 @@ namespace RA2Mod.Survivors.Desolator
                     }
                 }
 
-                foreach (ParticleSystem particles in newTracer.GetComponentsInChildren<ParticleSystem>())
+                foreach (ParticleSystem particles in thingToColor.GetComponentsInChildren<ParticleSystem>())
                 {
                     ParticleSystem.MainModule mainModule = particles.main;
                     mainModule.startSize = new ParticleSystem.MinMaxCurve(mainModule.startSize.constant * widthMultiplierMultiplier);
@@ -375,17 +395,13 @@ namespace RA2Mod.Survivors.Desolator
 
             if (color.HasValue)
             {
-                foreach (var rend in newTracer.GetComponentsInChildren<ParticleSystemRenderer>())
+                foreach (var rend in thingToColor.GetComponentsInChildren<ParticleSystemRenderer>())
                 {
                     rend.material.SetColor("_MainColor", color.Value);
                     rend.material.SetColor("_Color", color.Value);
                     rend.material.SetColor("_TintColor", color.Value);
                 }
             }
-
-            Content.CreateAndAddEffectDef(newTracer);
-
-            return newTracer;
         }
 
         #endregion desolator stuff

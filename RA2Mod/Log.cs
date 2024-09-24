@@ -28,9 +28,10 @@ namespace RA2Mod
         internal static void Info(object data) => _logSource.LogInfo(data);
         internal static void Message(object data) => _logSource.LogMessage(data);
         internal static void Warning(object data) => _logSource.LogWarning(data);
-        internal static void WarningNull(string name, object objecte)
+        internal static bool CheckNullAndWarn(string name, object objecte)
         {
             Log.Warning($"{name} is {objecte!= null}");
+            return objecte != null;
         }
         internal static void WarningDebug(string format, params object[] data) => DebugWarning(format, data);
         internal static void DebugWarning(string format, params object[] data)

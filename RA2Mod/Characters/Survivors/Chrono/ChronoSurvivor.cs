@@ -105,7 +105,8 @@ namespace RA2Mod.Survivors.Chrono
             ChronoAssets.OnCharacterInitialized(assetBundle);
             ChronoStates.Init();
             ChronoTokens.Init();
-            
+            Modules.Language.PrintOutput("chrono.txt");
+
             ChronoHealthBars.Init();
             ChronoDamageTypes.Init();
             ChronoBuffs.Init(assetBundle);
@@ -144,7 +145,7 @@ namespace RA2Mod.Survivors.Chrono
             bodyPrefab.AddComponent<ChronoSprintProjectionSpawner>();
             VoiceLineController voiceLineController = bodyPrefab.AddComponent<VoiceLineController>();
             voiceLineController.voiceLineContext = new VoiceLineContext("Chrono", 4, 5, 5);
-            Log.WarningNull("voicelinecontext", voiceLineController.voiceLineContext);
+            Log.CheckNullAndWarn("voicelinecontext", voiceLineController.voiceLineContext);
         }
 
         public override void InitializeEntityStateMachines() 

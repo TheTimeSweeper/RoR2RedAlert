@@ -15,7 +15,7 @@
     "HABIBI_DESOLATOR_BODY_PASSIVE_DESCRIPTION" : "Атаки Опустошителя наносят больше урона <style=cIsHealing>Облученным</style> целям: <style=cIsDamage>+0.04x</style> за каждый эффект <style=cIsHealing>Облучения</style>.",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_NAME" : "Рад-Пушка",
     "HABIBI_DESOLATOR_BODY_PRIMARY_BEAM_DESCRIPTION" : "<style=cIsHealing>Облучающий</style>. Стреляет лучом радиации на <style=cIsDamage>100% урона</style>.",
-    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>Облучающий</style><style=cSub>Накладывает 2 эффекта <style=cIsHealing>Облучения</style>, каждый наносит <style=cIsDamage>9.8% урона в секунду</style> на <style=cIsUtility>8 секунды</style>.</style>",
+    "KEYWORD_RADIATION_PRIMARY" : "<style=cKeywordName>Облучающий</style><style=cSub>Накладывает 3 эффекта <style=cIsHealing>Облучения</style>, каждый наносит <style=cIsDamage>8.4% урона в секунду</style> на <style=cIsUtility>8 секунды</style>.</style>",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_NAME" : "Зараженная Земля",
     "HABIBI_DESOLATOR_BODY_SECONDARY_BIGBEAM_DESCRIPTION" : "<style=cIsHealing>Облучающий</style>. Взрывает область на <style=cIsDamage>320% урона</style>, и покрывает землю радиацией на <style=cIsUtility>2 секунды</style>. Противники при контакте получают <style=cIsDamage>20% урона дважды в секунду</style>",
     "KEYWORD_RADIATION_SECONDARY" : "<style=cKeywordName>Облучающий</style><style=cSub>При первом взрыве: Наносит <style=cIsDamage>14% урона в секунду</style> на <style=cIsUtility>8 секунду</style>.\nОбласть: Каждый момент наносит <style=cIsDamage>7% урона в секунду</style> на <style=cIsUtility>8 секунду</style>.</style>",

@@ -1,4 +1,6 @@
-﻿using RA2Mod.Modules;
+﻿using EntityStates;
+using RA2Mod.Modules;
+using RA2Mod.Survivors.Desolator.SkillDefs;
 using RA2Mod.Survivors.Desolator.States;
 using RobDriver.Modules.Components;
 using RoR2;
@@ -66,17 +68,17 @@ namespace RA2Mod.Survivors.Desolator.Compat
                                                        DesolatorSurvivor.TOKEN_PREFIX + "PRIMARY_BEAM_NAME",
                                                        DesolatorSurvivor.TOKEN_PREFIX + "PRIMARY_BEAM_DESCRIPTION",
                                                        assetBundle.LoadAsset<Sprite>("texDesolatorSkillPrimary"),
-                                                       new EntityStates.SerializableEntityStateType(typeof(DriverRadBeam)),
+                                                       new SerializableEntityStateType(typeof(DriverRadBeam)),
                                                        "Weapon",
                                                        false));
 
-            SkillDef deploySkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            FuckingDesolatorDeploySkillDef deploySkillDef = Modules.Skills.CreateSkillDef<FuckingDesolatorDeploySkillDef>(new SkillDefInfo
             {
                 skillName = "Desolator_Driver_Secondary_Deploy",
                 skillNameToken = DesolatorSurvivor.TOKEN_PREFIX + "SPECIAL_DEPLOY_NAME",
                 skillDescriptionToken = DesolatorSurvivor.TOKEN_PREFIX + "SPECIAL_DEPLOY_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texDesolatorSkillSpecial"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(DriverDeployEnter)),
+                activationState = new SerializableEntityStateType(typeof(DriverDeployEnter)),
                 activationStateMachineName = "Body",
                 baseMaxStock = 1,
                 baseRechargeInterval = 12f,
@@ -94,6 +96,8 @@ namespace RA2Mod.Survivors.Desolator.Compat
                 stockToConsume = 1,
                 keywordTokens = new string[] { "KEYWORD_RADIATION_SPECIAL" }
             });
+            deploySkillDef.actualActivationState = new SerializableEntityStateType(typeof(DeployEnter));
+            deploySkillDef.cancelIcon = assetBundle.LoadAsset<Sprite>("texDesolatorSkillSpecialCancel");
 
             DriverWeaponDef desolatorGunWeaponDef = DriverWeaponDef.CreateWeaponDefFromInfo(new DriverWeaponDefInfo
             {
@@ -120,7 +124,7 @@ namespace RA2Mod.Survivors.Desolator.Compat
         {
             public override string muzzleString => "ShotgunMuzzle";
 
-            public override void PlayShootAnimation()
+            protected override void PlayShootAnimation()
             {
                 PlayAnimation("Gesture, Override", "FireTwohand");
                 GetComponent<DriverController>().StartTimer();
@@ -131,6 +135,7 @@ namespace RA2Mod.Survivors.Desolator.Compat
         {
             protected override void PlayCannonAnimations(Animator animator)
             {
+                //no fancy spinning for driver
             }
         }
     }
