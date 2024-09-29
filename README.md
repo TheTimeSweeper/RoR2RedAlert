@@ -25,7 +25,9 @@
 |the rest | On |  |
 
 4. Settings > browse exe and import
+
     i. if it warns you about compile errors again, ignore
     ii. on my pc a file browsing window opened up during the process, select ror2 exe again
+
 5. All should be well! open Assets/Dev/SceneBarracks to see the men
     i. click canvas in the hierarchy, hit f, and see if the ror2 hud was spawned in with addressables, and our guys crosshairs are on it
