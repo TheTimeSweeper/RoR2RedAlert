@@ -268,7 +268,7 @@ namespace RA2Mod.Survivors.Chrono
         
         private void AddSecondarySkills()
         {
-            ChronoTrackerSkillDefBomb secondarySkillDef = Skills.CreateSkillDef<ChronoTrackerSkillDefBomb> (new SkillDefInfo
+            SkillDef secondarySkillDef = Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = "chronoIvan",
                 skillNameToken = TOKEN_PREFIX + "SECONDARY_BOMB_NAME",
@@ -276,7 +276,7 @@ namespace RA2Mod.Survivors.Chrono
                 //keywordTokens = new string[] { "KEYWORD_AGILE" },
                 skillIcon = assetBundle.LoadAsset<Sprite>("texIconChronoSecondary"),
 
-                activationState = new EntityStates.SerializableEntityStateType(typeof(States.ChronoBomb)),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(States.ChronoBombThrow)),
                 activationStateMachineName = "Weapon2",
                 interruptPriority = EntityStates.InterruptPriority.Skill,
 

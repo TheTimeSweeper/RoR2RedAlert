@@ -5,7 +5,6 @@ using System;
 using RoR2.Projectile;
 using UnityEngine.AddressableAssets;
 using R2API;
-using UnityEngine;
 using EntityStates;
 using RA2Mod.General.Components;
 using System.Collections;

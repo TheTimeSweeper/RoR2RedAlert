@@ -38,6 +38,7 @@ namespace RA2Mod.Modules.Characters
 
         public static void RegisterNewSurvivor(GameObject bodyPrefab, GameObject displayPrefab, Color charColor, string tokenPrefix, UnlockableDef unlockableDef, float sortPosition)
         {
+            Log.Warning($"created {bodyPrefab.name} survivordef");
             Content.CreateSurvivor(bodyPrefab, displayPrefab, charColor, tokenPrefix, unlockableDef, sortPosition);
         }
 

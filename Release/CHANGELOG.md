@@ -1,4 +1,18 @@
 ## Changelog
+`3.0.11`
+- Chrono: 
+    - special damage ticks faster (overall damage and debuff stacks unchanged)
+    - special range increased and added to config
+    - bomb is no longer lock-on. throws a short distance and magically floats in the air because I didn't have time to polish this
+    - bomb detonation time lowered from 3 to 2 seconds
+    - bomb textured
+    - made sprint teleport on release the default
+    - alt util now halts enemies in the air
+    - fixed alt util sound ending early
+    - fixed scepter sprint breaking in multiplayer
+    - added a debug config to be actionable while in teleport disabled state (but still can't move)
+- Tesla Trooper: re-added ability to command Starstorm 2 Shock Drones
+
 `3.0.10`
 - removed log spam on all damage instances. woopsies
 

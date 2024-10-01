@@ -5,6 +5,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 using RA2Mod.General.SkillDefs;
+using static Rewired.Demos.GamepadTemplateUI.GamepadTemplateUI;
 
 namespace RA2Mod.Survivors.Chrono.States
 {
@@ -12,6 +13,7 @@ namespace RA2Mod.Survivors.Chrono.States
     {
         public virtual float damageCoefficient => ChronoConfig.M4_Deconstructing_TickDamage.Value;
         public static float procCoefficient = 1;
+        public static int damageTicksPerDebuffStack = 2;
         public virtual float baseDuration => ChronoConfig.M4_Deconstructing_Duration.Value;
         
         public virtual float baseTickInterval => ChronoConfig.M4_Deconstructing_TickInterval.Value;
@@ -34,12 +36,14 @@ namespace RA2Mod.Survivors.Chrono.States
         private bool rolledCrit;
         private uint soundID;
 
+        private int ticks;
+
         public override void OnEnter()
         {
             base.OnEnter();
             chargeDuration = baseDuration / attackSpeedStat;
             totalDuration = chargeDuration;
-            tickInterval = baseTickInterval / attackSpeedStat;
+            tickInterval = baseTickInterval / attackSpeedStat / damageTicksPerDebuffStack;
             StartAimMode(4);
 
             soundID = Util.PlaySound("Play_ChronoAttackShort", gameObject);
@@ -75,14 +79,14 @@ namespace RA2Mod.Survivors.Chrono.States
             rolledCrit = base.RollCrit();
         }
 
-        private void ResetDamageInfo()
+        private void ResetDamageInfo(bool chronoStack)
         {
             damageInfo = new DamageInfo
             {
                 position = targetHurtBox.transform.position,
                 attacker = gameObject,
                 inflictor = gameObject,
-                damage = damageCoefficient * this.damageStat,
+                damage = damageCoefficient * this.damageStat / damageTicksPerDebuffStack,
                 damageColorIndex = DamageColorIndex.Default,
                 damageType = DamageType.Generic,
                 crit = rolledCrit,
@@ -90,7 +94,10 @@ namespace RA2Mod.Survivors.Chrono.States
                 procChainMask = default(ProcChainMask),
                 procCoefficient = procCoefficient,
             };
-            damageInfo.AddModdedDamageType(ChronoDamageTypes.chronoDamagePierce);
+            if (chronoStack)
+            {
+                damageInfo.AddModdedDamageType(ChronoDamageTypes.chronoDamagePierce);
+            }
             damageInfo.AddModdedDamageType(ChronoDamageTypes.vanishingDamage);
         }
 
@@ -120,7 +127,8 @@ namespace RA2Mod.Survivors.Chrono.States
         public virtual void DoDamage()
         {
             //create a new damgeinfo every time in case it gets rejected initially
-            ResetDamageInfo();
+            ResetDamageInfo(ticks % damageTicksPerDebuffStack == 0);
+            ticks++;
 
             targetHurtBox.healthComponent.TakeDamage(damageInfo);
 

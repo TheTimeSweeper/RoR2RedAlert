@@ -5,13 +5,16 @@ using UnityEngine;
 
 namespace RA2Mod.Survivors.Chrono.States
 {
-    public class PhaseState : BaseSkillState {
+    public class PhaseState : GenericCharacterMain {
 
         public float windDownTime = 0.5f;
         public PhaseIndicatorController controller;
+        public float actionablePercentTime = ChronoConfig.debug_percentTimeUntilActionable.Value;
         private TemporaryOverlayInstance temporaryOverlay;
         private CharacterModel characterModel;
         private Ray aimRay;
+        private bool _actionable;
+        private Animator modelAnimator;
 
         public override void OnEnter() {
             base.OnEnter();
@@ -19,10 +22,14 @@ namespace RA2Mod.Survivors.Chrono.States
             characterBody.isSprinting = false;
             
             controller?.UpdateIndicatorActive(true);
-            GetModelAnimator().enabled = false;
+            modelAnimator = GetModelAnimator();
+            if (modelAnimator)
+            {
+                modelAnimator.enabled = false;
+            }
 
             aimRay = GetAimRay();
-            StartAimMode(aimRay, windDownTime);
+            StartAimMode(aimRay, windDownTime * actionablePercentTime);
 
             if (characterDirection)
             {
@@ -49,13 +56,17 @@ namespace RA2Mod.Survivors.Chrono.States
             base.OnExit();
 
             controller?.UpdateIndicatorActive(false);
-            GetModelAnimator().enabled = true;
+            if (modelAnimator)
+            {
+                modelAnimator.enabled = true;
+                modelAnimator.speed = 1;
+            }
             if (this.temporaryOverlay != null)
             {
                 this.temporaryOverlay.Destroy();
             }
 
-            StartAimMode(1);
+            //StartAimMode(1);
 
             //if (characterModel)
             //{
@@ -73,9 +84,36 @@ namespace RA2Mod.Survivors.Chrono.States
 
             controller?.UpdateIndicatorFill((windDownTime - fixedAge) / windDownTime);
 
+            if(!_actionable && fixedAge > windDownTime * actionablePercentTime)
+            {
+                _actionable = true;
+
+                if (modelAnimator)
+                {
+                    modelAnimator.enabled = true;
+                    modelAnimator.speed = 0.5f;
+                }
+                StartAimMode(1);
+            }
+
             if (fixedAge > windDownTime) {
                 outer.SetNextStateToMain();
             }
+        }
+
+        public override void HandleMovements()
+        {
+            return;
+        }
+
+        public override void UpdateAnimationParameters()
+        {
+            return;
+        }
+
+        public override bool CanExecuteSkill(GenericSkill skillSlot)
+        {
+            return _actionable;
         }
 
         public override InterruptPriority GetMinimumInterruptPriority() {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RA2Mod.Survivors.Chrono.Components
 {
-    public class ChronoTrackerBomb : GenericTracker
+    public class ChronoTrackerBomb : TrackerSkillDefRequired<ChronoTrackerSkillDefBomb>
     {
         public override float maxTrackingDistance => 12;
 
@@ -36,7 +36,7 @@ namespace RA2Mod.Survivors.Chrono.Components
             
             return base.SearchForTarget(aimRay);
         }
-
+        
         protected override TeamMask GetTeamMask()
         {
             return TeamMask.all;

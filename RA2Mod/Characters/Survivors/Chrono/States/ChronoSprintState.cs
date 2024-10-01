@@ -40,10 +40,10 @@ namespace RA2Mod.Survivors.Chrono.States
         {
             base.OnEnter();
 
-            heightLimit = characterBody.jumpPower * characterBody.maxJumpCount * ChronoConfig.M0_JumpMultiplier.Value;
+            heightLimit = characterBody.jumpPower * characterBody.maxJumpCount * ChronoConfig.M0_SprintTeleport_JumpMultiplier.Value;
             if (characterBody.inventory)
             {
-                heightLimit += characterBody.inventory.GetItemCount(RoR2Content.Items.JumpBoost) * characterBody.jumpPower * ChronoConfig.M0_JumpMultiplier.Value;
+                heightLimit += characterBody.inventory.GetItemCount(RoR2Content.Items.JumpBoost) * characterBody.jumpPower * ChronoConfig.M0_SprintTeleport_JumpMultiplier.Value;
             }
 
             _hasInputBank = inputBank != null;
@@ -130,7 +130,7 @@ namespace RA2Mod.Survivors.Chrono.States
 
                 //Log.Warning($"dist {Vector3.Distance(marker.viewPosition, transform.position)} time {state.windDownTime}");
                 state.controller = phaseIndicator;
-                StopCamera();
+                //StopCamera();
                 
                 characterMotor.Motor.SetPosition(marker.viewPosition);
                 
@@ -179,12 +179,13 @@ namespace RA2Mod.Survivors.Chrono.States
 
         private void StopCamera()
         {
+
             if (!inCamera)
                 return;
 
+            characterBody.aimOriginTransform = origOrigin;
             cameraTargetParams.cameraPivotTransform = origPivot;
             cameraTargetParams.dontRaycastToPivot = false;
-            characterBody.aimOriginTransform = origOrigin;
 
             inCamera = false;
         }

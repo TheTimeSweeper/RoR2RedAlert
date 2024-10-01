@@ -14,6 +14,7 @@ using UnityEngine.AddressableAssets;
 using System.Runtime.CompilerServices;
 using System;
 using Object = UnityEngine.Object;
+using RA2Mod.General;
 
 namespace RA2Mod.Modules
 {
@@ -120,6 +121,15 @@ namespace RA2Mod.Modules
                 yield return null; 
             
             OnComplete?.Invoke(loadAsset.Result);
+        }
+
+        internal static GameObject DebugClone(this GameObject gameObject, bool network = false)
+        {
+            if (GeneralConfig.Debug.Value)
+            {
+                return gameObject.InstantiateClone(gameObject.name, network);
+            }
+            return gameObject;
         }
 
         #region there is a thin line between jank and genius

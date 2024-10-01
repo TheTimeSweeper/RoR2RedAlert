@@ -64,6 +64,10 @@ namespace RA2Mod.Survivors.Chrono.States
             {
                 this.outer.SetNextStateToMain();
             }
+            if (characterMotor)
+            {
+                characterMotor.velocity = Vector3.zero;
+            }
         }
 
         public override void OnExit()

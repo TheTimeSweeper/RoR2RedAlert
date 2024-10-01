@@ -26,7 +26,7 @@
 
 4. Settings > browse exe and import
 
-    i. if it warns you about compile errors again, ignore
+    i. if it warns you about compile errors again, ignore  
     ii. on my pc a file browsing window opened up during the process, select ror2 exe again
 
 5. All should be well! open Assets/Dev/SceneBarracks to see the men

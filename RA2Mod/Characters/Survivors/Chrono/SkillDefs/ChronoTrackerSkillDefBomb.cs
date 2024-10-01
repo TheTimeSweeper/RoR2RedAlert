@@ -5,5 +5,5 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RA2Mod.Survivors.Chrono.SkillDefs
 {
-    public class ChronoTrackerSkillDefBomb : GenericTrackerSkillDef<ChronoTrackerBomb> { }
+    public class ChronoTrackerSkillDefBomb : HasComponentSkillDef<ChronoTrackerBomb> { }
 }

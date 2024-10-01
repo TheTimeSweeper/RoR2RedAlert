@@ -19,10 +19,13 @@ namespace RA2Mod.Minions.TeslaTower.States
 
             if (deployable)
             {
-
                 deployable.ownerMaster?.RemoveDeployable(deployable);
                 deployable.ownerMaster = null;
                 deployable.onUndeploy.Invoke();
+            }
+            else
+            {
+                characterBody.master.TrueKill();
             }
         }
         //public override void OnEnter() {

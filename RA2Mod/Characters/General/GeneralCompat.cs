@@ -9,9 +9,6 @@ namespace RA2Mod.General
 {
     public static class GeneralCompat
     {
-        public delegate void Meme_SurivorCatalog_Init();
-        public static event Meme_SurivorCatalog_Init Meme_OnSurvivorCatalog_Init;
-
         public static bool TinkersSatchelInstalled;
         public static bool AetheriumInstalled;
         public static bool ScepterInstalled;

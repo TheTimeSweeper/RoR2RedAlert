@@ -4,7 +4,10 @@ namespace RA2Mod.Survivors.Chrono
 {
     public static class ChronoConfig
     {
-        public static ConfigEntry<float> M0_JumpMultiplier;
+        //public static ConfigEntry<float> debug_Bomb_Pitch;
+        public static ConfigEntry<float> debug_percentTimeUntilActionable;
+
+        public static ConfigEntry<float> M0_SprintTeleport_JumpMultiplier;
 
         public static ConfigEntry<bool> M0_SprintTeleport_Scepter;
 
@@ -33,12 +36,30 @@ namespace RA2Mod.Survivors.Chrono
         public static ConfigEntry<float> M4_Deconstructing_TickDamage;
         public static ConfigEntry<float> M4_Deconstructing_Duration;
         public static ConfigEntry<float> M4_Deconstructing_ChronoStacksRequired;
+        public static ConfigEntry<float> M4_Deconstructing_Range;
         public const string ConfigVersion = " 0.0";
         public const string SectionSkills = "1-3. Chrono Skills" + ConfigVersion;
         public const string SectionBody = "1-3. Chrono Body" + ConfigVersion;
 
         public static void Init()
         {
+            //debug_Bomb_Pitch = Config.BindAndOptionsSlider(
+            //    SectionSkills,
+            //    nameof(debug_Bomb_Pitch),
+            //    -10f,
+            //    -100f,
+            //    100f,
+            //    "");
+
+            debug_percentTimeUntilActionable = Config.BindAndOptionsSlider(
+                SectionSkills,
+                nameof(debug_percentTimeUntilActionable),
+                1f,
+                0,
+                1,
+                "when disabled from sprint teleport, 1 means you are never actionable. 0.5 means you are actionable halfway through the sprint disable. 0 means you are always actionable" +
+                "if you lower this, increase DistTimeMulti");
+
             M0_SprintTeleport_Scepter = Config.BindAndOptions(
                 SectionSkills,
                 "M0_SprintTeleport_Scepter",
@@ -49,7 +70,7 @@ namespace RA2Mod.Survivors.Chrono
             M0_SprintTeleport_OnRelease = Config.BindAndOptions(
                 SectionSkills,
                 "M0_SprintTeleport_OnRelease",
-                false,
+                true,
                 "Should sprinting teleport on release, or should it require a second press of sprint");
 
             M0_SprintTeleport_ProjectionSpeed = Config.BindAndOptionsSlider(
@@ -77,10 +98,10 @@ namespace RA2Mod.Survivors.Chrono
                 "Phase out penalty multiplier based on time spent in teleporting state. Only comes into play after 1 second, and only replaces distance penalty if larger (does not add)");
             //
 
-            M0_JumpMultiplier = Config.BindAndOptionsSlider(
+            M0_SprintTeleport_JumpMultiplier = Config.BindAndOptionsSlider(
                 SectionSkills,
-                "M0_JumpMultiplier",
-                1.5f,
+                nameof(M0_SprintTeleport_JumpMultiplier),
+                1.2f,
                 0,
                 100,
                 "");
@@ -199,6 +220,14 @@ namespace RA2Mod.Survivors.Chrono
                 SectionSkills,
                 nameof(M4_Deconstructing_ChronoStacksRequired),
                 100f,
+                0,
+                200,
+                "");
+
+            M4_Deconstructing_Range = Config.BindAndOptionsSlider(
+                SectionSkills,
+                nameof(M4_Deconstructing_Range),
+                40f,
                 0,
                 200,
                 "");

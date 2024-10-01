@@ -651,7 +651,7 @@ namespace RA2Mod.Survivors.Tesla
 
             On.RoR2.Orbs.LightningOrb.Begin += LightningOrb_Begin;
 
-            //On.RoR2.BodyCatalog.Init += BodyCatalog_Init;
+            On.RoR2.BodyCatalog.Init += BodyCatalog_Init;
 
             //todo teslamove global hooks
             On.RoR2.SetStateOnHurt.OnTakeDamageServer += SetStateOnHurt_OnTakeDamageServer;
@@ -701,13 +701,12 @@ namespace RA2Mod.Survivors.Tesla
             }
         }
 
-        private void BodyCatalog_Init(On.RoR2.BodyCatalog.orig_Init orig)
+        private IEnumerator BodyCatalog_Init(On.RoR2.BodyCatalog.orig_Init orig)
         {
-            orig();
+            yield return orig();
             GameObject shockDroneBody = BodyCatalog.FindBodyPrefab("ShockDroneBody");
             if (shockDroneBody)
             {
-                //Helpers.LogWarning("hello hello hello");
                 shockDroneBody.AddComponent<AddMinionToOwnerTeslaTracker>();
             }
         }

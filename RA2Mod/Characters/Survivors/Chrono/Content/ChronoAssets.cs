@@ -21,7 +21,8 @@ namespace RA2Mod.Survivors.Chrono
 
         public static ChronoProjectionMotor sprintProjectionPrefab;
         public static ChronoProjectionMotor sprintProjectionPrefabScepter;
-        public static GameObject chronoBombProjectile;
+        public static GameObject chronoBombProjectilePlaced;
+        public static GameObject chronoBombProjectileThrown;
         public static GameObject lunarSunExplosion;
 
         public static GameObject chronoIndicatorIvan;
@@ -82,6 +83,8 @@ namespace RA2Mod.Survivors.Chrono
             //return subEnumerators;
         }
 
+        //not used
+        //wait why? I like this one better
         public static void OnCharacterInitializedE(AssetBundle assetBundle_)
         {
             Log.CurrentTime("INIT ASYNC");
@@ -141,27 +144,32 @@ namespace RA2Mod.Survivors.Chrono
                     Modules.Content.AddNetworkedObject(sprintProjectionPrefabScepter.gameObject);
                 });
 
-            //Ivan bomb
+            //Ivan bombs and lunar sun explosion
             Asset.LoadAssetsAsync(
-                new AsyncAsset<GameObject>(assetBundle, "ChronoIvanBombProjectile"),
                 new AsyncAsset<GameObject>("RoR2/DLC1/LunarSun/ExplosionLunarSun.prefab"),
-                (ivanResult, result) =>
+                new AsyncAsset<GameObject>(assetBundle, "ChronoIvanBombProjectilePlaced"),
+                new AsyncAsset<GameObject>(assetBundle, "ChronoIvanBombProjectileThrown"),
+                (lunarExplosion, ivanResult, ivanResult2) =>
                 {
-                    chronoBombProjectile = ivanResult;
-                    chronoBombProjectile.GetComponent<ProjectileController>().ghostPrefab.AddComponent<VFXAttributes>().DoNotPool = true;
-                    R2API.PrefabAPI.RegisterNetworkPrefab(chronoBombProjectile);
-                    Content.AddProjectilePrefab(chronoBombProjectile);
-                    
-                    GameObject bombExplosion = result.InstantiateClone(result.name + "ChronoBomb", false);
+                    GameObject bombExplosion = lunarExplosion.InstantiateClone(lunarExplosion.name + "ChronoBomb", false);
                     bombExplosion.GetComponent<EffectComponent>().soundName = "Play_IvanBomb_Explode";
                     Content.CreateAndAddEffectDef(bombExplosion);
 
-                    chronoBombProjectile.GetComponent<ProjectileExplosion>().explosionEffect = bombExplosion;
+                    ChronoAssets.lunarSunExplosion = lunarExplosion.InstantiateClone(lunarExplosion.name + "Chrono", false);
+                    ChronoAssets.lunarSunExplosion.GetComponent<EffectComponent>().soundName = "";
+                    Content.CreateAndAddEffectDef(ChronoAssets.lunarSunExplosion);
 
-                    lunarSunExplosion = result.InstantiateClone(result.name + "Chrono", false);
-                    lunarSunExplosion.GetComponent<EffectComponent>().soundName = "";
-                    Content.CreateAndAddEffectDef(lunarSunExplosion);
+                    chronoBombProjectilePlaced = ivanResult;
+                    chronoBombProjectilePlaced.GetComponent<ProjectileController>().ghostPrefab.AddComponent<VFXAttributes>().DoNotPool = true;
+                    R2API.PrefabAPI.RegisterNetworkPrefab(chronoBombProjectilePlaced);
+                    Content.AddProjectilePrefab(chronoBombProjectilePlaced);
+                    chronoBombProjectilePlaced.GetComponent<ProjectileExplosion>().explosionEffect = bombExplosion;
 
+                    chronoBombProjectileThrown = ivanResult2;
+                    chronoBombProjectileThrown.GetComponent<ProjectileController>().ghostPrefab.AddComponent<VFXAttributes>().DoNotPool = true;
+                    R2API.PrefabAPI.RegisterNetworkPrefab(chronoBombProjectileThrown);
+                    Content.AddProjectilePrefab(chronoBombProjectileThrown);
+                    chronoBombProjectileThrown.GetComponent<ProjectileExplosion>().explosionEffect = bombExplosion;
                 });
 
             //indicators
@@ -304,25 +312,36 @@ namespace RA2Mod.Survivors.Chrono
                 Modules.Content.AddNetworkedObject(sprintProjectionPrefabScepter.gameObject);
             }));
 
-            //ivan bomb
-            loads.Add(assetBundle.LoadAssetCoroutine("ChronoIvanBombProjectile", (GameObject ivanResult) =>
+            //lunar sun
+            loads.Add(Asset.LoadAssetCoroutine<GameObject>("RoR2/DLC1/LunarSun/ExplosionLunarSun.prefab", (lunarExplosionResult) =>
             {
-                chronoBombProjectile = ivanResult;
-                chronoBombProjectile.GetComponent<ProjectileController>().ghostPrefab.AddComponent<VFXAttributes>().DoNotPool = true;
-                R2API.PrefabAPI.RegisterNetworkPrefab(chronoBombProjectile);
-                Content.AddProjectilePrefab(chronoBombProjectile);
+                GameObject bombExplosion = lunarExplosionResult.InstantiateClone(lunarExplosionResult.name + "ChronoBomb", false);
+                bombExplosion.GetComponent<EffectComponent>().soundName = "Play_IvanBomb_Explode";
+                Content.CreateAndAddEffectDef(bombExplosion);
 
-                loads.Add(Asset.LoadAssetCoroutine<GameObject>("RoR2/DLC1/LunarSun/ExplosionLunarSun.prefab", (result) =>
+                lunarSunExplosion = lunarExplosionResult.InstantiateClone(lunarExplosionResult.name + "Chrono", false);
+                lunarSunExplosion.GetComponent<EffectComponent>().soundName = "";
+                Content.CreateAndAddEffectDef(lunarSunExplosion);
+
+                //ivan bomb
+                loads.Add(assetBundle.LoadAssetCoroutine("ChronoIvanBombProjectilePlaced", (GameObject ivanResult) =>
                 {
-                    GameObject bombExplosion = result.InstantiateClone(result.name + "ChronoBomb", false);
-                    bombExplosion.GetComponent<EffectComponent>().soundName = "Play_IvanBomb_Explode";
-                    Content.CreateAndAddEffectDef(bombExplosion);
+                    chronoBombProjectilePlaced = ivanResult;
+                    chronoBombProjectilePlaced.GetComponent<ProjectileController>().ghostPrefab.AddComponent<VFXAttributes>().DoNotPool = true;
+                    R2API.PrefabAPI.RegisterNetworkPrefab(chronoBombProjectilePlaced);
+                    Content.AddProjectilePrefab(chronoBombProjectilePlaced);
 
-                    chronoBombProjectile.GetComponent<ProjectileExplosion>().explosionEffect = bombExplosion;
+                    chronoBombProjectilePlaced.GetComponent<ProjectileExplosion>().explosionEffect = bombExplosion;
+                }));
+                //ivan bomb 2
+                loads.Add(assetBundle.LoadAssetCoroutine("ChronoIvanBombProjectileThrown", (GameObject ivanResult) =>
+                {
+                    chronoBombProjectileThrown = ivanResult.DebugClone();
+                    chronoBombProjectileThrown.GetComponent<ProjectileController>().ghostPrefab.AddComponent<VFXAttributes>().DoNotPool = true;
+                    R2API.PrefabAPI.RegisterNetworkPrefab(chronoBombProjectileThrown);
+                    Content.AddProjectilePrefab(chronoBombProjectileThrown);
 
-                    lunarSunExplosion = result.InstantiateClone(result.name + "Chrono", false);
-                    lunarSunExplosion.GetComponent<EffectComponent>().soundName = "";
-                    Content.CreateAndAddEffectDef(lunarSunExplosion);
+                    chronoBombProjectileThrown.GetComponent<ProjectileExplosion>().explosionEffect = bombExplosion;
                 }));
             }));
 

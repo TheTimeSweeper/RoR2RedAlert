@@ -2,6 +2,7 @@
 using RoR2.Audio;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Playables;
 
 namespace RA2Mod.Survivors.Chrono.Components
 {
@@ -28,6 +29,7 @@ namespace RA2Mod.Survivors.Chrono.Components
         private float animateTime;
         private float delayTime;
         private bool destroyOnEnd;
+        private bool playedExitSound;
 
         void Awake()
         {
@@ -59,11 +61,6 @@ namespace RA2Mod.Survivors.Chrono.Components
             destroyOnEnd = destroyonEnd;
 
             endTimer = 0;
-
-            if (destroyonEnd && loopSoundDef)
-            {
-                Util.PlaySound(loopSoundDef.stopSoundName, gameObject);
-            }
         }
 
 
@@ -84,6 +81,14 @@ namespace RA2Mod.Survivors.Chrono.Components
                 return;
 
             endTimer += Time.deltaTime;
+
+            if (!playedExitSound && destroyOnEnd && endTimer >= delayTime && loopSoundDef)
+            {
+                playedExitSound = true;
+                Util.PlaySound(loopSoundDef.stopSoundName, gameObject);
+
+            }
+
             if (endTimer >= animateTime + delayTime)
             {
                 if (destroyOnEnd)

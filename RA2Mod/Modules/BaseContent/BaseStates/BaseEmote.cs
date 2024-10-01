@@ -16,7 +16,7 @@ namespace RA2Mod.Modules.BaseStates
         public float duration;
         //public float animDuration;
 
-        private bool hasExploded;
+        //private bool hasExploded;
         private uint activePlayID;
         private Animator animator;
         private ChildLocator childLocator;

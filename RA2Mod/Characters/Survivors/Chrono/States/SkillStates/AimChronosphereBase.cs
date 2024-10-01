@@ -25,7 +25,7 @@ namespace RA2Mod.Survivors.Chrono.States
 
         public override void OnEnter()
         {
-            projectilePrefab = ChronoAssets.chronoBombProjectile;
+            projectilePrefab = ChronoAssets.chronoBombProjectilePlaced;
             endpointVisualizerPrefab = ChronoAssets.endPointivsualizer;
             endpointVisualizerRadiusScale = BaseRadius;
             arcVisualizerPrefab = ChronoAssets.arcvisualizer;

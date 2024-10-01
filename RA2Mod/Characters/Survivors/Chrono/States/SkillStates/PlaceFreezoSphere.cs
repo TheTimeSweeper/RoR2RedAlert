@@ -50,7 +50,7 @@ namespace RA2Mod.Survivors.Chrono.States
 
             FreezeFreezees();
             
-            Util.PlaySound("Play_ChronosphereSelectStart", freezosphereProjection.gameObject);
+            //Util.PlaySound("Play_ChronosphereSelectStart", freezosphereProjection.gameObject);
         }
 
         private void GatherTeleportees(ReadOnlyCollection<TeamComponent> teamComponents)

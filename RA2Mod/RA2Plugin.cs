@@ -33,7 +33,7 @@ namespace RA2Mod
     {
         public const string MODUID = "com.TheTimesweeper.RedAlert";
         public const string MODNAME = "Red Alert";
-        public const string MODVERSION = "3.0.10";
+        public const string MODVERSION = "3.0.11";
 
         public const string DEVELOPER_PREFIX = "HABIBI";
 
@@ -74,13 +74,19 @@ namespace RA2Mod
             new MCVSurvivor().Initialize();
             
             new Modules.ContentPacks().Initialize();
+            //sprite on loading bar
+            On.LoadingScreenCanvas.Awake += LoadingScreenCanvas_Awake;
 
             if (GeneralConfig.Debug.Value)
             {
-                UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+                RoR2.RoR2Application.onLoad += PrintLoadTime;
             }
+        }
 
-            On.LoadingScreenCanvas.Awake += LoadingScreenCanvas_Awake;
+        private void PrintLoadTime()
+        {
+            Log.CurrentTime("LOAD FINISHED ");
+            Log.AllTimes();
         }
 
         private void LoadingScreenCanvas_Awake(On.LoadingScreenCanvas.orig_Awake orig, LoadingScreenCanvas self)
@@ -91,15 +97,6 @@ namespace RA2Mod
             Array.Resize(ref miniScene.ObjectsToSelect, miniScene.ObjectsToSelect.Length + 1);
             miniScene.ObjectsToSelect[miniScene.ObjectsToSelect.Length - 1] = Instantiate(loadingBundle.LoadAsset<GameObject>("TeslaTrooperSprite"), miniScene.transform);
             orig(self);
-        }
-
-        private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
-        {
-            if (arg0.name == "title")
-            {
-                Log.CurrentTime("TITLE SCREEN");
-                Log.AllTimes();
-            }
         }
     }
 }
