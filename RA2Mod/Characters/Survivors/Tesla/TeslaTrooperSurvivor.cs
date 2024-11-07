@@ -76,7 +76,7 @@ namespace RA2Mod.Survivors.Tesla
                 camera.data.wallCushion = 0.1f;
                 camera.data.pivotVerticalOffset = 1.37f;
                 camera.data.idealLocalCameraPos = new Vector3(0, 0, -12);
-                camera.data.fov = new HG.BlendableTypes.BlendableFloat { value = 60f, alpha = 1f };
+                camera.data.fov = new HG.BlendableTypes.BlendableFloat { value = 60f, alpha = 0f };
 
                 return camera;
             } 

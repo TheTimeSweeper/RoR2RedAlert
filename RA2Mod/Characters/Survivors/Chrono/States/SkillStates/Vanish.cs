@@ -13,14 +13,14 @@ namespace RA2Mod.Survivors.Chrono.States
     {
         public virtual float damageCoefficient => ChronoConfig.M4_Deconstructing_TickDamage.Value;
         public static float procCoefficient = 1;
-        public static int damageTicksPerDebuffStack = 2;
+        public virtual int damageTicksPerDebuffStack => 2;
         public virtual float baseDuration => ChronoConfig.M4_Deconstructing_Duration.Value;
         
         public virtual float baseTickInterval => ChronoConfig.M4_Deconstructing_TickInterval.Value;
 
         private float chargeDuration;
         private float totalDuration;
-        private float tickInterval;
+        protected float tickInterval;
 
         private float nextInterval;
 

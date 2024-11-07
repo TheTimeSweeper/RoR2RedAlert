@@ -1,9 +1,11 @@
-﻿using RA2Mod.Minions.TeslaTower.Components;
+﻿using RA2Mod;
+using RA2Mod.General;
+using RA2Mod.Minions.TeslaTower.Components;
+using RA2Mod.Survivors.Tesla.SkillDefs;
 using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 [RequireComponent(typeof(InputBankTest))]
 public class TeslaTrackerComponent : MonoBehaviour {
@@ -11,10 +13,12 @@ public class TeslaTrackerComponent : MonoBehaviour {
     public delegate void OnSearchEvent();
     public OnSearchEvent SearchEvent;
 
-    public static float maxTrackingDistance = 50f;
-    //public float maxTrackingAngle = 15f;
-    public float trackingRadiusZap = 1f;
-    public float trackingRadiusDash = 3f;
+    public float maxTrackingDistance = 50f;
+
+    public float trackingRadius = 4f;
+    public float trackingMaxAngleZap => GeneralConfig.zapTrackingAngle.Value;// 13;
+    public float trackingAngleLenience => GeneralConfig.zapLenienceAngle;
+
     public float trackerUpdateFrequency = 16f;
 
     public HurtBox trackingTargetZap;
@@ -26,8 +30,15 @@ public class TeslaTrackerComponent : MonoBehaviour {
     private InputBankTest inputBank;
 
     private float trackerUpdateStopwatch;
-    
-    void Start() {
+
+    public bool searchingForZap;
+    public bool searchingForDash;
+
+    [SerializeField] 
+    private bool searchPoint;
+
+    void Start()
+    {
         inputBank = base.GetComponent<InputBankTest>();
     }
 
@@ -37,11 +48,10 @@ public class TeslaTrackerComponent : MonoBehaviour {
         if (trackerUpdateStopwatch >= 1f / trackerUpdateFrequency) {
             OnSearch();
         }
-
-        UpdateCooldownTimers();
+        UpdateDashCooldownTimers();
     }
 
-    private void UpdateCooldownTimers() {
+    private void UpdateDashCooldownTimers() {
         for (int i = dashCooldownTimers.Count - 1; i >= 0; i--) {
 
             if(dashCooldownTargets[i] == null) {
@@ -83,18 +93,18 @@ public class TeslaTrackerComponent : MonoBehaviour {
     }
 
     #region search
-
+    
     private bool FindTrackingTarget(Ray aimRay) {
 
-        bool found = SearchForTargetPoint(aimRay);
-        if (!found)
-            found = SearchForTargetSphere(aimRay, trackingRadiusZap);
+        if (!searchingForZap && !searchingForDash)
+            return false;
 
-        if (!trackingTargetDash) {
-            SearchForDashTarget(aimRay, trackingRadiusDash);
+        bool found = searchPoint? SearchForTargetPoint(aimRay) : false;
+        if (!found)
+        {
+            found = SearchForTargetSphere(aimRay, trackingRadius);
         }
 
-        //if(!found) searchfortargetbiggersphereinthedistance(aimray)
         return found;
     }
 
@@ -117,7 +127,7 @@ public class TeslaTrackerComponent : MonoBehaviour {
 
     #region hurtbox raycast
 
-    // Token: 0x06003E56 RID: 15958 RVA: 0x00101B5C File Offset: 0x000FFD5C
+    //// Token: 0x06003E56 RID: 15958 RVA: 0x00101B5C File Offset: 0x000FFD5C
     public bool CharacterRaycast(GameObject bodyObject, Ray ray, out HurtBox zapHit, out HurtBox dashHit, float maxDistance, LayerMask layerMask, QueryTriggerInteraction queryTriggerInteraction) {
         RaycastHit[] hits = Physics.RaycastAll(ray, maxDistance, layerMask, queryTriggerInteraction);
         return HandleCharacterPhysicsCastResults(bodyObject, ray, queryTriggerInteraction, hits, out zapHit, out dashHit);
@@ -130,65 +140,94 @@ public class TeslaTrackerComponent : MonoBehaviour {
     }
 
     // Token: 0x06003E55 RID: 15957 RVA: 0x00101AA8 File Offset: 0x000FFCA8
-    private bool HandleCharacterPhysicsCastResults(GameObject bodyObject, Ray ray, QueryTriggerInteraction queryTriggerInteraction, RaycastHit[] hits, out HurtBox zapHit, out HurtBox dashHit) {
-
+    public bool HandleCharacterPhysicsCastResults(GameObject bodyObject, 
+                                                  Ray ray, 
+                                                  QueryTriggerInteraction queryTriggerInteraction, 
+                                                  RaycastHit[] hits, 
+                                                  out HurtBox zapHit, 
+                                                  out HurtBox dashHit)
+    {
+        var self = this;
         zapHit = null;
         dashHit = null;
 
-        float shortestDashDistance = float.PositiveInfinity;
-        float shortestZapDistance = float.PositiveInfinity;
+        float currentDashDistance = float.PositiveInfinity;
+        float currentZapDistance = float.PositiveInfinity;
+        float closestZapAngle = 360;
+        float closestDashAngle = 360;
 
-        for (int i = 0; i < hits.Length; i++) {
-
+        for (int i = 0; i < hits.Length; i++)
+        {
             if (hits[i].collider == null)
                 continue;
             HurtBox hurtBox = hits[i].collider.GetComponent<HurtBox>();
             if (hurtBox == null)
                 continue;
             if (hurtBox.healthComponent == null)
-                continue; 
+                continue;
+            if (hurtBox.healthComponent.gameObject == bodyObject)
+                continue;
             if (hurtBox.hurtBoxGroup == null)
                 continue;
 
-            bool isTower = hurtBox.hurtBoxGroup && hurtBox.hurtBoxGroup.GetComponent<ZappableTower>();
+            bool isTower = hurtBox.hurtBoxGroup.GetComponent<ZappableTower>();
 
             //cast a line to see if it is interrupted by world
             //however the tesla tower is also world so exclude that
-            if (!isTower) {
+            if (!isTower)
+            {
                 bool lineOfSightBlocked = Physics.Linecast(hits[i].point, ray.origin, LayerIndex.world.mask, queryTriggerInteraction);
                 if (lineOfSightBlocked)
                     continue;
             }
 
             float distance = hits[i].distance;
-            if (distance < shortestDashDistance || distance < shortestZapDistance) {
+            //angle to hit point or angle to hurtbox center. whichever is closer to crosshair
+            float angle = Mathf.Min(Vector3.Angle(hits[i].point - ray.origin, ray.direction), Vector3.Angle(hits[i].transform.position - ray.origin, ray.direction));
 
-                HealthComponent healthComponent = hurtBox.healthComponent;
-                if (healthComponent && healthComponent.gameObject == bodyObject) {
-                    continue;
-                }
+            string log = $"{hurtBox.healthComponent.name} {hurtBox.transform.parent.name}".PadRight(35) +
+                $"| dist {distance.ToString("0.0")}".PadRight(12) +
+                $"| angl {angle.ToString("0.0")}".PadRight(12) +
+                $"| distC {(currentZapDistance == float.PositiveInfinity ? "inf" : currentZapDistance.ToString("0.0"))}".PadRight(12) +
+                $"| anglC {closestZapAngle.ToString("0.0")}".PadRight(13) +
+                $"| zapHitnig {(zapHit == null ? "null" : zapHit.transform.parent.name)}".PadRight(30);
 
-                if (distance < shortestZapDistance) {
+            if (self.searchingForZap && angle < self.trackingMaxAngleZap)
+            {
+                bool closeJudgeDistance = Mathf.Abs(closestZapAngle - angle) < self.trackingAngleLenience;
+
+                //if angles are near enough, go by distance, if not, prioritize angle
+                if (closeJudgeDistance ? distance < currentZapDistance : angle < closestZapAngle + self.trackingAngleLenience)
+                {
                     zapHit = hurtBox;
-                    shortestZapDistance = distance;
+                    currentZapDistance = distance;
+                    closestZapAngle = angle;
                 }
 
-                if (distance < shortestDashDistance) {
-                    if (!dashCooldownTargets.Contains(hurtBox.healthComponent)) {
-                        dashHit = hurtBox;
-                        shortestDashDistance = distance;
-                    }
-                }
-
-            } else {
-                continue;
+                log += $"| judge {closeJudgeDistance}";
             }
+            if (self.searchingForDash && !self.dashCooldownTargets.Contains(hurtBox.healthComponent))
+            {
+                bool closeJudgeDistance = Mathf.Abs(closestDashAngle - angle) < self.trackingAngleLenience;
 
+                //if angles are near enough, go by distance, if not, prioritize angle
+                if (closeJudgeDistance ? distance < currentDashDistance : angle < closestDashAngle + self.trackingAngleLenience)
+                {
+                    dashHit = hurtBox;
+                    currentDashDistance = distance;
+                    closestDashAngle = angle;
+                }
+            }
+            //Log.Warning(log);
         }
 
-        if (zapHit == null && dashHit == null) {
+        //Log.Warning($"zapHit {zapHit?.transform.parent.name}");
+        if (zapHit == null && dashHit == null)
+        {
             return false;
-        } else {
+        }
+        else
+        {
             return true;
         }
     }

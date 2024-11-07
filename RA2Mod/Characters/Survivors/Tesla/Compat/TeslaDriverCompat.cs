@@ -1,4 +1,7 @@
-﻿using RA2Mod.Modules;
+﻿using RA2Mod.General;
+using RA2Mod.Modules;
+using RA2Mod.Survivors.Chrono.SkillDefs;
+using RA2Mod.Survivors.Chrono;
 using RA2Mod.Survivors.Tesla.SkillDefs;
 using RA2Mod.Survivors.Tesla.States;
 using RobDriver.Modules.Components;
@@ -6,6 +9,8 @@ using RoR2;
 using RoR2.Skills;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static DriverWeaponDef;
+using EntityStates;
 
 namespace RA2Mod.Survivors.Tesla.Compat
 {
@@ -44,6 +49,7 @@ namespace RA2Mod.Survivors.Tesla.Compat
         {
             driverBody.AddComponent<TeslaTrackerComponent>();
             driverBody.AddComponent<TeslaTrackerComponentZap>();
+            driverBody.AddComponent<TeslaTowerControllerControllerGuest>();
             Log.Debug("found driver. adding tracker");
             DoDriverCompat();
         }
@@ -62,63 +68,123 @@ namespace RA2Mod.Survivors.Tesla.Compat
 
         private void DoDriverCompat()
         {
-            //chronoIndicatorVanishDriver = assetBundle.LoadAsset<GameObject>("IndicatorChronoVanishDriver");
+            TeslaDriverWeapon weapon = new TeslaDriverWeapon();
+            weapon.Init();
+            teslaGunIndex = weapon.weaponDef.index;
+        }
 
-            TeslaTrackingSkillDef primarySkillDefZap =           //this constructor creates a skilldef for a typical primary
+        internal class TeslaDriverWeapon : DriverCompatWeapon<TeslaDriverWeapon, TeslaTrooperSurvivor>
+        {
+            public override string nameToken => TeslaTrooperSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME";
+            public override string descriptionToken => TeslaTrooperSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION";
+            public override Texture icon => assetBundle.LoadAsset<Texture2D>("texIconTeslaRA2");
+            public override DriverWeaponTier tier => DriverWeaponTier.Uncommon;
+            public override int shotCount => 10;//
+            public override BuffType buffType => BuffType.Damage;
+            public override SkillDef primarySkillDef =>
                 Skills.CreateSkillDef<TeslaTrackingSkillDef>(new SkillDefInfo("Tesla_Primary_Zap",
                                                                               TeslaTrooperSurvivor.TOKEN_PREFIX + "PRIMARY_ZAP_NAME",
                                                                               TeslaTrooperSurvivor.TOKEN_PREFIX + "PRIMARY_ZAP_DESCRIPTION",
                                                                               assetBundle.LoadAsset<Sprite>("texTeslaSkillPrimary"),
-                                                                              new EntityStates.SerializableEntityStateType(typeof(Zap)),
+                                                                              new EntityStates.SerializableEntityStateType(typeof(DriverZap)),
                                                                               "Weapon",
                                                                               false));
+            public override SkillDef secondarySkillDef =>
+                Modules.Skills.CreateSkillDef(new SkillDefInfo
+                {
+                    skillName = "Tesla_Secondary_BigZap",
+                    skillNameToken = TeslaTrooperSurvivor.TOKEN_PREFIX + "SECONDARY_BIGZAP_NAME",
+                    skillDescriptionToken = TeslaTrooperSurvivor.TOKEN_PREFIX + "SECONDARY_BIGZAP_DESCRIPTION",
+                    skillIcon = assetBundle.LoadAsset<Sprite>("texTeslaSkillSecondary"),
+                    activationState = new EntityStates.SerializableEntityStateType(typeof(DriverAimBigZap)),
+                    activationStateMachineName = "Weapon",
+                    baseMaxStock = 1,
+                    baseRechargeInterval = 5.5f,
+                    beginSkillCooldownOnSkillEnd = true,
+                    canceledFromSprinting = false,
+                    forceSprintDuringState = false,
+                    fullRestockOnAssign = true,
+                    interruptPriority = EntityStates.InterruptPriority.Skill,
+                    resetCooldownTimerOnUse = false,
+                    isCombatSkill = true,
+                    mustKeyPress = false,
+                    cancelSprintingOnActivation = true,
+                    rechargeStock = 1,
+                    requiredStock = 1,
+                    stockToConsume = 1,
+                    keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD_SHOCKING" }
+                });
 
-            primarySkillDefZap.keywordTokens = new string[] { "KEYWORD_CHARGED" };
+            public override Mesh mesh => assetBundle.LoadAsset<Mesh>("meshDriverTeslaGauntlet");
+            public override Material material => assetBundle.CreateHopooMaterialFromBundle("matTesla_original_Armor");
+            public override AnimationSet animationSet => DriverWeaponDef.AnimationSet.Default;
+            public override string calloutSoundString => "Play_Voiceline_Driver";
+            public override string configIdentifier => "Tesla Gauntlet";
+            public override float dropChance => 1;
+            public override bool addToPool => true;
+            public override TeslaTrooperSurvivor characterBase => TeslaTrooperSurvivor.instance;
+        }
 
-            SkillDef bigZapSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
+        public class DriverZap : Zap
+        {
+            protected override string zapMuzzle => "PistolMuzzle";
+
+            public override void OnEnter()
             {
-                skillName = "Tesla_Secondary_BigZap",
-                skillNameToken = TeslaTrooperSurvivor.TOKEN_PREFIX + "SECONDARY_BIGZAP_NAME",
-                skillDescriptionToken = TeslaTrooperSurvivor.TOKEN_PREFIX + "SECONDARY_BIGZAP_DESCRIPTION",
-                skillIcon = assetBundle.LoadAsset<Sprite>("texTeslaSkillSecondary"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(AimBigZap)),
-                activationStateMachineName = "Weapon",
-                baseMaxStock = 1,
-                baseRechargeInterval = 5.5f,
-                beginSkillCooldownOnSkillEnd = true,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.Skill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = false,
-                cancelSprintingOnActivation = true,
-                rechargeStock = 1,
-                requiredStock = 1,
-                stockToConsume = 1,
-                keywordTokens = new string[] { "KEYWORD_STUNNING", "KEYWORD_SHOCKING" }
-            });
+                base.OnEnter();
 
-            DriverWeaponDef teslaGunWeaponDef = DriverWeaponDef.CreateWeaponDefFromInfo(new DriverWeaponDefInfo
+                if (gameObject.TryGetComponent(out DriverController iDrive))
+                {
+                    iDrive.ConsumeAmmo();
+                }
+            }
+
+            protected override void SetAnimatorHandOut() { }
+            protected override void UnSetAnimatorHandOut() { }
+
+            protected override void PlayZapAnimation()
             {
-                nameToken = TeslaTrooperSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME",
-                descriptionToken = TeslaTrooperSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION",
-                icon = assetBundle.LoadAsset<Texture2D>("texIconTeslaRA2"),
-                crosshairPrefab = TeslaTrooperSurvivor.instance.prefabCharacterBody.defaultCrosshairPrefab,
-                tier = DriverWeaponTier.Uncommon,
-                shotCount = 48,
-                primarySkillDef = primarySkillDefZap,
-                secondarySkillDef = bigZapSkillDef,
-                mesh = assetBundle.LoadAsset<Mesh>("meshDriverTeslaGauntlet"),
-                material = assetBundle.LoadAsset<Material>("matTesla_original_Armor"),
-                animationSet = DriverWeaponDef.AnimationSet.Default,
-                calloutSoundString = "Play_Tesla_Voiceline_Driver",
-                configIdentifier = "Tesla Trooper Gauntlet"
-            });
-            RobDriver.DriverWeaponCatalog.AddWeapon(teslaGunWeaponDef);
+                PlayAnimation("Gesture, Override", "Shoot", "Shoot.playbackRate", this.duration * 1.5f);
+            }
+        }
 
-            teslaGunIndex = teslaGunWeaponDef.index;
+        public class DriverAimBigZap : AimBigZap
+        {
+            protected override void EnterAnimation()
+            {
+                base.PlayAnimation("Gesture, Override", "SteadyAim", "Action.playbackRate", 0.25f);
+            }
+
+            public override EntityState PickNextState()
+            {
+                castSuccessful = true;
+                return new DriverBigZap() { aimPoint = currentTrajectoryInfo.hitPoint };
+            }
+        }
+
+        public class DriverBigZap : BigZap
+        {
+            public override void OnEnter()
+            {
+                base.OnEnter();
+
+                if (gameObject.TryGetComponent(out DriverController iDrive))
+                {
+                    iDrive.ConsumeAmmo(2);
+                }
+            }
+
+            protected override void ExitAnimation() { }
+
+            protected override void PlayShockAnimation()
+            {
+                PlayAnimation("Gesture, Override", "Shoot", "Shoot.playbackRate", this.duration * 1.5f);
+            }
+
+            protected override void PlayShockAnimationTower()
+            {
+                PlayShockAnimation();
+            }
         }
     }
 }

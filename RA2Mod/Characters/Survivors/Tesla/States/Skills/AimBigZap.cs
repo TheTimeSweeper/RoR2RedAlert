@@ -41,6 +41,11 @@ namespace RA2Mod.Survivors.Tesla.States
             base.OnEnter();
             Util.PlaySound(EnterSoundString, gameObject);
 
+            EnterAnimation();
+        }
+
+        protected virtual void EnterAnimation()
+        {
             PlayCrossfade("Gesture Right Arm, Override", "HandOut", 0.1f);
             GetModelAnimator().SetBool("isHandOut", true);
         }
@@ -77,7 +82,7 @@ namespace RA2Mod.Survivors.Tesla.States
             {
                 viewRadius = TowerBigZap.BaseAttackRadius;
 
-                maxDistance = TeslaTrackerComponent.maxTrackingDistance;
+                maxDistance = tracker.maxTrackingDistance;
 
             }
             else

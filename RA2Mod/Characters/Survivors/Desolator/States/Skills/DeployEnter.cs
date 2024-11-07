@@ -25,20 +25,24 @@ namespace RA2Mod.Survivors.Desolator.States
             base.OnEnter();
 
             aimRequest = cameraTargetParams.RequestAimType(RoR2.CameraTargetParams.AimType.Aura);
-
-            PlayCrossfade("Gesture, Override", "BufferEmpty", 0.05f);
-            PlayCrossfade("FullBody, Override", "DesolatorDeploy", "Deploy.playbackRate", duration, 0.05f);
+            PlayEnterAnimation();
 
             Animator animator = GetModelAnimator();
             PlayCannonAnimations(animator);
 
             animator.SetFloat("aimYawCycle", 0.5f);
             animator.SetFloat("aimPitchCycle", 0.5f);
-            
+
             if (NetworkServer.active)
             {
                 characterBody.AddTimedBuff(RoR2.RoR2Content.Buffs.HiddenInvincibility, BaseDuration);
             }
+        }
+
+        protected virtual void PlayEnterAnimation()
+        {
+            PlayCrossfade("Gesture, Override", "BufferEmpty", 0.05f);
+            PlayCrossfade("FullBody, Override", "DesolatorDeploy", "Deploy.playbackRate", duration, 0.05f);
         }
 
         protected virtual void PlayCannonAnimations(Animator animator)
@@ -66,10 +70,15 @@ namespace RA2Mod.Survivors.Desolator.States
 
             aimRequest.Dispose();
 
+            EndCannonAnimations();
+        }
+
+        protected virtual void EndCannonAnimations()
+        {
             PlayCrossfade("RadCannonBar", "DesolatorIdlePose", 0.1f);
             PlayCrossfade("RadCannonSpin", "DesolatorIdlePose", 0.1f);
         }
-        
+
         public override InterruptPriority GetMinimumInterruptPriority() {
             return InterruptPriority.Frozen;
         }

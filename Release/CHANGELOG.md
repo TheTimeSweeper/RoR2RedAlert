@@ -1,4 +1,8 @@
 ## Changelog
+
+`3.0.12`
+- readded previous chrono bomb under cursed config
+
 `3.0.11`
 - Chrono: 
     - special damage ticks faster (overall damage and debuff stacks unchanged)

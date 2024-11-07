@@ -127,7 +127,7 @@ namespace RA2Mod.Modules
         {
             if (GeneralConfig.Debug.Value)
             {
-                return gameObject.InstantiateClone(gameObject.name, network);
+                return R2API.PrefabAPI.InstantiateClone(gameObject, gameObject.name, network);
             }
             return gameObject;
         }

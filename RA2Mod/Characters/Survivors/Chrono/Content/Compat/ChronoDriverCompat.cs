@@ -1,14 +1,17 @@
-﻿using RA2Mod.Modules;
+﻿using RA2Mod.General;
+using RA2Mod.Modules;
 using RA2Mod.Survivors.Chrono.Components;
 using RA2Mod.Survivors.Chrono.SkillDefs;
 using RA2Mod.Survivors.Chrono.States;
 using RobDriver.Modules.Components;
+using RobDriver.Modules.Weapons;
 using RoR2;
 using RoR2.Skills;
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Bindings;
+using static DriverWeaponDef;
 
 namespace RA2Mod.Survivors.Chrono
 {
@@ -29,20 +32,6 @@ namespace RA2Mod.Survivors.Chrono
         public void Init()
         {
             RA2Mod.Hooks.RoR2.SurvivorCatalog.SetSurvivorDefs_Driver += SurvivorCatalog_SetSurvivorDefs_Driver;
-
-            InitConfig();
-
-            #region tokens
-            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME", "Chrono Gun");
-            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION", $"Makes enemies vanish from existence.");
-
-            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "PRIMARY_SHOOT_DRIVER_NAME", "Chrono Gun");
-            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "PRIMARY_SHOOT_DRIVER_DESCRIPTION", $"Fire for {Tokens.DamageValueText(ChronoDriverCompat.DriverGunM1Damage.Value)} and apply {Tokens.UtilityText("Chrono Sickness")} to enemies.");
-            
-            int driverTicks = (int)(ChronoDriverCompat.DriverGunM2Duration.Value / ChronoDriverCompat.DriverGunM2TickInterval.Value);
-            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "SPECIAL_VANISH_DRIVER_NAME", "Deconstructing");
-            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "SPECIAL_VANISH_DRIVER_DESCRIPTION", $"Focus your rifle for up to {Tokens.DamageValueText(ChronoDriverCompat.DriverGunM2Damage.Value * driverTicks)}. An enemy below the {Tokens.UtilityText("Chrono Sickness")} threshold will vanish from existence.");
-            #endregion tokens
 
             if (General.GeneralConfig.Debug.Value)
             {
@@ -67,6 +56,18 @@ namespace RA2Mod.Survivors.Chrono
                     cantdrive55.PickUpWeapon(RobDriver.DriverWeaponCatalog.GetWeaponFromIndex(chronoGunIndex));
                 }
             }
+        }
+
+        private void DoDriverCompat()
+        {
+            InitConfig();
+            SetTokens();
+
+            chronoIndicatorVanishDriver = assetBundle.LoadAsset<GameObject>("IndicatorChronoVanishDriver");
+
+            ChronoDriverWeapon weapon = new ChronoDriverWeapon();
+            weapon.Init();
+            chronoGunIndex = weapon.weaponDef.index;
         }
 
         private void InitConfig()
@@ -114,11 +115,28 @@ namespace RA2Mod.Survivors.Chrono
                 "");
         }
 
-        private void DoDriverCompat()
+        private static void SetTokens()
         {
-            chronoIndicatorVanishDriver = assetBundle.LoadAsset<GameObject>("IndicatorChronoVanishDriver");
+            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME", "Chrono Gun");
+            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION", $"Makes enemies vanish from existence.");
 
-            SkillDef shootSkillDef = Skills.CreateSkillDef(new SkillDefInfo
+            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "PRIMARY_SHOOT_DRIVER_NAME", "Chrono Gun");
+            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "PRIMARY_SHOOT_DRIVER_DESCRIPTION", $"Fire for {Tokens.DamageValueText(ChronoDriverCompat.DriverGunM1Damage.Value)} and apply {Tokens.UtilityText("Chrono Sickness")} to enemies.");
+
+            int driverTicks = (int)(ChronoDriverCompat.DriverGunM2Duration.Value / ChronoDriverCompat.DriverGunM2TickInterval.Value);
+            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "SPECIAL_VANISH_DRIVER_NAME", "Deconstructing");
+            Modules.Language.Add(ChronoSurvivor.TOKEN_PREFIX + "SPECIAL_VANISH_DRIVER_DESCRIPTION", $"Focus your rifle for up to {Tokens.DamageValueText(ChronoDriverCompat.DriverGunM2Damage.Value * driverTicks)}. An enemy below the {Tokens.UtilityText("Chrono Sickness")} threshold will vanish from existence.");
+        }
+
+        internal class ChronoDriverWeapon : DriverCompatWeapon<ChronoDriverWeapon, ChronoSurvivor>
+        {
+            public override string nameToken => ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME";
+            public override string descriptionToken => ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION";
+            public override Texture icon => assetBundle.LoadAsset<Texture2D>("texIconChronoRA2");
+            public override DriverWeaponTier tier => DriverWeaponTier.Uncommon;
+            public override int shotCount => 48;
+            public override BuffType buffType => BuffType.AttackSpeed;
+            public override SkillDef primarySkillDef => Skills.CreateSkillDef(new SkillDefInfo
                 (
                     "chronoShoot",
                     ChronoSurvivor.TOKEN_PREFIX + "PRIMARY_SHOOT_DRIVER_NAME",
@@ -127,9 +145,8 @@ namespace RA2Mod.Survivors.Chrono
                     new EntityStates.SerializableEntityStateType(typeof(ShootDriver)),
                     "Weapon",
                     false
-                ));
-
-            ChronoTrackerSkillDefVanish vanishSkillDef = Skills.CreateSkillDef<ChronoTrackerSkillDefVanish>(new SkillDefInfo
+                )); 
+            public override SkillDef secondarySkillDef => Skills.CreateSkillDef<ChronoTrackerSkillDefVanish>(new SkillDefInfo
             {
                 skillName = "chronoVanish",
                 skillNameToken = ChronoSurvivor.TOKEN_PREFIX + "SPECIAL_VANISH_DRIVER_NAME",
@@ -146,26 +163,14 @@ namespace RA2Mod.Survivors.Chrono
                 isCombatSkill = true,
                 mustKeyPress = true,
             });
-
-            DriverWeaponDef chronoGunWeaponDef = DriverWeaponDef.CreateWeaponDefFromInfo(new DriverWeaponDefInfo
-            {
-                nameToken = ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME",
-                descriptionToken = ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION",
-                icon = assetBundle.LoadAsset<Texture2D>("texIconChronoRA2"),
-                crosshairPrefab = ChronoSurvivor.instance.prefabCharacterBody.defaultCrosshairPrefab,
-                tier = DriverWeaponTier.Uncommon,
-                shotCount = 48,
-                primarySkillDef = shootSkillDef,
-                secondarySkillDef = vanishSkillDef,
-                mesh = assetBundle.LoadAsset<Mesh>("meshDriverChronoGun"),
-                material = assetBundle.LoadAsset<Material>("matDriverChronoGun"),
-                animationSet = DriverWeaponDef.AnimationSet.TwoHanded,
-                calloutSoundString = "Play_Chrono_Voiceline_Driver",
-                configIdentifier = "Chrono Legionnaire Gun"
-            });
-            RobDriver.DriverWeaponCatalog.AddWeapon(chronoGunWeaponDef);
-
-            chronoGunIndex = chronoGunWeaponDef.index;
+            public override Mesh mesh => assetBundle.LoadAsset<Mesh>("meshDriverChronoGun");
+            public override Material material => assetBundle.CreateHopooMaterialFromBundle("matDriverChronoGun");
+            public override AnimationSet animationSet => DriverWeaponDef.AnimationSet.TwoHanded;
+            public override string calloutSoundString => "Play_Chrono_Voiceline_Driver";
+            public override string configIdentifier => "Chrono Legionnaire Gun";
+            public override float dropChance => 1;
+            public override bool addToPool => true;
+            public override ChronoSurvivor characterBase => ChronoSurvivor.instance;
         }
     }
 
@@ -200,7 +205,7 @@ namespace RA2Mod.Survivors.Chrono
 
             if (gameObject.TryGetComponent(out DriverController iDrive)) 
             { 
-                iDrive.StartTimer();
+                iDrive.ConsumeAmmo();
             }
 
             muzzleString = "ShotgunMuzzle";
@@ -219,6 +224,7 @@ namespace RA2Mod.Survivors.Chrono
         public override float damageCoefficient => ChronoDriverCompat.DriverGunM2Damage.Value;
         public override float baseTickInterval =>  ChronoDriverCompat.DriverGunM2TickInterval.Value;
         public override float baseDuration =>      ChronoDriverCompat.DriverGunM2Duration.Value;
+        public override int damageTicksPerDebuffStack => 1;
 
         private DriverWeaponDef cachedWeaponDef;
         private DriverController iDrive;
@@ -246,7 +252,7 @@ namespace RA2Mod.Survivors.Chrono
             {
                 if (iDrive)
                 {
-                    iDrive.StartTimer();
+                    iDrive.ConsumeAmmo();
                 }
             }
         }
@@ -255,7 +261,7 @@ namespace RA2Mod.Survivors.Chrono
         {
             if (iDrive)
             {
-                iDrive.StartTimer(baseTickInterval/baseDuration * 10);
+                iDrive.ConsumeAmmo(tickInterval / baseDuration * 10);
             }
 
             base.DoDamage();

@@ -75,7 +75,7 @@ namespace RA2Mod.Survivors.Tesla.SkillDefs
             base.OnFixedUpdate(skillSlot, deltaTime);
             InstanceData instanceData = (InstanceData)skillSlot.skillInstanceData;
 
-            ((InstanceData)skillSlot.skillInstanceData).teslaTracker.SetIsReady(IsReady(skillSlot));
+            ((InstanceData)skillSlot.skillInstanceData).teslaTracker.SetIsSkillReady(base.IsReady(skillSlot));
 
             instanceData.timeoutTimer -= deltaTime;
             if (instanceData.timeoutTimer <= 0f && instanceData.hasExtraStock)

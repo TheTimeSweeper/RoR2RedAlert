@@ -16,6 +16,8 @@ using UnityEngine;
 [module: UnverifiableCode]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 
+[assembly: HG.Reflection.SearchableAttribute.OptIn]
+
 namespace RA2Mod
 {
     [BepInDependency("com.rune580.riskofoptions", BepInDependency.DependencyFlags.SoftDependency)]
@@ -33,7 +35,7 @@ namespace RA2Mod
     {
         public const string MODUID = "com.TheTimesweeper.RedAlert";
         public const string MODNAME = "Red Alert";
-        public const string MODVERSION = "3.0.11";
+        public const string MODVERSION = "3.0.12";
 
         public const string DEVELOPER_PREFIX = "HABIBI";
 

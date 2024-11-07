@@ -1,9 +1,12 @@
 ﻿using EntityStates;
+using RA2Mod.Modules.Characters;
+using RobDriver.Modules.Weapons;
 using RoR2;
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using VRAPI;
+using static DriverWeaponDef;
 
 namespace RA2Mod.General
 {
@@ -31,7 +34,7 @@ namespace RA2Mod.General
             }
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.rob.Driver"))
             {
-                //todo update driver compat driverInstalled = true;
+                driverInstalled = true;
             }
         }
 
@@ -76,7 +79,8 @@ namespace RA2Mod.General
         private static Ray GetVRAimRayCamera()
         {
             //todo teslamove no camera.main in fixedupdate
-            return new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            Camera main = Camera.main;
+            return new Ray(main.transform.position, main.transform.forward);
         }
 
         public static ChildLocator GetModelChildLocator(this BaseState state, bool dominant = true)
@@ -106,4 +110,45 @@ namespace RA2Mod.General
         }
         #endregion vr helpers
     }
+
+    #region driver helpers
+    //when update
+    //internal abstract class DriverCompatWeapon<TWeapon, TCharacter> : DriverWeapon<TWeapon> where TWeapon : DriverWeapon<TWeapon> where TCharacter : CharacterBase<TCharacter>, new()
+    //{
+    //    public override GameObject crosshairPrefab => characterBase.prefabCharacterBody.defaultCrosshairPrefab;
+    //    public override string uniqueDropBodyName => characterBase.bodyName;
+
+    //    public abstract TCharacter characterBase { get; }
+
+    //    public override void Init()
+    //    {
+    //        CreateWeapon();
+    //    }
+    //}
+
+    internal abstract class DriverCompatWeapon<TWeapon, TCharacter> : BaseWeapon<TWeapon> where TWeapon : BaseWeapon<TWeapon> where TCharacter : CharacterBase<TCharacter>, new()
+    {
+        public override string iconName => "";
+        public override string weaponNameToken => "";
+        public override string weaponDesc => "";
+        public override string weaponName => "";
+
+        new public abstract string nameToken { get; }
+        new public abstract string descriptionToken { get; }
+        new public abstract Texture icon { get; }
+
+        public override GameObject crosshairPrefab => characterBase.prefabCharacterBody.defaultCrosshairPrefab;
+        public override string uniqueDropBodyName => characterBase.bodyName;
+
+        public abstract TCharacter characterBase { get; }
+
+        public override void Init()
+        {
+            CreateWeapon();
+            weaponDef.nameToken = nameToken;
+            weaponDef.descriptionToken = descriptionToken;
+            weaponDef.icon = icon;
+        }
+    }
+    #endregion
 }

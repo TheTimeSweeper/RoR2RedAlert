@@ -6,6 +6,9 @@ namespace RA2Mod.General
 {
     public static class GeneralConfig
     {
+        public static ConfigEntry<float> zapTrackingAngle;
+        public static ConfigEntry<float> zapLenienceAngle;
+
         public static BepInEx.Configuration.ConfigEntry<bool> Debug;
 
         public static ConfigEntry<bool> NewColor;
@@ -33,11 +36,27 @@ namespace RA2Mod.General
             //2-1 compats?
             string sectionGeneral = "0-0. General";
 
-            Debug = RA2Plugin.instance.Config.Bind<bool>(
+            Debug = RA2Plugin.instance.Config.Bind(
                 sectionGeneral,
                 "Debug Logs", 
                 false, 
                 "In case I forget to remove something");
+
+            zapTrackingAngle = Config.BindAndOptions(
+                sectionGeneral,
+                nameof(zapTrackingAngle),
+                10f,
+                0,100,
+                "",
+                false);
+
+            zapLenienceAngle = Config.BindAndOptions(
+                sectionGeneral,
+                nameof(zapLenienceAngle),
+                0f,
+                0, 100,
+                "",
+                false);
 
             NewColor = Config.BindAndOptions(
                 sectionGeneral,
@@ -50,7 +69,7 @@ namespace RA2Mod.General
                 sectionGeneral,
                 "Cursed",
                 false,
-                "Enables extra/wip content\nyes there's a fucking minecraft skin",
+                "Enables extra/wip content\nyes there's a minecraft skin",
                 true);
 
             RestKeybind = Config.BindAndOptions(

@@ -21,6 +21,8 @@ namespace RA2Mod.Survivors.Tesla.States
         internal static event Action<bool, bool> onZapAuthority;
         internal static event Action<HurtBox> onZapAllyAuthority;
 
+        protected virtual string zapMuzzle => "MuzzleGauntlet";
+
         #region Gameplay Values
         public static float DamageCoefficient = 1.2f;
         public static float BounceDamageMultplier = 0.69f;
@@ -143,18 +145,12 @@ namespace RA2Mod.Survivors.Tesla.States
 
             StartAimMode(2);
 
-            //todo: joe crosscompat
-            //base.PlayAnimation("Arms, Override", "cast 2", "cast.playbackRate", this.duration);
-
-            //todo: ishandout causing old sniper animation issues
-            PlayCrossfade("Gesture Right Arm, Override", "HandOut", 0.05f);
-            GetModelAnimator().SetBool("isHandOut", true);
+            SetAnimatorHandOut();
 
             if (isAuthority)
             {
                 if (_tracker)
                 {
-
                     TeslaTrackerComponentZap.RangeTier trackingDistance = _tracker.GetTrackingTargetDistance();
 
                     _targetHurtbox = _tracker.GetTrackingTarget();
@@ -198,11 +194,26 @@ namespace RA2Mod.Survivors.Tesla.States
             _crit = RollCrit();
         }
 
+        protected virtual void SetAnimatorHandOut()
+        {
+            //todo: joe crosscompat
+            //base.PlayAnimation("Arms, Override", "cast 2", "cast.playbackRate", this.duration);
+
+            //todo: ishandout causing old sniper animation issues
+            PlayCrossfade("Gesture Right Arm, Override", "HandOut", 0.05f);
+            GetModelAnimator().SetBool("isHandOut", true);
+        }
+
+        protected virtual void UnSetAnimatorHandOut()
+        {
+            GetModelAnimator().SetBool("isHandOut", false);
+        }
+
         public override void OnExit()
         {
             base.OnExit();
 
-            GetModelAnimator().SetBool("isHandOut", false);
+            UnSetAnimatorHandOut();
         }
 
         private PseudoLightningOrb createOrb()
@@ -302,17 +313,21 @@ namespace RA2Mod.Survivors.Tesla.States
         {
             EffectManager.SimpleMuzzleFlash(LegacyResourcesAPI.Load<GameObject>("prefabs/effects/omnieffect/omniimpactvfxlightning"),
                                             gameObject,
-                                            "MuzzleGauntlet",
+                                            zapMuzzle,
                                             true);
-
-            PlayAnimation("Gesture, Additive", "Shock");
-            //PlayCrossfade("Gesture, Override", "Shock", 0.1f);
+            PlayZapAnimation();
 
             string sound = "Play_itesatta";
             if (_crit) sound = "Play_zap_crit";// "Play_trooper_itesat2b_tesla_trooper_attack";
             //sound = EntityStates.Mage.Weapon.FireLaserbolt.attackString;
 
             Util.PlaySound(sound, gameObject);
+        }
+
+        protected virtual void PlayZapAnimation()
+        {
+            PlayAnimation("Gesture, Additive", "Shock");
+            //PlayCrossfade("Gesture, Override", "Shock", 0.1f);
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()

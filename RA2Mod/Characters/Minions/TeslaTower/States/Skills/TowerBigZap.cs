@@ -95,7 +95,6 @@ namespace RA2Mod.Minions.TeslaTower.States
                     onTowerBigZapMultiHit?.Invoke(gameObject);
                 }
 
-                #region effects
                 EffectData fect = new EffectData
                 {
                     origin = targetPoint,
@@ -103,7 +102,6 @@ namespace RA2Mod.Minions.TeslaTower.States
                 };
 
                 PlayBlastEffect(fect);
-                #endregion effects
             }
         }
 

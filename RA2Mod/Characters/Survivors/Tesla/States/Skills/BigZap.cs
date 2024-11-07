@@ -62,20 +62,27 @@ namespace RA2Mod.Survivors.Tesla.States
 
             if (commandedTowers)
             {
-
-                //todo anim tower
-                PlayAnimation("Gesture, Additive", "Shock_bak", "Shock.playbackRate", 0.3f);
-
+                PlayShockAnimationTower();
             }
             else
             {
-
                 attackRadius = BaseAttackRadius * skillsPlusAreaMulti;
 
-                PlayAnimation("Gesture, Additive", "Shock", "Shock.playbackRate", 0.3f);
+                PlayShockAnimation();
 
                 characterBody.AddSpreadBloom(1);
             }
+        }
+
+        protected virtual void PlayShockAnimation()
+        {
+            PlayAnimation("Gesture, Additive", "Shock", "Shock.playbackRate", 0.3f);
+        }
+
+        protected virtual void PlayShockAnimationTower()
+        {
+            //todo anim tower
+            PlayAnimation("Gesture, Additive", "Shock_bak", "Shock.playbackRate", 0.3f);
         }
 
         protected override void OnCastEnter()
@@ -187,6 +194,11 @@ namespace RA2Mod.Survivors.Tesla.States
         {
             base.OnExit();
 
+            ExitAnimation();
+        }
+
+        protected virtual void ExitAnimation()
+        {
             GetModelAnimator().SetBool("isHandOut", false);
         }
 

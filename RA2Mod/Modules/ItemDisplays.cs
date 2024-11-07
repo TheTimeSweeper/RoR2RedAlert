@@ -44,6 +44,15 @@ namespace RA2Mod.Modules
             KeyAssets = null;
         }
 
+        internal static Object GetKeyAsset(string key)
+        {
+            if(KeyAssets.ContainsKey(key))
+                return KeyAssets[key];
+
+            Log.Warning($"shit not found for {key}");
+            return null;
+        }
+
         internal static IEnumerator PopulateDisplays()
         {
             IEnumerator loadIDRS = Asset.LoadAssetCoroutine<GameObject>("RoR2/Base/Loader/LoaderBody.prefab", (result) => {

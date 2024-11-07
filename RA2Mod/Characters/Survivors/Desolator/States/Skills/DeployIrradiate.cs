@@ -38,45 +38,42 @@ namespace RA2Mod.Survivors.Desolator.States
         public override float TimedBaseDuration => BaseDuration;
         public override float TimedBaseCastStartPercentTime => StartTime;
 
-        public override void OnEnter() {
+        public override void OnEnter()
+        {
             base.OnEnter();
 
             _animator = base.GetModelAnimator();
 
             Util.PlaySound("Play_Desolator_Deploy", base.gameObject);
-            PlayCrossfade("FullBody, Override", "DesolatorDeployPump",/* "DeployPump.playbackRate", duration,*/ 0.05f);
+            PlayPumpAnimation();
 
-            if (General.GeneralCompat.driverInstalled)
+            if (base.isAuthority)
             {
-                TryDriverCompat();
-            }
-
-            if (base.isAuthority) {
                 DropRadiationProjectile();
                 GiveBarrierPerEnemy();
             }
 
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 characterBody.AddBuff(DesolatorBuffs.desolatorDeployBuff);
             }
 
             //bit of overengineering but input is important
-            if (isAuthority && fromEnter && base.inputBank.skill4.down) {
+            if (isAuthority && fromEnter && base.inputBank.skill4.down)
+            {
                 _heldTooLongYaDoofus = true;
-            } else {
+            }
+            else
+            {
                 _inputDown = true;
             }
 
             characterBody.hideCrosshair = true;
         }
 
-        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
-        private void TryDriverCompat()
+        protected virtual void PlayPumpAnimation()
         {
-            if (gameObject.TryGetComponent(out RobDriver.Modules.Components.DriverController cantDrive55))
-            {
-                cantDrive55.StartTimer(1);
-            }
+            PlayCrossfade("FullBody, Override", "DesolatorDeployPump",/* "DeployPump.playbackRate", duration,*/ 0.05f);
         }
 
         public override void FixedUpdate()
@@ -119,9 +116,15 @@ namespace RA2Mod.Survivors.Desolator.States
             return false;
         }
 
-        public override void Update() {
+        public override void Update()
+        {
             base.Update();
-            _cannonSpin = Mathf.Lerp(0, 2.2f, fixedAge/duration);
+            UpdateCannonSpin();
+        }
+
+        protected virtual void UpdateCannonSpin()
+        {
+            _cannonSpin = Mathf.Lerp(0, 2.2f, fixedAge / duration);
             _animator.SetFloat("CannonSpin", _cannonSpin, 0.1f, Time.deltaTime);  //bit of a magic number because animation for some reason resets at 1.0
             _animator.SetFloat("CannonBarCharge", Mathf.Min(fixedAge / duration, 0.99f), 0.1f, Time.deltaTime);
         }

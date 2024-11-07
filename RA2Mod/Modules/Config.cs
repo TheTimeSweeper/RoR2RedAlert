@@ -12,6 +12,11 @@ namespace RA2Mod.Modules
 {
     public class ConfigEntry<T>
     {
+        public static implicit operator T(ConfigEntry<T> asset)
+        {
+            return asset.Value;
+        }
+
         public ConfigEntry(BepInEx.Configuration.ConfigEntry<T> actualConfigEntry, T defaultValue)
         {
             ActualConfigEntry = actualConfigEntry;

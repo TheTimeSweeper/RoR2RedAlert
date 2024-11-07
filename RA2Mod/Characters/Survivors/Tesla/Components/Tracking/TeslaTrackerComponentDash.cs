@@ -1,4 +1,5 @@
-﻿using RA2Mod.Survivors.Tesla;
+﻿using RA2Mod;
+using RA2Mod.Survivors.Tesla;
 using RoR2;
 using System;
 using UnityEngine;
@@ -18,7 +19,25 @@ public class TeslaTrackerComponentDash : MonoBehaviour {
     private bool _targetingAlly;
 
     private bool _isDashing;
-    private bool _isReady;
+    private bool _isSkillReady;
+
+    private bool _active;
+    private bool active
+    {
+        get
+        {
+            return _active;
+        }
+        set
+        {
+            if (_active == value)
+                return;
+            Log.Warning($"trackerdash active {_active}");
+            _active = value;
+            indicator.active = value;
+            teslaTrackerComponent.searchingForDash = value;
+        }
+    }
 
     void Awake() {
         indicator = new TeslaDashIndicator(base.gameObject, TeslaAssets.TeslaIndicatorPrefabDash);
@@ -26,6 +45,7 @@ public class TeslaTrackerComponentDash : MonoBehaviour {
 
     void Start() {
         teslaTrackerComponent = GetComponent<TeslaTrackerComponent>();
+        teslaTrackerComponent.searchingForDash = true;
         characterBody = base.GetComponent<CharacterBody>();
         //inputBank = base.GetComponent<InputBankTest>();
         teamComponent = base.GetComponent<TeamComponent>();
@@ -49,7 +69,7 @@ public class TeslaTrackerComponentDash : MonoBehaviour {
 
     private void FixedUpdate() {
 
-        indicator.active = _isDashing && _isReady;
+        active = _isDashing && _isSkillReady;
     }
 
     #region access
@@ -64,8 +84,8 @@ public class TeslaTrackerComponentDash : MonoBehaviour {
 
     #endregion access
 
-    public void SetIsReady(bool ready) {
-        _isReady = ready;
+    public void SetIsSkillReady(bool ready) {
+        _isSkillReady = ready;
     }
 
     private void OnSearch() {
@@ -74,13 +94,30 @@ public class TeslaTrackerComponentDash : MonoBehaviour {
 
         setIsTargetingTeammate();
 
-        indicator.targetTransform = (_trackingTarget ? _trackingTarget.transform : null);
+        indicator.targetTransform = GetIndicatorTransform();
+    }
+
+    private Transform GetIndicatorTransform()
+    {
+        if (_trackingTarget == null)
+            return null;
+
+        if (_trackingTarget.hurtBoxGroup == null || _trackingTarget.hurtBoxGroup.mainHurtBox == null)
+            return _trackingTarget.transform;
+
+        Vector3 mainHurtboxPosition = _trackingTarget.hurtBoxGroup.mainHurtBox.transform.position;
+        if (Vector3.Distance(mainHurtboxPosition, _trackingTarget.transform.position) < 3)
+        {
+            return _trackingTarget.hurtBoxGroup.mainHurtBox.transform;
+        }
+
+        return _trackingTarget.transform;
     }
 
     private void setIsTargetingTeammate() {
         bool targetingFriendlyFire = false;
         if (_trackingTarget) {
-            targetingFriendlyFire = !FriendlyFireManager.ShouldDirectHitProceed(_trackingTarget.healthComponent, teamComponent.teamIndex);// _trackingTarget.teamIndex == teamComponent.teamIndex;
+            targetingFriendlyFire = !FriendlyFireManager.ShouldDirectHitProceed(_trackingTarget.healthComponent, teamComponent.teamIndex);
         }
 
         _targetingAlly = targetingFriendlyFire;
@@ -90,43 +127,5 @@ public class TeslaTrackerComponentDash : MonoBehaviour {
     public class TeslaDashIndicator : Indicator {
 
         public TeslaDashIndicator(GameObject owner, GameObject visualizerPrefab) : base(owner, visualizerPrefab) { }
-
-        //public override void UpdateVisualizer() {
-        //    base.UpdateVisualizer();
-
-        //    if (visualizerTransform) {
-
-        //        TeslaIndicatorView indicatorView = visualizerTransform.GetComponent<TeslaIndicatorView>();
-
-        //        //color
-        //        TargetType currentTarget = TargetType.DEFAULT;
-
-        //        if (empowered) {
-        //            currentTarget = TargetType.EMPOWERED;
-        //        } else if (targetingAlly) {
-        //            currentTarget = TargetType.ALLY;
-        //        }
-
-        //        indicatorView.SetColor((int)currentTarget);
-
-        //        //sprite
-        //        switch (currentTarget) {
-
-        //            default:
-        //            case TargetType.DEFAULT:
-        //                indicatorView.SetSpriteRange((int)currentRange);
-        //                break;
-        //            case TargetType.EMPOWERED:
-        //                indicatorView.SetSpriteTower();
-        //                break;
-        //            case TargetType.ALLY:
-        //                indicatorView.SetSpriteAlly();
-        //                break;
-        //        }
-
-        //        //tower indicator
-        //        indicatorView.SetTowerSprite(!targetingAlly && towerIsTargeting);
-        //    }
-        //}
     }
 }

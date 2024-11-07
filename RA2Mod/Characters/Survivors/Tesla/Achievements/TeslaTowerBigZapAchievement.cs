@@ -44,7 +44,6 @@ namespace RA2Mod.Survivors.Tesla.Achievements
             // Token: 0x06005701 RID: 22273 RVA: 0x00160C04 File Offset: 0x0015EE04
             private void OnTowerBigZapHit(GameObject tower)
             {
-                //todo teslamove tower
                 if (tower.GetComponent<TowerOwnerTrackerComponent>().OwnerTrackerComponent.gameObject == GetCurrentBody().gameObject)
                 {
                     Grant();

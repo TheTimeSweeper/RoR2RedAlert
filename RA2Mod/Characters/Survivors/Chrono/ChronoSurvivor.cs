@@ -303,6 +303,42 @@ namespace RA2Mod.Survivors.Chrono
             Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef);
 
             Config.ConfigureSkillDef(secondarySkillDef, ChronoConfig.SectionBody, "M2 Bomb");
+
+            if (GeneralConfig.Cursed.Value)
+            {
+                ChronoTrackerSkillDefBomb secondarySkillDef2 = Skills.CreateSkillDef<ChronoTrackerSkillDefBomb>(new SkillDefInfo
+                {
+                    skillName = "chronoIvanplaced",
+                    skillNameToken = TOKEN_PREFIX + "SECONDARY_BOMB_NAME",
+                    skillDescriptionToken = TOKEN_PREFIX + "SECONDARY_BOMB_DESCRIPTION",
+                    //keywordTokens = new string[] { "KEYWORD_AGILE" },
+                    skillIcon = assetBundle.LoadAsset<Sprite>("texIconChronoSecondary"),
+
+                    activationState = new EntityStates.SerializableEntityStateType(typeof(States.ChronoBombPlace)),
+                    activationStateMachineName = "Weapon2",
+                    interruptPriority = EntityStates.InterruptPriority.Skill,
+
+                    baseRechargeInterval = secondarySkillDef.baseRechargeInterval,
+                    baseMaxStock = secondarySkillDef.baseMaxStock,
+
+                    rechargeStock = secondarySkillDef.rechargeStock,
+                    requiredStock = secondarySkillDef.requiredStock,
+                    stockToConsume = secondarySkillDef.stockToConsume,
+
+                    resetCooldownTimerOnUse = false,
+                    fullRestockOnAssign = true,
+                    dontAllowPastMaxStocks = false,
+                    mustKeyPress = true,
+                    beginSkillCooldownOnSkillEnd = false,
+
+                    isCombatSkill = true,
+                    canceledFromSprinting = false,
+                    cancelSprintingOnActivation = false,
+                    forceSprintDuringState = false,
+                });
+
+                Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef2);
+            }
         }
         
         private void AddUtiitySkills()

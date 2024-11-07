@@ -2,6 +2,7 @@
 using RA2Mod.General.Components;
 using RA2Mod.Minions.TeslaTower.States;
 using RoR2;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,8 +11,9 @@ public class TeslaTowerControllerController : MonoBehaviour {
 
     public static float NearTowerRange = 60f;
 
-    private List<GameObject> teslaTowers = new List<GameObject>();
-    private List<GameObject> otherCommandables = new List<GameObject>();
+    private List<GameObject> _teslaTowers = new List<GameObject>();
+    protected virtual List<GameObject> teslaTowers => _teslaTowers;
+    private List<GameObject> _otherCommandables = new List<GameObject>();
 
     public GameObject GetNearestTower () { 
 
@@ -72,8 +74,8 @@ public class TeslaTowerControllerController : MonoBehaviour {
             }, InterruptPriority.PrioritySkill);
         }
         
-        for (int i = 0; i < otherCommandables.Count; i++) {
-            otherCommandables[i].GetComponent<EntityStateMachine>().SetInterruptState(new TowerZap() {
+        for (int i = 0; i < _otherCommandables.Count; i++) {
+            _otherCommandables[i].GetComponent<EntityStateMachine>().SetInterruptState(new TowerZap() {
                 lightningTarget = target,
                 zaps = 2
             }, InterruptPriority.PrioritySkill);
@@ -130,7 +132,7 @@ public class TeslaTowerControllerController : MonoBehaviour {
     }
 
     public void addTower(GameObject towerBodyObject) {
-        teslaTowers.Add(towerBodyObject);
+        _teslaTowers.Add(towerBodyObject);
 
         towerBodyObject.GetComponent<TowerOwnerTrackerComponent>().OwnerTrackerComponent = GetComponent<TeslaTrackerComponentZap>();
 
@@ -145,13 +147,13 @@ public class TeslaTowerControllerController : MonoBehaviour {
     }
 
     public void removeTower(GameObject towerObject) {
-        teslaTowers.Remove(towerObject);
+        _teslaTowers.Remove(towerObject);
     }
 
     public void addNotTower(GameObject notTowerBodyObject) {
-        otherCommandables.Add(notTowerBodyObject);
+        _otherCommandables.Add(notTowerBodyObject);
     }
     public void removeNotTower(GameObject notTowerBodyObject) {
-        otherCommandables.Remove(notTowerBodyObject);
+        _otherCommandables.Remove(notTowerBodyObject);
     }
 }

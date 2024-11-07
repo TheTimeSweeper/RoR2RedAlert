@@ -15,10 +15,6 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.38
       objectReference: {fileID: 0}
-    - target: {fileID: 452742278870366377, guid: f64294a47f5f09a42bbc23378851ef47, type: 3}
-      propertyPath: startSound
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 468421335959962266, guid: f64294a47f5f09a42bbc23378851ef47, type: 3}
       propertyPath: stickSoundString
       value: 

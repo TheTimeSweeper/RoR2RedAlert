@@ -148,7 +148,7 @@ MonoBehaviour:
   catalogIndex: -1
   ghostPrefab: {fileID: 6138324122856648497, guid: 60c8f2fd69b5b1e4b938eb0c84c000c5, type: 3}
   ghostTransformAnchor: {fileID: 0}
-  startSound: Play_IvanBomb_Start
+  startSound: 
   cannotBeDeleted: 0
   authorityHandlesCollisionEvents: 0
   flightSoundLoop: {fileID: 11400000, guid: de07568a85a3b5a488fe4ddd51b23f41, type: 2}

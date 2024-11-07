@@ -11,11 +11,7 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
     
     public static float nearTrackingDistance = 16;
     public static float mediumTrackingDistance = 28f;
-
-    //public static float maxTrackingDistance = 50f;
-    ////public float maxTrackingAngle = 15f;
-    //public float trackingRadius = 1f;
-    //public float trackerUpdateFrequency = 16f;
+    public float maxTrackingDistance => teslaTrackerComponent.maxTrackingDistance;
 
     public enum RangeTier {
         CLOSEST,
@@ -39,6 +35,7 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
     
     //private float trackerUpdateStopwatch;
     private HurtBox _trackingTarget;
+    private RangeTier _trackingTargetDistance;
 
     private HealthComponent _towerTargetHealthComponent;
     private bool _targetingAlly;
@@ -51,10 +48,10 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
         towerControllerComponent = GetComponent<TeslaTowerControllerController>();
     }
     
-    void Start() {
+    protected virtual void Start() {
         teslaTrackerComponent = GetComponent<TeslaTrackerComponent>();
+        teslaTrackerComponent.searchingForZap = true;
         characterBody = base.GetComponent<CharacterBody>();
-        //inputBank = base.GetComponent<InputBankTest>();
         teamComponent = base.GetComponent<TeamComponent>();
 
         teslaTrackerComponent.SearchEvent += OnSearch;
@@ -97,24 +94,7 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
         return _targetingAlly;
     }
 
-    public RangeTier GetTrackingTargetDistance() {
-
-        RangeTier range = RangeTier.FURTHEST;
-
-        float dist = Vector3.Distance(_trackingTarget.transform.position, transform.position);
-
-        if (dist > mediumTrackingDistance) {
-            range = RangeTier.FURTHEST;
-        }
-        if (dist < mediumTrackingDistance) {
-            range = RangeTier.MIDDLE;
-        }
-        if (dist < nearTrackingDistance) {
-            range = RangeTier.CLOSEST;
-        }
-
-        return range;
-    }
+    public RangeTier GetTrackingTargetDistance() => _trackingTargetDistance;
 
     #endregion access
 
@@ -152,38 +132,81 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
     private void FixedUpdate() {
 
         indicator.active = !(_isMelee && !_empowered);
-
-        //trackerUpdateStopwatch += Time.fixedDeltaTime;
-        //if (trackerUpdateStopwatch >= 1f / trackerUpdateFrequency) {
-        //    OnSearch();
-        //}
     }
 
     private void OnSearch() {
+        HurtBox newTrackingTarget = teslaTrackerComponent.trackingTargetZap;
 
-        //trackerUpdateStopwatch -= 1f / trackerUpdateFrequency;
-        //Ray aimRay = new Ray(inputBank.aimOrigin, inputBank.aimDirection);
+        //if (newTrackingTarget != null && _trackingTarget != null && newTrackingTarget.healthComponent == _trackingTarget.healthComponent)
+        //{
+        //    float dist = Vector3.Distance(newTrackingTarget.transform.position, _trackingTarget.transform.position);
 
-        //FindTrackingTarget(aimRay);
-        _trackingTarget = teslaTrackerComponent.trackingTargetZap;
+        //    if (dist > 2 || CheckTrackingTargetDistance(newTrackingTarget) < _trackingTargetDistance)
+        //    {
+        //        _trackingTarget = newTrackingTarget;
+        //    } 
+        //    else
+        //    {
+        //        //keep old tracking target
+        //    }
+        //} 
+        //else
+        {
+            _trackingTarget = newTrackingTarget;
+        }
 
         setIsTargetingTeammate();
         
         if (_trackingTarget) {
+            _trackingTargetDistance = CheckTrackingTargetDistance(_trackingTarget);
             setIndicatorRange(GetTrackingTargetDistance());
         }
 
-        //ZappableTower zappableTower;
-        //if (_trackingTarget && _trackingTarget.hurtBoxGroup.TryGetComponent<ZappableTower>(out zappableTower)) {
-        //    _trackingTarget = zappableTower.MainHurtbox;
-        //}
-
-        indicator.targetTransform = (_trackingTarget ? _trackingTarget.transform : null);
+        indicator.targetTransform = GetIndicatorTransform();
         
         if(TeslaConfig.M4_Tower_Targeting.Value)
             setIsTowerTargeting();
     }
-    
+
+    private Transform GetIndicatorTransform()
+    {
+        if (_trackingTarget == null)
+            return null;
+
+        if (_trackingTarget.hurtBoxGroup == null || _trackingTarget.hurtBoxGroup.mainHurtBox == null)
+            return _trackingTarget.transform;
+
+        Vector3 mainHurtboxPosition = _trackingTarget.hurtBoxGroup.mainHurtBox.transform.position;
+        if(Vector3.Distance(mainHurtboxPosition, _trackingTarget.transform.position) < 3)
+        {
+            return _trackingTarget.hurtBoxGroup.mainHurtBox.transform;
+        }
+
+        return _trackingTarget.transform;         
+    }
+
+    private RangeTier CheckTrackingTargetDistance(HurtBox trackingTarget)
+    {
+        RangeTier range = RangeTier.FURTHEST;
+
+        float dist = Vector3.Distance(trackingTarget.transform.position, transform.position);
+
+        if (dist > mediumTrackingDistance)
+        {
+            range = RangeTier.FURTHEST;
+        }
+        if (dist < mediumTrackingDistance)
+        {
+            range = RangeTier.MIDDLE;
+        }
+        if (dist < nearTrackingDistance)
+        {
+            range = RangeTier.CLOSEST;
+        }
+
+        return range;
+    }
+
     private void setIsTowerTargeting() {
 
         bool hasTarget = _towerTargetHealthComponent && _trackingTarget && _towerTargetHealthComponent == _trackingTarget.healthComponent;

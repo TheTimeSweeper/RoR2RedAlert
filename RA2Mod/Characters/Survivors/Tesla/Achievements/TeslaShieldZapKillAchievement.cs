@@ -42,7 +42,7 @@ namespace RA2Mod.Survivors.Tesla.Achievements
 
                 RoR2Application.onFixedUpdate += this.OnFixedUpdate;
                 GlobalEventManager.onCharacterDeathGlobal += this.OnCharacterDeath;
-                //ModdedEntityStates.TeslaTrooper.ShieldZapReleaseDamage.onShieldZap += OnShieldZap;
+                States.ShieldZapReleaseDamage.onShieldZap += OnShieldZap;
             }
 
             private void OnShieldZap()

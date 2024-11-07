@@ -110,7 +110,7 @@ namespace RA2Mod.Modules
                 return $"\n[NO DISPLAY RULES FOUND FOR THE KEYASSET {asset}";
 
             //generate item display rule
-            string newRule = $"\n            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.KeyAssets[\"{asset.name}\"]";
+            string newRule = $"\n            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.GetKeyAsset(\"{asset.name}\")";
             for (int i = 0; i < displayRules.Length; i++)
             {
                 if(displayRules[i].limbMask == LimbFlags.None)
