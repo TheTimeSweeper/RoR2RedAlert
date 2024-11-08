@@ -1,4 +1,5 @@
 ﻿using RA2Mod.Survivors.Tesla;
+using RA2Mod.Survivors.Tesla.SkillDefs;
 using RoR2;
 using System;
 using UnityEngine;
@@ -41,7 +42,7 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
     private bool _targetingAlly;
     private bool _hasTowerNear;
     private bool _empowered;
-    private bool _isMelee;
+    private bool _isZapping;
 
     void Awake() {
         indicator = new TeslaZapIndicator(base.gameObject, TeslaAssets.TeslaIndicatorPrefab);
@@ -68,7 +69,7 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
         
     private void Primary_onSkillChanged(GenericSkill genericSkill) {
 
-        _isMelee = genericSkill.skillDef.skillNameToken == TeslaTrooperSurvivor.TOKEN_PREFIX + "PRIMARY_PUNCH_NAME";
+        _isZapping = genericSkill.skillDef is TeslaTrackingSkillDef;
     }
 
     #region access
@@ -131,7 +132,7 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
 
     private void FixedUpdate() {
 
-        indicator.active = !(_isMelee && !_empowered);
+        indicator.active = _isZapping || _empowered;
     }
 
     private void OnSearch() {
@@ -185,7 +186,7 @@ public class TeslaTrackerComponentZap : MonoBehaviour {
         return _trackingTarget.transform;         
     }
 
-    private RangeTier CheckTrackingTargetDistance(HurtBox trackingTarget)
+    protected virtual RangeTier CheckTrackingTargetDistance(HurtBox trackingTarget)
     {
         RangeTier range = RangeTier.FURTHEST;
 

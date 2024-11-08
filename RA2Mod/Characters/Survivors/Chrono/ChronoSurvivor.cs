@@ -139,7 +139,12 @@ namespace RA2Mod.Survivors.Chrono
         private void AdditionalBodySetup()
         {
             prefabCharacterBody.bodyFlags |= CharacterBody.BodyFlags.SprintAnyDirection;
-            bodyPrefab.AddComponent<ChronoTrackerBomb>();
+            //bodyPrefab.AddComponent<ChronoTrackerBomb>();
+            TeslaTrackerComponent teslaTrackerComponent = bodyPrefab.AddComponent<TeslaTrackerComponent>();
+            teslaTrackerComponent.trackingMaxAngleZap = 360;
+            teslaTrackerComponent.maxTrackingDistance = 1;
+            teslaTrackerComponent.trackingRadius = 12;
+            bodyPrefab.AddComponent<ChronoBombTeslaTracker>();
             bodyPrefab.AddComponent<ChronoTrackerVanish>();
             bodyPrefab.AddComponent<PhaseIndicatorController>();
             bodyPrefab.AddComponent<ChronoSprintProjectionSpawner>();
@@ -268,7 +273,7 @@ namespace RA2Mod.Survivors.Chrono
         
         private void AddSecondarySkills()
         {
-            SkillDef secondarySkillDef = Skills.CreateSkillDef(new SkillDefInfo
+            ChronoTrackerSkillDefBomb secondarySkillDef = Skills.CreateSkillDef<ChronoTrackerSkillDefBomb>(new SkillDefInfo
             {
                 skillName = "chronoIvan",
                 skillNameToken = TOKEN_PREFIX + "SECONDARY_BOMB_NAME",
@@ -276,7 +281,7 @@ namespace RA2Mod.Survivors.Chrono
                 //keywordTokens = new string[] { "KEYWORD_AGILE" },
                 skillIcon = assetBundle.LoadAsset<Sprite>("texIconChronoSecondary"),
 
-                activationState = new EntityStates.SerializableEntityStateType(typeof(States.ChronoBombThrow)),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(States.ChronoBombPlace)),
                 activationStateMachineName = "Weapon2",
                 interruptPriority = EntityStates.InterruptPriority.Skill,
 
@@ -306,15 +311,15 @@ namespace RA2Mod.Survivors.Chrono
 
             if (GeneralConfig.Cursed.Value)
             {
-                ChronoTrackerSkillDefBomb secondarySkillDef2 = Skills.CreateSkillDef<ChronoTrackerSkillDefBomb>(new SkillDefInfo
+                SkillDef secondarySkillDef2 = Skills.CreateSkillDef(new SkillDefInfo
                 {
-                    skillName = "chronoIvanplaced",
+                    skillName = "chronoIvanthrown",
                     skillNameToken = TOKEN_PREFIX + "SECONDARY_BOMB_NAME",
                     skillDescriptionToken = TOKEN_PREFIX + "SECONDARY_BOMB_DESCRIPTION",
                     //keywordTokens = new string[] { "KEYWORD_AGILE" },
                     skillIcon = assetBundle.LoadAsset<Sprite>("texIconChronoSecondary"),
 
-                    activationState = new EntityStates.SerializableEntityStateType(typeof(States.ChronoBombPlace)),
+                    activationState = new EntityStates.SerializableEntityStateType(typeof(States.ChronoBombThrow)),
                     activationStateMachineName = "Weapon2",
                     interruptPriority = EntityStates.InterruptPriority.Skill,
 

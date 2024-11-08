@@ -13,6 +13,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using static DriverWeaponDef;
 using static RA2Mod.Survivors.Tesla.Compat.TeslaDriverCompat;
+using R2API;
 
 namespace RA2Mod.Survivors.Desolator.Compat
 {
@@ -21,6 +22,8 @@ namespace RA2Mod.Survivors.Desolator.Compat
         private ushort desolatorGunIndex;
 
         private static AssetBundle assetBundle => DesolatorSurvivor.instance.assetBundle;
+
+        private static ConfigEntry<float> Driver_M1_Damage;
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         public void Init()
@@ -72,6 +75,21 @@ namespace RA2Mod.Survivors.Desolator.Compat
             DesolatorDriverWeapon weapon = new DesolatorDriverWeapon();
             weapon.Init();
             desolatorGunIndex = weapon.weaponDef.index;
+
+            InitConfig();
+        }
+
+        private void InitConfig()
+        {
+            string section = "2-2. Deso Mod Compats";
+
+            Driver_M1_Damage = Config.BindAndOptions(
+                section,
+                nameof(Driver_M1_Damage),
+                3.0f,
+                0,
+                20,
+                "");
         }
 
 
@@ -104,7 +122,7 @@ namespace RA2Mod.Survivors.Desolator.Compat
                         activationState = new SerializableEntityStateType(typeof(DriverDeployEnter)),
                         activationStateMachineName = "Body",
                         baseMaxStock = 1,
-                        baseRechargeInterval = 12f,
+                        baseRechargeInterval = 6f,
                         beginSkillCooldownOnSkillEnd = true,
                         canceledFromSprinting = false,
                         forceSprintDuringState = false,
@@ -129,7 +147,7 @@ namespace RA2Mod.Survivors.Desolator.Compat
             public override Material material => assetBundle.CreateHopooMaterialFromBundle("matDesolatorCannon");
             public override AnimationSet animationSet => DriverWeaponDef.AnimationSet.TwoHanded;
             public override string calloutSoundString => "Play_Desolator_Voiceline_Driver";
-            public override string configIdentifier => "Desolator Rad Cannon";
+            public override string configIdentifier => "RA Desolator Rad Cannon";
             public override float dropChance => 1;
             public override bool addToPool => true;
             public override DesolatorSurvivor characterBase => DesolatorSurvivor.instance;
@@ -138,15 +156,23 @@ namespace RA2Mod.Survivors.Desolator.Compat
         public class DriverRadBeam : RadBeam
         {
             public override string muzzleString => "ShotgunMuzzle";
+            public override float damageCoefficient => Driver_M1_Damage;
+            public override float BaseDuration => 1.2f;
+
+            DriverController iDrive;
 
             public override void OnEnter()
             {
-                base.OnEnter();
-
-                if (gameObject.TryGetComponent(out DriverController iDrive))
+                if (gameObject.TryGetComponent(out iDrive))
                 {
                     iDrive.ConsumeAmmo();
                 }
+                base.OnEnter();
+            }
+
+            protected override void ModifyBulletAttack(BulletAttack bulletAttack)
+            {
+                bulletAttack.AddModdedDamageType(iDrive.ModdedDamageType);
             }
 
             protected override void PlayShootAnimation()
@@ -176,7 +202,6 @@ namespace RA2Mod.Survivors.Desolator.Compat
 
         public class DriverDeployIrradiate : DeployIrradiate
         {
-
             private DriverWeaponDef cachedWeaponDef;
             private DriverController iDrive;
 
@@ -186,7 +211,7 @@ namespace RA2Mod.Survivors.Desolator.Compat
 
                 if (gameObject.TryGetComponent(out iDrive))
                 {
-                    iDrive.ConsumeAmmo(3);
+                    iDrive.ConsumeAmmo(4);
                     cachedWeaponDef = iDrive?.weaponDef;
                 }
             }
@@ -211,6 +236,13 @@ namespace RA2Mod.Survivors.Desolator.Compat
                     this.outer.SetNextStateToMain();
                     return;
                 }
+            }
+
+            protected override void SetNextState()
+            {
+                _complete = true;
+                var state = new DriverDeployIrradiate { aimRequest = this.aimRequest, fromEnter = true, activatorSkillSlot = activatorSkillSlot };
+                outer.SetNextState(state);
             }
         }
     }

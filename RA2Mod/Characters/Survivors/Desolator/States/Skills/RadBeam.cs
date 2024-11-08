@@ -2,6 +2,7 @@
 using R2API;
 using RA2Mod.Modules.BaseStates;
 using RoR2;
+using System;
 using UnityEngine;
 
 namespace RA2Mod.Survivors.Desolator.States
@@ -11,13 +12,13 @@ namespace RA2Mod.Survivors.Desolator.States
         public override float TimedBaseDuration => BaseDuration * skillsPlusDurationMultiplier;
         public override float TimedBaseCastStartPercentTime => 1;
 
-        public static float damageCoefficient => DamageCoefficient;
+        public virtual float damageCoefficient => DamageCoefficient;
         public static float procCoefficient = 1f;
         public static float force = 100f;
         public static float recoil = 1f;
         public static float range = 4000f;
 
-        public static float BaseDuration = 1.0f;
+        public virtual float BaseDuration => 1.0f;
         public static float DamageCoefficient = 0.8f;
 
         public static int RadPrimaryStacks = 3;
@@ -86,9 +87,12 @@ namespace RA2Mod.Survivors.Desolator.States
                     hitEffectPrefab = DesolatorAssets.IrradiatedImpactEffect,
                 };
                 DamageAPI.AddModdedDamageType(bulletAttack, DesolatorDamageTypes.DesolatorDotPrimary);
+                ModifyBulletAttack(bulletAttack);
                 bulletAttack.Fire();
             }
         }
+
+        protected virtual void ModifyBulletAttack(BulletAttack bulletAttack) { }
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {

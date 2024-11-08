@@ -20,6 +20,8 @@ namespace RA2Mod.Survivors.Tesla.Compat
 
         private static AssetBundle assetBundle => TeslaTrooperSurvivor.instance.assetBundle;
 
+        private static ConfigEntry<float> Driver_M1_Damage;
+
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         public void Init()
         {
@@ -48,7 +50,7 @@ namespace RA2Mod.Survivors.Tesla.Compat
         private void SurvivorCatalog_SetSurvivorDefs_Driver(GameObject driverBody)
         {
             driverBody.AddComponent<TeslaTrackerComponent>();
-            driverBody.AddComponent<TeslaTrackerComponentZap>();
+            driverBody.AddComponent<DriverTeslaTrackerComponentZap>();
             driverBody.AddComponent<TeslaTowerControllerControllerGuest>();
             Log.Debug("found driver. adding tracker");
             DoDriverCompat();
@@ -71,6 +73,21 @@ namespace RA2Mod.Survivors.Tesla.Compat
             TeslaDriverWeapon weapon = new TeslaDriverWeapon();
             weapon.Init();
             teslaGunIndex = weapon.weaponDef.index;
+
+            InitConfig();
+        }
+
+        private void InitConfig()
+        {
+            string section = "2-1. Tesla Mod Compats";
+
+            Driver_M1_Damage = Config.BindAndOptions(
+                section,
+                nameof(Driver_M1_Damage),
+                2.0f,
+                0,
+                20,
+                "each lightning bolt");
         }
 
         internal class TeslaDriverWeapon : DriverCompatWeapon<TeslaDriverWeapon, TeslaTrooperSurvivor>
@@ -119,7 +136,7 @@ namespace RA2Mod.Survivors.Tesla.Compat
             public override Material material => assetBundle.CreateHopooMaterialFromBundle("matTesla_original_Armor");
             public override AnimationSet animationSet => DriverWeaponDef.AnimationSet.Default;
             public override string calloutSoundString => "Play_Voiceline_Driver";
-            public override string configIdentifier => "Tesla Gauntlet";
+            public override string configIdentifier => "RA Tesla Trooper Gauntlet";
             public override float dropChance => 1;
             public override bool addToPool => true;
             public override TeslaTrooperSurvivor characterBase => TeslaTrooperSurvivor.instance;
@@ -128,6 +145,7 @@ namespace RA2Mod.Survivors.Tesla.Compat
         public class DriverZap : Zap
         {
             protected override string zapMuzzle => "PistolMuzzle";
+            protected override float damageCoefficient => Driver_M1_Damage;
 
             public override void OnEnter()
             {
@@ -170,7 +188,7 @@ namespace RA2Mod.Survivors.Tesla.Compat
 
                 if (gameObject.TryGetComponent(out DriverController iDrive))
                 {
-                    iDrive.ConsumeAmmo(2);
+                    iDrive.ConsumeAmmo(1);
                 }
             }
 
@@ -184,6 +202,14 @@ namespace RA2Mod.Survivors.Tesla.Compat
             protected override void PlayShockAnimationTower()
             {
                 PlayShockAnimation();
+            }
+        }
+
+        public class DriverTeslaTrackerComponentZap : TeslaTrackerComponentZap
+        {
+            protected override RangeTier CheckTrackingTargetDistance(HurtBox trackingTarget)
+            {
+                return RangeTier.CLOSEST;
             }
         }
     }

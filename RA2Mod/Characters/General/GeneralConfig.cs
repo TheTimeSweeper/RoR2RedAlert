@@ -6,8 +6,8 @@ namespace RA2Mod.General
 {
     public static class GeneralConfig
     {
-        public static ConfigEntry<float> zapTrackingAngle;
         public static ConfigEntry<float> zapLenienceAngle;
+        public static ConfigEntry<float> spend;
 
         public static BepInEx.Configuration.ConfigEntry<bool> Debug;
 
@@ -42,11 +42,11 @@ namespace RA2Mod.General
                 false, 
                 "In case I forget to remove something");
 
-            zapTrackingAngle = Config.BindAndOptions(
+            spend = Config.BindAndOptions(
                 sectionGeneral,
-                nameof(zapTrackingAngle),
-                10f,
-                0,100,
+                nameof(spend),
+                2f,
+                0, 100,
                 "",
                 false);
 

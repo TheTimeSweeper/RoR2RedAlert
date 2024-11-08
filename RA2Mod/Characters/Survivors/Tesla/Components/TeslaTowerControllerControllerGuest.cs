@@ -32,11 +32,11 @@ public class TeslaTowerControllerControllerGuest : TeslaTowerControllerControlle
     {
         _allTowers.Clear();
 
-        ReadOnlyCollection<TeamComponent> nigs = TeamComponent.GetTeamMembers(_teamComponent.teamIndex);
+        ReadOnlyCollection<TeamComponent> teammates = TeamComponent.GetTeamMembers(_teamComponent.teamIndex);
 
-        for (int i = 0; i < nigs.Count; i++)
+        for (int i = 0; i < teammates.Count; i++)
         {
-            if(nigs[i].gameObject.TryGetComponent(out CharacterBody body))
+            if(teammates[i].gameObject.TryGetComponent(out CharacterBody body))
             {
                 if(body.bodyIndex == TeslaTowerNotSurvivor.GetBodyIndexSafe() ||
                     body.bodyIndex == TeslaTowerScepter.GetBodyIndexSafe())

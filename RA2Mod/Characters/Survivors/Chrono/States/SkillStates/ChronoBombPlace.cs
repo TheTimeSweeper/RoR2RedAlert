@@ -10,14 +10,13 @@ using System;
 
 namespace RA2Mod.Survivors.Chrono.States
 {
-
-    public class ChronoBombPlace : GenericProjectileBaseState, IHasSkillDefComponent<ChronoTrackerBomb>
+    public class ChronoBombPlace : GenericProjectileBaseState, IHasSkillDefComponent<ChronoBombTeslaTracker>
     {
         public static float BaseDuration = 0.65f;
 
         public static float DamageCoefficient = ChronoConfig.M2_Bomb_Damage.Value;
 
-        public ChronoTrackerBomb componentFromSkillDef1 { get; set; }
+        public ChronoBombTeslaTracker componentFromSkillDef1 { get; set; }
 
         public HurtBox trackingTarget;
 

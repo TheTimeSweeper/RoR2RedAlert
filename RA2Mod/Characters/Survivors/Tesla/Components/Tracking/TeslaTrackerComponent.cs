@@ -16,7 +16,7 @@ public class TeslaTrackerComponent : MonoBehaviour {
     public float maxTrackingDistance = 50f;
 
     public float trackingRadius = 4f;
-    public float trackingMaxAngleZap => GeneralConfig.zapTrackingAngle.Value;// 13;
+    public float trackingMaxAngleZap = 13;
     public float trackingAngleLenience => GeneralConfig.zapLenienceAngle;
 
     public float trackerUpdateFrequency = 16f;
@@ -110,7 +110,7 @@ public class TeslaTrackerComponent : MonoBehaviour {
 
     private bool SearchForTargetPoint(Ray aimRay) {
 
-        return CharacterRaycast(gameObject, aimRay, out trackingTargetZap, out trackingTargetDash, maxTrackingDistance, LayerIndex.CommonMasks.bullet, QueryTriggerInteraction.Ignore);
+        return CharacterRaycast(gameObject, aimRay, out trackingTargetZap, out trackingTargetDash, maxTrackingDistance + trackingRadius, LayerIndex.CommonMasks.bullet, QueryTriggerInteraction.Ignore);
     }
 
     private bool SearchForTargetSphere(Ray aimRay, float radius) {
@@ -170,27 +170,30 @@ public class TeslaTrackerComponent : MonoBehaviour {
             if (hurtBox.hurtBoxGroup == null)
                 continue;
 
+            //if within the initial sphere of the spherecast, hit.point is 0,0,0 which is very bad. go by transform position instead
+            Vector3 point = hits[i].point == default ? hits[i].collider.transform.position : hits[i].point;
+
             bool isTower = hurtBox.hurtBoxGroup.GetComponent<ZappableTower>();
 
             //cast a line to see if it is interrupted by world
             //however the tesla tower is also world so exclude that
             if (!isTower)
             {
-                bool lineOfSightBlocked = Physics.Linecast(hits[i].point, ray.origin, LayerIndex.world.mask, queryTriggerInteraction);
+                bool lineOfSightBlocked = Physics.Linecast(point, ray.origin, out RaycastHit hitInfo, LayerIndex.world.mask, queryTriggerInteraction);
                 if (lineOfSightBlocked)
                     continue;
             }
 
             float distance = hits[i].distance;
             //angle to hit point or angle to hurtbox center. whichever is closer to crosshair
-            float angle = Mathf.Min(Vector3.Angle(hits[i].point - ray.origin, ray.direction), Vector3.Angle(hits[i].transform.position - ray.origin, ray.direction));
+            float angle = Mathf.Min(Vector3.Angle(point - ray.origin, ray.direction), Vector3.Angle(hits[i].transform.position - ray.origin, ray.direction));
 
             string log = $"{hurtBox.healthComponent.name} {hurtBox.transform.parent.name}".PadRight(35) +
                 $"| dist {distance.ToString("0.0")}".PadRight(12) +
                 $"| angl {angle.ToString("0.0")}".PadRight(12) +
                 $"| distC {(currentZapDistance == float.PositiveInfinity ? "inf" : currentZapDistance.ToString("0.0"))}".PadRight(12) +
                 $"| anglC {closestZapAngle.ToString("0.0")}".PadRight(13) +
-                $"| zapHitnig {(zapHit == null ? "null" : zapHit.transform.parent.name)}".PadRight(30);
+                $"| zapHit {(zapHit == null ? "null" : zapHit.transform.parent.name)}".PadRight(30);
 
             if (self.searchingForZap && angle < self.trackingMaxAngleZap)
             {

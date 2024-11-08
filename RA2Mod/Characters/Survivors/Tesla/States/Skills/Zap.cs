@@ -25,6 +25,7 @@ namespace RA2Mod.Survivors.Tesla.States
 
         #region Gameplay Values
         public static float DamageCoefficient = 1.2f;
+        protected virtual float damageCoefficient => DamageCoefficient;
         public static float BounceDamageMultplier = 0.69f;
         public static float ProcCoefficient = 0.8f;
         public static int OrbCasts = 3;
@@ -51,7 +52,7 @@ namespace RA2Mod.Survivors.Tesla.States
 
         private int _currentCasts;
 
-        private int totalOrbCasts;
+        protected int totalOrbCasts;
 
         private float nextCastTime
         {
@@ -221,7 +222,7 @@ namespace RA2Mod.Survivors.Tesla.States
             return new PseudoLightningOrb
             {
                 origin = GetOrbOrigin,
-                damageValue = DamageCoefficient * damageStat,
+                damageValue = damageCoefficient * damageStat,
                 isCrit = _crit,
                 bouncesRemaining = 1,
                 damageCoefficientPerBounce = BounceDamageMultplier,

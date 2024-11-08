@@ -1,4 +1,5 @@
 ﻿using R2API;
+using RA2Mod.General;
 using RA2Mod.General.Components;
 using RA2Mod.Modules;
 using RA2Mod.Survivors.Desolator.Components;
@@ -113,8 +114,12 @@ namespace RA2Mod.Survivors.Desolator
 
         private static GameObject CreateDesolatorDeployProjectile()
         {
-
             GameObject DeployProjectile = PrefabAPI.InstantiateClone(assetBundle.LoadAsset<GameObject>("DeployProjectile"), "DeployProjectile", true);
+
+            if (GeneralCompat.driverInstalled)
+            {
+                DeployProjectile.name = "DriverDesolatorDeployProjectile";
+            }
 
             DeployProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
 
