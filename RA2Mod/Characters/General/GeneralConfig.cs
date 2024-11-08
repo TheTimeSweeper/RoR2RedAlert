@@ -6,9 +6,6 @@ namespace RA2Mod.General
 {
     public static class GeneralConfig
     {
-        public static ConfigEntry<float> zapLenienceAngle;
-        public static ConfigEntry<float> spend;
-
         public static BepInEx.Configuration.ConfigEntry<bool> Debug;
 
         public static ConfigEntry<bool> NewColor;
@@ -41,22 +38,6 @@ namespace RA2Mod.General
                 "Debug Logs", 
                 false, 
                 "In case I forget to remove something");
-
-            spend = Config.BindAndOptions(
-                sectionGeneral,
-                nameof(spend),
-                2f,
-                0, 100,
-                "",
-                false);
-
-            zapLenienceAngle = Config.BindAndOptions(
-                sectionGeneral,
-                nameof(zapLenienceAngle),
-                0f,
-                0, 100,
-                "",
-                false);
 
             NewColor = Config.BindAndOptions(
                 sectionGeneral,

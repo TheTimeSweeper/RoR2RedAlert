@@ -1,4 +1,6 @@
-﻿namespace RA2Mod.Modules
+﻿using UnityEngine;
+
+namespace RA2Mod.Modules
 {
     internal static class Tokens
     {
@@ -10,7 +12,7 @@
         }
         public static string DamageValueText(float value)
         {
-            return $"<style=cIsDamage>{value * 100}% damage</style>";
+            return $"<style=cIsDamage>{Mathf.RoundToInt(value * 100)}% damage</style>";
         }
         public static string UtilityText(string text)
         {

@@ -1,4 +1,20 @@
 ## Changelog
+`3.1.1`
+- fixed guillotine fix not actually fixing
+
+`3.1.0`
+- updated tesla trooper tracking code to be slightly more optimized
+- reduced the amount that the tesla trooper tracking reticle jumps around enemy hurtboxes
+    - *just where the indicator shows up. actual aim target accuracy has not changed.*
+- re-replaced chrono bomb with instant placed version
+- updated chrono bomb placing to use tesla's tracking instead
+    - *this improves detection distance on large enemies like bosses and parents*
+    - *likely more work still to be done on this*
+- moved thrown bomb to config
+    - *will combine these versions of the bomb in the future*
+- Added Driver mod compat: adds 3 weapons based on the guys.
+- fixed guillotine increasing chrono vanish threshold on all enemies
+- fixed chronosphere not teleporting
 
 `3.0.12`
 - readded previous chrono bomb under cursed config

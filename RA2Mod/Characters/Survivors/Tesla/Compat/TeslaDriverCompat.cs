@@ -11,6 +11,9 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using static DriverWeaponDef;
 using EntityStates;
+using static RA2Mod.Survivors.Desolator.Compat.DesolatorDriverCompat;
+using RA2Mod.Survivors.Desolator.States;
+using RA2Mod.Survivors.Desolator;
 
 namespace RA2Mod.Survivors.Tesla.Compat
 {
@@ -75,6 +78,13 @@ namespace RA2Mod.Survivors.Tesla.Compat
             teslaGunIndex = weapon.weaponDef.index;
 
             InitConfig();
+
+            Content.AddEntityState(typeof(DriverZap));
+            Content.AddEntityState(typeof(DriverAimBigZap));
+            Content.AddEntityState(typeof(DriverBigZap));
+
+            Modules.Language.Add(TeslaTrooperSurvivor.TOKEN_PREFIX + "PRIMARY_ZAP_DRIVER_DESCRIPTION",
+                $"Zap targeted units with 3 bolts of electricity for {Tokens.DamageText($"3x{Driver_M1_Damage * 100}% damage")}. {Tokens.UtilityText("Charges allies")}.");
         }
 
         private void InitConfig()
@@ -94,14 +104,14 @@ namespace RA2Mod.Survivors.Tesla.Compat
         {
             public override string nameToken => TeslaTrooperSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME";
             public override string descriptionToken => TeslaTrooperSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION";
-            public override Texture icon => assetBundle.LoadAsset<Texture2D>("texIconTeslaRA2");
+            public override Texture icon => assetBundle.LoadAsset<Texture2D>("texIconTeslaDriverGun");
             public override DriverWeaponTier tier => DriverWeaponTier.Uncommon;
             public override int shotCount => 10;//
             public override BuffType buffType => BuffType.Damage;
             public override SkillDef primarySkillDef =>
                 Skills.CreateSkillDef<TeslaTrackingSkillDef>(new SkillDefInfo("Tesla_Primary_Zap",
                                                                               TeslaTrooperSurvivor.TOKEN_PREFIX + "PRIMARY_ZAP_NAME",
-                                                                              TeslaTrooperSurvivor.TOKEN_PREFIX + "PRIMARY_ZAP_DESCRIPTION",
+                                                                              TeslaTrooperSurvivor.TOKEN_PREFIX + "PRIMARY_ZAP_DRIVER_DESCRIPTION",
                                                                               assetBundle.LoadAsset<Sprite>("texTeslaSkillPrimary"),
                                                                               new EntityStates.SerializableEntityStateType(typeof(DriverZap)),
                                                                               "Weapon",

@@ -70,6 +70,8 @@ namespace RA2Mod.Survivors.Chrono
         {
             InitConfig();
             SetTokens();
+            Content.AddEntityState(typeof(ShootDriver));
+            Content.AddEntityState(typeof(VanishDriver));
 
             chronoIndicatorVanishDriver = assetBundle.LoadAsset<GameObject>("IndicatorChronoVanishDriver");
 
@@ -80,12 +82,12 @@ namespace RA2Mod.Survivors.Chrono
 
         private void InitConfig()
         {
-            string section = "2-3. Chrono Compats";
+            string section = "2-3. Chrono Mod Compats";
 
             Driver_M1_Damage = Config.BindAndOptionsSlider(
                 section,
                 nameof(Driver_M1_Damage),
-                1.0f,
+                2.0f,
                 0,
                 20,
                 "");
@@ -109,7 +111,7 @@ namespace RA2Mod.Survivors.Chrono
             Driver_M2_TickInterval = Config.BindAndOptionsSlider(
                 section,
                 nameof(Driver_M2_TickInterval),
-                0.11f,
+                0.08f,
                 0,
                 10,
                 "");
@@ -140,7 +142,7 @@ namespace RA2Mod.Survivors.Chrono
         {
             public override string nameToken => ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME";
             public override string descriptionToken => ChronoSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION";
-            public override Texture icon => assetBundle.LoadAsset<Texture2D>("texIconChronoRA2");
+            public override Texture icon => assetBundle.LoadAsset<Texture2D>("texIconChronoDriverGun");
             public override DriverWeaponTier tier => DriverWeaponTier.Uncommon;
             public override int shotCount => 32;
             public override BuffType buffType => BuffType.AttackSpeed;
@@ -270,7 +272,7 @@ namespace RA2Mod.Survivors.Chrono
         {
             if (iDrive)
             {
-                iDrive.ConsumeAmmo(tickInterval / baseDuration * GeneralConfig.spend);
+                iDrive.ConsumeAmmo(tickInterval / baseDuration * 4f);
             }
 
             base.DoDamage();

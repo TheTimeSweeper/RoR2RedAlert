@@ -35,7 +35,7 @@ namespace RA2Mod.Survivors.Chrono
             public override void UpdateInfo(ref HealthBar.BarInfo info, HealthBar healthBar)
             {
                 base.UpdateInfo(ref info, healthBar);
-                float eliteFraction = healthBar.viewerBody != null? healthBar.viewerBody.executeEliteHealthFraction : 0;
+                float eliteFraction = healthBar.viewerBody != null && healthBar.source != null && healthBar.source.body.isElite? healthBar.viewerBody.executeEliteHealthFraction : 0;
 
                 info.enabled = sickness > 0;
                 info.normalizedXMin = eliteFraction;

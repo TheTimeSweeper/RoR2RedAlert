@@ -85,6 +85,7 @@ namespace RA2Mod.Survivors.Chrono
 
         //not used
         //wait why? I like this one better
+            //answer: untested and I think loadassetsasync with multiple asyncassets dont work
         public static void OnCharacterInitializedE(AssetBundle assetBundle_)
         {
             Log.CurrentTime("INIT ASYNC");

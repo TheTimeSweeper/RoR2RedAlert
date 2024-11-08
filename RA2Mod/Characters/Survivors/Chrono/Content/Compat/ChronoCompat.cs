@@ -31,7 +31,7 @@ namespace RA2Mod.Survivors.Chrono
         {
             //let awake happen
             yield return null;
-            Log.CheckNullAndWarn("auto auto", RA2Plugin.instance.GetComponent<RTAutoSprintEx.RTAutoSprintEx>());
+            //Log.CheckNullAndWarn("auto auto", RA2Plugin.instance.GetComponent<RTAutoSprintEx.RTAutoSprintEx>());
             RA2Plugin.instance.GetComponent<RTAutoSprintEx.RTAutoSprintEx>().RT_SprintDisableMessage("RA2Mod.Survivors.Chrono.States.ChronoCharacterMain");
             RA2Plugin.instance.GetComponent<RTAutoSprintEx.RTAutoSprintEx>().RT_SprintDisableMessage("RA2Mod.Survivors.Chrono.States.PhaseState");
             RA2Plugin.instance.GetComponent<RTAutoSprintEx.RTAutoSprintEx>().RT_SprintDisableMessage("RA2Mod.Survivors.Chrono.States.AimChronosphere1");

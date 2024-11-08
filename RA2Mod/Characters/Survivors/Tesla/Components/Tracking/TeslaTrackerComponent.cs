@@ -17,7 +17,7 @@ public class TeslaTrackerComponent : MonoBehaviour {
 
     public float trackingRadius = 4f;
     public float trackingMaxAngleZap = 13;
-    public float trackingAngleLenience => GeneralConfig.zapLenienceAngle;
+    public float trackingAngleLenience => 1;
 
     public float trackerUpdateFrequency = 16f;
 
@@ -147,7 +147,7 @@ public class TeslaTrackerComponent : MonoBehaviour {
                                                   out HurtBox zapHit, 
                                                   out HurtBox dashHit)
     {
-        var self = this;
+        //var self = this; for use in HotCompiler hook
         zapHit = null;
         dashHit = null;
 
@@ -187,44 +187,32 @@ public class TeslaTrackerComponent : MonoBehaviour {
             float distance = hits[i].distance;
             //angle to hit point or angle to hurtbox center. whichever is closer to crosshair
             float angle = Mathf.Min(Vector3.Angle(point - ray.origin, ray.direction), Vector3.Angle(hits[i].transform.position - ray.origin, ray.direction));
-
-            string log = $"{hurtBox.healthComponent.name} {hurtBox.transform.parent.name}".PadRight(35) +
-                $"| dist {distance.ToString("0.0")}".PadRight(12) +
-                $"| angl {angle.ToString("0.0")}".PadRight(12) +
-                $"| distC {(currentZapDistance == float.PositiveInfinity ? "inf" : currentZapDistance.ToString("0.0"))}".PadRight(12) +
-                $"| anglC {closestZapAngle.ToString("0.0")}".PadRight(13) +
-                $"| zapHit {(zapHit == null ? "null" : zapHit.transform.parent.name)}".PadRight(30);
-
-            if (self.searchingForZap && angle < self.trackingMaxAngleZap)
+            if (/*self.*/searchingForZap && angle < /*self.*/trackingMaxAngleZap)
             {
-                bool closeJudgeDistance = Mathf.Abs(closestZapAngle - angle) < self.trackingAngleLenience;
+                bool closeJudgeDistance = Mathf.Abs(closestZapAngle - angle) < /*self.*/trackingAngleLenience;
 
                 //if angles are near enough, go by distance, if not, prioritize angle
-                if (closeJudgeDistance ? distance < currentZapDistance : angle < closestZapAngle + self.trackingAngleLenience)
+                if (closeJudgeDistance ? distance < currentZapDistance : angle < closestZapAngle + /*self.*/trackingAngleLenience)
                 {
                     zapHit = hurtBox;
                     currentZapDistance = distance;
                     closestZapAngle = angle;
                 }
-
-                log += $"| judge {closeJudgeDistance}";
             }
-            if (self.searchingForDash && !self.dashCooldownTargets.Contains(hurtBox.healthComponent))
+            if (/*self.*/searchingForDash && !/*self.*/dashCooldownTargets.Contains(hurtBox.healthComponent))
             {
-                bool closeJudgeDistance = Mathf.Abs(closestDashAngle - angle) < self.trackingAngleLenience;
+                bool closeJudgeDistance = Mathf.Abs(closestDashAngle - angle) < /*self.*/trackingAngleLenience;
 
                 //if angles are near enough, go by distance, if not, prioritize angle
-                if (closeJudgeDistance ? distance < currentDashDistance : angle < closestDashAngle + self.trackingAngleLenience)
+                if (closeJudgeDistance ? distance < currentDashDistance : angle < closestDashAngle + /*self.*/trackingAngleLenience)
                 {
                     dashHit = hurtBox;
                     currentDashDistance = distance;
                     closestDashAngle = angle;
                 }
             }
-            //Log.Warning(log);
         }
 
-        //Log.Warning($"zapHit {zapHit?.transform.parent.name}");
         if (zapHit == null && dashHit == null)
         {
             return false;

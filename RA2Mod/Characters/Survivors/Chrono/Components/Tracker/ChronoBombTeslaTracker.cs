@@ -59,7 +59,6 @@ namespace RA2Mod.Survivors.Chrono.Components
 
         private void OnSearch()
         {
-            Log.CheckNullAndWarn("nip", _trackerComponent.trackingTargetDash);
             _trackingTarget = _trackerComponent.trackingTargetZap;
             if(_trackingTarget != null && _trackingTarget.hurtBoxGroup != null && _trackingTarget.hurtBoxGroup.mainHurtBox != null)
             {

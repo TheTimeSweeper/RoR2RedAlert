@@ -14,6 +14,7 @@ using UnityEngine;
 using static DriverWeaponDef;
 using static RA2Mod.Survivors.Tesla.Compat.TeslaDriverCompat;
 using R2API;
+using RA2Mod.Survivors.Chrono;
 
 namespace RA2Mod.Survivors.Desolator.Compat
 {
@@ -28,23 +29,6 @@ namespace RA2Mod.Survivors.Desolator.Compat
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         public void Init()
         {
-            //InitConfig();
-
-            #region tokens
-            Modules.Language.Add(DesolatorSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME", "Rad Cannon");
-            Modules.Language.Add(DesolatorSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION", $"Make it glow.");
-
-            //Modules.Language.Add(TeslaTrooperSurvivor.TESLA_PREFIX + "PRIMARY_SHOOT_DRIVER_NAME", "Chrono Gun");
-            //Modules.Language.Add(TeslaTrooperSurvivor.TESLA_PREFIX + "PRIMARY_SHOOT_DRIVER_DESCRIPTION", $"Fire for {Tokens.DamageValueText(DriverCompat.DriverGunM1Damage.Value)} and apply {Tokens.UtilityText("Chrono Sickness")} to enemies.");
-
-            //int driverTicks = (int)(DriverCompat.DriverGunM2Duration.Value / DriverCompat.DriverGunM2TickInterval.Value);
-            //Modules.Language.Add(TeslaTrooperSurvivor.TESLA_PREFIX + "SPECIAL_VANISH_DRIVER_NAME", "Deconstructing");
-            //Modules.Language.Add(TeslaTrooperSurvivor.TESLA_PREFIX + "SPECIAL_VANISH_DRIVER_DESCRIPTION", $"Focus your rifle for up to {Tokens.DamageValueText(DriverCompat.DriverGunM2Damage.Value * driverTicks)}. An enemy below the {Tokens.UtilityText("Chrono Sickness")} threshold will vanish from existence.");
-            #endregion tokens
-
-            Content.AddEntityState(typeof(DriverRadBeam));
-            Content.AddEntityState(typeof(DriverDeployEnter));
-
             if (General.GeneralConfig.Debug.Value)
             {
                 On.RoR2.CharacterBody.Update += CharacterBody_Update;
@@ -72,11 +56,25 @@ namespace RA2Mod.Survivors.Desolator.Compat
 
         private void DoDriverCompat()
         {
+            InitConfig();
+
+            Modules.Language.Add(DesolatorSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME", "Rad Cannon");
+            Modules.Language.Add(DesolatorSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION", $"Make it glow.");
+
+            Modules.Language.Add(DesolatorSurvivor.TOKEN_PREFIX + "PRIMARY_BEAM_DRIVER_DESCRIPTION",
+                $"Shoot an enemy with a beam of radiation for {Tokens.DamageValueText(Driver_M1_Damage)} and deal {Tokens.DamageText($"{Mathf.FloorToInt(RadBeam.RadPrimaryStacks * RadBeam.RadDamageMultiplier * DesolatorSurvivor.TotalDotDamage * 100)}% <style=cIsHealing>Radiation</style> damage")} over {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}");
+
+            Modules.Language.Add(DesolatorSurvivor.TOKEN_PREFIX + "SPECIAL_DEPLOY_DESCRIPTION",
+                $"Shoot an enemy with a beam of radiation for {Tokens.DamageValueText(Driver_M1_Damage)} and deal {Tokens.DamageText($"{Mathf.FloorToInt(RadBeam.RadPrimaryStacks * RadBeam.RadDamageMultiplier * DesolatorSurvivor.TotalDotDamage * 100)}% <style=cIsHealing>Radiation</style> damage")} over {Tokens.UtilityText($"{DesolatorSurvivor.DotDuration} seconds")}");
+
+
             DesolatorDriverWeapon weapon = new DesolatorDriverWeapon();
             weapon.Init();
             desolatorGunIndex = weapon.weaponDef.index;
 
-            InitConfig();
+            Content.AddEntityState(typeof(DriverDeployIrradiate));
+            Content.AddEntityState(typeof(DriverDeployEnter));
+            Content.AddEntityState(typeof(DriverRadBeam));
         }
 
         private void InitConfig()
@@ -97,14 +95,14 @@ namespace RA2Mod.Survivors.Desolator.Compat
         {
             public override string nameToken => DesolatorSurvivor.TOKEN_PREFIX + "DRIVER_GUN_NAME";
             public override string descriptionToken => DesolatorSurvivor.TOKEN_PREFIX + "DRIVER_GUN_DESCRIPTION";
-            public override Texture icon => assetBundle.LoadAsset<Texture2D>("texIconDesolatorRA2");
+            public override Texture icon => assetBundle.LoadAsset<Texture2D>("texIconDesolatorDriverGun");
             public override DriverWeaponTier tier => DriverWeaponTier.Uncommon;
             public override int shotCount => 20;//
             public override BuffType buffType => BuffType.Damage;
             public override SkillDef primarySkillDef =>
                 Skills.CreateSkillDef(new SkillDefInfo("Desolator_Driver_Primary_Beam",
                                                        DesolatorSurvivor.TOKEN_PREFIX + "PRIMARY_BEAM_NAME",
-                                                       DesolatorSurvivor.TOKEN_PREFIX + "PRIMARY_BEAM_DESCRIPTION",
+                                                       DesolatorSurvivor.TOKEN_PREFIX + "PRIMARY_BEAM_DRIVER_DESCRIPTION",
                                                        assetBundle.LoadAsset<Sprite>("texDesolatorSkillPrimary"),
                                                        new SerializableEntityStateType(typeof(DriverRadBeam)),
                                                        "Weapon",

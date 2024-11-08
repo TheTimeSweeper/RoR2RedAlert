@@ -139,7 +139,6 @@ namespace RA2Mod.Survivors.Chrono
         private void AdditionalBodySetup()
         {
             prefabCharacterBody.bodyFlags |= CharacterBody.BodyFlags.SprintAnyDirection;
-            //bodyPrefab.AddComponent<ChronoTrackerBomb>();
             TeslaTrackerComponent teslaTrackerComponent = bodyPrefab.AddComponent<TeslaTrackerComponent>();
             teslaTrackerComponent.trackingMaxAngleZap = 360;
             teslaTrackerComponent.maxTrackingDistance = 1;
@@ -150,7 +149,7 @@ namespace RA2Mod.Survivors.Chrono
             bodyPrefab.AddComponent<ChronoSprintProjectionSpawner>();
             VoiceLineController voiceLineController = bodyPrefab.AddComponent<VoiceLineController>();
             voiceLineController.voiceLineContext = new VoiceLineContext("Chrono", 4, 5, 5);
-            Log.CheckNullAndWarn("voicelinecontext", voiceLineController.voiceLineContext);
+            //Log.CheckNullAndWarn("voicelinecontext", voiceLineController.voiceLineContext);
         }
 
         public override void InitializeEntityStateMachines() 
@@ -613,7 +612,7 @@ namespace RA2Mod.Survivors.Chrono
                         count = self.body.inventory.GetItemCount(ChronoItems.chronoSicknessItemDef.itemIndex);
                     }
 
-                    float eliteFraction = attackerBody != null ? attackerBody.executeEliteHealthFraction : 0;
+                    float eliteFraction = attackerBody != null && self.body != null && self.body.isElite ? attackerBody.executeEliteHealthFraction : 0;
                     if (self.combinedHealthFraction < ((count / (ChronoConfig.M4_Deconstructing_ChronoStacksRequired.Value * 2)) + eliteFraction))
                     {
                         flag5 = true;

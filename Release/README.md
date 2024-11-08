@@ -8,12 +8,6 @@ Based on their respective units from Red Alert 2, but with SkeletorChampion comi
 
 Anything you'd like to say about the guys, ping me (`thetimesweeper`) on the ror2 modding discord or the enforcer discord (https://discord.gg/r5XTMFd4W7).
 
-## uh Tesla Trooper mod?
-Now that there's more Red Alert characters I'm reuploading the mod under a new name. sorry bout any inconveniences. on the bright side this opens the door for all kinds of Red Alert content in the coming years maybe.  
-Yes I have a lot of ideas but no I won't have time for them anytime soon. here's to hoping I suppose.
-
-I Initially planned this release to include a lot more content and sprucing up for Tesla and Deso to celebrate, but welcome Seekers of the Storm update so here's the wip. have fun love ya
-
 # Electrician In the Field
 Adds the Tesla Trooper, who can construct Tesla Towers to help him fry enemies.
 - Fully multiplayer compatible
@@ -26,6 +20,7 @@ Adds the Tesla Trooper, who can construct Tesla Towers to help him fry enemies.
   - CustomEmotesAPI
   - VRAPI
   - Risk of Options
+  - Driver (weapon)
 
 <img width="900" src="https://raw.githubusercontent.com/TheTimeSweeper/the/master/RA2Mod/Release/_readme/CSS_Tesla.png" />
 
@@ -38,6 +33,7 @@ Adds the Desolator, who spreads large spheres of radiation everywhere in his wak
   - Skills++ (one skill lol)
   - Aetherium (Item Displays)
   - CustomEmotesAPI
+  - Driver (weapon)
 
 <img width="900" src="https://raw.githubusercontent.com/TheTimeSweeper/the/master/RA2Mod/Release/_readme/CSS_Deso.png" />
 
@@ -48,8 +44,10 @@ Adds the Chrono Legionnaire, who teleports around and vanishes enemies from exis
 - ~~Item displays and~~ ragdoll
 - FULLY configurable
 - Mod Support
+  - Autosprint
   - CustomEmotesAPI
   - Risk of Options
+  - Driver (weapon)
 
 <img width="900" src="https://raw.githubusercontent.com/TheTimeSweeper/the/master/RA2Mod/Release/_readme/CSS_Chrono.png" />
 
@@ -86,7 +84,6 @@ If you'd like to translate to your language, check out the [language folder on G
 Bazillion thanks to those that have, and in advance to those that may.
 
 Currently Supported:
-- English
 - Ukrainian - by Damglador
 - Spanish - by Juhnter
 - Russian - by Nikto0o
@@ -102,13 +99,12 @@ Translations currently only apply to Tesla Trooper and Desolator
 - custom lightningorb effects
 - improved animations (help)
 - ~~Scepter and vr and all those fun stuffs~~
-- ~~Desolator Alt Character~~
-- Driver compat
-- Chrono Legionnaire, G.I.
+- ~~Desolator~~
+- ~~Chrono Legionnaire~~, G.I.
 - Conscript, Prisma Trooper
-- MCV
+- ~~Driver compat~~
 
 ___
 for no particular reason I made a cool skin for minecraft check it out   
-![](https://raw.githubusercontent.com/TheTimeSweeper/the/master/theUnityProject/Assets/_Kniggas/TeslaTrooper/TeslaBundle/textures/MC/MCSkin.png)
+![](https://raw.githubusercontent.com/TheTimeSweeper/RoR2RedAlert/refs/heads/master/RA2Unity/Assets/_Characters/RA2/TeslaTrooper/TeslaBundle/textures/MC/MCSkin.png)
 ___
