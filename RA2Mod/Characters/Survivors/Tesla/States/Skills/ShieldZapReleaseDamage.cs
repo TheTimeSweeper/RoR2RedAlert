@@ -73,6 +73,8 @@ namespace RA2Mod.Survivors.Tesla.States
 
             if (NetworkServer.active)
             {
+                DamageTypeCombo damageTypeCombo = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Utility);
+
                 BlastAttack blast = new BlastAttack
                 {
                     attacker = gameObject,
@@ -86,7 +88,7 @@ namespace RA2Mod.Survivors.Tesla.States
 
                     baseDamage = blastDamage,
                     crit = RollCrit(),
-                    damageType = DamageType.Stun1s,
+                    damageType = damageTypeCombo,
                     //damageColorIndex = DamageColorIndex.Default,
 
                     procCoefficient = 1,

@@ -55,6 +55,8 @@ namespace RA2Mod.Survivors.Tesla.States
 
             SetDurations();
 
+            damageType = DamageTypeCombo.GenericSecondary;
+
             base.OnEnter();
 
             if (commandedTowers)
@@ -124,6 +126,7 @@ namespace RA2Mod.Survivors.Tesla.States
             Util.PlaySound("Play_tower_btesat2a_tesla_tower_attack", gameObject);
 
             Ray aimRay = GetAimRay();
+            DamageTypeCombo damageTypeCombo = new DamageTypeCombo(DamageType.Shock5s, DamageTypeExtended.Generic, DamageSource.Secondary | DamageSource.Special);
 
             if (isAuthority)
             {
@@ -144,7 +147,7 @@ namespace RA2Mod.Survivors.Tesla.States
                 bulletAttack.isCrit = attack.isCrit;
                 bulletAttack.HitEffectNormal = false;
                 bulletAttack.radius = 3f;
-                bulletAttack.damageType = DamageType.Shock5s;
+                bulletAttack.damageType = damageTypeCombo;
                 bulletAttack.damageColorIndex = DamageColorIndex.WeakPoint;
                 bulletAttack.smartCollision = true;
                 bulletAttack.maxDistance = MaxDistance;

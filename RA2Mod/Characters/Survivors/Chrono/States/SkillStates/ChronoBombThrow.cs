@@ -1,4 +1,6 @@
 ﻿using EntityStates;
+using RoR2;
+using RoR2.Projectile;
 using UnityEngine;
 
 namespace RA2Mod.Survivors.Chrono.States
@@ -38,6 +40,12 @@ namespace RA2Mod.Survivors.Chrono.States
         {
             projectilePitchBonus *= 1 - Mathf.Max(0, Vector3.Dot(aimRay.direction.normalized, Vector3.up)) * 0.8f;
             return base.ModifyProjectileAimRay(aimRay);
+        }
+
+        public override void ModifyProjectileInfo(ref FireProjectileInfo fireProjectileInfo)
+        {
+            base.ModifyProjectileInfo(ref fireProjectileInfo);
+            fireProjectileInfo.damageTypeOverride = DamageTypeCombo.GenericSecondary;
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()

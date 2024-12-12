@@ -836,14 +836,14 @@ namespace RA2Mod.Survivors.Chrono
                     new Vector3(0.16147F, 0.16147F, 0.16147F)
                     )
                 ));
-            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.GetKeyAsset("NegateAttack"),
-                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayAntlerShieldLeft"),
+            itemDisplayRules.Add(ItemDisplays.CreateDisplayRuleGroupWithRules(ItemDisplays.GetKeyAsset("SpeedBoostPickup"),
+                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayElusiveAntlersLeft"),
                     "Head",
                     new Vector3(0.0748F, 0.1868F, -0.10258F),
                     new Vector3(20.35466F, 266.1595F, 0F),
                     new Vector3(0.65849F, 0.65849F, 0.65849F)
                     ),
-                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayAntlerShieldRight"),
+                ItemDisplays.CreateDisplayRule(ItemDisplays.LoadDisplay("DisplayElusiveAntlersRight"),
                     "Head",
                     new Vector3(0.09359F, 0.19496F, 0.09562F),
                     new Vector3(20.64244F, 276.2393F, 7.10999F),
@@ -1646,7 +1646,7 @@ namespace RA2Mod.Survivors.Chrono
                     )
                 ));
 
-            ItemDisplayCheck.PrintUnused(itemDisplayRules);
+            //ItemDisplayCheck.PrintUnused(itemDisplayRules);
         }
     }
 }

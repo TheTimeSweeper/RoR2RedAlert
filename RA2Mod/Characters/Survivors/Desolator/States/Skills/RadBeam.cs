@@ -63,7 +63,7 @@ namespace RA2Mod.Survivors.Desolator.States
                     origin = aimRay.origin,
                     damage = damageCoefficient * damageStat,
                     damageColorIndex = DamageColorIndex.Default,
-                    damageType = DamageType.Generic,
+                    damageType = DamageTypeCombo.GenericPrimary,
                     falloffModel = BulletAttack.FalloffModel.None,// ConscriptConfig.M1_Rifle_Falloff.Value ? BulletAttack.FalloffModel.DefaultBullet : BulletAttack.FalloffModel.None,
                     maxDistance = range,
                     force = force,

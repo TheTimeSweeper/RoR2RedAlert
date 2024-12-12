@@ -88,7 +88,7 @@ namespace RA2Mod.Survivors.Chrono.States
                 inflictor = gameObject,
                 damage = damageCoefficient * this.damageStat / damageTicksPerDebuffStack,
                 damageColorIndex = DamageColorIndex.Default,
-                damageType = DamageType.Generic,
+                damageType = DamageTypeCombo.GenericSpecial,
                 crit = rolledCrit,
                 force = Vector3.zero,
                 procChainMask = default(ProcChainMask),

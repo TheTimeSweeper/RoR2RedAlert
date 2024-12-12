@@ -74,6 +74,8 @@ namespace RA2Mod.Minions.TeslaTower.States
             }
 
             crit = RollCrit();
+            DamageTypeCombo damageTypeCombo = new DamageTypeCombo(DamageTypeCombo.Generic, DamageTypeExtended.Generic, DamageSource.Secondary | DamageSource.Special);
+
             lightningOrb = new PseudoLightningOrb
             {
                 origin = _originTransform.position,
@@ -81,7 +83,7 @@ namespace RA2Mod.Minions.TeslaTower.States
                 isCrit = crit,
                 //bouncesRemaining = 1,
                 //damageCoefficientPerBounce = BounceDamageMultplier,
-                //damageType = DamageType.SlowOnHit,
+                damageType = damageTypeCombo,
                 teamIndex = teamComponent.teamIndex,
                 attacker = gameObject,
                 inflictor = gameObject,

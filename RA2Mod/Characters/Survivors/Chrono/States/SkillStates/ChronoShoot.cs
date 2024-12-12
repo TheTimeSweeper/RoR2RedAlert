@@ -84,7 +84,7 @@ namespace RA2Mod.Survivors.Chrono.States
                         damage = 0,//damageCoefficient * damageStat,
                         procCoefficient = 0,//procCoefficient,
                         damageColorIndex = DamageColorIndex.Default,
-                        damageType = DamageType.Generic,
+                        damageType = DamageTypeCombo.GenericPrimary,
                         falloffModel = BulletAttack.FalloffModel.None,
                         maxDistance = range,
                         force = force,

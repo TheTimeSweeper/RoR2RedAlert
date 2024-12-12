@@ -1,4 +1,6 @@
 ﻿using EntityStates;
+using RoR2;
+using RoR2.Projectile;
 
 namespace RA2Mod.Survivors.GI.SkillStates
 {
@@ -38,6 +40,12 @@ namespace RA2Mod.Survivors.GI.SkillStates
         public override InterruptPriority GetMinimumInterruptPriority()
         {
             return InterruptPriority.PrioritySkill;
+        }
+
+        public override void ModifyProjectileInfo(ref FireProjectileInfo fireProjectileInfo)
+        {
+            base.ModifyProjectileInfo(ref fireProjectileInfo);
+            fireProjectileInfo.damageTypeOverride = DamageTypeCombo.GenericSecondary;
         }
 
         public override void PlayAnimation(float duration)

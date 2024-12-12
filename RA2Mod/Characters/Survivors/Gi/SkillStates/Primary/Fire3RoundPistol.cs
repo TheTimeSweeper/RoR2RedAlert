@@ -48,7 +48,7 @@ namespace RA2Mod.Survivors.GI.SkillStates
                     origin = aimRay.origin,
                     damage = damageCoefficient * damageStat,
                     damageColorIndex = DamageColorIndex.Default,
-                    damageType = DamageType.Generic,
+                    damageType = DamageTypeCombo.GenericPrimary,
                     falloffModel = GIConfig.M1_Pistol_Falloff.Value ? BulletAttack.FalloffModel.DefaultBullet : BulletAttack.FalloffModel.None,
                     maxDistance = range,
                     force = force,

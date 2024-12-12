@@ -45,6 +45,12 @@ namespace RA2Mod.Survivors.GI.SkillStates
             return InterruptPriority.PrioritySkill;
         }
 
+        public override void ModifyProjectileInfo(ref FireProjectileInfo fireProjectileInfo)
+        {
+            base.ModifyProjectileInfo(ref fireProjectileInfo);
+            fireProjectileInfo.damageTypeOverride = DamageTypeCombo.GenericSecondary;
+        }
+
         public override void PlayAnimation(float duration)
         {
             if (GetModelAnimator())

@@ -63,6 +63,7 @@ namespace RA2Mod.Minions.TeslaTower.States
             {
 
                 Vector3 targetPoint = lightningTarget.transform.position;
+                DamageTypeCombo damageTypeCombo = new DamageTypeCombo(DamageType.Shock5s, DamageTypeExtended.Generic, DamageSource.Secondary | DamageSource.Special);
 
                 BlastAttack blast = new BlastAttack
                 {
@@ -77,7 +78,7 @@ namespace RA2Mod.Minions.TeslaTower.States
 
                     baseDamage = damageStat * damageCoefficient * secondarySkillsPlusDamageMulti,
                     crit = crit,
-                    damageType = DamageType.Shock5s,
+                    damageType = damageTypeCombo,
                     damageColorIndex = DamageColorIndex.WeakPoint,
 
                     procCoefficient = ProcCoefficient,

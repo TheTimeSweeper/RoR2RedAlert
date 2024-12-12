@@ -142,7 +142,7 @@ namespace RA2Mod.Modules.Characters
         {
             ContentPacks.asyncLoadCoroutines.Add(Prefabs.LoadCharacterModelAsync(assetBundle, modelPrefabName, (modelResult) =>
             {
-                characterModelObject = modelResult.InstantiateClone(modelPrefabName);
+                characterModelObject = modelResult.InstantiateClone(modelPrefabName, false);
 
                 ContentPacks.asyncLoadCoroutines.Add(Prefabs.CloneCharacterBodyAsync(characterModelObject, _bodyInfo, (bodyResult) =>
                 {

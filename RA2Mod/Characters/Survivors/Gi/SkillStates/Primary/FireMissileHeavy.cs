@@ -73,7 +73,8 @@ namespace RA2Mod.Survivors.GI.SkillStates
                 base.RollCrit(),
                 DamageColorIndex.Default,
                 GetTarget(),
-                -1f);
+                -1f,
+                new DamageTypeCombo(DamageTypeCombo.Generic, DamageTypeExtended.Generic, DamageSource.Primary | DamageSource.Special));
         }
 
         private GameObject GetTarget()

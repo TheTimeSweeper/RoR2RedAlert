@@ -175,7 +175,7 @@ namespace RA2Mod.Survivors.Desolator.States
                 owner = base.gameObject,
                 rotation = Quaternion.identity,
                 position = base.characterBody.corePosition,
-                //damageTypeOverride = DamageType.WeakOnHit
+                damageTypeOverride = DamageTypeCombo.GenericSpecial
             };
 
             ModifyProjectile(ref fireProjectileInfo);

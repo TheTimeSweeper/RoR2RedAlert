@@ -177,7 +177,6 @@ namespace RA2Mod.Survivors.Tesla.States
                     {
                         onZapAllyAuthority?.Invoke(_targetHurtbox);
                     }
-
                 }
                 else
                 {
@@ -226,7 +225,7 @@ namespace RA2Mod.Survivors.Tesla.States
                 isCrit = _crit,
                 bouncesRemaining = 1,
                 damageCoefficientPerBounce = BounceDamageMultplier,
-                damageType = DamageType.Generic,
+                damageType = DamageTypeCombo.GenericPrimary,
                 teamIndex = teamComponent.teamIndex,
                 attacker = gameObject,
                 procCoefficient = 1f,

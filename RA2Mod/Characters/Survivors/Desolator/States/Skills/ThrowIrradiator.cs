@@ -26,7 +26,7 @@ namespace RA2Mod.Survivors.Desolator.States
                     crit = base.RollCrit(),
                     damage = this.damageStat * DamageCoefficient,
                     damageColorIndex = DamageColorIndex.Default,
-                    //damageTypeOverride = DamageType.WeakOnHit,
+                    damageTypeOverride = DamageTypeCombo.GenericSpecial,
                     force = 0f,
                     owner = base.gameObject,
                     position = aimRay.origin,

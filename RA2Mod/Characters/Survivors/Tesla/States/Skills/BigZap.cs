@@ -96,6 +96,7 @@ namespace RA2Mod.Survivors.Tesla.States
 
             if (isAuthority)
             {
+                DamageTypeCombo damageTypeCombo = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Secondary);
 
                 BlastAttack blast = new BlastAttack
                 {
@@ -110,7 +111,7 @@ namespace RA2Mod.Survivors.Tesla.States
 
                     baseDamage = damageStat * DamageCoefficient * skillsPlusDamageMulti,
                     crit = isCrit,
-                    damageType = DamageType.Stun1s,
+                    damageType = damageTypeCombo,
                     //damageColorIndex = DamageColorIndex.Default,
 
                     procCoefficient = 1,

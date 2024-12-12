@@ -109,6 +109,8 @@ namespace RA2Mod.Survivors.Tesla.States
         {
             if (!_tracker.GetIsTargetingTeammate())
             {
+                DamageTypeCombo damageTypeCombo = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Utility);
+
                 PseudoLightningOrb orb = new PseudoLightningOrb
                 {
                     origin = transform.position,
@@ -116,7 +118,7 @@ namespace RA2Mod.Survivors.Tesla.States
                     isCrit = RollCrit(),
                     bouncesRemaining = 0,
                     //damageCoefficientPerBounce = BounceDamageMultplier,
-                    damageType = DamageType.Stun1s,
+                    damageType = damageTypeCombo,
                     teamIndex = teamComponent.teamIndex,
                     attacker = gameObject,
                     procCoefficient = 1f,

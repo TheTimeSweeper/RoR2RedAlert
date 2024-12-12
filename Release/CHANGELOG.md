@@ -1,4 +1,7 @@
 ## Changelog
+`3.1.2`
+- damagesource update
+
 `3.1.1`
 - fixed guillotine fix not actually fixing
 

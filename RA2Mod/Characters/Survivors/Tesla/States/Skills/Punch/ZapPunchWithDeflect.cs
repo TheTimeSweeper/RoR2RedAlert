@@ -9,7 +9,6 @@ namespace RA2Mod.Survivors.Tesla.States
 {
     public class ZapPunchWithDeflect : ZapPunch
     {
-
         public static float DeflectDamageCoefficient = 3f;
         public static float DeflectRadius = 6f;
 
@@ -23,6 +22,12 @@ namespace RA2Mod.Survivors.Tesla.States
 
             deflectEndTime = 0.55f * animationDuration;
             deflectMuzzleTransform = FindModelChild("PunchHitbox");
+        }
+
+        protected override void ModifyState()
+        {
+            base.ModifyState();
+            damageType = DamageTypeCombo.GenericPrimary;
         }
 
         protected override void FireAttackUpdate()
@@ -58,6 +63,7 @@ namespace RA2Mod.Survivors.Tesla.States
                         rotation = Util.QuaternionSafeLookRotation(GetAimRay().direction, Vector3.up),
                         owner = characterBody.gameObject,
                         damage = characterBody.damage * DeflectDamageCoefficient,
+                        damageTypeOverride = damageType,
                         force = 200f,
                         crit = attack.isCrit,
                         damageColorIndex = DamageColorIndex.Default,

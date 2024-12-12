@@ -1,4 +1,6 @@
 ﻿using EntityStates;
+using RoR2;
+using RoR2.Projectile;
 
 namespace RA2Mod.Survivors.GI.SkillStates
 {
@@ -31,6 +33,12 @@ namespace RA2Mod.Survivors.GI.SkillStates
             bloom = 10;
 
             base.OnEnter();
+        }
+
+        public override void ModifyProjectileInfo(ref FireProjectileInfo fireProjectileInfo)
+        {
+            base.ModifyProjectileInfo(ref fireProjectileInfo);
+            fireProjectileInfo.damageTypeOverride = DamageTypeCombo.GenericPrimary;
         }
     }
 }

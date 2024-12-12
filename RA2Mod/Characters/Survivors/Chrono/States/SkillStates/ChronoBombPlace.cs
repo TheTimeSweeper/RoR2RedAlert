@@ -85,7 +85,8 @@ namespace RA2Mod.Survivors.Chrono.States
                     base.RollCrit(),
                     DamageColorIndex.Default,
                     null,
-                    -1f);
+                    -1f,
+                    DamageTypeCombo.GenericSecondary);
             }
         }
 

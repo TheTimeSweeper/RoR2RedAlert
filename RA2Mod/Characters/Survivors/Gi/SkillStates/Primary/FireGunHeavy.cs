@@ -39,6 +39,9 @@ namespace RA2Mod.Survivors.GI.SkillStates
                 Ray aimRay = GetAimRay();
                 AddRecoil(-1f * recoil, -2f * recoil, -0.5f * recoil, 0.5f * recoil);
 
+                DamageTypeCombo damageTypeCombo = new DamageTypeCombo();
+                damageTypeCombo.damageSource = DamageSource.Primary | DamageSource.Special;
+
                 new BulletAttack
                 {
                     bulletCount = 1,
@@ -46,7 +49,7 @@ namespace RA2Mod.Survivors.GI.SkillStates
                     origin = aimRay.origin,
                     damage = damageCoefficient * damageStat,
                     damageColorIndex = DamageColorIndex.Default,
-                    damageType = DamageType.Generic,
+                    damageType = damageTypeCombo,
                     falloffModel = BulletAttack.FalloffModel.None,
                     maxDistance = range,
                     force = force,

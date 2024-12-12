@@ -55,6 +55,8 @@ namespace RA2Mod.Survivors.Tesla.States
 
             impactSound = RoR2.Audio.NetworkSoundEventIndex.Invalid;
 
+            damageType = DamageTypeCombo.GenericSecondary;
+
             ModifyState();
 
             base.OnEnter();
@@ -95,6 +97,7 @@ namespace RA2Mod.Survivors.Tesla.States
                     fireProjectileInfo.rotation = Quaternion.LookRotation(GetAimRay().direction);
                     fireProjectileInfo.crit = attack.isCrit;
                     fireProjectileInfo.damage = damageCoefficient * OrbDamageMultiplier * damageStat;
+                    fireProjectileInfo.damageTypeOverride = damageType;
                     fireProjectileInfo.owner = gameObject;
                     fireProjectileInfo.projectilePrefab = TeslaAssets.TeslaLoaderZapConeProjectile;
                     ProjectileManager.instance.FireProjectile(fireProjectileInfo);
