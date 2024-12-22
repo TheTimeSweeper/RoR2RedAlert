@@ -61,10 +61,10 @@ namespace RA2Mod.Survivors.Tesla.States
 
             if (commandedTowers)
             {
-                attack.damageColorIndex = DamageColorIndex.WeakPoint;
+                overlapAttack.damageColorIndex = DamageColorIndex.WeakPoint;
             }
 
-            attack.pushAwayForce = Mathf.Lerp(minPushForce, maxPushForce, chargeMultiplier);
+            overlapAttack.pushAwayForce = Mathf.Lerp(minPushForce, maxPushForce, chargeMultiplier);
         }
 
         protected override float GetDamageCoefficient()
@@ -144,7 +144,7 @@ namespace RA2Mod.Survivors.Tesla.States
                 bulletAttack.tracerEffectPrefab = tracerEffectPrefab;
                 bulletAttack.muzzleName = "MuzzleGauntlet";
                 bulletAttack.hitEffectPrefab = hitEffectPrefab;
-                bulletAttack.isCrit = attack.isCrit;
+                bulletAttack.isCrit = overlapAttack.isCrit;
                 bulletAttack.HitEffectNormal = false;
                 bulletAttack.radius = 3f;
                 bulletAttack.damageType = damageTypeCombo;

@@ -95,7 +95,7 @@ namespace RA2Mod.Survivors.Tesla.States
                     FireProjectileInfo fireProjectileInfo = default;
                     fireProjectileInfo.position = FindModelChild(muzzleString).position;
                     fireProjectileInfo.rotation = Quaternion.LookRotation(GetAimRay().direction);
-                    fireProjectileInfo.crit = attack.isCrit;
+                    fireProjectileInfo.crit = overlapAttack.isCrit;
                     fireProjectileInfo.damage = damageCoefficient * OrbDamageMultiplier * damageStat;
                     fireProjectileInfo.damageTypeOverride = damageType;
                     fireProjectileInfo.owner = gameObject;

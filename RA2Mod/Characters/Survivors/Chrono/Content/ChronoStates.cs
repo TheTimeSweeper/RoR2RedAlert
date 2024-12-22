@@ -40,7 +40,7 @@ namespace RA2Mod.Survivors.Chrono
             Modules.Content.AddEntityState(typeof(AimFreezoSphere));
             Modules.Content.AddEntityState(typeof(PlaceFreezoSphere));
 
-            Modules.Content.AddEntityState(typeof(Vanish));
+            Modules.Content.AddEntityState(typeof(CastVanishTether));
             Modules.Content.AddEntityState(typeof(VanishingState));
         }
     }

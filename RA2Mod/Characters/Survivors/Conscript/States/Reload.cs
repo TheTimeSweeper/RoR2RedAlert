@@ -5,14 +5,14 @@ namespace RA2Mod.Survivors.Conscript.States
 {
     public class Reload : BaseTimedSkillState
     {
-        public override float TimedBaseDuration => 3;
-        public override float TimedBaseCastStartPercentTime => 0.5f;
+        public override float TimedBaseDuration => ConscriptConfig.M1_Gun_Reload;
+        public override float TimedBaseCastStartPercentTime => 0.8f;
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            PlayAnimation("Arms, Override", "swing1 v2", "swing.playbackRate", duration * 2);
+            PlayAnimation("Gesture, Override", "Reload", "reload.playbackRate", duration);
         }
 
         protected override void OnCastEnter()

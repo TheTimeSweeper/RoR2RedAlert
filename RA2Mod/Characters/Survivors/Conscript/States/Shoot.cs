@@ -26,9 +26,9 @@ namespace RA2Mod.Survivors.Conscript.States
         {
             base.OnEnter();
             characterBody.SetAimTimer(2f);
-            muzzleString = "HandR";
+            muzzleString = "GunMuzzle";
             
-            PlayAnimation("LeftArm, Override", "ShootGun", "ShootGun.playbackRate", 1.8f);
+            PlayAnimation("Gesture, Override", "ShootGun", "ShootGun.playbackRate", duration);
 
             Fire();
         }

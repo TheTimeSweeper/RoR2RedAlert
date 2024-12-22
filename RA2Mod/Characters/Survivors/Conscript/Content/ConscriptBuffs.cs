@@ -7,11 +7,18 @@ namespace RA2Mod.Survivors.Conscript
     {
         // armor buff gained during roll
         public static BuffDef armorBuff;
+        public static BuffDef chargeBuff;
         public static BuffDef magazineBuff;
 
         public static void Init(AssetBundle assetBundle)
         {
             armorBuff = Modules.Content.CreateAndAddBuff("ConscriptArmorBuff",
+                LegacyResourcesAPI.Load<BuffDef>("BuffDefs/HiddenInvincibility").iconSprite,
+                Color.red,
+                false,
+                false);
+
+            chargeBuff = Modules.Content.CreateAndAddBuff("ConscriptChargeBuff",
                 LegacyResourcesAPI.Load<BuffDef>("BuffDefs/HiddenInvincibility").iconSprite,
                 Color.red,
                 false,

@@ -409,7 +409,7 @@ namespace RA2Mod.Survivors.Chrono
                 skillDescriptionToken = TOKEN_PREFIX + "SPECIAL_VANISH_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texIconChronoSpecial"),
 
-                activationState = new EntityStates.SerializableEntityStateType(typeof(States.Vanish)),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(States.CastVanishTether)),
                 activationStateMachineName = "Weapon",
                 interruptPriority = EntityStates.InterruptPriority.Skill,
 

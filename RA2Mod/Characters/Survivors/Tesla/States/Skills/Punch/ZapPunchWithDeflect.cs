@@ -65,7 +65,7 @@ namespace RA2Mod.Survivors.Tesla.States
                         damage = characterBody.damage * DeflectDamageCoefficient,
                         damageTypeOverride = damageType,
                         force = 200f,
-                        crit = attack.isCrit,
+                        crit = overlapAttack.isCrit,
                         damageColorIndex = DamageColorIndex.Default,
                         target = null,
                         speedOverride = 120f,

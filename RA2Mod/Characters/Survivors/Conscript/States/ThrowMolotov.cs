@@ -50,6 +50,7 @@ namespace RA2Mod.Survivors.Conscript.States
         {
             base.ModifyProjectileInfo(ref fireProjectileInfo);
             fireProjectileInfo.damageTypeOverride = DamageTypeCombo.GenericSecondary;
+            fireProjectileInfo.speedOverride = 60f;
         }
 
         public override void PlayAnimation(float duration)

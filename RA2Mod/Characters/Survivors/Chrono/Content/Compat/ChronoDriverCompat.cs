@@ -230,7 +230,7 @@ namespace RA2Mod.Survivors.Chrono
         }
     }
 
-    internal class VanishDriver : Vanish
+    internal class VanishDriver : CastVanishTether
     {
         public override float damageCoefficient => ChronoDriverCompat.Driver_M2_Damage.Value;
         public override float baseTickInterval =>  ChronoDriverCompat.Driver_M2_TickInterval.Value;

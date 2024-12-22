@@ -37,11 +37,12 @@ namespace RA2Mod.Modules.BaseStates
         protected GameObject swingEffectPrefab;
         protected GameObject hitEffectPrefab;
         protected NetworkSoundEventIndex impactSound;
+        protected bool ignoreAttackSpeed;
 
         public float duration;
         private bool hasFired;
         private float hitPauseTimer;
-        protected OverlapAttack attack;
+        protected OverlapAttack overlapAttack;
         protected bool inHitPause;
         private bool hasHopped;
         protected float stopwatch;
@@ -52,25 +53,25 @@ namespace RA2Mod.Modules.BaseStates
         public override void OnEnter()
         {
             base.OnEnter();
-            duration = baseDuration / attackSpeedStat;
+            duration = ignoreAttackSpeed ? baseDuration : baseDuration / attackSpeedStat;
             animator = GetModelAnimator();
             StartAimMode(0.5f + duration, false);
 
             PlayAttackAnimation();
 
-            attack = new OverlapAttack();
-            attack.damageType = damageType;
-            attack.attacker = gameObject;
-            attack.inflictor = gameObject;
-            attack.teamIndex = GetTeam();
-            attack.damage = damageCoefficient * damageStat;
-            attack.procCoefficient = procCoefficient;
-            attack.hitEffectPrefab = hitEffectPrefab;
-            attack.forceVector = bonusForce;
-            attack.pushAwayForce = pushForce;
-            attack.hitBoxGroup = FindHitBoxGroup(hitboxGroupName);
-            attack.isCrit = RollCrit();
-            attack.impactSound = impactSound;
+            overlapAttack = new OverlapAttack();
+            overlapAttack.damageType = damageType;
+            overlapAttack.attacker = gameObject;
+            overlapAttack.inflictor = gameObject;
+            overlapAttack.teamIndex = GetTeam();
+            overlapAttack.damage = damageCoefficient * damageStat;
+            overlapAttack.procCoefficient = procCoefficient;
+            overlapAttack.hitEffectPrefab = hitEffectPrefab;
+            overlapAttack.forceVector = bonusForce;
+            overlapAttack.pushAwayForce = pushForce;
+            overlapAttack.hitBoxGroup = FindHitBoxGroup(hitboxGroupName);
+            overlapAttack.isCrit = RollCrit();
+            overlapAttack.impactSound = impactSound;
 
             if (General.GeneralCompat.IsLocalVRPlayer(base.characterBody))
             {
@@ -130,7 +131,7 @@ namespace RA2Mod.Modules.BaseStates
         {
             if (isAuthority)
             {
-                if (attack.Fire())
+                if (overlapAttack.Fire())
                 {
                     OnHitEnemyAuthority();
                 }

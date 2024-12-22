@@ -2,6 +2,6 @@
 {
     public class ReloadFast : Reload
     {
-        public override float TimedBaseDuration => 0.5f;
+        public override float TimedBaseDuration => ConscriptConfig.M1_Gun_FastReload;
     }
 }

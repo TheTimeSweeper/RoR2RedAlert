@@ -24,12 +24,12 @@ namespace RA2Mod.Survivors.Chrono
              + "< ! > I highly recommend setting sprint to alt or on your mouse if you can." + Environment.NewLine + Environment.NewLine
              + "< ! > I.V.A.N. bombs are great for area damage. Blink in, place one, and blink out." + Environment.NewLine + Environment.NewLine
              + "< ! > Chronosphere can be used for movement, for defense, or for grouping up enemies to better be exploded by bombs." + Environment.NewLine + Environment.NewLine
-             + "< ! > While building up Chrono Sickness can help execute enemies with special, dealing damage is still important to get them to that threshold." + Environment.NewLine + Environment.NewLine;
+             + "< ! > While building up Chrono Sickness executes enemies with special, dealing damage is still important to get them to that threshold." + Environment.NewLine + Environment.NewLine;
 
             string outro = "..and so he left, without a trace.";
             string outroFailure = "..and so he vanished, as if he never existed.";
 
-            Language.Add(prefix + "NAME", "Chrono Legionnaire BETA");
+            Language.Add(prefix + "NAME", "Chrono Legionnaire");
             Language.Add(prefix + "DESCRIPTION", desc);
             Language.Add(prefix + "SUBTITLE", "Time Gun");
             Language.Add(prefix + "LORE", "Never Existed");

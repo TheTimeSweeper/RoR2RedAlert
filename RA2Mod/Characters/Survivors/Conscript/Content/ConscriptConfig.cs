@@ -8,40 +8,46 @@ namespace RA2Mod.Survivors.Conscript
         public const string SectionSkills = "1-5. Conscript Skills" + ConfigVersion;
         public const string SectionBody = "1-5. Conscript Body" + ConfigVersion;
 
+        [Configure(SectionSkills, 3f, max = 20f)] 
         public static ConfigEntry<float> M1_Rifle_Damage;
+        [Configure(SectionSkills, 0.3f, max = 20f)]
         public static ConfigEntry<float> M1_Rifle_Duration;
-        public static ConfigEntry<float> M3_Buff_Duration;
+        [Configure(SectionSkills, 1.6f, max = 5f)]
+        public static ConfigEntry<float> M1_Gun_Reload;
+        [Configure(SectionSkills, 0.3f, max = 5f)]
+        public static ConfigEntry<float> M1_Gun_FastReload;
 
+        [Configure(SectionSkills, 3f, max = 20f)]
+        public static ConfigEntry<float> M3_March_Duration;
+        [Configure(SectionSkills, 0.5f, max = 20f)]
+        public static ConfigEntry<float> M3_March_Windup;
+        [Configure(SectionSkills, 3f, max = 20f)]
+        public static ConfigEntry<float> M3_March_ChargeDamage;
+        [Configure(SectionSkills, 2f, max = 10f)]
+        public static ConfigEntry<float> M3_March_Speed;
+        [Configure(SectionSkills, 3f, max = 20f)]
+        public static ConfigEntry<float> M3_March_StompDamage;
+        [Configure(SectionSkills, 20f, max = 100f)]
+        public static ConfigEntry<float> M3_March_StompRadius;
+        [Configure(SectionSkills, 10f, max = 100f)]
+        public static ConfigEntry<float> M3_March_KnockUp;
+        [Configure(SectionSkills, 1f, min = -100, max = 100f)]
+        public static ConfigEntry<float> M3_March_TurnInfluence;
+        [Configure(SectionSkills, 3f, max = 100f)]
+        public static ConfigEntry<float> M3_March_Hop;
+        [Configure(SectionSkills, 1f, min = -10, max = 10f)]
+        public static ConfigEntry<float> M3_March_GravityUp;
+        [Configure(SectionSkills, 2f, min = -10, max = 10f)]
+        public static ConfigEntry<float> M3_March_GravityDown;
+
+        [Configure(SectionSkills, 4f, max = 20f)]
+        public static ConfigEntry<float> M3_Buff_Duration;
 
         public static void Init()
         {
             Config.DisableSection(SectionSkills);
 
-            #region m1 1 1
-            M1_Rifle_Damage = Config.BindAndOptions(
-                SectionSkills,
-                "M1_Rifle_Damage",
-                3.0f,
-                0,
-                20,
-                "");
-            M1_Rifle_Duration = Config.BindAndOptions(
-                SectionSkills,
-                "M1_Rifle_Duration",
-                0.3f,
-                0,
-                20,
-                "");
-
-            M3_Buff_Duration = Config.BindAndOptions(
-                SectionSkills,
-                "M3_Buff_Duration",
-                4f,
-                0,
-                20,
-                "");
-
-            #endregion m4
+            Config.InitConfigAttributes(typeof(ConscriptConfig));
         }
     }
 }

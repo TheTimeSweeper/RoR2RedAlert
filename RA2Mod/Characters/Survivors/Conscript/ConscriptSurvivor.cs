@@ -18,14 +18,14 @@ namespace RA2Mod.Survivors.Conscript
 {
     public class ConscriptSurvivor : SurvivorBase<ConscriptSurvivor>
     {
-        public override string assetBundleName => "joeRA2";
+        public override string assetBundleName => "conscript";
 
         public override string bodyName => "RA2ConscriptBody";
         
         public override string masterName => "ConscriptMonsterMaster";
 
-        public override string modelPrefabName => "mdlJoe";
-        public override string displayPrefabName => "JoeDisplay";
+        public override string modelPrefabName => "mdlConscript";
+        public override string displayPrefabName => "ConscriptDisplay";
 
         public const string TOKEN_PREFIX = RA2Plugin.DEVELOPER_PREFIX + "_CONSCRIPT_";
 
@@ -55,6 +55,8 @@ namespace RA2Mod.Survivors.Conscript
 
         public override ItemDisplaysBase itemDisplays { get; } = new RA2Mod.General.JoeItemDisplays();
 
+        public override CustomRendererInfo[] customRendererInfos => new CustomRendererInfo[0];
+
         public override void Initialize()
         {
             if (!General.GeneralConfig.ConscriptEnabled.Value)
@@ -73,7 +75,7 @@ namespace RA2Mod.Survivors.Conscript
 
             ConscriptStates.Init();
             ConscriptTokens.Init();
-            Modules.Language.PrintOutput("concsript.txt");
+            Modules.Language.PrintOutput("conscript.txt");
 
             ConscriptBuffs.Init(assetBundle);
             ConscriptAssets.Init(assetBundle);
@@ -136,7 +138,7 @@ namespace RA2Mod.Survivors.Conscript
                 interruptPriority = EntityStates.InterruptPriority.Skill,
 
                 baseRechargeInterval = 0,
-                baseMaxStock = 10,
+                baseMaxStock = 8,
 
                 rechargeStock = 0,
                 requiredStock = 1,
@@ -209,12 +211,12 @@ namespace RA2Mod.Survivors.Conscript
             SkillDef utilitySkillDef1 = Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = "conscript_buff",
-                skillNameToken = TOKEN_PREFIX + "Armor and move buff",
+                skillNameToken = TOKEN_PREFIX + "Charge and knockup",
                 skillDescriptionToken = TOKEN_PREFIX + "UTILITY_ROLL_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texUtilityIcon"),
 
-                activationState = new EntityStates.SerializableEntityStateType(typeof(BasicBitchBuff)),
-                activationStateMachineName = "Weapon2",
+                activationState = new EntityStates.SerializableEntityStateType(typeof(HellMarch)),
+                activationStateMachineName = "Body",
                 interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
 
                 baseRechargeInterval = 8f,
@@ -228,12 +230,12 @@ namespace RA2Mod.Survivors.Conscript
                 fullRestockOnAssign = true,
                 dontAllowPastMaxStocks = false,
                 mustKeyPress = false,
-                beginSkillCooldownOnSkillEnd = false,
+                beginSkillCooldownOnSkillEnd = true,
 
                 isCombatSkill = false,
                 canceledFromSprinting = false,
                 cancelSprintingOnActivation = false,
-                forceSprintDuringState = false,
+                forceSprintDuringState = true,
             });
 
             Skills.AddUtilitySkills(bodyPrefab, utilitySkillDef1);
@@ -363,6 +365,12 @@ namespace RA2Mod.Survivors.Conscript
             {
                 args.armorAdd += 100;
                 args.moveSpeedMultAdd += 0.5f;
+            }
+
+            if (sender.HasBuff(ConscriptBuffs.chargeBuff))
+            {
+                args.armorAdd += 100;
+                args.moveSpeedMultAdd += ConscriptConfig.M3_March_Speed;
             }
         }
     }
