@@ -24,8 +24,10 @@ namespace RA2Mod.Survivors.Conscript
         {
             _assetBundle = assetBundle;
 
-            Garrison = assetBundle.LoadAsset<GameObject>("Garrison");
+            Garrison = assetBundle.LoadAsset<GameObject>("Garrison").DebugClone(true);
             Garrison.GetComponent<BuffWard>().buffDef = ConscriptBuffs.magazineBuff;
+            Garrison.GetComponent<BuffWard>().expireDuration = ConscriptConfig.M4_Garrison_Duration;
+
             Molotov = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Molotov/MolotovSingleProjectile.prefab").WaitForCompletion();
         }
     }

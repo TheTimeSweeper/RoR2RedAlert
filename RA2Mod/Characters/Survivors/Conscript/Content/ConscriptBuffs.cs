@@ -9,6 +9,7 @@ namespace RA2Mod.Survivors.Conscript
         public static BuffDef armorBuff;
         public static BuffDef chargeBuff;
         public static BuffDef magazineBuff;
+        public static BuffDef garrisonBuff;
 
         public static void Init(AssetBundle assetBundle)
         {
@@ -25,6 +26,12 @@ namespace RA2Mod.Survivors.Conscript
                 false);
 
             magazineBuff = Modules.Content.CreateAndAddBuff("ConscriptMagazineBuff",
+                LegacyResourcesAPI.Load<BuffDef>("BuffDefs/HiddenInvincibility").iconSprite,
+                Color.green,
+                false,
+                false);
+
+            garrisonBuff = Modules.Content.CreateAndAddBuff("ConscriptGarrisonBuff",
                 LegacyResourcesAPI.Load<BuffDef>("BuffDefs/HiddenInvincibility").iconSprite,
                 Color.green,
                 false,

@@ -41,10 +41,11 @@ namespace RA2Mod.Survivors.Conscript
             bodyColor = Color.red,
             sortPosition = 69.5f,
             
-            crosshairBundlePath = "GICrosshair",
+            //crosshairBundlePath = "GICrosshair",
+            crosshairAddressablePath = "RoR2/Base/UI/StandardCrosshair.prefab",
             podPrefabAddressablePath = "RoR2/Base/SurvivorPod/SurvivorPod.prefab",
 
-            maxHealth = 140f,
+            maxHealth = 160f,
             healthRegen = 2.0f,
             armor = 10f,
 
@@ -93,7 +94,7 @@ namespace RA2Mod.Survivors.Conscript
         private void AdditionalBodySetup()
         {
             VoiceLineController voiceLineController = bodyPrefab.AddComponent<VoiceLineController>();
-            voiceLineController.voiceLineContext = new VoiceLineContext("Conscript", 6, 6, 6);
+            voiceLineController.voiceLineContext = new VoiceLineContext("Conscript", 4, 3, 4);
         }
 
         public override void InitializeEntityStateMachines() 
@@ -138,7 +139,7 @@ namespace RA2Mod.Survivors.Conscript
                 interruptPriority = EntityStates.InterruptPriority.Skill,
 
                 baseRechargeInterval = 0,
-                baseMaxStock = 8,
+                baseMaxStock = 12,
 
                 rechargeStock = 0,
                 requiredStock = 1,
@@ -167,7 +168,7 @@ namespace RA2Mod.Survivors.Conscript
         private void AddSecondarySkills()
         {
             //here is a basic skill def with all fields accounted for
-            MagazineSkillDef secondarySkillDef1 = Skills.CreateSkillDef<MagazineSkillDef>(new SkillDefInfo
+            SkillDef secondarySkillDef1 = Skills.CreateSkillDef/*<MagazineSkillDef>*/(new SkillDefInfo
             {
                 skillName = "ConscriptMolotov",
                 skillNameToken = TOKEN_PREFIX + "Molotov",
@@ -180,16 +181,16 @@ namespace RA2Mod.Survivors.Conscript
                 interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
                 
                 baseRechargeInterval = 5f,
-                baseMaxStock = 1,
+                baseMaxStock = 2,
 
-                rechargeStock = 0,
+                rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
 
                 resetCooldownTimerOnUse = false,
                 fullRestockOnAssign = true,
                 dontAllowPastMaxStocks = false,
-                mustKeyPress = false,
+                mustKeyPress = true,
                 beginSkillCooldownOnSkillEnd = false,
 
                 isCombatSkill = true,
@@ -197,10 +198,10 @@ namespace RA2Mod.Survivors.Conscript
                 cancelSprintingOnActivation = false,
                 forceSprintDuringState = false,
             });
-            secondarySkillDef1.reloadState = new SerializableEntityStateType(typeof(Reload));
-            secondarySkillDef1.hasMagazineReloadState = new SerializableEntityStateType(typeof(ReloadFast));
-            secondarySkillDef1.reloadInterruptPriority = InterruptPriority.Any;
-            secondarySkillDef1.graceDuration = 5f;
+            //secondarySkillDef1.reloadState = new SerializableEntityStateType(typeof(Reload));
+            //secondarySkillDef1.hasMagazineReloadState = new SerializableEntityStateType(typeof(ReloadFast));
+            //secondarySkillDef1.reloadInterruptPriority = InterruptPriority.Any;
+            //secondarySkillDef1.graceDuration = 5f;
 
             Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef1);
         }
@@ -257,7 +258,7 @@ namespace RA2Mod.Survivors.Conscript
                 interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
 
                 baseMaxStock = 1,
-                baseRechargeInterval = 10f,
+                baseRechargeInterval = 16f,
 
                 isCombatSkill = true,
                 mustKeyPress = false,
@@ -369,8 +370,13 @@ namespace RA2Mod.Survivors.Conscript
 
             if (sender.HasBuff(ConscriptBuffs.chargeBuff))
             {
-                args.armorAdd += 100;
+                args.armorAdd += ConscriptConfig.M3_March_Armor;
                 args.moveSpeedMultAdd += ConscriptConfig.M3_March_Speed;
+            }
+
+            if (sender.HasBuff(ConscriptBuffs.magazineBuff) || sender.HasBuff(ConscriptBuffs.garrisonBuff))
+            {
+                args.regenMultAdd += ConscriptConfig.M4_Garrison_Regen;
             }
         }
     }

@@ -10,10 +10,10 @@ namespace RA2Mod.Survivors.Conscript.States
 {
     public class Shoot : BaseTimedSkillState
     {
-        public override float TimedBaseDuration => ConscriptConfig.M1_Rifle_Duration.Value;
+        public override float TimedBaseDuration => ConscriptConfig.M1_Gun_Duration.Value;
         public override float TimedBaseCastStartPercentTime => 1;
 
-        public static float damageCoefficient => ConscriptConfig.M1_Rifle_Damage.Value;
+        public static float damageCoefficient => ConscriptConfig.M1_Gun_Damage.Value;
         public static float procCoefficient = 1f;
         public static float force = 10f;
         public static float recoil = 0.2f;
@@ -37,7 +37,7 @@ namespace RA2Mod.Survivors.Conscript.States
         {
             characterBody.AddSpreadBloom(1.5f);
             EffectManager.SimpleMuzzleFlash(EntityStates.Commando.CommandoWeapon.FirePistol2.muzzleEffectPrefab, gameObject, muzzleString, false);
-            Util.PlaySound("Play_GIShootSingle", gameObject);
+            Util.PlaySound("Play_ConscriptShoot", gameObject);
 
             if (isAuthority)
             {
@@ -52,7 +52,7 @@ namespace RA2Mod.Survivors.Conscript.States
                     damage = damageCoefficient * damageStat,
                     damageColorIndex = DamageColorIndex.Default,
                     damageType = DamageTypeCombo.GenericPrimary,
-                    falloffModel = BulletAttack.FalloffModel.None,// ConscriptConfig.M1_Rifle_Falloff.Value ? BulletAttack.FalloffModel.DefaultBullet : BulletAttack.FalloffModel.None,
+                    falloffModel = BulletAttack.FalloffModel.DefaultBullet,
                     maxDistance = range,
                     force = force,
                     hitMask = LayerIndex.CommonMasks.bullet,
