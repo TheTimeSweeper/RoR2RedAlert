@@ -9,7 +9,7 @@ namespace RA2Mod.Survivors.Conscript.States
         public static float BaseDuration = 0.65f;
         public static float BaseDelayDuration = 0.0f;
 
-        public static float DamageCoefficient => ConscriptConfig.M2_Molotov_Damage;
+        public static float DamageCoefficient => ConscriptConfig.M2_Molotov_BaseDamage;
 
         public override void OnEnter()
         {

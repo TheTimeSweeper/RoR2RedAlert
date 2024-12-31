@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 89795172, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: escConscriptJumpOnEnemy
+  m_EditorClassIdentifier: 
+  targetType:
+    assemblyQualifiedName: RA2Mod.Survivors.Conscript.States.TerrorDrone.JumpOnEnemy,
+      RA2Mod, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  serializedFieldsCollection:
+    serializedFields:
+    - fieldName: yCurve
+      fieldValue:
+        stringValue: '{"preWrapMode":8,"postWrapMode":8,"keys":[{"time":0.0024271844886243345,"value":0.012500000186264515,"inTangent":5.419556140899658,"outTangent":5.419556140899658,"inWeight":0.3333333432674408,"outWeight":0.05085212364792824,"weightedMode":0,"tangentMode":0},{"time":0.5241633057594299,"value":1.3288137912750245,"inTangent":0.4113844037055969,"outTangent":0.4113844037055969,"inWeight":0.3333333432674408,"outWeight":0.3333333432674408,"weightedMode":0,"tangentMode":0},{"time":1.0,"value":1.0,"inTangent":-2.4515082836151125,"outTangent":-2.4515082836151125,"inWeight":0.094234898686409,"outWeight":0.3333333432674408,"weightedMode":0,"tangentMode":0}]}'
+        objectValue: {fileID: 0}
+    - fieldName: enterSoundString
+      fieldValue:
+        stringValue: 
+        objectValue: {fileID: 0}
+    - fieldName: childLocatorStringToEnable
+      fieldValue:
+        stringValue: 
+        objectValue: {fileID: 0}

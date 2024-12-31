@@ -1,11 +1,15 @@
 ﻿using BepInEx.Configuration;
 using EntityStates;
 using EntityStates.Engi.Mine;
+using EntityStates.Engi.SpiderMine;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using RA2Mod.General.Components;
 using RA2Mod.Modules;
 using RA2Mod.Modules.Characters;
 using RA2Mod.Survivors.Conscript.SkillDefs;
 using RA2Mod.Survivors.Conscript.States;
+using RA2Mod.Survivors.Conscript.States.TerrorDrone;
 using RoR2;
 using RoR2.Projectile;
 using RoR2.Skills;
@@ -45,7 +49,7 @@ namespace RA2Mod.Survivors.Conscript
             crosshairAddressablePath = "RoR2/Base/UI/StandardCrosshair.prefab",
             podPrefabAddressablePath = "RoR2/Base/SurvivorPod/SurvivorPod.prefab",
 
-            maxHealth = 160f,
+            maxHealth = 130f,
             healthRegen = 2.0f,
             armor = 10f,
 
@@ -57,6 +61,9 @@ namespace RA2Mod.Survivors.Conscript
         public override ItemDisplaysBase itemDisplays { get; } = new RA2Mod.General.JoeItemDisplays();
 
         public override CustomRendererInfo[] customRendererInfos => new CustomRendererInfo[0];
+
+        public List<HurtBox> readOnlyTerrorDroneHurtboxes = new List<HurtBox>();
+        public const int TERROR_DRONE_HURTBOX = 9090975;
 
         public override void Initialize()
         {
@@ -128,13 +135,13 @@ namespace RA2Mod.Survivors.Conscript
         {
             MagazineSkillDef primarySkillDef1 = Skills.CreateSkillDef<MagazineSkillDef>(new SkillDefInfo
             {
-                skillName = "ConscriptGun",
-                skillNameToken = TOKEN_PREFIX + "Gun that reloads",
-                skillDescriptionToken = TOKEN_PREFIX + "SECONDARY_GUN_DESCRIPTION",
-                keywordTokens = new string[] { "KEYWORD_AGILE" },
+                skillName = "conscript_gun",
+                skillNameToken = TOKEN_PREFIX + "PRIMARY_GUN_NAME",
+                skillDescriptionToken = TOKEN_PREFIX + "PRIMARY_GUN_DESCRIPTION",
+                //keywordTokens = new string[] { "KEYWORD_AGILE" },
                 skillIcon = assetBundle.LoadAsset<Sprite>("texSecondaryIcon"),
 
-                activationState = new EntityStates.SerializableEntityStateType(typeof(States.Shoot)),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(States.ShootConscriptGun)),
                 activationStateMachineName = "Weapon",
                 interruptPriority = EntityStates.InterruptPriority.Skill,
 
@@ -161,8 +168,46 @@ namespace RA2Mod.Survivors.Conscript
             primarySkillDef1.hasMagazineReloadState = new SerializableEntityStateType(typeof(ReloadFast));
             primarySkillDef1.reloadInterruptPriority = InterruptPriority.Any;
             primarySkillDef1.graceDuration = 0.5f;
+            Config.ConfigureSkillDef(primarySkillDef1, ConscriptConfig.SectionBody, "M1 Gun");
 
-            Skills.AddPrimarySkills(bodyPrefab, primarySkillDef1);
+            MagazineSkillDef primarySkillDef2 = Skills.CreateSkillDef<MagazineSkillDef>(new SkillDefInfo
+            {
+                skillName = "conscript_flak",
+                skillNameToken = TOKEN_PREFIX + "PRIMARY_FLAK_NAME",
+                skillDescriptionToken = TOKEN_PREFIX + "PRIMARY_FLAK_DESCRIPTION",
+                //keywordTokens = new string[] { "KEYWORD_AGILE" },
+                skillIcon = assetBundle.LoadAsset<Sprite>("texSecondaryIcon"),
+
+                activationState = new EntityStates.SerializableEntityStateType(typeof(States.ShootFlak)),
+                activationStateMachineName = "Weapon",
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+
+                baseRechargeInterval = 0,
+                baseMaxStock = 4,
+
+                rechargeStock = 0,
+                requiredStock = 1,
+                stockToConsume = 1,
+
+                resetCooldownTimerOnUse = false,
+                fullRestockOnAssign = true,
+                dontAllowPastMaxStocks = false,
+                mustKeyPress = false,
+                beginSkillCooldownOnSkillEnd = false,
+
+                isCombatSkill = true,
+                canceledFromSprinting = false,
+                cancelSprintingOnActivation = false,
+                forceSprintDuringState = false,
+            });
+
+            primarySkillDef2.reloadState = new SerializableEntityStateType(typeof(FlakReload));
+            primarySkillDef2.hasMagazineReloadState = new SerializableEntityStateType(typeof(ReloadFast));
+            primarySkillDef2.reloadInterruptPriority = InterruptPriority.Any;
+            primarySkillDef2.graceDuration = 0.5f;
+            Config.ConfigureSkillDef(primarySkillDef2, ConscriptConfig.SectionBody, "M1 Flak");
+
+            Skills.AddPrimarySkills(bodyPrefab, primarySkillDef1, primarySkillDef2);
         }
 
         private void AddSecondarySkills()
@@ -170,17 +215,17 @@ namespace RA2Mod.Survivors.Conscript
             //here is a basic skill def with all fields accounted for
             SkillDef secondarySkillDef1 = Skills.CreateSkillDef/*<MagazineSkillDef>*/(new SkillDefInfo
             {
-                skillName = "ConscriptMolotov",
-                skillNameToken = TOKEN_PREFIX + "Molotov",
-                skillDescriptionToken = TOKEN_PREFIX + "SECONDARY_GUN_DESCRIPTION",
-                keywordTokens = new string[] { "KEYWORD_AGILE" },
+                skillName = "conscript_molotov",
+                skillNameToken = TOKEN_PREFIX + "SECONDARY_MOLOTOV_NAME",
+                skillDescriptionToken = TOKEN_PREFIX + "SECONDARY_MOLOTOV_DESCRIPTION",
+                //keywordTokens = new string[] { "KEYWORD_AGILE" },
                 skillIcon = assetBundle.LoadAsset<Sprite>("texSecondaryIcon"),
                 
                 activationState = new EntityStates.SerializableEntityStateType(typeof(ThrowMolotov)),
                 activationStateMachineName = "Weapon2",
                 interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
                 
-                baseRechargeInterval = 5f,
+                baseRechargeInterval = 6f,
                 baseMaxStock = 2,
 
                 rechargeStock = 1,
@@ -202,8 +247,46 @@ namespace RA2Mod.Survivors.Conscript
             //secondarySkillDef1.hasMagazineReloadState = new SerializableEntityStateType(typeof(ReloadFast));
             //secondarySkillDef1.reloadInterruptPriority = InterruptPriority.Any;
             //secondarySkillDef1.graceDuration = 5f;
+            Config.ConfigureSkillDef(secondarySkillDef1, ConscriptConfig.SectionBody, "M2 Molotov");
 
-            Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef1);
+            //here is a basic skill def with all fields accounted for
+            SkillDef secondarySkillDef2 = Skills.CreateSkillDef/*<MagazineSkillDef>*/(new SkillDefInfo
+            {
+                skillName = "conscript_terrorDrone",
+                skillNameToken = TOKEN_PREFIX + "SECONDARY_TERROR_NAME",
+                skillDescriptionToken = TOKEN_PREFIX + "SECONDARY_TERROR_DESCRIPTION",
+                //keywordTokens = new string[] { "KEYWORD_AGILE" },
+                skillIcon = assetBundle.LoadAsset<Sprite>("texSecondaryIcon"),
+
+                activationState = new EntityStates.SerializableEntityStateType(typeof(ThrowTerrorDrone)),
+                activationStateMachineName = "Weapon2",
+                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+
+                baseRechargeInterval = 6f,
+                baseMaxStock = 2,
+
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+
+                resetCooldownTimerOnUse = false,
+                fullRestockOnAssign = true,
+                dontAllowPastMaxStocks = false,
+                mustKeyPress = true,
+                beginSkillCooldownOnSkillEnd = false,
+
+                isCombatSkill = true,
+                canceledFromSprinting = false,
+                cancelSprintingOnActivation = false,
+                forceSprintDuringState = false,
+            });
+            //secondarySkillDef2.reloadState = new SerializableEntityStateType(typeof(Reload));
+            //secondarySkillDef2.hasMagazineReloadState = new SerializableEntityStateType(typeof(ReloadFast));
+            //secondarySkillDef2.reloadInterruptPriority = InterruptPriority.Any;
+            //secondarySkillDef2.graceDuration = 5f;
+            Config.ConfigureSkillDef(secondarySkillDef2, ConscriptConfig.SectionBody, "M2 Terror Drone");
+
+            Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef1, secondarySkillDef2);
         }
 
         private void AddUtiitySkills()
@@ -211,16 +294,16 @@ namespace RA2Mod.Survivors.Conscript
             //here's a skilldef of a typical movement skill.
             SkillDef utilitySkillDef1 = Skills.CreateSkillDef(new SkillDefInfo
             {
-                skillName = "conscript_buff",
-                skillNameToken = TOKEN_PREFIX + "Charge and knockup",
-                skillDescriptionToken = TOKEN_PREFIX + "UTILITY_ROLL_DESCRIPTION",
+                skillName = "conscript_march",
+                skillNameToken = TOKEN_PREFIX + "UTILITY_MARCH_NAME",
+                skillDescriptionToken = TOKEN_PREFIX + "UTILITY_MARCH_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texUtilityIcon"),
 
                 activationState = new EntityStates.SerializableEntityStateType(typeof(HellMarch)),
                 activationStateMachineName = "Body",
                 interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
 
-                baseRechargeInterval = 8f,
+                baseRechargeInterval = 10f,
                 baseMaxStock = 1,
 
                 rechargeStock = 1,
@@ -238,6 +321,7 @@ namespace RA2Mod.Survivors.Conscript
                 cancelSprintingOnActivation = false,
                 forceSprintDuringState = true,
             });
+            Config.ConfigureSkillDef(utilitySkillDef1, ConscriptConfig.SectionBody, "M3 March");
 
             Skills.AddUtilitySkills(bodyPrefab, utilitySkillDef1);
         }
@@ -248,8 +332,8 @@ namespace RA2Mod.Survivors.Conscript
             SkillDef specialSkillDef1 = Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = "conscript_garrison",
-                skillNameToken = TOKEN_PREFIX + "Garrison",
-                skillDescriptionToken = TOKEN_PREFIX + "m1 and m2 reload faster",
+                skillNameToken = TOKEN_PREFIX + "SPECIAL_GARRISON_NAME",
+                skillDescriptionToken = TOKEN_PREFIX + "SPECIAL_GARRISON_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texSpecialIcon"),
 
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SpawnGarrison)),
@@ -258,11 +342,12 @@ namespace RA2Mod.Survivors.Conscript
                 interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
 
                 baseMaxStock = 1,
-                baseRechargeInterval = 16f,
+                baseRechargeInterval = 24f,
 
                 isCombatSkill = true,
                 mustKeyPress = false,
             });
+            Config.ConfigureSkillDef(specialSkillDef1, ConscriptConfig.SectionBody, "M4 Garrison");
 
             Skills.AddSpecialSkills(bodyPrefab, specialSkillDef1);
         }
@@ -355,9 +440,85 @@ namespace RA2Mod.Survivors.Conscript
             //assetBundle.LoadMaster(bodyPrefab, masterName);
         }
 
+        public static bool IsTerrorDroneTargetHit(ref BulletAttack.BulletHit hitInfo, out HurtBox weakHurtBox)
+        {
+            if (hitInfo.hitHurtBox && hitInfo.hitHurtBox.hurtBoxGroup)
+            {
+                foreach (HurtBox hurtBox in hitInfo.hitHurtBox.hurtBoxGroup.hurtBoxes)
+                {
+                    if (hurtBox && hurtBox.damageModifier == (HurtBox.DamageModifier)TERROR_DRONE_HURTBOX && Vector3.ProjectOnPlane(hitInfo.point - hurtBox.transform.position, hitInfo.direction).sqrMagnitude <= HurtBox.sniperTargetRadiusSqr)
+                    {
+                        weakHurtBox = hurtBox;
+                        return true;
+                    }
+                }
+            }
+            weakHurtBox = null;
+            return false;
+        }
+
         private void AddHooks()
         {
             R2API.RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            On.EntityStates.Engi.SpiderMine.Detonate.OnEnter += Detonate_OnEnter;
+            On.RoR2.HurtBox.OnEnable += HurtBox_OnEnable;
+            On.RoR2.HurtBox.OnDisable += HurtBox_OnDisable;
+            IL.EntityStates.Engi.SpiderMine.ChaseTarget.FixedUpdate += ChaseTarget_FixedUpdate;
+        }
+
+        private void ChaseTarget_FixedUpdate(MonoMod.Cil.ILContext il)
+        {
+            //if (!this.passedDetonationRadius && magnitude <= ChaseTarget.triggerRadius)
+            ILCursor cursor = new ILCursor(il);
+            cursor.GotoNext(MoveType.After,
+                instruction => instruction.MatchBrtrue(out _),
+                instruction => instruction.MatchLdloc(2),
+                instruction => instruction.MatchLdsfld<ChaseTarget>(nameof(ChaseTarget.triggerRadius))
+                );
+            cursor.Index--; 
+            cursor.Emit(OpCodes.Ldarg_0);
+            cursor.EmitDelegate<Func<float, ChaseTarget, float>>(fuckWithMagnitude);
+            cursor.Emit(OpCodes.Stloc_2);
+            cursor.Emit(OpCodes.Ldloc_2);
+        }
+
+        private float fuckWithMagnitude(float origMagnitude, ChaseTarget self)
+        {
+            if (self.outer.customName.Contains("ConscriptTerrorDroneESM"))
+            {
+                //subtracting from detected distance so it detonates sooner (triggerRadius is static so I can't change it for just this drone)
+                return origMagnitude - 10;
+            }
+
+            return origMagnitude;
+        }
+
+        private void HurtBox_OnDisable(On.RoR2.HurtBox.orig_OnDisable orig, HurtBox self)
+        {
+            orig(self);
+            if (self.damageModifier == (HurtBox.DamageModifier)69)
+            {
+                readOnlyTerrorDroneHurtboxes.Remove(self);
+            }
+        }
+
+        private void HurtBox_OnEnable(On.RoR2.HurtBox.orig_OnEnable orig, HurtBox self)
+        {
+            orig(self);
+            if(self.damageModifier == (HurtBox.DamageModifier)69)
+            {
+                readOnlyTerrorDroneHurtboxes.Add(self);
+            }
+        }
+
+        private void Detonate_OnEnter(On.EntityStates.Engi.SpiderMine.Detonate.orig_OnEnter orig, EntityStates.Engi.SpiderMine.Detonate self)
+        {
+            if (!self.outer.customName.Contains("ConscriptTerrorDroneESM"))
+            {
+                orig(self);
+            }
+
+            self.outer.SetNextState(new Conscript.States.TerrorDrone.JumpOnEnemy());
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, R2API.RecalculateStatsAPI.StatHookEventArgs args)

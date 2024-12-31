@@ -17,6 +17,7 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
 
         [SerializeField]
         private float radius = 30;
+        public float Radius { get => radius; set => radius = value; }
 
         private List<SkillLocator> _currentBodies = new List<SkillLocator>();
         private List<SkillLocator> _alreadyAffectedBodies = new List<SkillLocator>();

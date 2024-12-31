@@ -30,7 +30,7 @@ namespace RA2Mod
         internal static void Warning(object data) => _logSource.LogWarning(data);
         internal static bool CheckNullAndWarn(string name, object objecte)
         {
-            Log.Warning($"{name} is {objecte!= null}");
+            Log.Warning($"{name} is {(objecte != null ? "not null" : "null")}");
             return objecte != null;
         }
         internal static void WarningDebug(string format, params object[] data) => DebugWarning(format, data);

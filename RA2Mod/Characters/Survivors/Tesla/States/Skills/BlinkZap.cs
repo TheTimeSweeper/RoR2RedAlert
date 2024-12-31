@@ -55,7 +55,6 @@ namespace RA2Mod.Survivors.Tesla.States
 
             if (_targetHurtbox)
             {
-
                 float distance = Vector3.Distance(_targetHurtbox.transform.position, transform.position);
                 duration = distance * 0.8f / (speedCoefficient * moveSpeedStat);
                 duration = Mathf.Min(duration, 1);

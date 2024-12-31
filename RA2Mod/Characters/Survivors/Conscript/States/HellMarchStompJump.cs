@@ -9,8 +9,8 @@ namespace RA2Mod.Survivors.Conscript.States
     public class HellMarchStompJump : BaseSkillState
     {
         public bool isCrit;
-
         public CameraTargetParams.AimRequest aimAuraShit;
+        public EffectManagerHelper speedLinesEffect;
 
         private bool success;
         private bool hasLeftGround;
@@ -60,6 +60,13 @@ namespace RA2Mod.Survivors.Conscript.States
 
                 PlayAnimation("Body", "BufferEmpty");
                 PlayAnimation("Arms, Override", "BufferEmpty");
+            }
+
+            EntityStateMachine.FindByCustomName(gameObject, "Body").SetNextStateToMain();
+
+            if (speedLinesEffect != null && speedLinesEffect.OwningPool != null)
+            {
+                speedLinesEffect.OwningPool.ReturnObject(speedLinesEffect);
             }
         }
     }

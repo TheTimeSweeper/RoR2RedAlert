@@ -128,7 +128,7 @@ namespace RA2Mod.Modules
                     $"{skillTitle} cooldown",
                     skillDef.baseRechargeInterval,
                     0,
-                    20,
+                    100,
                     "",
                     true).Value;
             }

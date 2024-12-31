@@ -14,10 +14,10 @@ namespace RA2Mod.Survivors.Conscript.States
             base.OnEnter();
 
             Ray aimray = GetAimRay();
-            Vector3 pos = aimray.origin + aimray.direction * 10; 
-            if (Physics.Raycast(GetAimRay(), out RaycastHit hitInfo, 10, RoR2.LayerIndex.world.mask))
+            Vector3 pos = aimray.origin + aimray.direction * ConscriptConfig.M4_Garrison_Range * 0.3f; 
+            if (Physics.Raycast(GetAimRay(), out RaycastHit hitInfo, ConscriptConfig.M4_Garrison_Range*0.3f, RoR2.LayerIndex.world.mask))
             {
-                pos = hitInfo.point;
+                pos = hitInfo.point+ Vector3.up * 2;
             }
 
             GameObject garrison = UnityEngine.Object.Instantiate(ConscriptAssets.Garrison, pos, Quaternion.identity);

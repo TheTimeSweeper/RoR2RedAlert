@@ -9,6 +9,11 @@ namespace RA2Mod.Modules
     //consolidate contentaddition here in case something breaks and/or want to move to r2api
     internal class Content
     {
+        internal static void AddEntityStateConfiguration(EntityStateConfiguration entityStateConfiguration)
+        {
+            ContentPacks.entityStateConfigurations.Add(entityStateConfiguration);
+        }
+
         internal static void AddCharacterBodyPrefab(GameObject bprefab)
         {
             ContentPacks.bodyPrefabs.Add(bprefab);

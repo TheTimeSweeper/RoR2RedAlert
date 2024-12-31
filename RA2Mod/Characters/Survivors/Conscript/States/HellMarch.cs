@@ -20,6 +20,8 @@ namespace RA2Mod.Survivors.Conscript.States
         private bool isCrit;
         private bool success;
 
+        private EffectManagerHelper speedLinesEffect;
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -52,6 +54,8 @@ namespace RA2Mod.Survivors.Conscript.States
             base.OnCastEnter();
 
             direction = GetFlatAimdirectionNormalized();
+
+            speedLinesEffect = EffectManager.GetAndActivatePooledEffect(ConscriptAssets.RunSpeedEffect, GetModelTransform(), true);
 
             PlayAnimation("Fullbody, overried", "DashContinuous");
         }
@@ -99,8 +103,12 @@ namespace RA2Mod.Survivors.Conscript.States
 
         protected override void SetNextState()
         {
+            if (success)
+                return;
+
             success = true;
-            outer.SetState(new HellMarchStompJump { isCrit = isCrit, aimAuraShit = aimAuraShit });
+            EntityStateMachine.FindByCustomName(gameObject, "Weapon").SetState(new HellMarchStompJump { isCrit = isCrit, aimAuraShit = aimAuraShit, speedLinesEffect = speedLinesEffect });
+            //don't end current state. hellmarchstopjump then hellmarchstompstomp will set this statemachine to main
         }
 
         public override void OnExit()
@@ -112,6 +120,11 @@ namespace RA2Mod.Survivors.Conscript.States
             {
                 aimAuraShit.Dispose();
                 characterBody.RemoveBuff(ConscriptBuffs.chargeBuff);
+
+                if (speedLinesEffect != null && speedLinesEffect.OwningPool != null)
+                {
+                    speedLinesEffect.OwningPool.ReturnObject(speedLinesEffect);
+                }
             }
         }
     }

@@ -2,6 +2,7 @@
 using RA2Mod.Modules.BaseStates;
 using RoR2;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace RA2Mod.Survivors.Conscript.States
 {
@@ -55,6 +56,8 @@ namespace RA2Mod.Survivors.Conscript.States
 
         private void BigBlast()
         {
+
+
             BlastAttack blast = new BlastAttack
             {
                 attacker = gameObject,
@@ -83,6 +86,15 @@ namespace RA2Mod.Survivors.Conscript.States
             {
                 Modules.Utils.Knockup(result.hitPoints[i].hurtBox.healthComponent.body, ConscriptConfig.M3_March_KnockUp, false, true);
             }
+
+            EffectData effectData = new EffectData
+            {
+                origin = blastPosition,
+                scale = ConscriptConfig.M3_March_StompRadius
+            };
+
+            EffectManager.SpawnEffect(ConscriptAssets.blastEffect, effectData, true);
+
         }
 
         public override void OnExit()

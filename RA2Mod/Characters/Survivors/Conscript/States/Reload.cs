@@ -3,6 +3,7 @@ using RA2Mod.Modules.BaseStates;
 
 namespace RA2Mod.Survivors.Conscript.States
 {
+
     public class Reload : BaseTimedSkillState
     {
         public override float TimedBaseDuration => ConscriptConfig.M1_Gun_Reload;
