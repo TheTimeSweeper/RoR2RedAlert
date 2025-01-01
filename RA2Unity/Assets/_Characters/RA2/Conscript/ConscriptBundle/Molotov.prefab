@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   falloffModel: 0
-  blastRadius: 0
+  blastRadius: 10
   blastDamageCoefficient: 0
   blastProcCoefficient: 1
   blastAttackerFiltering: 0
@@ -425,8 +425,8 @@ MonoBehaviour:
   rangePitchDegrees: 0
   useLocalSpaceForChildren: 0
   applyDot: 0
-  dotIndex: -1
-  dotDuration: 0
+  dotIndex: 2
+  dotDuration: 1
   dotDamageMultiplier: 1
   applyMaxStacksFromAttacker: 0
   maxStacksFromAttacker: 4294967295
@@ -438,7 +438,7 @@ MonoBehaviour:
   offsetForLifetimeExpiredSound: 0
   destroyOnEnemy: 0
   destroyOnWorld: 0
-  impactOnWorld: 0
+  impactOnWorld: 1
   timerAfterImpact: 0
   lifetime: 3
   lifetimeAfterImpact: 0
@@ -463,7 +463,7 @@ MonoBehaviour:
   force: 0
   damageColorIndex: 0
   damageType:
-    damageType: 0
+    damageType: 128
     damageTypeExtended: 0
   useDotMaxStacksFromAttacker: 0
   dotMaxStacksFromAttacker: 4294967295
@@ -494,6 +494,9 @@ GameObject:
   - component: {fileID: 4099077524334245843}
   - component: {fileID: 2871033788894031609}
   - component: {fileID: 3146485203205747030}
+  - component: {fileID: 7962636425250492911}
+  - component: {fileID: 3765327920438188058}
+  - component: {fileID: 595273010650294381}
   m_Layer: 12
   m_Name: Hurtbox
   m_TagString: Untagged
@@ -547,3 +550,72 @@ MonoBehaviour:
   damageModifier: 0
   hurtBoxGroup: {fileID: 5919644159715269118}
   indexInGroup: 0
+--- !u!114 &7962636425250492911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040358989205150979}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696e46917c058064198aa6ec82d8aded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtBox: {fileID: 3146485203205747030}
+  setTime: 3
+--- !u!114 &3765327920438188058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040358989205150979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 924743675, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7962636425250492911}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  timeStepType: 0
+--- !u!114 &595273010650294381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040358989205150979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1630511094, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3765327920438188058}
+        m_TargetAssemblyTypeName: RoR2.EntityLogic.DelayedEvent, RoR2
+        m_MethodName: CallDelayed
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

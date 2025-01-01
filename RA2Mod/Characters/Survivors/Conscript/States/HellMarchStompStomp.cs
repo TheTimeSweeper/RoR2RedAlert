@@ -1,5 +1,6 @@
 ﻿using EntityStates;
 using RA2Mod.Modules.BaseStates;
+using RA2Mod.Survivors.Conscript.Components;
 using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -56,8 +57,6 @@ namespace RA2Mod.Survivors.Conscript.States
 
         private void BigBlast()
         {
-
-
             BlastAttack blast = new BlastAttack
             {
                 attacker = gameObject,
@@ -108,6 +107,11 @@ namespace RA2Mod.Survivors.Conscript.States
             if (characterBody.HasBuff(JunkContent.Buffs.IgnoreFallDamage))
             {
                 characterBody.RemoveBuff(JunkContent.Buffs.IgnoreFallDamage);
+            }
+
+            if (gameObject.TryGetComponent(out GarrisonHolder holder))
+            {
+                holder.TryShowGarrison(true);
             }
         }
 

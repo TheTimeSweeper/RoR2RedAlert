@@ -1,4 +1,5 @@
 ﻿using EntityStates;
+using RA2Mod.Survivors.Conscript.Components;
 using RobDriver.Modules;
 using RoR2;
 using UnityEngine;
@@ -35,6 +36,7 @@ namespace RA2Mod.Survivors.Conscript.States
             {
                 hasLeftGround = true;
             }
+            characterDirection.forward = characterMotor.velocity;
 
             ref float ySpeed = ref characterMotor.velocity.y;            //increase gravity a bit less on the rise but still increase gravity
             ySpeed += Physics.gravity.y * GetDeltaTime() * (ySpeed > 0 ? ConscriptConfig.M3_March_GravityUp : ConscriptConfig.M3_March_GravityDown);
@@ -60,6 +62,12 @@ namespace RA2Mod.Survivors.Conscript.States
 
                 PlayAnimation("Body", "BufferEmpty");
                 PlayAnimation("Arms, Override", "BufferEmpty");
+
+
+                if (gameObject.TryGetComponent(out GarrisonHolder holder))
+                {
+                    holder.TryShowGarrison(true);
+                }
             }
 
             EntityStateMachine.FindByCustomName(gameObject, "Body").SetNextStateToMain();

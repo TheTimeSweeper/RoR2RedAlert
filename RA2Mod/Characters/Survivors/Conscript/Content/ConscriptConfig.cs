@@ -8,6 +8,9 @@ namespace RA2Mod.Survivors.Conscript
         public const string SectionSkills = "1-5. Conscript Skills" + ConfigVersion;
         public const string SectionBody = "1-5. Conscript Body" + ConfigVersion;
 
+        [Configure(SectionSkills, -2f, min = -20f, max = 0f)]
+        public static ConfigEntry<float> m2_Pitch;
+
         [Configure(SectionSkills, 2.0f, max = 20f)] 
         public static ConfigEntry<float> M1_Gun_Damage;
         [Configure(SectionSkills, 0.16f, max = 20f)]
@@ -35,7 +38,7 @@ namespace RA2Mod.Survivors.Conscript
         public static ConfigEntry<float> M2_TerrorDrone_JumpTim;
         [Configure(SectionSkills, 20f, max = 200f)]
         public static ConfigEntry<float> M2_TerrorDrone_LifeDuration;
-
+        
         [Configure(SectionSkills, 2f, max = 10f)]
         public static ConfigEntry<float> M2_TerrorDrone_BlastDamage;
         [Configure(SectionSkills, 10f, max = 100f)]
@@ -75,6 +78,9 @@ namespace RA2Mod.Survivors.Conscript
         public static ConfigEntry<float> M4_Garrison_Duration;
         [Configure(SectionSkills, 10f, max = 100f, restartRequired = true)]
         public static ConfigEntry<float> M4_Garrison_Range;
+
+        [Configure(SectionSkills, 5f, max = 100f)]
+        public static ConfigEntry<float> M4_Garrison_Health_Multiplier;
 
         public static void Init()
         {

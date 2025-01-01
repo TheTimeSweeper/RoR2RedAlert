@@ -1,4 +1,5 @@
 ﻿using RA2Mod.Modules.BaseStates;
+using RA2Mod.Survivors.Conscript.Components;
 using RoR2;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace RA2Mod.Survivors.Conscript.States
         public override float TimedBaseDuration => ConscriptConfig.M3_March_Duration;
         public override float TimedBaseCastStartPercentTime => ConscriptConfig.M3_March_Windup;
 
-
         protected OverlapAttack overlapAttack;
         protected Vector3 direction;
 
@@ -25,6 +25,11 @@ namespace RA2Mod.Survivors.Conscript.States
         public override void OnEnter()
         {
             base.OnEnter();
+
+            if(gameObject.TryGetComponent(out GarrisonHolder holder))
+            {
+                holder.TryShowGarrison(false);
+            }
 
             overlapAttack = new OverlapAttack();
             overlapAttack.damageType = DamageType.Stun1s;
@@ -124,6 +129,11 @@ namespace RA2Mod.Survivors.Conscript.States
                 if (speedLinesEffect != null && speedLinesEffect.OwningPool != null)
                 {
                     speedLinesEffect.OwningPool.ReturnObject(speedLinesEffect);
+                }
+
+                if (gameObject.TryGetComponent(out GarrisonHolder holder))
+                {
+                    holder.TryShowGarrison(true);
                 }
             }
         }

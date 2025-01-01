@@ -6,14 +6,14 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
 {
     public class TerrorDroneHurtBox : MonoBehaviour
     {
-        public static IReadOnlyList<HurtBox> readOnlyTerrorDroneHurtBoxList => terrorDroneHurtBoxList;
-        private static readonly List<HurtBox> terrorDroneHurtBoxList = new List<HurtBox>();
-
         [SerializeField]
         private HurtBox hurtBox;
 
         [SerializeField]
         private float setTime = 3;
+
+        [SerializeField]
+        public TerrorDroneTrackedTarget trackedTarget;
 
         private bool boxAdded;
         private HurtBox.DamageModifier _modifierToSet;
@@ -32,11 +32,11 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
 
             if (shouldAdd)
             {
-                terrorDroneHurtBoxList.Add(hurtBox);
+                trackedTarget.Add(hurtBox);
             }
             else
             {
-                terrorDroneHurtBoxList.Remove(hurtBox);
+                trackedTarget.Remove(hurtBox);
             }
         }
 

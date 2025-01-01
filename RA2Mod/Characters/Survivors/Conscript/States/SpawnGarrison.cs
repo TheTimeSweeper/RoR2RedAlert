@@ -1,4 +1,7 @@
 ﻿using RA2Mod.Modules.BaseStates;
+using RA2Mod.Survivors.Conscript.Components;
+using RA2Mod.Survivors.Conscript.Components.Bundled;
+using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,7 +11,7 @@ namespace RA2Mod.Survivors.Conscript.States
     {
         public override float TimedBaseDuration => 1;
         public override float TimedBaseCastStartPercentTime => 1;
-
+        
         public override void OnEnter()
         {
             base.OnEnter();
@@ -21,8 +24,15 @@ namespace RA2Mod.Survivors.Conscript.States
             }
 
             GameObject garrison = UnityEngine.Object.Instantiate(ConscriptAssets.Garrison, pos, Quaternion.identity);
-            garrison.GetComponent<RoR2.TeamFilter>().teamIndex = teamComponent.teamIndex;
+
+            GarrisonController garrisonController = garrison.GetComponent<GarrisonController>();
+            GetComponent<GarrisonHolder>().garrisonController = garrisonController;
+
+            garrisonController.Init(characterBody, teamComponent.teamIndex);
+
             NetworkServer.Spawn(garrison);
+
+            characterBody.master.AddDeployable(garrison.GetComponent<Deployable>(), DeployableSlot.PowerWard);
         }
     }
 }

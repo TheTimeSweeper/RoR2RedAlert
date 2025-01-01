@@ -1,33 +1,11 @@
 {
   "dependencies": {
-    "bbepis-bepinexpack": {
-      "version": "file:BepInExPack",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.kingenderbrine.prefabchildreference": {
       "version": "https://github.com/KingEnderBrine/PrefabChildReference.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "749aa265400eab1b8a493dc475ece2d48cf36d54"
-    },
-    "com.passivepicasso.simplyaddress": {
-      "version": "https://github.com/PassivePicasso/SimplyAddress.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "930d0c66e70d514cfcba88c85f46dbb1312d34db"
-    },
-    "com.passivepicasso.thunderkit": {
-      "version": "https://github.com/PassivePicasso/ThunderKit.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.16.1"
-      },
-      "hash": "2f048021a13d98a8600898a6f4203cfe18554f36"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -116,13 +94,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.scriptablebuildpipeline": {
-      "version": "1.20.1",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.settings-manager": {
       "version": "1.0.3",
       "depth": 2,
@@ -187,24 +158,6 @@
       "source": "embedded",
       "dependencies": {}
     },
-    "riskofthunder-bepinex_gui": {
-      "version": "file:BepInEx_GUI",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "riskofthunder-fixplugintypesserialization": {
-      "version": "file:FixPluginTypesSerialization",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "riskofthunder-ror2bepinexpack": {
-      "version": "file:RoR2BepInExPack",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "riskofthunder-ror2editorkit": {
       "version": "https://github.com/risk-of-thunder/RoR2EditorKit.git",
       "depth": 0,
@@ -213,13 +166,6 @@
         "com.unity.editorcoroutines": "1.0.0"
       },
       "hash": "3373df696da00fa01a2768907554c5752a1141a9"
-    },
-    "riskofthunder-ror2importextensions": {
-      "version": "https://github.com/risk-of-thunder/RoR2ImportExtensions.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "d101e5d64337681ec17093f88fb1ea01d07a55f4"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

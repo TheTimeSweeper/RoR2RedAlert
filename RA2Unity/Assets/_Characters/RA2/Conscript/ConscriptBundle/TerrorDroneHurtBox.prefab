@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 0}
   isBullseye: 0
-  isSniperTarget: 1
+  isSniperTarget: 0
   damageModifier: 0
   hurtBoxGroup: {fileID: 0}
   indexInGroup: -1

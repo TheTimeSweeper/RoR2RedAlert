@@ -226,7 +226,7 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
             BlastAttack blastAttack = new BlastAttack
             {
                 position = point,
-                baseDamage = ConscriptConfig.M2_TerrorDrone_BlastDamage,
+                baseDamage = bulletAttack.damage * ConscriptConfig.M2_TerrorDrone_BlastDamage,
                 baseForce = 0f,
                 radius = blastRadius,
                 attacker = bulletAttack.owner,
@@ -241,6 +241,7 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
                 //bonusForce = 2000f * Vector3.down
             };
             blastAttack.damageType.damageSource = DamageSource.Primary | DamageSource.Secondary;
+            blastAttack.Fire();
 
             Collider[] terrorScanColliders = Physics.OverlapSphere(point, blastRadius, LayerIndex.entityPrecise.mask);
 

@@ -25,6 +25,7 @@ namespace RA2Mod.Survivors.Conscript.States
             damageCoefficient = DamageCoefficient;
             //proc coefficient is set on the components of the projectile prefab
             force = 80f;
+            projectilePitchBonus = ConscriptConfig.m2_Pitch;
 
             //base.projectilePitchBonus = 1;
             //base.minSpread = 0;

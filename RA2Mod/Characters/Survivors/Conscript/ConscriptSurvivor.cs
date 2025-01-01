@@ -7,6 +7,7 @@ using MonoMod.Cil;
 using RA2Mod.General.Components;
 using RA2Mod.Modules;
 using RA2Mod.Modules.Characters;
+using RA2Mod.Survivors.Conscript.Components;
 using RA2Mod.Survivors.Conscript.SkillDefs;
 using RA2Mod.Survivors.Conscript.States;
 using RA2Mod.Survivors.Conscript.States.TerrorDrone;
@@ -102,6 +103,9 @@ namespace RA2Mod.Survivors.Conscript
         {
             VoiceLineController voiceLineController = bodyPrefab.AddComponent<VoiceLineController>();
             voiceLineController.voiceLineContext = new VoiceLineContext("Conscript", 4, 3, 4);
+
+            bodyPrefab.AddComponent<TerrorDroneTrackerBody>();
+            bodyPrefab.AddComponent<GarrisonHolder>();
         }
 
         public override void InitializeEntityStateMachines() 
@@ -212,19 +216,18 @@ namespace RA2Mod.Survivors.Conscript
 
         private void AddSecondarySkills()
         {
-            //here is a basic skill def with all fields accounted for
-            SkillDef secondarySkillDef1 = Skills.CreateSkillDef/*<MagazineSkillDef>*/(new SkillDefInfo
+            TargetOverlaySkillDef secondarySkillDef1 = Skills.CreateSkillDef<TargetOverlaySkillDef>(new SkillDefInfo
             {
                 skillName = "conscript_molotov",
                 skillNameToken = TOKEN_PREFIX + "SECONDARY_MOLOTOV_NAME",
                 skillDescriptionToken = TOKEN_PREFIX + "SECONDARY_MOLOTOV_DESCRIPTION",
                 //keywordTokens = new string[] { "KEYWORD_AGILE" },
                 skillIcon = assetBundle.LoadAsset<Sprite>("texSecondaryIcon"),
-                
+
                 activationState = new EntityStates.SerializableEntityStateType(typeof(ThrowMolotov)),
                 activationStateMachineName = "Weapon2",
                 interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
-                
+
                 baseRechargeInterval = 6f,
                 baseMaxStock = 2,
 
@@ -243,14 +246,11 @@ namespace RA2Mod.Survivors.Conscript
                 cancelSprintingOnActivation = false,
                 forceSprintDuringState = false,
             });
-            //secondarySkillDef1.reloadState = new SerializableEntityStateType(typeof(Reload));
-            //secondarySkillDef1.hasMagazineReloadState = new SerializableEntityStateType(typeof(ReloadFast));
-            //secondarySkillDef1.reloadInterruptPriority = InterruptPriority.Any;
-            //secondarySkillDef1.graceDuration = 5f;
+            secondarySkillDef1.hudOverlayPrefab = ConscriptAssets.TerrorDroneHudOverlayPrefab;
             Config.ConfigureSkillDef(secondarySkillDef1, ConscriptConfig.SectionBody, "M2 Molotov");
 
             //here is a basic skill def with all fields accounted for
-            SkillDef secondarySkillDef2 = Skills.CreateSkillDef/*<MagazineSkillDef>*/(new SkillDefInfo
+            TargetOverlaySkillDef secondarySkillDef2 = Skills.CreateSkillDef<TargetOverlaySkillDef>(new SkillDefInfo
             {
                 skillName = "conscript_terrorDrone",
                 skillNameToken = TOKEN_PREFIX + "SECONDARY_TERROR_NAME",
@@ -280,10 +280,7 @@ namespace RA2Mod.Survivors.Conscript
                 cancelSprintingOnActivation = false,
                 forceSprintDuringState = false,
             });
-            //secondarySkillDef2.reloadState = new SerializableEntityStateType(typeof(Reload));
-            //secondarySkillDef2.hasMagazineReloadState = new SerializableEntityStateType(typeof(ReloadFast));
-            //secondarySkillDef2.reloadInterruptPriority = InterruptPriority.Any;
-            //secondarySkillDef2.graceDuration = 5f;
+            secondarySkillDef2.hudOverlayPrefab = ConscriptAssets.TerrorDroneHudOverlayPrefab;
             Config.ConfigureSkillDef(secondarySkillDef2, ConscriptConfig.SectionBody, "M2 Terror Drone");
 
             Skills.AddSecondarySkills(bodyPrefab, secondarySkillDef1, secondarySkillDef2);
@@ -464,6 +461,13 @@ namespace RA2Mod.Survivors.Conscript
             On.RoR2.HurtBox.OnEnable += HurtBox_OnEnable;
             On.RoR2.HurtBox.OnDisable += HurtBox_OnDisable;
             IL.EntityStates.Engi.SpiderMine.ChaseTarget.FixedUpdate += ChaseTarget_FixedUpdate;
+
+            On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
+        }
+
+        private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
+        {
+            orig(self);
         }
 
         private void ChaseTarget_FixedUpdate(MonoMod.Cil.ILContext il)

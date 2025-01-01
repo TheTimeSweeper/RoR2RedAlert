@@ -1,87 +1,109 @@
-﻿using RoR2;
+﻿using RoR2.UI;
+using RoR2;
+using RoR2.HudOverlay;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace RA2Mod.Survivors.Conscript.Components.Bundled
 {
-    [RequireComponent(typeof(TeamFilter))]
-    public class GarrisonControllerNotBuffWard : MonoBehaviour
+    public class GarrisonController : MonoBehaviour
     {
         [SerializeField]
-        private float searchInterval = 0.2f;
-
+        private CharacterBody thisBody;
         [SerializeField]
-        private float primaryResetInterval = 0.2f;
-
+        private GenericOwnership ownershipComponent;
         [SerializeField]
-        private float radius = 30;
-        public float Radius { get => radius; set => radius = value; }
+        private HealthComponent healthComponent;
+        [SerializeField]
+        private TeamFilter teamFilter;
+        [SerializeField]
+        private GarrisonModel model;
 
-        private List<SkillLocator> _currentBodies = new List<SkillLocator>();
-        private List<SkillLocator> _alreadyAffectedBodies = new List<SkillLocator>();
+        private OverlayController _overlayController;
 
-        private float _searchTim;
-        private float _primaryResetTim;
-        private TeamFilter _teamFilter;
+        private float _gracePeriod = 0.2f;
 
-        private void Awake()
+        public void Init(CharacterBody characterBody, TeamIndex teamIndex)
         {
-            this._teamFilter = base.GetComponent<TeamFilter>();
+            thisBody.baseMaxHealth = characterBody.maxHealth * ConscriptConfig.M4_Garrison_Health_Multiplier;
+            thisBody.baseMaxShield = characterBody.maxShield * ConscriptConfig.M4_Garrison_Health_Multiplier;
+            thisBody.armor = characterBody.armor;
+            ownershipComponent.ownerObject = characterBody.gameObject;
+            teamFilter.teamIndex = teamIndex;
         }
 
-        void FixedUpdate()
+        public void ShowGarrison(bool shouldShow)
         {
-            _searchTim -= Time.fixedDeltaTime;
-            if(_searchTim <= 0)
-            {
-                _searchTim = searchInterval;
-                SearchForTeamBodies();
-            }
+            model.Show(shouldShow);
 
-            _primaryResetTim -= Time.fixedDeltaTime;
-            if(_primaryResetTim <= 0)
+            if (shouldShow)
             {
-                _primaryResetTim = primaryResetInterval;
-                ResetPrimaries();
-            }
-        }
-
-        private void ResetPrimaries()
-        {
-            for (int i = 0; i < _currentBodies.Count; i++)
-            {
-                SkillLocator skillLocator = _currentBodies[i];
-                if (_currentBodies[i] != null)
+                if (Physics.Raycast(base.transform.position, Vector3.down, out RaycastHit raycastHit, 500f, LayerIndex.world.mask))
                 {
-                    skillLocator.primary.stock = skillLocator.primary.maxStock;
-
-                    if (!_alreadyAffectedBodies.Contains(_currentBodies[i]))
-                    {
-                        _alreadyAffectedBodies.Add(_currentBodies[i]);
-                        skillLocator.secondary.stock = skillLocator.secondary.maxStock;
-                    }
+                    base.transform.position = raycastHit.point;
+                    base.transform.up = raycastHit.normal;
                 }
             }
         }
 
-        private void SearchForTeamBodies()
+        private void Start()
         {
-            var teamComponents = TeamComponent.GetTeamMembers(_teamFilter.teamIndex);
-            foreach (var teamComponent in teamComponents)
+            CreateHealthBarOverlay();
+        }
+
+        private void FixedUpdate()
+        {
+            ////if needs to happen after start
+            //if (_overlayController == null)
+            //{
+            //    CreateHealthBarOverlay();
+            //}
+            
+            _gracePeriod -= Time.fixedDeltaTime;
+            if (_gracePeriod > 0)
+                return;
+
+            healthComponent.health -= (healthComponent.body.maxHealth / ConscriptConfig.M4_Garrison_Duration) * Time.fixedDeltaTime;
+            if(healthComponent.health <= 0)
             {
-                if (teamComponent.body && teamComponent.TryGetComponent(out SkillLocator skillLocator))
-                {
-                    if (Vector3.SqrMagnitude(teamComponent.transform.position - transform.position) > radius * radius)
-                    {
-                        _currentBodies.Remove(skillLocator);
-                    }
-                    else
-                    {
-                        _currentBodies.Add(skillLocator);
-                    }
-                }
+                Destroy(gameObject);
+            }
+        }
+
+        private void CreateHealthBarOverlay()
+        {
+            _overlayController = HudOverlayManager.AddOverlay(ownershipComponent.ownerObject, new OverlayCreationParams
+            {
+                prefab = ConscriptAssets.GarrisonHealthBarPrefab,
+                childLocatorEntry = "BottomLeftCluster"
+            });
+
+            _overlayController.onInstanceAdded += OverlayController_onInstanceAdded;
+        }
+
+        private void OverlayController_onInstanceAdded(OverlayController controller, GameObject instanceObject)
+        {
+            instanceObject.GetComponentInChildren<HealthBar>().source = healthComponent;
+
+            if (Input.GetKey(KeyCode.G))
+            {
+                instanceObject.transform.localPosition = Vector3.zero;
+                instanceObject.transform.localRotation = Quaternion.identity;
+                instanceObject.transform.localScale = Vector3.one;
+            }
+        }
+
+        public void Die()
+        {
+            healthComponent.health = 0;
+        }
+
+        private void OnDestroy()
+        {
+            if (_overlayController != null)
+            {
+                _overlayController.onInstanceAdded -= OverlayController_onInstanceAdded;
+                HudOverlayManager.RemoveOverlay(_overlayController);
             }
         }
     }
