@@ -28,11 +28,10 @@ namespace RA2Mod.Survivors.Conscript.States
                 GameObject garrison = UnityEngine.Object.Instantiate(ConscriptAssets.Garrison, pos, Quaternion.identity);
 
                 GarrisonController garrisonController = garrison.GetComponent<GarrisonController>();
-                GetComponent<GarrisonHolder>().garrisonController = garrisonController;
-
-                garrisonController.Init(characterBody, teamComponent.teamIndex);
 
                 NetworkServer.Spawn(garrison);
+
+                garrisonController.RpcInit(gameObject);
 
                 characterBody.master.AddDeployable(garrison.GetComponent<Deployable>(), DeployableSlot.PowerWard);
             }

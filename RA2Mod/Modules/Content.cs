@@ -1,4 +1,5 @@
-﻿using RA2Mod.Survivors.Chrono.Components;
+﻿using R2API;
+using RA2Mod.Survivors.Chrono.Components;
 using RoR2;
 using RoR2.Skills;
 using System;
@@ -77,8 +78,9 @@ namespace RA2Mod.Modules
             return unlockableDef;
         }
 
-        internal static void AddNetworkedObject(GameObject gameObject)
+        internal static void AddNetworkedObject(GameObject gameObject, bool registerNetwork = false)
         {
+            PrefabAPI.RegisterNetworkPrefab(gameObject);
             ContentPacks.networkedObjects.Add(gameObject);
         }
 

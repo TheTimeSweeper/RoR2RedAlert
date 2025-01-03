@@ -137,11 +137,13 @@ namespace RA2Mod.Survivors.Conscript
             wallMaterial.SetFloat("_Cull", 2f);
             Garrison.transform.Find("Scaler/mdlGarrison/Bunker Walls").GetComponent<MeshRenderer>().sharedMaterial =
                 wallMaterial;
+            Garrison.transform.Find("Scaler/mdlGarrison/Bunker Walls2").GetComponent<MeshRenderer>().sharedMaterial =
+                wallMaterial;
             Garrison.transform.Find("Scaler/mdlGarrison/Bunker Wall Low").GetComponent<MeshRenderer>().sharedMaterial =
                 Addressables.LoadAssetAsync<Material>("RoR2/Base/WardOnLevel/matWarbannerSphereIndicator.mat").WaitForCompletion();
             Garrison.transform.Find("Scaler/mdlGarrison/Bunker corners").GetComponent<MeshRenderer>().sharedMaterial.SetHopooMaterial();
 
-            Content.AddNetworkedObject(Garrison);
+            Content.AddNetworkedObject(Garrison, true);
             Content.AddCharacterBodyPrefab(Garrison);
         }
 
@@ -184,6 +186,8 @@ namespace RA2Mod.Survivors.Conscript
                     DestroyOnTimer destroyOnTimer = TerrorDronePrefab.AddComponent<DestroyOnTimer>();
                     destroyOnTimer.duration = ConscriptConfig.M2_TerrorDrone_LifeDuration;
                     destroyOnTimer.enabled = false;
+
+                    Content.AddProjectilePrefab(TerrorDronePrefab); 
                 });
             });
         }

@@ -5,19 +5,19 @@ namespace RA2Mod.Survivors.Conscript.Components
 {
     public class GarrisonHolder : MonoBehaviour
     {
-        public GarrisonController garrisonController;
+        public GarrisonController currentGarrison;
 
         public void TryShowGarrison(bool shouldShow)
         {
-            if (garrisonController == null)
+            if (currentGarrison == null)
                 return;
 
             if (shouldShow)
             {
-                garrisonController.transform.position = transform.position + Vector3.up * 1;
+                currentGarrison.transform.position = transform.position + Vector3.up * 1;
             }
 
-            garrisonController.ShowGarrison(shouldShow);
+            currentGarrison.ShowGarrison(shouldShow);
 
         }
     }

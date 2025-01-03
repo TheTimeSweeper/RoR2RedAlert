@@ -3,10 +3,11 @@ using RoR2;
 using RoR2.HudOverlay;
 using System;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace RA2Mod.Survivors.Conscript.Components.Bundled
 {
-    public class GarrisonController : MonoBehaviour
+    public class GarrisonController : NetworkBehaviour
     {
         [SerializeField]
         private CharacterBody thisBody;
@@ -21,15 +22,25 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
 
         private OverlayController _overlayController;
 
-        private float _gracePeriod = 0.2f;
+        private bool _hasLived;
 
-        public void Init(CharacterBody characterBody, TeamIndex teamIndex)
+        [ClientRpc]
+        public void RpcInit(GameObject ownerBody)
         {
+            CharacterBody characterBody = ownerBody.GetComponent<CharacterBody>();
+
+            if (NetworkServer.active)
+            {
+                ownershipComponent.ownerObject = characterBody.gameObject;
+            }
+
             thisBody.baseMaxHealth = characterBody.maxHealth * ConscriptConfig.M4_Garrison_Health_Multiplier;
             thisBody.baseMaxShield = characterBody.maxShield * ConscriptConfig.M4_Garrison_Health_Multiplier;
             thisBody.armor = characterBody.armor;
-            ownershipComponent.ownerObject = characterBody.gameObject;
-            teamFilter.teamIndex = teamIndex;
+
+            teamFilter.teamIndex = characterBody.teamComponent.teamIndex;
+
+            ownerBody.GetComponent<GarrisonHolder>().currentGarrison = this;
         }
 
         public void ShowGarrison(bool shouldShow)
@@ -46,27 +57,27 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
             }
         }
 
-        private void Start()
-        {
-            CreateHealthBarOverlay();
-        }
-
         private void FixedUpdate()
         {
-            ////if needs to happen after start
-            //if (_overlayController == null)
-            //{
-            //    CreateHealthBarOverlay();
-            //}
-            
-            _gracePeriod -= Time.fixedDeltaTime;
-            if (_gracePeriod > 0)
+            if (!_hasLived)
+            {
+                _hasLived = healthComponent.health > 0;
                 return;
+            }
+            
+            if (ownershipComponent.ownerObject != null && _overlayController == null)
+            {
+                CreateHealthBarOverlay();
+            }
 
             healthComponent.health -= (healthComponent.body.maxHealth / ConscriptConfig.M4_Garrison_Duration) * Time.fixedDeltaTime;
-            if(healthComponent.health <= 0)
+
+            if (NetworkServer.active)
             {
-                Destroy(gameObject);
+                if (healthComponent.health <= 0)
+                {
+                    NetworkServer.DestroyObject(gameObject);
+                }
             }
         }
 

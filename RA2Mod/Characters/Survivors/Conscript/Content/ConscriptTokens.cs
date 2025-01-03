@@ -48,7 +48,7 @@ namespace RA2Mod.Survivors.Conscript
 
             #region Primary
             Language.Add(prefix + "PRIMARY_GUN_NAME", "Gun");
-            Language.Add(prefix + "PRIMARY_GUN_DESCRIPTION", $"Fire gunfor {Tokens.DamageValueText(ConscriptConfig.M1_Gun_Damage)}. Has to reload");
+            Language.Add(prefix + "PRIMARY_GUN_DESCRIPTION", $"Fire gun for {Tokens.DamageValueText(ConscriptConfig.M1_Gun_Damage)}. Has to reload");
 
             Language.Add(prefix + "PRIMARY_FLAK_NAME", "Flak Cannon");
             Language.Add(prefix + "PRIMARY_FLAK_DESCRIPTION", $"Shoot an instant blast for {Tokens.DamageValueText(ConscriptConfig.M1_Flak_Damage)}. Has to reload");
@@ -70,7 +70,7 @@ namespace RA2Mod.Survivors.Conscript
 
             #region Special
             Language.Add(prefix + "SPECIAL_GARRISON_NAME", "Garrison");
-            Language.Add(prefix + "SPECIAL_GARRISON_DESCRIPTION", $"Deploy a small garrison for {Tokens.UtilityText($"{ConscriptConfig.M4_Garrison_Duration} seconds")} that {Tokens.UtilityText("removes the cooldown")} of primary and {Tokens.UtilityText("refreshes stocks")} of secondary. Provides cover from damage but {Tokens.HealthText("can be destroyed")}");
+            Language.Add(prefix + "SPECIAL_GARRISON_DESCRIPTION", $"Deploy a small garrison for {Tokens.UtilityText($"{ConscriptConfig.M4_Garrison_Duration.Value} seconds")} that {Tokens.UtilityText("removes the cooldown")} of primary and {Tokens.UtilityText("refreshes stocks")} of secondary. Provides cover from damage but {Tokens.HealthText("can be destroyed")}");
             #endregion
 
             #region Achievements
