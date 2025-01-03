@@ -1,15 +1,18 @@
 ﻿using EntityStates;
 using RoR2;
 using RoR2.Projectile;
+using UnityEngine;
 
 namespace RA2Mod.Survivors.GI.SkillStates
 {
     public class FireMissile : GenericProjectileBaseState
     {
         public static float BaseDuration => GIConfig.M1_Missile_Duration.Value;
-
+        
         public static float DamageCoefficient => GIConfig.M1_Missile_Damage.Value;
 
+        private Ray _fuckingAimRay;
+        
         public override void OnEnter()
         {
             projectilePrefab = GIAssets.missilePrefab;
@@ -29,16 +32,19 @@ namespace RA2Mod.Survivors.GI.SkillStates
             //base.minSpread = 0;
             //base.maxSpread = 0;
 
-            recoilAmplitude = 0.1f;
+            //recoilAmplitude = 0.1f;
             bloom = 10;
+            _fuckingAimRay = GetAimRay();
 
             base.OnEnter();
+
+            PlayAnimation("Gesture, Override", "ShootGun", "ShootGun.playbackRate", duration);
         }
 
         public override void ModifyProjectileInfo(ref FireProjectileInfo fireProjectileInfo)
         {
-            base.ModifyProjectileInfo(ref fireProjectileInfo);
             fireProjectileInfo.damageTypeOverride = DamageTypeCombo.GenericPrimary;
+            fireProjectileInfo.rotation = Util.QuaternionSafeLookRotation(_fuckingAimRay.direction);
         }
     }
 }

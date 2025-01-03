@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeslaUnattachedAnimator : UnattachedAnimator {
+public class TeslaUnattachedAnimator : UnattachedAnimatorLegacy {
 
     private bool placingCoil;
 

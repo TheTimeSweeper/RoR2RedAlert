@@ -1,5 +1,6 @@
 ﻿using EntityStates;
 using RA2Mod.Modules.BaseStates;
+using RoR2;
 
 namespace RA2Mod.Survivors.Conscript.States
 {
@@ -25,6 +26,7 @@ namespace RA2Mod.Survivors.Conscript.States
                 activatorSkillSlot.AddOneStock();
             }
 
+            Util.PlaySound("Play_captain_m1_reload", gameObject);
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()

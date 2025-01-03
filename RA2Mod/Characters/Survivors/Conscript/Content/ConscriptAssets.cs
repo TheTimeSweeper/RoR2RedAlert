@@ -64,7 +64,7 @@ namespace RA2Mod.Survivors.Conscript
                 UnityEngine.Object.Destroy(GarrisonHealthBarPrefab.GetComponent<VerticalLayoutGroup>());
                 UnityEngine.Object.Destroy(GarrisonHealthBarPrefab.transform.Find("LevelDisplayCluster").gameObject);
                 GarrisonHealthBarPrefab.transform.Find("HealthbarRoot").localPosition = new Vector3(0, -26.6f, 0);
-                GarrisonHealthBarPrefab.transform.Find("HealthbarRoot").GetComponent<RectTransform>().sizeDelta = new Vector2(420, 24);
+                GarrisonHealthBarPrefab.transform.Find("HealthbarRoot").GetComponent<RectTransform>().sizeDelta = new Vector2(360, 24);
                 //GarrisonHealthBarPrefab.transform.Find("HealthbarRoot")
 
             });

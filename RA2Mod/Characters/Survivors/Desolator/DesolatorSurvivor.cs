@@ -150,7 +150,6 @@ namespace RA2Mod.Survivors.Desolator
             voiceLineController.voiceLineContext = new VoiceLineContext("Desolator", 6, 5, 4);
 
             displayPrefab.AddComponent<MenuSoundComponent>().sound = "Play_Desolator_Deploy";
-
         }
 
         private void AdditionalBodySetup()

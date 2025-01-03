@@ -44,6 +44,7 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
             if (_primaryResetTim <= 0)
             {
                 _primaryResetTim = primaryResetInterval;
+                //todo subscribe to onskillactivated instead of doing this every frame
                 ResetPrimaries();
             }
         }
@@ -57,7 +58,7 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
                 {
                     if (skillLocator.primary != null)
                     {
-                        skillLocator.primary.stock = skillLocator.primary.skillDef.requiredStock * 2;
+                        skillLocator.primary.stock = skillLocator.primary.maxStock;// skillLocator.primary.skillDef.requiredStock * 2;
                     }
 
                     if (!_alreadyAffectedBodies.Contains(_currentBodies[i]) && skillLocator.secondary != null)

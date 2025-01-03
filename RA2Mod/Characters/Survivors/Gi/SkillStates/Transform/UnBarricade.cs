@@ -11,7 +11,7 @@ namespace RA2Mod.Survivors.GI.SkillStates
         public override void OnEnter()
         {
             base.OnEnter();
-            base.PlayAnimation("Fullbody, overried", "meleeDashAttack", "dash.playbackRate", duration);
+            base.PlayAnimation("FullBody, Underride", "BufferEmpty", "Charge.playbackRate", duration);
             Util.PlaySound("Play_GIBarricade", gameObject);
         }
     }

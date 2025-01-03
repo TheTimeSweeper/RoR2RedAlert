@@ -25,9 +25,7 @@ namespace RA2Mod.Survivors.GI.SkillStates
         {
             base.OnEnter();
             characterBody.SetAimTimer(2f);
-            muzzleString = "HandR";
-
-            PlayAnimation("LeftArm, Override", "ShootGun", "ShootGun.playbackRate", 1.8f);
+            muzzleString = "GunMuzzle";
         }
 
         protected override void Fire()
@@ -35,6 +33,8 @@ namespace RA2Mod.Survivors.GI.SkillStates
             characterBody.AddSpreadBloom(1.5f);
             EffectManager.SimpleMuzzleFlash(EntityStates.Commando.CommandoWeapon.FirePistol2.muzzleEffectPrefab, gameObject, muzzleString, false);
             Util.PlaySound("Play_GIShootSingle", gameObject);
+
+            PlayAnimation("Gesture, Override", "ShootGun", "ShootGun.playbackRate", interval);
 
             if (isAuthority)
             {

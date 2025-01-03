@@ -22,8 +22,7 @@ namespace RA2Mod.Survivors.Conscript.States
 
             characterMotor.Motor.ForceUnground();
             SmallHop(characterMotor, ConscriptConfig.M3_March_Hop);
-            PlayAnimation("Body", "Jump");
-            PlayAnimation("Arms, Override", "jumpSwingReady");
+            PlayAnimation("FullBody, Override", "ChargeJump");
 
             characterBody.AddBuff(JunkContent.Buffs.IgnoreFallDamage);
         }
@@ -60,8 +59,7 @@ namespace RA2Mod.Survivors.Conscript.States
                 }
                 characterBody.RemoveBuff(JunkContent.Buffs.IgnoreFallDamage);
 
-                PlayAnimation("Body", "BufferEmpty");
-                PlayAnimation("Arms, Override", "BufferEmpty");
+                PlayAnimation("FullBody, Override", "BufferEmpty");
 
 
                 if (gameObject.TryGetComponent(out GarrisonHolder holder))

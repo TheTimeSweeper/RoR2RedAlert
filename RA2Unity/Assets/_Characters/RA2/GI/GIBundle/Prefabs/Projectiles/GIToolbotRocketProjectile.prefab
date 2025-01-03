@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6095705924026308965}
   - component: {fileID: 1884942954253774899}
+  - component: {fileID: 6354418876731331949}
+  - component: {fileID: 6981364490747717483}
   m_Layer: 24
   m_Name: Entity
   m_TagString: Untagged
@@ -45,6 +47,79 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.2084405
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6354418876731331949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2746497873789975006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 488236779, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useOverallCurveOnly: 1
+  resetOnAwake: 1
+  useUnscaledTime: 0
+  curveX:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curveY:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curveZ:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  overallCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeMax: 0.1
+--- !u!114 &6981364490747717483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2746497873789975006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebfa3a854a799b44aa480fab9f4a577f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileController: {fileID: 6161428361237656115}
+  colliders:
+  - {fileID: 1884942954253774899}
 --- !u!1 &8089242059765383994
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +202,9 @@ MonoBehaviour:
   crit: 0
   force: 0
   damageColorIndex: 0
-  damageType: 0
+  damageType:
+    damageType: 0
+    damageTypeExtended: 0
   useDotMaxStacksFromAttacker: 0
   dotMaxStacksFromAttacker: 4294967295
 --- !u!114 &9017381486794091708
@@ -193,11 +270,14 @@ MonoBehaviour:
   ghostTransformAnchor: {fileID: 0}
   startSound: 
   cannotBeDeleted: 0
+  authorityHandlesCollisionEvents: 0
   flightSoundLoop: {fileID: 0}
   canImpactOnTrigger: 0
   allowPrediction: 1
   owner: {fileID: 0}
+  localCollisionHappened: 0
   procCoefficient: 1
+  CheckChildrenForCollidersAndIncludeDisabled: 0
 --- !u!114 &940695773321427934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +330,9 @@ MonoBehaviour:
   lifetime: 4
   lifetimeAfterImpact: 0
   lifetimeRandomOffset: 0
+  minimumPhysicsStepsToKeepAliveAfterImpact: 0
   transformSpace: 0
+  explodeOnLifeTimeExpiration: 0
 --- !u!54 &4143724722004790599
 Rigidbody:
   m_ObjectHideFlags: 0

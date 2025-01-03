@@ -40,6 +40,7 @@ namespace RA2Mod.Survivors.GI.SkillStates
                 this.startedStateGrounded = base.characterMotor.isGrounded;
             }
             base.characterBody.SetSpreadBloom(0f, false);
+            base.PlayAnimation("Fullbody, Underride", "BufferEmpty");
             if (!this.startedStateGrounded)
             {
                 this.PlayAnimation("Body", "Jump");
@@ -50,7 +51,6 @@ namespace RA2Mod.Survivors.GI.SkillStates
                 return;
             }
             slideDuration = slideGroundDuration;
-            base.PlayAnimation("Fullbody, overried", "Dash", "dash.playbackRate", slideDuration);
             if (slideEffectPrefab)
             {
                 Transform parent = base.FindModelChild("Root");

@@ -19,14 +19,14 @@ namespace RA2Mod.Survivors.GI
 {
     public class GISurvivor : SurvivorBase<GISurvivor>
     {
-        public override string assetBundleName => "joeRA2";
+        public override string assetBundleName => "conscript";
 
         public override string bodyName => "RA2GIBody";
         
         public override string masterName => "GIMonsterMaster";
 
-        public override string modelPrefabName => "mdlJoe";
-        public override string displayPrefabName => "JoeDisplay";
+        public override string modelPrefabName => "mdlGI";
+        public override string displayPrefabName => "GIDisplay";
 
         public const string GI_PREFIX = RA2Plugin.DEVELOPER_PREFIX + "_GI_";
 
@@ -40,7 +40,7 @@ namespace RA2Mod.Survivors.GI
 
             characterPortrait = assetBundle.LoadAsset<Texture>("texIconGI"),
             bodyColor = Color.blue,
-            sortPosition = 69.4f,
+            sortPosition = 69.5f,
             
             crosshairBundlePath = "GICrosshair",
             podPrefabAddressablePath = "RoR2/Base/SurvivorPod/SurvivorPod.prefab",
@@ -54,7 +54,7 @@ namespace RA2Mod.Survivors.GI
 
         public override UnlockableDef characterUnlockableDef => GIUnlockables.characterUnlockableDef;
 
-        public override ItemDisplaysBase itemDisplays { get; } = new RA2Mod.General.JoeItemDisplays();
+        public override ItemDisplaysBase itemDisplays { get; }//= new RA2Mod.General.JoeItemDisplays();
 
         public override void Initialize()
         {
@@ -67,7 +67,7 @@ namespace RA2Mod.Survivors.GI
         public override void OnCharacterInitialized()
         {
             Config.ConfigureBody(prefabCharacterBody, GIConfig.SectionBody);
-
+            
             //GIUnlockables.Init();
             GIConfig.Init();
 
@@ -134,6 +134,8 @@ namespace RA2Mod.Survivors.GI
             AddSecondarySkills();
             AddUtiitySkills();
             AddSpecialSkills();
+
+            AddRecolorSkills();
         }
 
         private void AddPrimarySkills()
@@ -408,8 +410,47 @@ namespace RA2Mod.Survivors.GI
 
             Config.ConfigureSkillDef(specialSkillDef1, GIConfig.SectionBody, "M4 Transform");
         }
+
+
+        private void AddRecolorSkills()
+        {
+            if (characterModelObject.GetComponent<SkinRecolorController>().Recolors == null)
+            {
+                Log.Warning("Could not load recolors. types not serialized?");
+                return;
+            }
+
+            SkillFamily recolorFamily = Modules.Skills.CreateGenericSkillWithSkillFamily(bodyPrefab, "LOADOUT_SKILL_COLOR", "Recolor", true).skillFamily;
+
+            SkinRecolorController recolorController = characterModelObject.GetComponent<SkinRecolorController>();
+
+            List<SkillDef> skilldefs = new List<SkillDef> {
+                recolorController.createRecolorSkillDef("Blue"),
+                recolorController.createRecolorSkillDef("Red"),
+                recolorController.createRecolorSkillDef("Green"),
+                recolorController.createRecolorSkillDef("Yellow"),
+                recolorController.createRecolorSkillDef("Orange"),
+                recolorController.createRecolorSkillDef("Cyan"),
+                recolorController.createRecolorSkillDef("Purple"),
+                recolorController.createRecolorSkillDef("Pink"),
+            };
+
+            if (General.GeneralConfig.NewColor.Value)
+            {
+                skilldefs.Add(recolorController.createRecolorSkillDef("Black"));
+            }
+            for (int i = 0; i < skilldefs.Count; i++)
+            {
+
+                Modules.Skills.AddSkillToFamily(recolorFamily, skilldefs[i], null/*i == 0 ? null : null*/);
+
+                AddCssPreviewSkill(i, recolorFamily, skilldefs[i]);
+            }
+
+            FinalizeCSSPreviewDisplayController();
+        }
         #endregion skills
-        
+
         #region skins
         public override void InitializeSkins()
         {

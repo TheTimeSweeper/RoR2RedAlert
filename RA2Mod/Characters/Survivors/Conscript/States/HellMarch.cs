@@ -47,7 +47,7 @@ namespace RA2Mod.Survivors.Conscript.States
             overlapAttack.isCrit = isCrit;
             //overlapAttack.impactSound = impactSound;
 
-            PlayAnimation("Fullbody, overried", "charge", "dash.playbackRate", castStartTime);
+            PlayAnimation("FullBody, Override", "ChargeReady", "Charge.playbackRate", castStartTime);
 
             characterBody.AddBuff(ConscriptBuffs.chargeBuff);
 
@@ -62,7 +62,7 @@ namespace RA2Mod.Survivors.Conscript.States
 
             speedLinesEffect = EffectManager.GetAndActivatePooledEffect(ConscriptAssets.RunSpeedEffect, GetModelTransform(), true);
 
-            PlayAnimation("Fullbody, overried", "DashContinuous");
+            PlayAnimation("FullBody, Override", "ChargeCharge");
         }
 
         private Vector3 GetFlatAimdirectionNormalized()
@@ -120,7 +120,7 @@ namespace RA2Mod.Survivors.Conscript.States
         {
             base.OnExit();
 
-            PlayAnimation("Fullbody, overried", "BufferEmpty");
+            PlayAnimation("FullBody, Override", "BufferEmpty");
             if (!success)
             {
                 aimAuraShit.Dispose();

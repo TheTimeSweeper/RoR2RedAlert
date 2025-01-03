@@ -2,7 +2,9 @@
 using RoR2.Projectile;
 using UnityEngine;
 
-namespace RA2Mod.General.Components {
+namespace RA2Mod.General.Components
+{
+
     public class DotZoneChild : MonoBehaviour {
 
         [SerializeField]

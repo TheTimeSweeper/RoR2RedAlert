@@ -23,16 +23,19 @@ namespace RA2Mod.Survivors.Conscript.States
                 pos = hitInfo.point+ Vector3.up * 2;
             }
 
-            GameObject garrison = UnityEngine.Object.Instantiate(ConscriptAssets.Garrison, pos, Quaternion.identity);
+            if(NetworkServer.active)
+            {
+                GameObject garrison = UnityEngine.Object.Instantiate(ConscriptAssets.Garrison, pos, Quaternion.identity);
 
-            GarrisonController garrisonController = garrison.GetComponent<GarrisonController>();
-            GetComponent<GarrisonHolder>().garrisonController = garrisonController;
+                GarrisonController garrisonController = garrison.GetComponent<GarrisonController>();
+                GetComponent<GarrisonHolder>().garrisonController = garrisonController;
 
-            garrisonController.Init(characterBody, teamComponent.teamIndex);
+                garrisonController.Init(characterBody, teamComponent.teamIndex);
 
-            NetworkServer.Spawn(garrison);
+                NetworkServer.Spawn(garrison);
 
-            characterBody.master.AddDeployable(garrison.GetComponent<Deployable>(), DeployableSlot.PowerWard);
+                characterBody.master.AddDeployable(garrison.GetComponent<Deployable>(), DeployableSlot.PowerWard);
+            }
         }
     }
 }

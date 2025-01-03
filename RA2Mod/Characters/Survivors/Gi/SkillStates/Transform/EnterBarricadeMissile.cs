@@ -6,7 +6,7 @@ namespace RA2Mod.Survivors.GI.SkillStates
     {
         protected override void OnEnterbarricade()
         {
-            base.PlayAnimation("Fullbody, overried", "charge", "dash.playbackRate", duration);
+            base.PlayAnimation("FullBody, Underride", "ChargeReady", "Charge.playbackRate", duration);
             Util.PlaySound("Play_GGIBarricade", gameObject);
             //spawn barricade or somethin
         }

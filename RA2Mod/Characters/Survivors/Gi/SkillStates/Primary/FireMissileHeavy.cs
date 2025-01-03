@@ -37,8 +37,7 @@ namespace RA2Mod.Survivors.GI.SkillStates
 
         protected override void Fire()
         {
-
-            PlayAnimation("Gesture, Override", "ThrowBomb", "ThrowBomb.playbackRate", interval);
+            PlayAnimation("Gesture, Override", "ShootGun", "ShootGun.playbackRate", interval);
 
             Util.PlaySound("Play_PatriotMissile", gameObject);
 

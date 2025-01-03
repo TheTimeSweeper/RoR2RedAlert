@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using RA2Mod.General;
 using RiskOfOptions;
 using RiskOfOptions.OptionConfigs;
 using RiskOfOptions.Options;
@@ -58,7 +59,7 @@ namespace RA2Mod.Modules
 
         private static List<string> disabledSections = new List<string>();
 
-        private static bool enableAll = true;
+        private static bool enableAll => GeneralConfig.Debug.Value;
 
         private static bool loadedIcon;
 
@@ -66,7 +67,7 @@ namespace RA2Mod.Modules
         {
             disabledSections.Add(section);
         }
-        private static bool SectionDisabled(string section)
+        private static bool IsSectionDisabled(string section)
         {
             return disabledSections.Contains(section);
         }
@@ -192,7 +193,7 @@ namespace RA2Mod.Modules
                 description += "\n(restart required)";
             }
 
-            if(!enableAll && SectionDisabled(section))
+            if(!enableAll && IsSectionDisabled(section))
                 return new ConfigEntry<T>(null, defaultValue);
 
             BepInEx.Configuration.ConfigEntry<T> configEntry = MyConfig.Bind(section, name, defaultValue, description);

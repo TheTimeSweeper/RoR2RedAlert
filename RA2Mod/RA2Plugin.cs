@@ -71,8 +71,8 @@ namespace RA2Mod
             new TeslaTrooperSurvivor().Initialize();
             new DesolatorSurvivor().Initialize();
             new ChronoSurvivor().Initialize();
-            new GISurvivor().Initialize();
             new ConscriptSurvivor().Initialize();
+            new GISurvivor().Initialize();
             new MCVSurvivor().Initialize();
             
             new Modules.ContentPacks().Initialize();

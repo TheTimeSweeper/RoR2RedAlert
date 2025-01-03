@@ -21,7 +21,7 @@ namespace RA2Mod.Survivors.Conscript.States
         {
             base.OnEnter();
 
-            PlayAnimation("Arms, Override", "jumpSwingLand");
+            PlayAnimation("FullBody, Override", "ChargeLand");
 
             //non-authority gets it in deserialize
             if (isAuthority)

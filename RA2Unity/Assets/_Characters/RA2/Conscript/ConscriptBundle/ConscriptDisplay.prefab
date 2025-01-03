@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632263835823855700, guid: 101f50586e14acc44a427f83531f1537, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.17
+      value: 12.13476
       objectReference: {fileID: 0}
     - target: {fileID: 7632263835823855700, guid: 101f50586e14acc44a427f83531f1537, type: 3}
       propertyPath: m_LocalPosition.y
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632263835823855700, guid: 101f50586e14acc44a427f83531f1537, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.61
+      value: 0.54809856
       objectReference: {fileID: 0}
     - target: {fileID: 7632263835823855700, guid: 101f50586e14acc44a427f83531f1537, type: 3}
       propertyPath: m_LocalRotation.w
@@ -61,3 +61,196 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 101f50586e14acc44a427f83531f1537, type: 3}
+--- !u!114 &393231296054738785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3814923602515177076, guid: 101f50586e14acc44a427f83531f1537, type: 3}
+  m_PrefabInstance: {fileID: 3568079102831431957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991109271631434747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4d7c23ed2af8246815101ae1afb7aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5991109271631434747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7106943175472120558, guid: 101f50586e14acc44a427f83531f1537, type: 3}
+  m_PrefabInstance: {fileID: 3568079102831431957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7556372166342984936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991109271631434747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -179576646, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyPrefab: {fileID: 0}
+  skillChangeResponses:
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 6
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 7
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - triggerSkillFamily: {fileID: 0}
+    triggerSkill: {fileID: 0}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 393231296054738785}
+          m_TargetAssemblyTypeName: RA2Mod.General.Components.SkinRecolorController,
+            RA2Mod
+          m_MethodName: SetRecolor
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  skinChangeResponses: []

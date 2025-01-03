@@ -11,6 +11,7 @@ using RA2Mod.Survivors.Conscript.Components;
 using RA2Mod.Survivors.Conscript.SkillDefs;
 using RA2Mod.Survivors.Conscript.States;
 using RA2Mod.Survivors.Conscript.States.TerrorDrone;
+using RA2Mod.Survivors.Desolator;
 using RoR2;
 using RoR2.Projectile;
 using RoR2.Skills;
@@ -44,7 +45,7 @@ namespace RA2Mod.Survivors.Conscript
 
             characterPortrait = assetBundle.LoadAsset<Texture>("texIconConscript"),
             bodyColor = Color.red,
-            sortPosition = 69.5f,
+            sortPosition = 69.4f,
             
             //crosshairBundlePath = "GICrosshair",
             crosshairAddressablePath = "RoR2/Base/UI/StandardCrosshair.prefab",
@@ -59,7 +60,7 @@ namespace RA2Mod.Survivors.Conscript
 
         public override UnlockableDef characterUnlockableDef => null;// GIUnlockables.characterUnlockableDef;
 
-        public override ItemDisplaysBase itemDisplays { get; } = new RA2Mod.General.JoeItemDisplays();
+        public override ItemDisplaysBase itemDisplays { get; }// = new RA2Mod.General.JoeItemDisplays();
 
         public override CustomRendererInfo[] customRendererInfos => new CustomRendererInfo[0];
 
@@ -106,6 +107,8 @@ namespace RA2Mod.Survivors.Conscript
 
             bodyPrefab.AddComponent<TerrorDroneTrackerBody>();
             bodyPrefab.AddComponent<GarrisonHolder>();
+
+            prefabCharacterModel.baseRendererInfos[0].defaultMaterial.SetSpecular(0.2205176f, 1.476989f);
         }
 
         public override void InitializeEntityStateMachines() 
@@ -133,6 +136,7 @@ namespace RA2Mod.Survivors.Conscript
             AddSecondarySkills();
             AddUtiitySkills();
             AddSpecialSkills();
+            AddRecolorSkills();
         }
 
         private void AddPrimarySkills()
@@ -347,6 +351,44 @@ namespace RA2Mod.Survivors.Conscript
             Config.ConfigureSkillDef(specialSkillDef1, ConscriptConfig.SectionBody, "M4 Garrison");
 
             Skills.AddSpecialSkills(bodyPrefab, specialSkillDef1);
+        }
+
+        private void AddRecolorSkills()
+        {
+            if (characterModelObject.GetComponent<SkinRecolorController>().Recolors == null)
+            {
+                Log.Warning("Could not load recolors. types not serialized?");
+                return;
+            }
+
+            SkillFamily recolorFamily = Modules.Skills.CreateGenericSkillWithSkillFamily(bodyPrefab, "LOADOUT_SKILL_COLOR", "Recolor", true).skillFamily;
+            
+            SkinRecolorController recolorController = characterModelObject.GetComponent<SkinRecolorController>();
+
+            List<SkillDef> skilldefs = new List<SkillDef> {
+                recolorController.createRecolorSkillDef("Red"),
+                recolorController.createRecolorSkillDef("Blue"),
+                recolorController.createRecolorSkillDef("Green"),
+                recolorController.createRecolorSkillDef("Yellow"),
+                recolorController.createRecolorSkillDef("Orange"),
+                recolorController.createRecolorSkillDef("Cyan"),
+                recolorController.createRecolorSkillDef("Purple"),
+                recolorController.createRecolorSkillDef("Pink"),
+            };
+
+            if (General.GeneralConfig.NewColor.Value)
+            {
+                skilldefs.Add(recolorController.createRecolorSkillDef("Black"));
+            }
+            for (int i = 0; i < skilldefs.Count; i++)
+            {
+
+                Modules.Skills.AddSkillToFamily(recolorFamily, skilldefs[i], null/*i == 0 ? null : null*/);
+
+                AddCssPreviewSkill(i, recolorFamily, skilldefs[i]);
+            }
+
+            FinalizeCSSPreviewDisplayController();
         }
         #endregion skills
 
