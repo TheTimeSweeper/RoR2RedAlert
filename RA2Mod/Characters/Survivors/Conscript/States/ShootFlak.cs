@@ -49,7 +49,7 @@ namespace RA2Mod.Survivors.Conscript.States
             blastAttack.damageType.damageSource = DamageSource.Primary;
             blastAttack.Fire();
 
-            JumpOnEnemy.CheckTerrorDroneHitAndExplode(bulletAttack, ref hitInfo);
+            JumpOnEnemy.CheckTerrorDroneHitAndExplode(damageStat, bulletAttack, ref hitInfo);
 
             bool result = false;
             if (hitInfo.collider)

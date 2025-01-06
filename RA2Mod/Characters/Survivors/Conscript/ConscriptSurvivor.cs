@@ -266,8 +266,8 @@ namespace RA2Mod.Survivors.Conscript
                 activationStateMachineName = "Weapon2",
                 interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
 
-                baseRechargeInterval = 6f,
-                baseMaxStock = 2,
+                baseRechargeInterval = 5f,
+                baseMaxStock = 1,
 
                 rechargeStock = 1,
                 requiredStock = 1,

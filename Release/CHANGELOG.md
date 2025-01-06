@@ -1,4 +1,11 @@
 ## Changelog
+`3.2.0`
+- Fixed starstorm 2 shock drone breaking when this mod is installed
+- Brought Conscript to beta, still behind config. give him a try!
+    - gameplay design iterated, working and networked
+    - added sexy model from skeletor but no animations
+- Added temp model for G.I.
+
 `3.1.2`
 - damagesource update
 

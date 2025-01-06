@@ -1,4 +1,5 @@
 ﻿using EntityStates.Engi.SpiderMine;
+using RA2Mod.Survivors.Conscript.Components.Bundled;
 using RoR2;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
             _hurtBox.healthComponent = targetHurtbox.healthComponent;
             targetHurtbox.hurtBoxGroup.OnValidate();
             _hurtBox.gameObject.SetActive(true);
+            _hurtBox.damageModifier = (HurtBox.DamageModifier)ConscriptSurvivor.TERROR_DRONE_HURTBOX;
             GetComponent<DestroyOnTimer>().enabled = true;
 
             //shut up the beeping

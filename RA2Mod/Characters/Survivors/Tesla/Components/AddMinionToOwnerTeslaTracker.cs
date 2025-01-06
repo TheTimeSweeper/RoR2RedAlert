@@ -5,16 +5,23 @@ namespace RA2Mod.Survivors.Tesla.Components
 {
     public class AddMinionToOwnerTeslaTracker : MonoBehaviour
     {
+        private TeslaTowerControllerController _ownerTowerController;
 
         void Start()
         {
-            GetComponent<CharacterBody>().master.GetComponent<MinionOwnership>().ownerMaster.GetBodyObject().GetComponent<TeslaTowerControllerController>().addNotTower(gameObject);
+            GameObject ownerBodyObject = GetComponent<CharacterBody>().master.minionOwnership.ownerMaster.GetBodyObject();
+            if(ownerBodyObject != null && ownerBodyObject.TryGetComponent(out _ownerTowerController))
+            {
+                _ownerTowerController.addNotTower(gameObject);
+            }
         }
 
         void OnDestroy()
         {
-
-            GetComponent<CharacterBody>().master.GetComponent<MinionOwnership>().ownerMaster.GetBodyObject().GetComponent<TeslaTowerControllerController>().removeNotTower(gameObject);
+            if(_ownerTowerController != null)
+            {
+               _ownerTowerController.removeNotTower(gameObject);
+            }
         }
     }
 }

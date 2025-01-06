@@ -1,6 +1,6 @@
 # Unit Ready
 
-Adds 3 (+1.5 more in config) new survivors, Tesla Trooper, Desolator, and Chrono Legionnaire
+Adds 3 new survivors, Tesla Trooper, Desolator, and Chrono Legionnaire (+2 more in config, Conscript and G.I.)
 
 Based on their respective units from Red Alert 2, but with SkeletorChampion coming in and saying "nah I'm model them to fit RoR2, and look awesome, and my dong is enormous".
 
@@ -41,7 +41,7 @@ Adds the Desolator, who spreads large spheres of radiation everywhere in his wak
 Adds the Chrono Legionnaire, who teleports around and vanishes enemies from existence.  
 - Beta. animations missing, and gameplay has some reworks planned
 - Fully multiplayer compatible
-- ~~Item displays and~~ ragdoll
+- Item displays and ragdoll
 - FULLY configurable
 - Mod Support
   - Autosprint
@@ -52,12 +52,15 @@ Adds the Chrono Legionnaire, who teleports around and vanishes enemies from exis
 <img width="900" src="https://raw.githubusercontent.com/TheTimeSweeper/the/master/RA2Mod/Release/_readme/CSS_Chrono.png" />
 
 # Checking Designs
-For SotS update I just decided to upload the work-in-progress parts of the mod so fuck it 1.5 more new characters. Enable in config.
-- G.I. is simple shoot man who can deploy to become beefier simple shoot man  
-    - gameplay basically finished, fully multiplayer compatible, just missing visuals and effects
-    - fully configurable
+2 More wip characters, fully functional and multiplayer compatible. enable in config and let me know what you think!
 - Conscript is simple shoot man who builds garrisons to help him simple shoot more  
-    - prototype. hav fun
+    - gameplay working and networked
+    - rad model, but no animations (temp placeholders for now)
+    - fully configurable
+- G.I. is simple shoot man who can deploy to become beefier simple shoot man  
+    - gameplay basically finished, fully multiplayer compatible, 
+    - temp model (kitbashed from conscript), missing visuals and effects
+    - fully configurable
 ___ 
 ![](https://raw.githubusercontent.com/TheTimeSweeper/the/master/JoeMod/Release/_readme/zaps_combined.png)  
 ![](https://raw.githubusercontent.com/TheTimeSweeper/the/master/JoeMod/Release/_readme/rad.png)

@@ -149,19 +149,19 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
             }
         }
 
-        public static void CheckTerrorDroneHitAndExplode(BulletAttack bulletAttack, ref BulletAttack.BulletHit hitInfo)
+        public static void CheckTerrorDroneHitAndExplode(float damageStat, BulletAttack bulletAttack, ref BulletAttack.BulletHit hitInfo)
         {
             if (ConscriptSurvivor.IsTerrorDroneTargetHit(ref hitInfo, out HurtBox weakHurtBox))
             {
-                ExplodeAndScan(bulletAttack, weakHurtBox);
+                ExplodeAndScan(damageStat, bulletAttack, weakHurtBox);
             }
         }
 
-        private static void ExplodeAndScan(BulletAttack bulletAttack, HurtBox hitHurtBox)
+        private static void ExplodeAndScan(float damageStat, BulletAttack bulletAttack, HurtBox hitHurtBox)
         {
             hitHurtBox.damageModifier = HurtBox.DamageModifier.Normal;
             if (hitHurtBox.TryGetComponent(out TerrorDroneHurtBox resetModifier)){
-                resetModifier.ResetModifier((HurtBox.DamageModifier)ConscriptSurvivor.TERROR_DRONE_HURTBOX);
+                resetModifier.StartResetModifiertimer((HurtBox.DamageModifier)ConscriptSurvivor.TERROR_DRONE_HURTBOX);
             }
             
             Vector3 point = hitHurtBox.transform.position;
@@ -175,7 +175,7 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
             BlastAttack blastAttack = new BlastAttack
             {
                 position = point,
-                baseDamage = bulletAttack.damage * ConscriptConfig.M2_TerrorDrone_BlastDamage,
+                baseDamage = damageStat * ConscriptConfig.M2_TerrorDrone_BlastDamage,
                 baseForce = 0f,
                 radius = blastRadius,
                 attacker = bulletAttack.owner,
@@ -200,7 +200,7 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
                 {
                     if (hurtBox.damageModifier == (HurtBox.DamageModifier)ConscriptSurvivor.TERROR_DRONE_HURTBOX)
                     {
-                        ExplodeAndScan(bulletAttack, hurtBox);
+                        ExplodeAndScan(damageStat, bulletAttack, hurtBox);
                     }
                 }
             }

@@ -49,7 +49,7 @@ namespace RA2Mod.Survivors.Conscript
         [Configure(SectionDebug, 4f, max = 100f)]
         public static ConfigEntry<float> M4_Garrison_Health_Multiplier;
 
-        //start
+        //real
         [Configure(SectionSkills, 1.4f, max = 20f)] 
         public static ConfigEntry<float> M1_Gun_Damage;
         [Configure(SectionSkills, 0.12f, max = 20f)]
@@ -69,7 +69,7 @@ namespace RA2Mod.Survivors.Conscript
         [Configure(SectionSkills, 5f, max = 20f)]
         public static ConfigEntry<float> M2_Molotov_BaseDamage;
         
-        [Configure(SectionSkills, 2f, max = 10f)]
+        [Configure(SectionSkills, 4f, max = 10f)]
         public static ConfigEntry<float> M2_TerrorDrone_BlastDamage;
 
         [Configure(SectionSkills, 3f, max = 20f)]

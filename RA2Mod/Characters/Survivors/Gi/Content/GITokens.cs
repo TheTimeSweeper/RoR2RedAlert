@@ -29,7 +29,7 @@ namespace RA2Mod.Survivors.GI
             string outro = "..and so he left, ra2 quote.";
             string outroFailure = "..and so he vanished, ra2 quote.";
 
-            Language.Add(prefix + "NAME", "G.I. (Beta)");
+            Language.Add(prefix + "NAME", "G.I. (Alpha)");
             Language.Add(prefix + "DESCRIPTION", desc);
             Language.Add(prefix + "SUBTITLE", "ra2 quote");
             Language.Add(prefix + "LORE", "ra2 quote");
@@ -46,7 +46,7 @@ namespace RA2Mod.Survivors.GI
             #endregion
             
             #region Primary
-            string heavyGun = $"Fire Heavy Machine Gun for {Tokens.DamageValueText(GIConfig.M1_HeavyFire_Damage.Value)}.";
+            string heavyGun = $"Fire a wide, {Tokens.UtilityText("piercing")} Heavy Machine Gun for {Tokens.DamageValueText(GIConfig.M1_HeavyFire_Damage.Value)}.";
             Language.Add(prefix + "PRIMARY_GUN_NAME", "Gun");
             Language.Add(prefix + "PRIMARY_GUN_DESCRIPTION", $"Fire Pistol for {Tokens.DamageText($"{GIConfig.M1_Pistol_Shots.Value}x{GIConfig.M1_Pistol_Damage.Value * 100}% damage")}.\nWhile deployed, {heavyGun}");
             Language.Add(prefix + "PRIMARY_GUN_HEAVY_NAME", "Gun Heavy");

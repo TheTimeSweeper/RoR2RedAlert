@@ -21,10 +21,7 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
 
         void OnEnable()
         {
-            if(hurtBox.damageModifier == _modifierToSet)
-            {
-                AddBox(true);
-            }
+            AddBox(true);
         }
 
         private void AddBox(bool shouldAdd)
@@ -48,7 +45,7 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
             AddBox(false);
         }
 
-        public void ResetModifier(HurtBox.DamageModifier modifierToSet_)
+        public void StartResetModifiertimer(HurtBox.DamageModifier modifierToSet_)
         {
             AddBox(false);
             _modifierToSet = modifierToSet_;

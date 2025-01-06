@@ -86,7 +86,7 @@ namespace RA2Mod.Survivors.Conscript.States
 
         private bool HitCallBack(BulletAttack bulletAttack, ref BulletAttack.BulletHit hitInfo)
         {
-            JumpOnEnemy.CheckTerrorDroneHitAndExplode(bulletAttack, ref hitInfo);
+            JumpOnEnemy.CheckTerrorDroneHitAndExplode(damageStat, bulletAttack, ref hitInfo);
 
             return BulletAttack.defaultHitCallback(bulletAttack, ref hitInfo);
         }
