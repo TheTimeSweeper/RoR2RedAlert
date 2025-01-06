@@ -64,7 +64,7 @@ namespace RA2Mod.Survivors.Conscript
 
         public override CustomRendererInfo[] customRendererInfos => new CustomRendererInfo[0];
 
-        public List<HurtBox> readOnlyTerrorDroneHurtboxes = new List<HurtBox>();
+        //public List<HurtBox> readOnlyTerrorDroneHurtboxes = new List<HurtBox>();
         public const int TERROR_DRONE_HURTBOX = 9090975;
 
         public override void Initialize()
@@ -500,8 +500,8 @@ namespace RA2Mod.Survivors.Conscript
         {
             R2API.RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.EntityStates.Engi.SpiderMine.Detonate.OnEnter += Detonate_OnEnter;
-            On.RoR2.HurtBox.OnEnable += HurtBox_OnEnable;
-            On.RoR2.HurtBox.OnDisable += HurtBox_OnDisable;
+            //On.RoR2.HurtBox.OnEnable += HurtBox_OnEnable;
+            //On.RoR2.HurtBox.OnDisable += HurtBox_OnDisable;
             IL.EntityStates.Engi.SpiderMine.ChaseTarget.FixedUpdate += ChaseTarget_FixedUpdate;
 
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
@@ -539,23 +539,23 @@ namespace RA2Mod.Survivors.Conscript
             return origMagnitude;
         }
 
-        private void HurtBox_OnDisable(On.RoR2.HurtBox.orig_OnDisable orig, HurtBox self)
-        {
-            orig(self);
-            if (self.damageModifier == (HurtBox.DamageModifier)69)
-            {
-                readOnlyTerrorDroneHurtboxes.Remove(self);
-            }
-        }
+        //private void HurtBox_OnDisable(On.RoR2.HurtBox.orig_OnDisable orig, HurtBox self)
+        //{
+        //    orig(self);
+        //    if (self.damageModifier == (HurtBox.DamageModifier)69)
+        //    {
+        //        readOnlyTerrorDroneHurtboxes.Remove(self);
+        //    }
+        //}
 
-        private void HurtBox_OnEnable(On.RoR2.HurtBox.orig_OnEnable orig, HurtBox self)
-        {
-            orig(self);
-            if(self.damageModifier == (HurtBox.DamageModifier)69)
-            {
-                readOnlyTerrorDroneHurtboxes.Add(self);
-            }
-        }
+        //private void HurtBox_OnEnable(On.RoR2.HurtBox.orig_OnEnable orig, HurtBox self)
+        //{
+        //    orig(self);
+        //    if(self.damageModifier == (HurtBox.DamageModifier)69)
+        //    {
+        //        readOnlyTerrorDroneHurtboxes.Add(self);
+        //    }
+        //}
 
         private void Detonate_OnEnter(On.EntityStates.Engi.SpiderMine.Detonate.orig_OnEnter orig, EntityStates.Engi.SpiderMine.Detonate self)
         {

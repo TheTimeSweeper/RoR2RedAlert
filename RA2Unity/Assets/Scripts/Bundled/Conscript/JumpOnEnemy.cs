@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
 {
+
     public class JumpOnEnemy : BaseSpiderMineState
     {
         [SerializeField]

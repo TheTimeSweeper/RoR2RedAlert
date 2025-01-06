@@ -18,7 +18,6 @@ namespace RA2Mod.Survivors.Conscript.Components
             }
 
             currentGarrison.ShowGarrison(shouldShow);
-
         }
     }
 }

@@ -6,70 +6,63 @@ using RoR2;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.SendMouseEvents;
+using UnityEngine.Networking;
 
 namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
 {
     public class JumpOnEnemy : BaseSpiderMineState
     {
-        public static int debugCount;
-
         [SerializeField]
         public AnimationCurve yCurve;
 
         public float totalJumpTim = ConscriptConfig.M2_TerrorDrone_JumpTim;
 
-        public override bool shouldStick => _hasStucked == false;
+        public override bool shouldStick => true;
 
         private Vector3 _initialPosition;
         private HurtBox _targetHurtbox;
-        private HurtBoxGroup _targetHurtBoxGroup;
         private bool _hasStucked;
         private float _fixedJumpTim;
         private float _updateJumpTim;
-        private HurtBox _hurtBox;
         private float _destroyTim;
 
         public override void OnEnter()
         {
             base.OnEnter();
 
-            if (projectileTargetComponent.target == null)
-                return;
-
-            _hurtBox = GetComponent<ChildLocator>().FindChild("HurtBox").GetComponent<HurtBox>();
             _initialPosition = transform.position;
 
             projectileStickOnImpact.ignoreWorld = true;
 
-            if(projectileTargetComponent.target.TryGetComponent(out HurtBox hurtBox))
+            if (isAuthority)
             {
-                _targetHurtBoxGroup = hurtBox.hurtBoxGroup;
-            }else
-            {
-                Log.WarningDebug("no hurtBox");
-                DetachAndEndState();
-                return;
-            }
+                HurtBoxGroup targetHurtBoxGroup = null;
 
-            if (_targetHurtBoxGroup != null)
-            {
-                if (_targetHurtBoxGroup.hurtBoxes.Length > 0)
+                if (projectileTargetComponent.target.TryGetComponent(out HurtBox hurtBox))
                 {
-                    _targetHurtbox = _targetHurtBoxGroup.hurtBoxes[Random.Range(0, _targetHurtBoxGroup.hurtBoxes.Length)];
+                    targetHurtBoxGroup = hurtBox.hurtBoxGroup;
+                }
+                
+                if (targetHurtBoxGroup != null)
+                {
+                    if (targetHurtBoxGroup.hurtBoxes.Length > 0)
+                    {
+                        _targetHurtbox = targetHurtBoxGroup.hurtBoxes[Random.Range(0, targetHurtBoxGroup.hurtBoxes.Length)];
+                    }
+                    else
+                    {
+                        Log.WarningDebug("_targetHurtBoxGroup.hurtBoxes.Length is 0");
+                    }
                 }
                 else
                 {
-                    Log.WarningDebug("_targetHurtBoxGroup.hurtBoxes.Length is 0");
-
-                    DetachAndEndState();
-                    return;
+                    Log.WarningDebug("no _targetHurtBoxGroup");
                 }
             }
-            else
-            {
-                Log.WarningDebug("no _targetHurtBoxGroup");
 
+            if(_targetHurtbox == null)
+            {
+                Log.WarningDebug("no _targetHurtbox");
                 DetachAndEndState();
                 return;
             }
@@ -79,13 +72,12 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
         {
             base.FixedUpdate();
 
-            if (_targetHurtbox == null || _targetHurtBoxGroup == null || rigidbody == null)
+            if (_targetHurtbox == null || rigidbody == null)
             {
                 Log.WarningDebug("From fixedupdate");
                 if (GeneralConfig.Debug.Value)
                 {
                     Log.CheckNullAndWarn(nameof(_targetHurtbox), _targetHurtbox);
-                    Log.CheckNullAndWarn(nameof(_targetHurtBoxGroup), _targetHurtBoxGroup);
                     Log.CheckNullAndWarn(nameof(rigidbody), rigidbody);
                 }
                 DetachAndEndState();
@@ -95,12 +87,6 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
 
             if (_hasStucked)
             {
-                //_destroyTim += Time.deltaTime;
-
-                //if(_destroyTim > 20)
-                //{
-                //    Destroy(gameObject);
-                //}
                 return;
             }
 
@@ -118,7 +104,7 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
         
         public override void Update()
         {
-            if (!_hasStucked || projectileTargetComponent.target == null)
+            if (!_hasStucked && _targetHurtbox != null)
             {
                 _updateJumpTim += Time.deltaTime;
                 FlyTowardTarget(_updateJumpTim);
@@ -128,19 +114,19 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
         private void DetachAndEndState()
         {
             base.rigidbody.AddForce(Vector3.up, ForceMode.VelocityChange);
+            projectileStickOnImpact.ignoreWorld = false;
             outer.SetNextState(new WaitForStick());
         }
 
         private void FlyTowardTarget(float t)
         {
-            if(_targetHurtbox == null || _targetHurtBoxGroup == null || rigidbody == null)
+            if(_targetHurtbox == null || rigidbody == null)
             {
                 Log.WarningDebug("From flytwoardtarget");
 
                 if (GeneralConfig.Debug.Value)
                 {
                     Log.CheckNullAndWarn(nameof(_targetHurtbox), _targetHurtbox);
-                    Log.CheckNullAndWarn(nameof(_targetHurtBoxGroup), _targetHurtBoxGroup);
                     Log.CheckNullAndWarn(nameof(rigidbody), rigidbody);
                 }
                 DetachAndEndState();
@@ -154,50 +140,13 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
             position.y = Mathf.Lerp(_initialPosition.y, _targetHurtbox.transform.position.y, yCurve.Evaluate(t / totalJumpTim));
             base.rigidbody.MovePosition(position);
         }
-        
+
         private void GetStucked()
         {
-            _targetHurtBoxGroup.hurtBoxes = _targetHurtBoxGroup.hurtBoxes.Append(_hurtBox).ToArray();
-            _hurtBox.healthComponent = _targetHurtbox.healthComponent;
-            _targetHurtBoxGroup.OnValidate();
-            //_hurtBox.hurtBoxGroup = _targetHurtbox.hurtBoxGroup;
-            _hurtBox.gameObject.SetActive(true);
-            gameObject.name += debugCount;
-            debugCount++;
-            GetComponent<DestroyOnTimer>().enabled = true;
-
-
-            base.FindModelChild("PreDetonate")?.gameObject.SetActive(false);
-        }
-
-        public override void OnExit()
-        {
-            base.OnExit();
-            Log.WarningDebug($"exiting {gameObject.name}, outer.destroying {outer.destroying}");
-            ReturnTheNaturalOrder();
-        }
-
-        private void ReturnTheNaturalOrder()
-        {
-            if (_targetHurtBoxGroup)
+            if (isAuthority)
             {
-                //sorry for linq just lazy
-                List<HurtBox> list = _targetHurtBoxGroup.hurtBoxes.ToList();
-                if (list.Contains(_hurtBox))
-                {
-                    list.Remove(_hurtBox);
-                }
-                _targetHurtBoxGroup.hurtBoxes = list.ToArray();
-                _targetHurtBoxGroup.OnValidate();
-                _targetHurtBoxGroup = null;
+                outer.SetNextState(new StickOnEnemy { targetHurtbox = _targetHurtbox });
             }
-            if (_hurtBox != null)
-            {
-                _hurtBox.gameObject.SetActive(false);
-                _hurtBox.healthComponent = null;
-            }
-
-            projectileStickOnImpact.ignoreWorld = false;
         }
 
         public static void CheckTerrorDroneHitAndExplode(BulletAttack bulletAttack, ref BulletAttack.BulletHit hitInfo)
@@ -255,6 +204,18 @@ namespace RA2Mod.Survivors.Conscript.States.TerrorDrone
                     }
                 }
             }
+        }
+
+        public override void OnSerialize(NetworkWriter writer)
+        {
+            base.OnSerialize(writer);
+            writer.Write(HurtBoxReference.FromHurtBox(_targetHurtbox));
+        }
+        
+        public override void OnDeserialize(NetworkReader reader)
+        {
+            base.OnDeserialize(reader);
+            _targetHurtbox = reader.ReadHurtBoxReference().ResolveHurtBox();
         }
     }
 }

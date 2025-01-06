@@ -350,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   falloffModel: 0
   blastRadius: 10
-  blastDamageCoefficient: 0
+  blastDamageCoefficient: 1
   blastProcCoefficient: 1
   blastAttackerFiltering: 0
   bonusBlastForce: {x: 0, y: 0, z: 0}
@@ -382,7 +382,7 @@ MonoBehaviour:
   lifetimeExpiredSound: {fileID: 0}
   offsetForLifetimeExpiredSound: 0
   destroyOnEnemy: 0
-  destroyOnWorld: 0
+  destroyOnWorld: 1
   impactOnWorld: 1
   timerAfterImpact: 0
   lifetime: 2
@@ -438,7 +438,7 @@ MonoBehaviour:
   offsetForLifetimeExpiredSound: 0
   destroyOnEnemy: 0
   destroyOnWorld: 0
-  impactOnWorld: 1
+  impactOnWorld: 0
   timerAfterImpact: 0
   lifetime: 3
   lifetimeAfterImpact: 0

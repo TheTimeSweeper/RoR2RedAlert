@@ -1,9 +1,11 @@
-﻿using RA2Mod.Modules.BaseStates;
+﻿using EntityStates;
+using RA2Mod.Modules.BaseStates;
 using RA2Mod.Survivors.Conscript.Components;
 using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using static RoR2.BlastAttack;
 
 namespace RA2Mod.Survivors.Conscript.States
@@ -49,9 +51,15 @@ namespace RA2Mod.Survivors.Conscript.States
 
             PlayAnimation("FullBody, Override", "ChargeReady", "Charge.playbackRate", castStartTime);
 
-            characterBody.AddBuff(ConscriptBuffs.chargeBuff);
+            if (NetworkServer.active)
+            {
+                characterBody.AddBuff(ConscriptBuffs.chargeBuff);
+            }
 
-            aimAuraShit = cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
+            if (isAuthority)
+            {
+                aimAuraShit = cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
+            }
         }
 
         protected override void OnCastEnter()
@@ -106,6 +114,13 @@ namespace RA2Mod.Survivors.Conscript.States
             direction += Vector3.Dot(crossAimDirection, inputBank.moveVector) * crossMoveDirection * ConscriptConfig.M3_March_TurnInfluence * GetDeltaTime();
         }
 
+        public override void ModifyNextState(EntityState nextState)
+        {
+            base.ModifyNextState(nextState);
+            if (nextState is HellMarchStompJump)
+                success = true;
+        }
+
         protected override void SetNextState()
         {
             if (success)
@@ -123,8 +138,14 @@ namespace RA2Mod.Survivors.Conscript.States
             PlayAnimation("FullBody, Override", "BufferEmpty");
             if (!success)
             {
-                aimAuraShit.Dispose();
-                characterBody.RemoveBuff(ConscriptBuffs.chargeBuff);
+                if (isAuthority)
+                {
+                    aimAuraShit.Dispose();
+                }
+                if (NetworkServer.active)
+                {
+                    characterBody.RemoveBuff(ConscriptBuffs.chargeBuff);
+                }
 
                 if (speedLinesEffect != null && speedLinesEffect.OwningPool != null)
                 {

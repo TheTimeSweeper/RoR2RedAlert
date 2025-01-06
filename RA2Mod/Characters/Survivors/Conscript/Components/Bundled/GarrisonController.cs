@@ -18,29 +18,45 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
         [SerializeField]
         private TeamFilter teamFilter;
         [SerializeField]
+        private TeamComponent teamFilter2;
+        [SerializeField]
         private GarrisonModel model;
 
         private OverlayController _overlayController;
 
         private bool _hasLived;
 
+        private float _takeDamageInterval = 0.2f;
+        private float _takeDamageTim;
+        //anyone reading this, don't do this. just make your spawned thing a body and give it a master and do mastersummon.perform
+        //I reinvented the wheel before I realized that's what I was doing lol
         [ClientRpc]
         public void RpcInit(GameObject ownerBody)
         {
-            CharacterBody characterBody = ownerBody.GetComponent<CharacterBody>();
-
+            CharacterBody ownerCharacterBody = ownerBody.GetComponent<CharacterBody>();
+            
             if (NetworkServer.active)
             {
-                ownershipComponent.ownerObject = characterBody.gameObject;
+                ownershipComponent.ownerObject = ownerCharacterBody.gameObject;
             }
 
-            thisBody.baseMaxHealth = characterBody.maxHealth * ConscriptConfig.M4_Garrison_Health_Multiplier;
-            thisBody.baseMaxShield = characterBody.maxShield * ConscriptConfig.M4_Garrison_Health_Multiplier;
-            thisBody.armor = characterBody.armor;
+            thisBody.baseMaxHealth = ownerCharacterBody.maxHealth * ConscriptConfig.M4_Garrison_Health_Multiplier;
+            thisBody.baseMaxShield = ownerCharacterBody.maxShield * ConscriptConfig.M4_Garrison_Health_Multiplier;
+            thisBody.baseRegen = -thisBody.baseMaxHealth / ConscriptConfig.M4_Garrison_Duration;
+            thisBody.armor = ownerCharacterBody.armor;
 
-            teamFilter.teamIndex = characterBody.teamComponent.teamIndex;
+            teamFilter.teamIndex = ownerCharacterBody.teamComponent.teamIndex;
+            teamFilter2.teamIndex = ownerCharacterBody.teamComponent.teamIndex;
 
-            ownerBody.GetComponent<GarrisonHolder>().currentGarrison = this;
+            if(ownerBody.TryGetComponent(out GarrisonHolder garrisonHolder))
+            {
+
+               garrisonHolder.currentGarrison = this;
+            } 
+            else
+            {
+                Log.Warning("no GarrisonHolder");
+            }
         }
 
         public void ShowGarrison(bool shouldShow)
@@ -61,22 +77,54 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
         {
             if (!_hasLived)
             {
-                _hasLived = healthComponent.health > 0;
+                _hasLived = healthComponent.alive;
                 return;
             }
-            
+
             if (ownershipComponent.ownerObject != null && _overlayController == null)
             {
                 CreateHealthBarOverlay();
             }
 
-            healthComponent.health -= (healthComponent.body.maxHealth / ConscriptConfig.M4_Garrison_Duration) * Time.fixedDeltaTime;
+            ////healthComponent.health -= (healthComponent.body.maxHealth / ConscriptConfig.M4_Garrison_Duration) * Time.fixedDeltaTime;
 
-            if (NetworkServer.active)
+            //if (NetworkServer.active && healthComponent.alive)
+            //{
+            //    _takeDamageTim -= Time.fixedDeltaTime;
+            //    if (_takeDamageTim > 0)
+            //        return;
+
+            //    if (_takeDamageTim < 0)
+            //    {
+            //        _takeDamageTim += _takeDamageInterval;
+            //    }
+            //    TakeDamage((healthComponent.body.maxHealth / ConscriptConfig.M4_Garrison_Duration) * _takeDamageInterval);
+
+            //    //if (!healthComponent.alive)
+            //    //{
+            //    //    NetworkServer.DestroyObject(gameObject);
+            //    //}
+            //}
+        }
+        
+        private void TakeDamage(float damage)
+        {
+            if (healthComponent && healthComponent.alive)
             {
-                if (healthComponent.health <= 0)
+                if (NetworkServer.active)
                 {
-                    NetworkServer.DestroyObject(gameObject);
+                    DamageInfo damageInfo = new DamageInfo();
+                    damageInfo.attacker = null;
+                    damageInfo.inflictor = null;
+                    damageInfo.position = transform.position;
+                    damageInfo.crit = false;
+                    damageInfo.damage = damage;
+                    damageInfo.damageColorIndex = DamageColorIndex.Default;
+                    damageInfo.damageType = DamageType.Generic;
+                    damageInfo.force = Vector3.zero;
+                    damageInfo.procCoefficient = 0f;
+                    damageInfo.procChainMask = default(ProcChainMask);
+                    healthComponent.TakeDamage(damageInfo);
                 }
             }
         }
@@ -94,6 +142,7 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
 
         private void OverlayController_onInstanceAdded(OverlayController controller, GameObject instanceObject)
         {
+            //todo ew
             instanceObject.GetComponentInChildren<HealthBar>().source = healthComponent;
 
             if (Input.GetKey(KeyCode.G))

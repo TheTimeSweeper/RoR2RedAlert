@@ -71,6 +71,9 @@ namespace RA2Mod.Survivors.Conscript
             #region Special
             Language.Add(prefix + "SPECIAL_GARRISON_NAME", "Garrison");
             Language.Add(prefix + "SPECIAL_GARRISON_DESCRIPTION", $"Deploy a small garrison for {Tokens.UtilityText($"{ConscriptConfig.M4_Garrison_Duration.Value} seconds")} that {Tokens.UtilityText("removes the cooldown")} of primary and {Tokens.UtilityText("refreshes stocks")} of secondary. Provides cover from damage but {Tokens.HealthText("can be destroyed")}");
+            
+
+            
             #endregion
 
             #region Achievements

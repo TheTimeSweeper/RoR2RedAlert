@@ -20,6 +20,7 @@ namespace RA2Mod.Survivors.Conscript
     public static class ConscriptAssets
     {
         public static GameObject Garrison;
+        public static GameObject GarrisonMasterPrefab;
         public static GameObject GarrisonHealthBarPrefab;
         public static GameObject Molotov;
         public static GameObject RunSpeedEffect;
@@ -113,7 +114,6 @@ namespace RA2Mod.Survivors.Conscript
                 childrenOnImpactComponent.blastDamageCoefficient = dotZoneDamage;
 
                 ProjectileImpactExplosion explosionOnHurtComponent = projectileImpactComponents[1];
-                Log.Warning($"blastdone {blastEffect.isDone}");
                 explosionOnHurtComponent.explosionEffect = blastEffect;
                 explosionOnHurtComponent.impactEffect = blastEffect;
 
@@ -125,7 +125,7 @@ namespace RA2Mod.Survivors.Conscript
         
         private static void CreateGarrison()
         {
-            Garrison = _assetBundle.LoadAsset<GameObject>("Garrison").DebugClone(true);
+            Garrison = _assetBundle.LoadAsset<GameObject>("GarrisonBody");
             BuffWard garrisonBuffWard = Garrison.GetComponent<BuffWard>();
             garrisonBuffWard.buffDef = ConscriptBuffs.magazineBuff;
             garrisonBuffWard.expireDuration = ConscriptConfig.M4_Garrison_Duration;
@@ -145,6 +145,9 @@ namespace RA2Mod.Survivors.Conscript
 
             Content.AddNetworkedObject(Garrison, true);
             Content.AddCharacterBodyPrefab(Garrison);
+            //GarrisonMasterPrefab = _assetBundle.LoadAsset<GameObject>("GarrisonMaster");
+            //PrefabAPI.RegisterNetworkPrefab(GarrisonMasterPrefab);
+            //Content.AddMasterPrefab(GarrisonMasterPrefab);
         }
 
         private static void WheewBoyMakeATerrorDrone()

@@ -15,6 +15,8 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
         [SerializeField]
         private TeamFilter teamFilter;
         [SerializeField]
+        private TeamComponent teamFilter2;
+        [SerializeField]
         private GarrisonModel model;
 
         public void Die()

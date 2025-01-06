@@ -915,11 +915,13 @@ GameObject:
   - component: {fileID: 88151802240948825}
   - component: {fileID: 1098131855416864966}
   - component: {fileID: 9129955768732426491}
-  - component: {fileID: 5711506755882053516}
-  - component: {fileID: 6935518260362062619}
-  - component: {fileID: 2326028254064980593}
+  - component: {fileID: 2914788567176422425}
+  - component: {fileID: 7365607926997298389}
+  - component: {fileID: 4071236474460979322}
+  - component: {fileID: 8738998022033417640}
+  - component: {fileID: 4374654385190367854}
   m_Layer: 0
-  m_Name: Garrison
+  m_Name: GarrisonBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1053,9 +1055,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBody: {fileID: 88151802240948825}
-  ownershipComponent: {fileID: 2326028254064980593}
+  ownershipComponent: {fileID: 4374654385190367854}
   healthComponent: {fileID: 1098131855416864966}
   teamFilter: {fileID: 7428907386688130280}
+  teamFilter2: {fileID: 5128992947985413250}
   model: {fileID: 125650542427203684}
 --- !u!114 &5943495303785420250
 MonoBehaviour:
@@ -1131,13 +1134,13 @@ MonoBehaviour:
   BaseImportance: 0
   Importance: -1
   inLava: 0
-  baseNameToken: 
+  baseNameToken: HABIBI_CONSCRIPT_SPECIAL_GARRISON_NAME
   subtitleNameToken: 
-  bodyFlags: 4
+  bodyFlags: 0
   lavaCooldown: 0.2
   rootMotionInMainState: 0
   mainRootSpeed: 0
-  baseMaxHealth: 0
+  baseMaxHealth: 100
   baseRegen: 0
   baseMaxShield: 0
   baseMoveSpeed: 0
@@ -1232,7 +1235,7 @@ MonoBehaviour:
   - {fileID: 3635064586969896406}
   mainHurtBox: {fileID: 3635064586969896406}
   bullseyeCount: 0
---- !u!114 &5711506755882053516
+--- !u!114 &2914788567176422425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1241,10 +1244,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 6456288251552602404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 2085546465, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Script: {fileID: -1277448904, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6935518260362062619
+  deathStateMachine: {fileID: 7365607926997298389}
+  deathState:
+    _typeName: EntityStates.GenericCharacterDeath, RoR2, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  idleStateMachine: []
+  bypassDeathLayerChange: 0
+--- !u!114 &7365607926997298389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456288251552602404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1297580292, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customName: JustForDeath
+  initialStateType:
+    _typeName: EntityStates.Idle, RoR2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  mainStateType:
+    _typeName: EntityStates.Idle, RoR2, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  debug: 0
+--- !u!114 &4071236474460979322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456288251552602404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1918207524, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateMachines:
+  - {fileID: 7365607926997298389}
+--- !u!114 &8738998022033417640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1259,19 +1300,19 @@ MonoBehaviour:
   onUndeploy:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1098131855416864966}
-        m_TargetAssemblyTypeName: RoR2.HealthComponent, RoR2
-        m_MethodName: Die
-        m_Mode: 6
+      - m_Target: {fileID: 2914788567176422425}
+        m_TargetAssemblyTypeName: RoR2.CharacterDeathBehavior, RoR2
+        m_MethodName: OnDeath
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2326028254064980593
+--- !u!114 &4374654385190367854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

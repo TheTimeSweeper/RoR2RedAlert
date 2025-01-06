@@ -5,6 +5,15 @@ namespace RA2Mod.Survivors.Conscript.Components
 {
     public class TerrorDroneTrackerBody : MonoBehaviour
     {
+        void OnEnable()
+        {
+            InstanceTracker.Add(this);           
+        }
+        void OnDisable()
+        {
+            InstanceTracker.Remove(this);
+        }
+
         public delegate void AddTargetEvent(HurtBox hurtBox);
         public event AddTargetEvent OnAddTarget;
         

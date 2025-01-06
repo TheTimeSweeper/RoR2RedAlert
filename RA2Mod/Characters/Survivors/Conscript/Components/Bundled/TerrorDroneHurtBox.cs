@@ -21,7 +21,10 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
 
         void OnEnable()
         {
-            AddBox(true);
+            if(hurtBox.damageModifier == _modifierToSet)
+            {
+                AddBox(true);
+            }
         }
 
         private void AddBox(bool shouldAdd)

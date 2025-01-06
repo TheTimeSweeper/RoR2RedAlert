@@ -4,6 +4,7 @@ using RA2Mod.Survivors.Conscript.Components;
 using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Networking;
 
 namespace RA2Mod.Survivors.Conscript.States
 {
@@ -99,14 +100,20 @@ namespace RA2Mod.Survivors.Conscript.States
         public override void OnExit()
         {
             base.OnExit();
-            aimAuraShit.Dispose();
-            if (characterBody.HasBuff(ConscriptBuffs.chargeBuff))
+            if (isAuthority)
             {
-                characterBody.RemoveBuff(ConscriptBuffs.chargeBuff);
+                aimAuraShit.Dispose();
             }
-            if (characterBody.HasBuff(JunkContent.Buffs.IgnoreFallDamage))
+            if (NetworkServer.active)
             {
-                characterBody.RemoveBuff(JunkContent.Buffs.IgnoreFallDamage);
+                if (characterBody.HasBuff(ConscriptBuffs.chargeBuff))
+                {
+                    characterBody.RemoveBuff(ConscriptBuffs.chargeBuff);
+                }
+                if (characterBody.HasBuff(JunkContent.Buffs.IgnoreFallDamage))
+                {
+                    characterBody.RemoveBuff(JunkContent.Buffs.IgnoreFallDamage);
+                }
             }
 
             if (gameObject.TryGetComponent(out GarrisonHolder holder))

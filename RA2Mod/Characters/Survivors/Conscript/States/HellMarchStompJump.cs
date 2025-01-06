@@ -24,7 +24,10 @@ namespace RA2Mod.Survivors.Conscript.States
             SmallHop(characterMotor, ConscriptConfig.M3_March_Hop);
             PlayAnimation("FullBody, Override", "ChargeJump");
 
-            characterBody.AddBuff(JunkContent.Buffs.IgnoreFallDamage);
+            if (NetworkServer.active)
+            {
+                characterBody.AddBuff(JunkContent.Buffs.IgnoreFallDamage);
+            }
         }
 
         public override void FixedUpdate()
@@ -47,18 +50,33 @@ namespace RA2Mod.Survivors.Conscript.States
             }
         }
 
+
+        public override void ModifyNextState(EntityState nextState)
+        {
+            base.ModifyNextState(nextState);
+            if (nextState is HellMarchStompStomp)
+                success = true;
+        }
+
         public override void OnExit()
         {
             base.OnExit();
             if (!success)
             {
-                aimAuraShit.Dispose();
-                if (characterBody.HasBuff(ConscriptBuffs.chargeBuff))
-                {
-                    characterBody.RemoveBuff(ConscriptBuffs.chargeBuff);
-                }
-                characterBody.RemoveBuff(JunkContent.Buffs.IgnoreFallDamage);
 
+                if (isAuthority)
+                {
+                    aimAuraShit.Dispose();
+                }
+
+                if (NetworkServer.active)
+                {
+                    if (characterBody.HasBuff(ConscriptBuffs.chargeBuff))
+                    {
+                        characterBody.RemoveBuff(ConscriptBuffs.chargeBuff);
+                    }
+                    characterBody.RemoveBuff(JunkContent.Buffs.IgnoreFallDamage);
+                }
                 PlayAnimation("FullBody, Override", "BufferEmpty");
 
 
