@@ -52,7 +52,7 @@ Adds the Chrono Legionnaire, who teleports around and vanishes enemies from exis
 <img width="900" src="https://raw.githubusercontent.com/TheTimeSweeper/the/master/RA2Mod/Release/_readme/CSS_Chrono.png" />
 
 # Checking Designs
-2 More wip characters, fully functional and multiplayer compatible. enable in config and let me know what you think!
+2 More wip characters, fully functional and multiplayer compatible. Enable in config and let me know what you think!
 - Conscript is simple shoot man who builds garrisons to help him simple shoot more  
     - gameplay working and networked
     - rad model, but no animations (temp placeholders for now)

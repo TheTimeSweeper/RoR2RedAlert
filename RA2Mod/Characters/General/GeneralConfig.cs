@@ -83,8 +83,8 @@ namespace RA2Mod.General
             TeslaEnabled = Config.CharacterEnableConfig(sectionSurvivors, "Tesla Trooper", "", true);
             DesolatorEnabled = Config.CharacterEnableConfig(sectionSurvivors, "Desolator", "", true);
             ChronoEnabled = Config.CharacterEnableConfig(sectionSurvivors, "Chrono Legionnaire", "multiplayer ready and everything. just needs polish, and some maybe kit reworks. feedback welcome!", true);
-            ConscriptEnabled = Config.CharacterEnableConfig(sectionSurvivors, "Conscript Beta", "Skills Functional and networked. Model is rad but no animations. Missing a polish, but I believe he's good to play, gameplay-wise.", true);
-            GIEnabled = Config.CharacterEnableConfig(sectionSurvivors, "GI Alpha", "All skills perfactly functional in multiplayer and everything, just needs visuals. reach out and give feedback!", true);
+            ConscriptEnabled = Config.CharacterEnableConfig(sectionSurvivors, "Conscript Beta", "Skills Functional and networked. Model is rad but no animations. Missing a polish, but I believe he's good to play, gameplay-wise.", false);
+            GIEnabled = Config.CharacterEnableConfig(sectionSurvivors, "GI Alpha", "All skills perfactly functional in multiplayer and everything, just needs visuals. reach out and give feedback!", false);
             MCVEnabled = RA2Plugin.instance.Config.Bind(sectionSurvivors, "MCV Test", false, "We're getting stupid now");// Config.CharacterEnableConfig(sectionSurvivors, "MCV test", "we're getting stupid now", false);
         }
     }
