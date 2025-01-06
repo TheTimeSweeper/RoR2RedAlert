@@ -1,6 +1,6 @@
 # Unity Project Thunderkit Setup
 0. have [git](https://git-scm.com/) installed
-1. open project, necessary packages are in manifest
+1. open project, ~~necessary packages are in manifest~~ add thunderkit and ror2importextensions unity packages. if you don't know how, reach out
 1. it'll warn you there are compile errors. ignore
 1. thunderkit settings window (if it doesn't show up, top toolbar Tools > Thunderkit > Settings) > Import Configuration as follows:  
 
