@@ -108,11 +108,7 @@ namespace RA2Mod.Survivors.Tesla.States
             {
                 if (_weaponComponent)
                 {
-                    if (_weaponComponent.hasTeslaCoil)
-                    {
-                        return ModdedLightningType.Tesla;
-                    }
-                    return _weaponComponent.teslaSkinDef.ZapLightningType;
+                    return _weaponComponent.GetModdedOrbType();
                 }
 
                 return ModdedLightningType.Ukulele;
@@ -125,7 +121,7 @@ namespace RA2Mod.Survivors.Tesla.States
             {
                 if (_weaponComponent)
                 {
-                    return _weaponComponent.teslaSkinDef.ZapBounceLightningType;
+                    return _weaponComponent.GetBounceOrbType();
                 }
 
                 return LightningOrb.LightningType.MageLightning;

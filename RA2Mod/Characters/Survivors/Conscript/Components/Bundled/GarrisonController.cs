@@ -120,7 +120,7 @@ namespace RA2Mod.Survivors.Conscript.Components.Bundled
                     damageInfo.crit = false;
                     damageInfo.damage = damage;
                     damageInfo.damageColorIndex = DamageColorIndex.Default;
-                    damageInfo.damageType = DamageType.Generic;
+                    damageInfo.damageType = DamageType.Silent;
                     damageInfo.force = Vector3.zero;
                     damageInfo.procCoefficient = 0f;
                     damageInfo.procChainMask = default(ProcChainMask);

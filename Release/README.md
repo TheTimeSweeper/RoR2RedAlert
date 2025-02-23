@@ -82,6 +82,10 @@ Westwood Studios - sounds, inspiration
 
 Thanks to the lovely reception from the community, including all the great feedback and ideas c:
 
+## For Skin Makers
+See [this page](https://thunderstore.io/package/TheTimesweeper/Red_Alert/wiki/3105-the-recolor-system-for-custom-skins/) for how to interface with the mod's recoloring system.  
+Also holy shit if you made a skin for them thanks.
+
 ## Languages
 If you'd like to translate to your language, check out the [language folder on Github](https://github.com/TheTimeSweeper/the/tree/master/JoeMod/Release/plugins/Language).  
 Bazillion thanks to those that have, and in advance to those that may.

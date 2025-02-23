@@ -61,7 +61,7 @@ namespace RA2Mod.Survivors.Chrono
             Language.Add(prefix + "UTILITY_CHRONOSPHERE_DESCRIPTION", $"Highlight an area, then highlight a second area. {Tokens.UtilityText("All units")} in the first area are teleported to the second area.");
             
             Language.Add(prefix + "UTILITY_FREEZOSPHERE_NAME", "Suspend Sphere");
-            Language.Add(prefix + "UTILITY_FREEZOSPHERE_DESCRIPTION", $"{Tokens.UtilityText("Stop time")} for enemies and projecitles for {Tokens.UtilityText($"{ChronoConfig.M3_Freezosphere_FreezeDuration.Value} seconds")}.");
+            Language.Add(prefix + "UTILITY_FREEZOSPHERE_DESCRIPTION", $"{Tokens.UtilityText("Stop time")} for enemies and projectiles for {Tokens.UtilityText($"{ChronoConfig.M3_Freezosphere_FreezeDuration.Value} seconds")}.");
             #endregion
 
             #region Special

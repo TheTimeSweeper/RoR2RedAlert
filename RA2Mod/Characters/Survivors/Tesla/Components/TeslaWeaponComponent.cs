@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using RoR2;
 using RA2Mod.Survivors.Tesla;
+using RA2Mod.Survivors.Tesla.Orbs;
+using RoR2.Orbs;
 
 public class TeslaWeaponComponent : MonoBehaviour {
 
@@ -38,5 +40,28 @@ public class TeslaWeaponComponent : MonoBehaviour {
 
         animator.SetBool("LeftHandClosed", hasHoldingItem);
     }
-}
 
+    public ModdedLightningType GetModdedOrbType()
+    {
+        if (hasTeslaCoil)
+        {
+            return ModdedLightningType.Tesla;
+        }
+        else if (teslaSkinDef)
+        {
+            return teslaSkinDef.ZapLightningType;
+        }
+
+        return ModdedLightningType.Ukulele;
+    }
+
+    public LightningOrb.LightningType GetBounceOrbType()
+    {
+        if (teslaSkinDef)
+        {
+            return teslaSkinDef.ZapBounceLightningType;
+        }
+
+        return LightningOrb.LightningType.MageLightning;
+    }
+}

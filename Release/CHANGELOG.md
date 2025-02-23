@@ -1,4 +1,7 @@
 ## Changelog
+`3.2.1`
+- fix tesla breaking with custom skins
+
 `3.2.0`
 - Fixed starstorm 2 shock drone breaking when this mod is installed
 - Brought Conscript to beta, still behind config. give him a try!
