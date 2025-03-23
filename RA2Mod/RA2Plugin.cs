@@ -35,7 +35,7 @@ namespace RA2Mod
     {
         public const string MODUID = "com.TheTimesweeper.RedAlert";
         public const string MODNAME = "Red Alert";
-        public const string MODVERSION = "3.2.1";
+        public const string MODVERSION = "3.2.2";
 
         public const string DEVELOPER_PREFIX = "HABIBI";
 

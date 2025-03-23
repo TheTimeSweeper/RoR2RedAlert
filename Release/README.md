@@ -105,11 +105,10 @@ Translations currently only apply to Tesla Trooper and Desolator
 - Achievements
 - custom lightningorb effects
 - improved animations (help)
-- ~~Scepter and vr and all those fun stuffs~~
 - ~~Desolator~~
-- ~~Chrono Legionnaire~~, G.I.
-- Conscript, Prisma Trooper
-- ~~Driver compat~~
+- ~~Chrono Legionnaire~~
+- G.I., Conscript
+- [Any requests I'm happy to hear](https://github.com/TheTimeSweeper/Obsidian-Public/blob/master/RoR/Ra2%20Brainrot.md)
 
 ___
 for no particular reason I made a cool skin for minecraft check it out   

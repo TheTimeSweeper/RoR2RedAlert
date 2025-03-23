@@ -122,11 +122,11 @@ namespace RA2Mod.Survivors.Desolator
             }
 
             DeployProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
+            DeployProjectile.GetComponent<ProjectileDamage>().damageType.AddModdedDamageType(DesolatorDamageTypes.DesolatorDot);
+            
+            DeployProjectile.transform.Find("Point Light").gameObject.AddComponent<LimitVisualsDeploy>();
 
-            DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = DeployProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
-            damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
-
-            TeamAreaIndicator areaIndicator = UnityEngine.Object.Instantiate(DesolatorTeamAreaIndicatorPrefab, DeployProjectile.transform);
+            TeamAreaIndicator areaIndicator = UnityEngine.Object.Instantiate(DesolatorTeamAreaIndicatorPrefab, DeployProjectile.transform.Find("Point Light"));
             areaIndicator.teamFilter = DeployProjectile.GetComponent<TeamFilter>();
             areaIndicator.transform.localScale = Vector3.one * DeployIrradiate.Range;
 
@@ -170,10 +170,11 @@ namespace RA2Mod.Survivors.Desolator
             DeployProjectile.GetComponent<ProjectileDotZone>().resetFrequency = 1.5f;
             DeployProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
 
-            DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = DeployProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
-            damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
+            DeployProjectile.GetComponent<ProjectileDamage>().damageType.AddModdedDamageType(DesolatorDamageTypes.DesolatorDot);
 
-            TeamAreaIndicator areaIndicator = UnityEngine.Object.Instantiate(DesolatorTeamAreaIndicatorPrefab, DeployProjectile.transform);
+            DeployProjectile.transform.Find("Point Light").gameObject.AddComponent<LimitVisualsDeploy>();
+
+            TeamAreaIndicator areaIndicator = UnityEngine.Object.Instantiate(DesolatorTeamAreaIndicatorPrefab, DeployProjectile.transform.Find("Point Light"));
             areaIndicator.teamFilter = DeployProjectile.GetComponent<TeamFilter>();
             areaIndicator.transform.localScale = Vector3.one * ScepterDeployIrradiate.ScepterRange;
 

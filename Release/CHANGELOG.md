@@ -1,4 +1,7 @@
 ## Changelog
+`3.2.2`
+- added Bubble VFX Limit config for Desolator's default special, allowing you to reduce the max amount of bubble visuals are created (does not affect gameplay or damage
+
 `3.2.1`
 - fix tesla breaking with custom skins
 
