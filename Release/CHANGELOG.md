@@ -1,4 +1,7 @@
 ## Changelog
+`3.2.3`
+- disabled driver compat weapons for now
+
 `3.2.2`
 - added Bubble VFX Limit config for Desolator's default special, allowing you to reduce the max amount of bubble visuals are created (does not affect gameplay or damage
 

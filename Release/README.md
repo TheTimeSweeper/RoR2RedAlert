@@ -6,7 +6,7 @@ Based on their respective units from Red Alert 2, but with SkeletorChampion comi
 
 ![](https://raw.githubusercontent.com/TheTimeSweeper/the/master/RA2Mod/Release/_readme/Icons.png) 
 
-Anything you'd like to say about the guys, ping me (`thetimesweeper`) on the ror2 modding discord or the enforcer discord (https://discord.gg/r5XTMFd4W7).
+Anything you'd like to say about the guys, ping me (`thetimesweeper`) on the ror2 modding discord or the enforcer discord (https://discord.gg/afaHrFvh2t).
 
 # Electrician In the Field
 Adds the Tesla Trooper, who can construct Tesla Towers to help him fry enemies.
@@ -67,18 +67,37 @@ ___
 Chrono doesn't have screenshots yet but I assure you he is very cool
 ___ 
 ## Credits
-SkeletorChampion - Made the character models (which kicked off the mod. Without him, the mod wouldn't exist.), and Tesla grandmastery skin  
-Violet Chaolan - wwise sound help  
-SweeperSecret - icons,  <3  
-Mr.Bones - mastery skins  
-Jaysian - Lores  
-SOM - animation help  
-Domi - Chrono Animations  
-Blast - Chrono Sounds  
-GoodGuy - Chrono Icons
-Moffein - consult, savior  
-DeegerDill - consult  
-Westwood Studios - sounds, inspiration  
+### Tesla Trooper
+- SkeletorChampion - Made the character model (which kicked off the mod. Without him, the mod wouldn't exist.)
+    - Default and Grandmastery skins
+- Mr. Bones - Mastery skin
+- Violet Chaolan - wwise sound help
+- SweeperSecret - Icons <3
+- Jaysian - Lore
+- Moffein - Design consult, savior
+- Dee - Design consult
+
+### Desolator
+- SkeletorChampion - Model
+- Mr. Bones - Mastery skin
+- SweeperSecret - Icons <3, testing
+- Jaysian - Lore
+- SOM - animation help
+
+### Chrono Legionnaire
+- SkeletorChampion - Model
+- Domi - Animations
+- Blast - Sounds
+- GoodGuy - Icons
+
+### Conscript
+- SkeletorChampion - Model
+- Domi - Animations
+- Dee - Design consult
+
+### Misc
+- Westwood Studios - sounds, inspiration
+- Translations - see below 
 
 Thanks to the lovely reception from the community, including all the great feedback and ideas c:
 
@@ -108,7 +127,7 @@ Translations currently only apply to Tesla Trooper and Desolator
 - ~~Desolator~~
 - ~~Chrono Legionnaire~~
 - G.I., Conscript
-- [Any requests I'm happy to hear](https://github.com/TheTimeSweeper/Obsidian-Public/blob/master/RoR/Ra2%20Brainrot.md)
+- [If anything piques your fancy I'm happy to hear](https://github.com/TheTimeSweeper/Obsidian-Public/blob/master/RoR/Ra2%20Brainrot.md)
 
 ___
 for no particular reason I made a cool skin for minecraft check it out   

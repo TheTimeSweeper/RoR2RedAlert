@@ -1,7 +1,7 @@
 {
   "author": "TheTimesweeper",
   "name": "Red_Alert",
-  "version_number": "3.2.2",
+  "version_number": "3.2.3",
   "website_url": "https://github.com/TheTimeSweeper/RoR2RedAlert",
   "description": "For the union! Adds 3 survivors, Tesla Trooper, Desolator, and Chrono Legionnaire, based on Red Alert 2, themed around RoR2 (+2 wip in config: Conscript and G.I.)",
   "dependencies": [

@@ -34,7 +34,7 @@ namespace RA2Mod.General
             }
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.rob.Driver"))
             {
-                driverInstalled = true;
+                driverInstalled = false;//true;
             }
         }
 
