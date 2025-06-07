@@ -11,6 +11,14 @@ namespace RA2Mod.Modules.Characters
             {
                 List<ItemDisplayRuleSet.KeyAssetRuleGroup> itemDisplayRules = new List<ItemDisplayRuleSet.KeyAssetRuleGroup>();
                 SetItemDisplayRules(itemDisplayRules);
+
+                for (global::System.Int32 i = itemDisplayRules.Count - (1); i >= 0; i--)
+                {
+                    if (itemDisplayRules[i].keyAsset == null)
+                    {
+                        itemDisplayRules.RemoveAt(i);
+                    }
+                }
                 itemDisplayRuleSet.keyAssetRuleGroups = itemDisplayRules.ToArray();
             });
         }

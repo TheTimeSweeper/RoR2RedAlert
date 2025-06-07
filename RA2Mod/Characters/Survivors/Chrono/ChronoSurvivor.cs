@@ -591,18 +591,24 @@ namespace RA2Mod.Survivors.Chrono
 
         private void HealthComponent_TakeDamageIL(ILContext il)
         {
+			//			CS$<>8__locals1.damageInfo.damageType |= DamageType.VoidDeath;
+			//		}
+			//	}
+			//}
+            //if (flag9 || (num23 > 0f && this.combinedHealthFraction <= num23))
+            //intercept flag9 and make it true if we're executing with special
             ILCursor cursor = new ILCursor(il);
             cursor.GotoNext(MoveType.After,
                 instruction => instruction.MatchLdcI4(0x10000),
                 instruction => instruction.MatchCall<DamageTypeCombo>("op_Implicit"),
                 instruction => instruction.MatchCall<DamageTypeCombo>("op_BitwiseOr"),
                 instruction => instruction.MatchStfld<DamageInfo>("damageType"),
-                instruction => instruction.MatchLdloc(9)
+                instruction => instruction.MatchLdloc(10)
                 );
             cursor.Emit(OpCodes.Ldarg_1);
             cursor.Emit(OpCodes.Ldarg_0);
             cursor.Emit(OpCodes.Ldloc_1);
-            cursor.EmitDelegate<Func<bool, DamageInfo, HealthComponent, CharacterBody, bool>>((flag5, damageInfo, self, attackerBody) =>
+            cursor.EmitDelegate<Func<bool, DamageInfo, HealthComponent, CharacterBody, bool>>((flag9, damageInfo, self, attackerBody) =>
             {
                 if (damageInfo.HasModdedDamageType(ChronoDamageTypes.vanishingDamage))
                 {
@@ -615,12 +621,12 @@ namespace RA2Mod.Survivors.Chrono
                     float eliteFraction = attackerBody != null && self.body != null && self.body.isElite ? attackerBody.executeEliteHealthFraction : 0;
                     if (self.combinedHealthFraction < ((count / (ChronoConfig.M4_Deconstructing_ChronoStacksRequired.Value * 2)) + eliteFraction))
                     {
-                        flag5 = true;
+                        flag9 = true;
                         damageInfo.damageType |= DamageType.VoidDeath;
                         damageInfo.damageType |= DamageType.OutOfBounds;
                     }
                 }
-                return flag5;
+                return flag9;
             });
         }
 

@@ -1,4 +1,9 @@
 ## Changelog
+`3.3.0`
+- hotfix for memop update, still few bugs to fix in the coming days
+- *custom recolors are broken. enjoy the secret white recolor for now*
+- *skins are broken in lobby*
+
 `3.2.3`
 - disabled driver compat weapons for now
 
