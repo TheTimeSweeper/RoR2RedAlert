@@ -461,6 +461,7 @@ namespace RA2Mod.Survivors.Conscript
             #endregion
             
             skinController.skins = skins.ToArray();
+            displayPrefab.AddComponent<ModelSkinController>().skins = skinController.skins;
         }
         #endregion skins
 

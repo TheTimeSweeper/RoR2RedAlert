@@ -1,4 +1,9 @@
 ## Changelog
+`3.3.1`
+- fixed skins in lobby
+- fixed recolors (which fixes boosted m2 not working in multiplayer)
+- added white recolors to commemorate the occasion
+
 `3.3.0`
 - hotfix for memop update, still few bugs to fix in the coming days
 - *custom recolors are broken. enjoy the secret white recolor for now*

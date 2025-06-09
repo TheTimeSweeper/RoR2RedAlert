@@ -429,6 +429,7 @@ namespace RA2Mod.Survivors.Desolator
             if (General.GeneralConfig.NewColor.Value)
             {
                 skilldefs.Add(recolorController.createRecolorSkillDef("Black"));
+                skilldefs.Add(recolorController.createRecolorSkillDef("White"));
             }
 
             for (int i = 0; i < skilldefs.Count; i++)
@@ -496,6 +497,7 @@ namespace RA2Mod.Survivors.Desolator
             #endregion
 
             skinController.skins = skins.ToArray();
+            displayPrefab.AddComponent<ModelSkinController>().skins = skinController.skins;
         }
         #endregion skins
 

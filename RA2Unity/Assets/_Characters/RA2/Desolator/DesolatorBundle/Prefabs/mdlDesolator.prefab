@@ -5644,6 +5644,12 @@ MonoBehaviour:
     - {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
     - {r: 0.4901961, g: 0.4901961, b: 0.4901961, a: 1}
     - {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  - recolorName: white
+    colors:
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
   recolorInt: 8
   recolorString: cyan
   updateColor: 0

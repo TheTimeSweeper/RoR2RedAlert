@@ -1,6 +1,9 @@
 ﻿using RA2Mod.General.Components;
 using RoR2;
+using RoR2.ContentManagement;
 using RoR2.Skills;
+using System;
+using System.Collections;
 
 namespace RA2Mod.General
 {
@@ -8,13 +11,12 @@ namespace RA2Mod.General
     {
         public static void Init()
         {
-
-            On.RoR2.ModelSkinController.ApplySkin += ModelSkinController_ApplySkin;
+            On.RoR2.ModelSkinController.ApplySkinAsync += ModelSkinController_ApplySkin;
         }
 
-        private static void ModelSkinController_ApplySkin(On.RoR2.ModelSkinController.orig_ApplySkin orig, ModelSkinController self, int skinIndex)
+        private static IEnumerator ModelSkinController_ApplySkin(On.RoR2.ModelSkinController.orig_ApplySkinAsync orig, ModelSkinController self, int skinIndex, AsyncReferenceHandleUnloadType unloadType)
         {
-            orig(self, skinIndex);
+            yield return orig(self, skinIndex, unloadType);
             
             SkinRecolorController skinRecolorController = self.GetComponent<SkinRecolorController>();
             if (skinRecolorController)

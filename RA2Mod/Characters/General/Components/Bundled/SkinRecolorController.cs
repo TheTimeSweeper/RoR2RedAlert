@@ -88,10 +88,9 @@ namespace RA2Mod.General.Components
                 recolorGroups[i].setColors(colors[i]);
             }
         }
-
+        
         public void SetRecolor(int i)
         {
-
             if (recolors[i].colors.Length < recolorGroups.Length)
             {
                 Log.Error("not enough colors for this recolor");

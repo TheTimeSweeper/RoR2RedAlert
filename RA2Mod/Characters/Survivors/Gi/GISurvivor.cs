@@ -520,6 +520,7 @@ namespace RA2Mod.Survivors.GI
             #endregion
             
             skinController.skins = skins.ToArray();
+            displayPrefab.AddComponent<ModelSkinController>().skins = skinController.skins;
         }
         #endregion skins
 
