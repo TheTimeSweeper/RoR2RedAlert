@@ -1,4 +1,5 @@
 ﻿using EntityStates;
+using RA2Mod.General;
 using RA2Mod.Modules.BaseStates;
 using RoR2;
 using RoR2.Projectile;
@@ -43,8 +44,14 @@ namespace RA2Mod.Survivors.Desolator.States
             base.OnEnter();
 
             _animator = base.GetModelAnimator();
-
-            Util.PlaySound("Play_Desolator_Deploy", base.gameObject);
+            if (Input.GetKey(KeyCode.G))
+            {
+                Util.PlaySound(GeneralConfig.ClassicSounds ? "Play_Desolator_Deploy" : "Play_desolator_special_1_place", base.gameObject);
+            }
+            else
+            {
+                Util.PlaySound(GeneralConfig.ClassicSounds ? "Play_Desolator_Deploy" : "Play_desolator_special_1_place2", base.gameObject);
+            }
             PlayPumpAnimation();
 
             if (base.isAuthority)

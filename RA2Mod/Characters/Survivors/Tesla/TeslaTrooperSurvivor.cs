@@ -93,6 +93,8 @@ namespace RA2Mod.Survivors.Tesla
                return;
 
             base.Initialize();
+            //damagetypes can't happen async you fool
+            TeslaDamageTypes.Init();
         }
 
         public override List<IEnumerator> GetAssetBundleInitializedCoroutines()
@@ -108,7 +110,6 @@ namespace RA2Mod.Survivors.Tesla
 
             //some assets are changed based on config
             TeslaConfig.Init();
-            TeslaDamageTypes.Init();
             TeslaAssets.OnCharacterInitialized(assetBundle);
             TeslaStates.Init();
             TeslaTokens.Init();

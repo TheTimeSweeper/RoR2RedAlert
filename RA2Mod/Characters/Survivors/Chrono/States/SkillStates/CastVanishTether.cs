@@ -165,22 +165,22 @@ namespace RA2Mod.Survivors.Chrono.States
         {
             base.FixedUpdate();
 
-            if(fixedAge >= totalDuration)
+            if (isAuthority)
             {
-                if(activatorSkillSlot.stock > 0)
+                if (fixedAge >= totalDuration)
                 {
-                    activatorSkillSlot.DeductStock(1);
-                    totalDuration += chargeDuration;
+                    if (activatorSkillSlot.stock > 0)
+                    {
+                        activatorSkillSlot.DeductStock(1);
+                        totalDuration += chargeDuration;
+                    }
                 }
-            }
 
-            if (fixedAge >= totalDuration || targetHurtBox == null || !targetHurtBox.healthComponent.alive)
-            {
-                if (isAuthority)
+                if (fixedAge >= totalDuration || targetHurtBox == null || !targetHurtBox.healthComponent.alive)
                 {
                     outer.SetNextStateToMain();
+                    return;
                 }
-                return;
             }
 
             if (!targetingAlly)
@@ -205,6 +205,7 @@ namespace RA2Mod.Survivors.Chrono.States
         // Token: 0x06000E64 RID: 3684 RVA: 0x0003E1A0 File Offset: 0x0003C3A0
         public override void OnSerialize(NetworkWriter writer)
         {
+            base.OnSerialize(writer);
             writer.Write(HurtBoxReference.FromHurtBox(this.targetHurtBox));
             writer.Write(targetingAlly);
         }
@@ -212,6 +213,7 @@ namespace RA2Mod.Survivors.Chrono.States
         // Token: 0x06000E65 RID: 3685 RVA: 0x0003E1B4 File Offset: 0x0003C3B4
         public override void OnDeserialize(NetworkReader reader)
         {
+            base.OnDeserialize(reader);
             this.targetHurtBox = reader.ReadHurtBoxReference().ResolveHurtBox();
             targetingAlly = reader.ReadBoolean();
         }

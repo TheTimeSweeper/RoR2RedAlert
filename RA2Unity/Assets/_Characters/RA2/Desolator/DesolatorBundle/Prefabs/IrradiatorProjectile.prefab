@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1367022258176961622}
   m_RootOrder: 1
@@ -91,6 +92,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &7046221724106790872
@@ -134,6 +136,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.8094522, y: 1.809452, z: 1.8094522}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1367022258136526145}
   m_RootOrder: 0
@@ -176,6 +179,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1367022257695261822}
   m_Father: {fileID: 1367022258176961622}
@@ -224,6 +228,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1367022258136526145}
   - {fileID: 452282882}
@@ -289,16 +294,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catalogIndex: -1
-  ghostPrefab: {fileID: 2242786522259197879, guid: caac2bef21227af47bde9e2094fefd09,
-    type: 3}
+  ghostPrefab: {fileID: 2242786522259197879, guid: caac2bef21227af47bde9e2094fefd09, type: 3}
   ghostTransformAnchor: {fileID: 1367022258176961622}
-  startSound: 
+  startSound: Play_desolator_special_2_throw
   cannotBeDeleted: 0
+  authorityHandlesCollisionEvents: 0
   flightSoundLoop: {fileID: 0}
   canImpactOnTrigger: 0
   allowPrediction: 0
   owner: {fileID: 0}
+  localCollisionHappened: 0
   procCoefficient: 1
+  CheckChildrenForCollidersAndIncludeDisabled: 0
 --- !u!114 &1367022258176961600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +321,10 @@ MonoBehaviour:
   positionTransmitInterval: 0.033333335
   interpolationFactor: 1
   allowClientsideCollision: 0
+  checkForLocalPlayerAuthority: 0
+  singletonArrayIndex: -1
+  serverPosition: {x: 0, y: 0, z: 0}
+  serverRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1367022258176961615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +367,9 @@ MonoBehaviour:
   crit: 0
   force: 0
   damageColorIndex: 0
-  damageType: 0
+  damageType:
+    damageType: 0
+    damageTypeExtended: 0
   useDotMaxStacksFromAttacker: 0
   dotMaxStacksFromAttacker: 0
 --- !u!114 &1367022258176961613
@@ -376,6 +389,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1367022258176961608}
+        m_TargetAssemblyTypeName: 
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -387,6 +401,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1710861754445201685}
+        m_TargetAssemblyTypeName: 
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -409,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 664490745, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stickSoundString: 
+  stickSoundString: Play_desolator_special_2_Stick
   stickParticleSystem: []
   ignoreCharacters: 0
   ignoreWorld: 0
@@ -418,6 +433,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1367022258176961608}
+        m_TargetAssemblyTypeName: 
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -429,6 +445,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1710861754445201685}
+        m_TargetAssemblyTypeName: 
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -497,8 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageCoefficient: 1
   attackerFiltering: 2
-  impactEffect: {fileID: 997780759937662335, guid: a2b45fab77e6d8a4ca52387fa2293e3c,
-    type: 3}
+  impactEffect: {fileID: 997780759937662335, guid: a2b45fab77e6d8a4ca52387fa2293e3c, type: 3}
   forceVector: {x: 0, y: 0, z: 0}
   overlapProcCoefficient: 0.7
   fireFrequency: 4
@@ -528,6 +544,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 886606442412600386}
+        m_TargetAssemblyTypeName: 
         m_MethodName: DestroySelf
         m_Mode: 1
         m_Arguments:
@@ -590,6 +607,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOverallCurveOnly: 1
+  resetOnAwake: 1
+  useUnscaledTime: 0
   curveX:
     serializedVersion: 2
     m_Curve: []

@@ -1,4 +1,5 @@
 ﻿using EntityStates;
+using RA2Mod.General;
 using RA2Mod.General.States;
 using RoR2;
 using RoR2.Projectile;
@@ -51,7 +52,7 @@ namespace RA2Mod.Survivors.Desolator.States
         }
 
         public override void OnProjectileFiredLocal() {
-            Util.PlaySound("Play_Desolator_Beam_Deep2", gameObject);
+            Util.PlaySound(GeneralConfig.ClassicSounds ? "Play_Desolator_Beam_Deep2" : "Play_desolator_secondary_1_fire", gameObject);
 
             //PlayAnimation("Gesture, Additive", "Shock", "Shock.playbackRate", 0.3f);
             PlayAnimation("Desolator, Override", "DesolatorShootBig");

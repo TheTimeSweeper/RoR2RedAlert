@@ -86,6 +86,9 @@ namespace RA2Mod.Survivors.Chrono
                return;
 
             base.Initialize();
+
+            //damagetypes can't happen async you fool
+            ChronoDamageTypes.Init();
         }
 
         public override List<IEnumerator> GetAssetBundleInitializedCoroutines()
@@ -108,7 +111,6 @@ namespace RA2Mod.Survivors.Chrono
             Modules.Language.PrintOutput("chrono.txt");
 
             ChronoHealthBars.Init();
-            ChronoDamageTypes.Init();
             ChronoBuffs.Init(assetBundle);
             ChronoItems.Init();
             ChronoCompat.Init();
@@ -557,10 +559,16 @@ namespace RA2Mod.Survivors.Chrono
         {
             Hooks.RoR2.HealthComponent.TakeDamage_Pre += HealthComponent_TakeDamage_Pre;
             Hooks.RoR2.HealthComponent.TakeDamage_Post += HealthComponent_TakeDamage_Post;
-            IL.RoR2.HealthComponent.TakeDamageProcess += HealthComponent_TakeDamageIL;
+            try
+            {
+                IL.RoR2.HealthComponent.TakeDamageProcess += HealthComponent_TakeDamageIL;
 
-            IL.EntityStates.GenericCharacterDeath.OnEnter += GenericCharacterDeath_OnEnter1;
-
+                IL.EntityStates.GenericCharacterDeath.OnEnter += GenericCharacterDeath_OnEnter1;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Fuckin ILHooks failed: {ex.Message}\n{ex.StackTrace}");
+            }
             On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
  
             R2API.RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
@@ -593,24 +601,29 @@ namespace RA2Mod.Survivors.Chrono
 
         private void HealthComponent_TakeDamageIL(ILContext il)
         {
-			//			CS$<>8__locals1.damageInfo.damageType |= DamageType.VoidDeath;
-			//		}
-			//	}
-			//}
-            //if (flag9 || (num23 > 0f && this.combinedHealthFraction <= num23))
-            //intercept flag9 and make it true if we're executing with special
+            //			gameObject3 = HealthComponent.AssetReferences.suffocateEffectPrefab;
+            //		}
+            //	}
+            //}
+            //if (flag11 || (num24 > 0f && this.combinedHealthFraction <= num24))
+            //intercept flag11 and make it true if we're executing with special
             ILCursor cursor = new ILCursor(il);
-            cursor.GotoNext(MoveType.After,
-                instruction => instruction.MatchLdcI4(0x10000),
-                instruction => instruction.MatchCall<DamageTypeCombo>("op_Implicit"),
-                instruction => instruction.MatchCall<DamageTypeCombo>("op_BitwiseOr"),
-                instruction => instruction.MatchStfld<DamageInfo>("damageType"),
-                instruction => instruction.MatchLdloc(10)
+            cursor.GotoNext(MoveType.Before,
+                Instruction => Instruction.MatchLdloc(out _),
+                instruction => instruction.MatchBrtrue(out _),
+                Instruction => Instruction.MatchLdloc(out _),
+                Instruction => Instruction.MatchLdcR4(0),
+                Instruction => Instruction.MatchBleUn(out _),
+                Instruction => Instruction.MatchLdarg(0),
+                Instruction => Instruction.MatchCall<RoR2.HealthComponent>("get_combinedHealthFraction"),
+                Instruction => Instruction.MatchLdloc(out _),
+                Instruction => Instruction.MatchBgtUn(out _)
                 );
+            cursor.Index++;
             cursor.Emit(OpCodes.Ldarg_1);
             cursor.Emit(OpCodes.Ldarg_0);
             cursor.Emit(OpCodes.Ldloc_1);
-            cursor.EmitDelegate<Func<bool, DamageInfo, HealthComponent, CharacterBody, bool>>((flag9, damageInfo, self, attackerBody) =>
+            cursor.EmitDelegate<Func<bool, DamageInfo, HealthComponent, CharacterBody, bool>>((flag11, damageInfo, self, attackerBody) =>
             {
                 if (damageInfo.HasModdedDamageType(ChronoDamageTypes.vanishingDamage))
                 {
@@ -623,12 +636,18 @@ namespace RA2Mod.Survivors.Chrono
                     float eliteFraction = attackerBody != null && self.body != null && self.body.isElite ? attackerBody.executeEliteHealthFraction : 0;
                     if (self.combinedHealthFraction < ((count / (ChronoConfig.M4_Deconstructing_ChronoStacksRequired.Value * 2)) + eliteFraction))
                     {
-                        flag9 = true;
-                        damageInfo.damageType |= DamageType.VoidDeath;
-                        damageInfo.damageType |= DamageType.OutOfBounds;
+                        flag11 = true;
+
+                        if(self.body.bodyIndex != DLC3Content.BodyPrefabs.SolusWingBody.bodyIndex)
+                        {
+                            //don't vanish solus wing
+                            damageInfo.damageType |= DamageType.VoidDeath;
+                            damageInfo.damageType |= DamageType.OutOfBounds;
+                        }
+
                     }
                 }
-                return flag9;
+                return flag11;
             });
         }
 

@@ -145,9 +145,7 @@ namespace RA2Mod.Survivors.Desolator
             GameObject DeployProjectile = PrefabAPI.InstantiateClone(assetBundle.LoadAsset<GameObject>("DeployProjectileEmote"), "DeployProjectileEmote", true);
 
             DeployProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
-
-            DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = DeployProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
-            damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
+            DeployProjectile.GetComponent<ProjectileDamage>().damageType.AddModdedDamageType(DesolatorDamageTypes.DesolatorDot);
 
             //TeamAreaIndicator areaIndicator = UnityEngine.Object.Instantiate(DesolatorTeamAreaIndicatorPrefab, DeployProjectile.transform);
             //areaIndicator.teamFilter = DeployProjectile.GetComponent<TeamFilter>();
@@ -196,9 +194,7 @@ namespace RA2Mod.Survivors.Desolator
             ghostRenderer.material = ghostRenderer.material.ConvertDefaultShaderToHopoo();
 
             irradiatorProjectile.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
-
-            DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = irradiatorProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
-            damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
+            irradiatorProjectile.GetComponent<ProjectileDamage>().damageType.AddModdedDamageType(DesolatorDamageTypes.DesolatorDot);
 
             TeamAreaIndicator areaIndicator = UnityEngine.Object.Instantiate(DesolatorTeamAreaIndicatorPrefab, irradiatorProjectile.transform);
             areaIndicator.teamFilter = irradiatorProjectile.GetComponent<TeamFilter>();
@@ -221,9 +217,7 @@ namespace RA2Mod.Survivors.Desolator
             ghostRenderer.material = ghostRenderer.material.ConvertDefaultShaderToHopoo();
 
             irradiatorProjectileScepter.GetComponent<ProjectileDotZone>().overlapProcCoefficient = DesolatorSurvivor.DotSpecialProcCoefficient;
-
-            DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = irradiatorProjectileScepter.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
-            damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
+            irradiatorProjectileScepter.GetComponent<ProjectileDamage>().damageType.AddModdedDamageType(DesolatorDamageTypes.DesolatorDot);
 
             TeamAreaIndicator areaIndicator = UnityEngine.Object.Instantiate(DesolatorTeamAreaIndicatorPrefab, irradiatorProjectileScepter.transform);
             areaIndicator.teamFilter = irradiatorProjectileScepter.GetComponent<TeamFilter>();
@@ -247,8 +241,6 @@ namespace RA2Mod.Survivors.Desolator
         {
             GameObject leapAcidProjectile = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Croco/CrocoLeapAcid.prefab").WaitForCompletion(), "DesolatorLeapAcid");
 
-            DamageAPI.ModdedDamageTypeHolderComponent damageTypeComponent = leapAcidProjectile.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
-            damageTypeComponent.Add(DesolatorDamageTypes.DesolatorDot);
             ProjectileDotZone projectileDotZone = leapAcidProjectile.GetComponent<ProjectileDotZone>();
             projectileDotZone.impactEffect = IrradiatedImpactEffect;
             projectileDotZone.lifetime = AimBigRadBeam.DotZoneLifetime;
@@ -257,6 +249,7 @@ namespace RA2Mod.Survivors.Desolator
             projectileDotZone.resetFrequency = 2F;
 
             leapAcidProjectile.GetComponent<ProjectileDamage>().damageType = DamageType.Generic;
+            leapAcidProjectile.GetComponent<ProjectileDamage>().damageType.AddModdedDamageType(DesolatorDamageTypes.DesolatorDot);
 
             ProjectileController projectileController = leapAcidProjectile.GetComponent<ProjectileController>();
             GameObject leapAcidProjectileGhost = PrefabAPI.InstantiateClone(projectileController.ghostPrefab, "DesolatorLeapAcidGhost");
@@ -282,7 +275,14 @@ namespace RA2Mod.Survivors.Desolator
             leapAcidProjectile.transform.Find("FX/Hitbox (1)").localScale = Vector3.one * 1.8f;
             Transform transformFindFX2 = leapAcidProjectile.transform.Find("FX");
             transformFindFX2.transform.localScale = Vector3.one * AimBigRadBeam.BaseAttackRadius;
-            
+
+            projectileController.startSound = "Play_desolator_secondary_1_land";
+            AkEvent[] akevents = leapAcidProjectile.GetComponents<AkEvent>();
+            for (int i = 0; i < akevents.Length; i++)
+            {
+                UnityEngine.Object.Destroy(akevents[i]);
+            }
+
             Content.AddProjectilePrefab(leapAcidProjectile);
 
             return leapAcidProjectile;

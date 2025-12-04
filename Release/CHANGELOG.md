@@ -1,4 +1,24 @@
 ## Changelog
+`3.3.7`
+- oops uploaded with language printing
+
+`3.3.6`
+- hack fix chrono softlocking by disappearing solus wing
+
+`3.3.5`
+- added tesla trooper compat with faulty conductor :smiling_imp:
+
+`3.3.4`
+- fix for Alloyed Collective the best DLC with 0 bias whatosever
+- WIP updated sounds for Desolator. feedback welcome
+
+`3.3.3`
+- fixed loading damagetypes async like a fool (huge thanks to Walu and Missy for helping me debug this)
+- fixed desolator m2 not applying radation stacks
+
+`3.3.2`
+- fixed a bug with special in networking ( thanks score and hifu for finding the errors c: )
+
 `3.3.1`
 - fixed skins in lobby
 - fixed recolors (which fixes boosted m2 not working in multiplayer)

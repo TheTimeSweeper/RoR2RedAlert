@@ -1,4 +1,5 @@
 ﻿using EntityStates;
+using RA2Mod.General;
 using RA2Mod.Survivors.Desolator.Components;
 using RoR2;
 using UnityEngine.Networking;
@@ -21,7 +22,7 @@ namespace RA2Mod.Survivors.Desolator.States
             _auraHolder = GetComponent<DesolatorAuraHolder>();
             _auraHolder?.ActivateAura();
 
-            Util.PlaySound("Play_Desolator_Deploy_High", gameObject);
+            Util.PlaySound(GeneralConfig.ClassicSounds ? "Play_Desolator_Deploy_High" : "Play_desolator_utilityLoop", gameObject);
 
             aimRequest = cameraTargetParams.RequestAimType(RoR2.CameraTargetParams.AimType.Aura);
 
@@ -44,7 +45,7 @@ namespace RA2Mod.Survivors.Desolator.States
 
         public override void OnExit() {
             base.OnExit();
-
+            Util.PlaySound("Stop_desolator_utilityLoop", gameObject);
             _auraHolder?.DeactivateAura();
         }
     }

@@ -731,6 +731,12 @@ namespace RA2Mod.Modules
             NetworkStateMachine networkMachine = bodyPrefab.GetComponent<NetworkStateMachine>();
             networkMachine.stateMachines = Array.Empty<EntityStateMachine>();
 
+            CharacterBody body = bodyPrefab.GetComponent<CharacterBody>();
+            if (body)
+            {
+                body.vehicleIdleStateMachine = Array.Empty<EntityStateMachine>();
+            }
+
             CharacterDeathBehavior deathBehavior = bodyPrefab.GetComponent<CharacterDeathBehavior>();
             if (deathBehavior)
             {
@@ -837,6 +843,12 @@ namespace RA2Mod.Modules
             if (networkMachine)
             {
                 networkMachine.stateMachines = networkMachine.stateMachines.Append(entityStateMachine).ToArray();
+            }
+
+            CharacterBody body = prefab.GetComponent<CharacterBody>();
+            if (body)
+            {
+                body.vehicleIdleStateMachine = body.vehicleIdleStateMachine.Append(entityStateMachine).ToArray();
             }
 
             //Add to the array of "idle" StateMachines. For when the character dies.

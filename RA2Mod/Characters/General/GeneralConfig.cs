@@ -13,6 +13,7 @@ namespace RA2Mod.General
         public static ConfigEntry<KeyboardShortcut> RestKeybind { get; private set; }
         public static ConfigEntry<KeyboardShortcut> VoiceKey { get; private set; }
 
+        public static ConfigEntry<bool> ClassicSounds;
         public static ConfigEntry<bool> VoiceInLobby;
         public static ConfigEntry<bool> VoiceOnSpawn;
         public static ConfigEntry<bool> VoiceOnDeath;
@@ -58,6 +59,14 @@ namespace RA2Mod.General
                 "Rest Key",
                 new KeyboardShortcut(KeyCode.Alpha1),
                 "key to play Rest emote");
+
+
+            ClassicSounds = Config.BindAndOptions(
+                sectionGeneral,
+                "Classic Sounds",
+                false,
+                "Plays classic Red Alert 2 sounds instead of the updated ones, where applicable (currently only Desolator)",
+                false);
 
             VoiceKey = Config.BindAndOptions(
                 sectionGeneral,

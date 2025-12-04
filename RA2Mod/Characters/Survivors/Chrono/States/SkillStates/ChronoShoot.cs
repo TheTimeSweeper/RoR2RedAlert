@@ -140,7 +140,7 @@ namespace RA2Mod.Survivors.Chrono.States
                     canRejectForce = true,
                     crit = base.RollCrit(),
                     damageColorIndex = DamageColorIndex.Default,
-                    damageType = DamageType.Generic,
+                    damageType = bulletRef.damageType,
                     falloffModel = BlastAttack.FalloffModel.None,
                     inflictor = base.gameObject,
                     position = hitInfo.point,

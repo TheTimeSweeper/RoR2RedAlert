@@ -102,6 +102,9 @@ namespace RA2Mod.Survivors.Desolator
                return;
 
             base.Initialize();
+
+            //damagetypes can't happen async you fool
+            DesolatorDamageTypes.Init();
         }
 
         public override List<IEnumerator> GetAssetBundleInitializedCoroutines()
@@ -117,7 +120,6 @@ namespace RA2Mod.Survivors.Desolator
 
             //some assets are changed based on config
             DesolatorConfig.Init();
-            DesolatorDamageTypes.Init();
             DesolatorAssets.OnCharacterInitialized(assetBundle);
             DesolatorDeployables.Init();
             DesolatorStates.Init();
@@ -629,7 +631,7 @@ namespace RA2Mod.Survivors.Desolator
 
         private void inflictRadiation(GameObject victim, GameObject attacker, float proc, bool crit)
         {
-            DotController.InflictDot(victim, attacker, DesolatorDots.DesolatorDot, DotDuration, (crit ? 2 : 1) * proc);
+            DotController.InflictDot(victim, attacker, DesolatorDots.DesolatorDot, DotDuration, (crit ? 2 : 1) * proc, null);
         }
 
         #endregion hooks

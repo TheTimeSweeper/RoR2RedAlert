@@ -4365,6 +4365,105 @@
 												</ObjectList>
 											</ObjectLists>
 										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="ttrooper_primary1" ID="{8149F031-88C1-47AC-922F-FF4EA3FDBD11}" ShortID="494170941">
+											<PropertyList>
+												<Property Name="RandomAvoidRepeating" Type="bool" Value="False"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="ttrooper_primary_1" ID="{D1C281A4-C91C-4D49-8AAA-AACEC80583FE}" ShortID="715599871">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ttrooper_primary_1" ID="{499516C8-8B16-4E89-B5D4-B662E3AE3912}">
+															<PropertyList>
+																<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>ttrooper_primary_1.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="131315852"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="ttrooper_primary_1" ID="{499516C8-8B16-4E89-B5D4-B662E3AE3912}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ttrooper_primary_2" ID="{F3EB76ED-8578-4F20-ADFE-2D5E52BE9767}" ShortID="1014793220">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ttrooper_primary_2" ID="{B9379706-4826-46C6-84BD-BF9A6FE679E7}">
+															<PropertyList>
+																<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>ttrooper_primary_2.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="568820696"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="ttrooper_primary_2" ID="{B9379706-4826-46C6-84BD-BF9A6FE679E7}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ttrooper_primary_3" ID="{A35F6FAF-E8A4-4944-83C2-440E16906B4B}" ShortID="553961558">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ttrooper_primary_3" ID="{694B6928-9E58-47C8-A00F-8BB8D15C2F3C}">
+															<PropertyList>
+																<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>ttrooper_primary_3.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="692895168"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="ttrooper_primary_3" ID="{694B6928-9E58-47C8-A00F-8BB8D15C2F3C}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="Desolator" ID="{1F6C6A0E-A229-4A2A-8509-1828B055350F}" ShortID="1065647325">
@@ -4706,6 +4805,871 @@
 														<ActiveSource Name="idesat1a_attack" ID="{A340E0D9-57FC-41EC-92F4-BE2FF3B6C324}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
+											</ChildrenList>
+										</ActorMixer>
+										<ActorMixer Name="DesolatorSoundsNew" ID="{0D60C8EC-01B2-4E45-97DF-734117964536}" ShortID="549979367">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="desolator_debuff_apply" ID="{F19938C2-73E4-461E-B8EE-E617CAE8D6B2}" ShortID="658644281">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="desolator_debuff_apply" ID="{356B6C97-B161-442C-BAF8-E99A424FEF9B}">
+															<PropertyList>
+																<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>desolator_debuff_apply.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="591095180"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="desolator_debuff_apply" ID="{356B6C97-B161-442C-BAF8-E99A424FEF9B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="desolator_debuff_loop" ID="{B8017483-F5DF-44EE-B599-F1EB809F226E}" ShortID="455277267">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="desolator_debuff_loop" ID="{0DE3BE3B-8793-4A92-B75F-591C5F97C05D}">
+															<PropertyList>
+																<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>desolator_debuff_loop.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="500839776"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="desolator_debuff_loop" ID="{0DE3BE3B-8793-4A92-B75F-591C5F97C05D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Folder Name="special_1" ID="{6B460D13-7FE7-4FAC-864B-FE9610FC4C99}" ShortID="859786156">
+													<ChildrenList>
+														<Sound Name="desolator_special_1_Charge" ID="{5344634F-6B18-429F-953B-1A049597B260}" ShortID="59850619">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="desolator_special_1_Charge" ID="{6FC6D306-03BC-4D5C-ADAB-4FC4C6E29CD3}">
+																	<PropertyList>
+																		<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>desolator_special_1_Charge.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="1058370237"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="desolator_special_1_Charge" ID="{6FC6D306-03BC-4D5C-ADAB-4FC4C6E29CD3}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="desolator_special_1_Hit" ID="{C8E370DC-8128-4EDB-AD82-8505B7B82190}" ShortID="860025842">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="desolator_special_1_Hit" ID="{D034AA13-28BD-42B3-A546-E53AE2BFDCA0}">
+																	<PropertyList>
+																		<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>desolator_special_1_Hit.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="559390076"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="desolator_special_1_Hit" ID="{D034AA13-28BD-42B3-A546-E53AE2BFDCA0}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="desolator_special_1_HitFinal" ID="{AED24D20-4B12-44A1-85F1-048B0765266A}" ShortID="200140035">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="desolator_special_1_HitFinal" ID="{72E8D463-C376-4178-97D5-8D01ED3A8161}">
+																	<PropertyList>
+																		<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>desolator_special_1_HitFinal.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="70233311"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="desolator_special_1_HitFinal" ID="{72E8D463-C376-4178-97D5-8D01ED3A8161}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<RandomSequenceContainer Name="desolator_special_1_place" ID="{F83D38B1-A5B5-4F9E-90B2-B2944AD21F40}" ShortID="622444408">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<Sound Name="desolator_special_1_Place_1" ID="{AEA2640B-6260-4305-9028-39627B3F2C40}" ShortID="446104770">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_special_1_Place_1" ID="{8139E393-9DCA-494D-AAC7-7C2CF7B9E2D2}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_special_1_Place_1.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="106871412"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_special_1_Place_1" ID="{8139E393-9DCA-494D-AAC7-7C2CF7B9E2D2}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+																<Sound Name="desolator_special_1_Place_2" ID="{7E278899-5E36-4B28-81B7-1163A8EA3F64}" ShortID="52237728">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_special_1_Place_2" ID="{9D2E632C-09D6-43DA-8C2E-47F7F8F22218}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_special_1_Place_2.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="549987807"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_special_1_Place_2" ID="{9D2E632C-09D6-43DA-8C2E-47F7F8F22218}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+															</ChildrenList>
+														</RandomSequenceContainer>
+													</ChildrenList>
+												</Folder>
+												<Folder Name="special_2" ID="{C5CE9218-70E2-4B8F-AE9C-0637B06BC8D4}" ShortID="987296284">
+													<ChildrenList>
+														<Sound Name="desolator_special_2_Stick" ID="{96948B27-B997-4EE0-9B6A-904182F94112}" ShortID="1069037803">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="desolator_special_2_Stick" ID="{B73DDD49-FCE9-4F82-8589-343F83EC5A7D}">
+																	<PropertyList>
+																		<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>desolator_special_2_Stick.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="241355489"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="desolator_special_2_Stick" ID="{B73DDD49-FCE9-4F82-8589-343F83EC5A7D}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<RandomSequenceContainer Name="desolator_special_2_throw" ID="{F323DCCF-3716-4B71-ACF4-DF7CEF9F46CD}" ShortID="854397580">
+															<PropertyList>
+																<Property Name="RandomAvoidRepeating" Type="bool" Value="False"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<Sound Name="desolator_special_2_Throw_1" ID="{71E0F35B-32DF-4A48-B357-8E7E8CD59E37}" ShortID="790992233">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_special_2_Throw_1" ID="{F7FB84F6-5CA4-4DC0-AE16-09E7E2D9108E}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_special_2_Throw_1.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="755898129"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_special_2_Throw_1" ID="{F7FB84F6-5CA4-4DC0-AE16-09E7E2D9108E}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+																<Sound Name="desolator_special_2_Throw_2" ID="{B75A3E02-93D6-4D45-86C1-E33A51D492B0}" ShortID="288017406">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_special_2_Throw_2" ID="{FEFDB292-CA5C-4B5A-926F-8B7D28F6A0B8}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_special_2_Throw_2.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="127599706"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_special_2_Throw_2" ID="{FEFDB292-CA5C-4B5A-926F-8B7D28F6A0B8}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+															</ChildrenList>
+														</RandomSequenceContainer>
+													</ChildrenList>
+												</Folder>
+												<Folder Name="secondary_1" ID="{281A09CC-E331-4DE9-8140-4D7EF6129F0E}" ShortID="225138703">
+													<ChildrenList>
+														<RandomSequenceContainer Name="desolator_secondary_1_fire" ID="{AC966FB3-6CCB-4C99-8B27-129E935F5DA5}" ShortID="472464881">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<Sound Name="desolator_secondary_1" ID="{3B7B30EC-E31D-4B02-830A-593F7F2D5F46}" ShortID="12600488">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_secondary_1" ID="{01DC59DC-28DF-42EC-B42C-8F7188A99B78}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_secondary_1.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="300900514"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_secondary_1" ID="{01DC59DC-28DF-42EC-B42C-8F7188A99B78}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+																<Sound Name="desolator_secondary_2" ID="{E63556EB-5961-4532-97CA-E30AA81281DA}" ShortID="814091218">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_secondary_2" ID="{70780428-D5D4-486D-8FFA-4EE553532837}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_secondary_2.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="786164947"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_secondary_2" ID="{70780428-D5D4-486D-8FFA-4EE553532837}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+																<Sound Name="desolator_secondary_3" ID="{A8A60766-AE15-4348-856F-E90151BC8623}" ShortID="620965358">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_secondary_3" ID="{C55C5FBF-ABAC-4527-95E7-DD43349DA602}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_secondary_3.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="50037597"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_secondary_3" ID="{C55C5FBF-ABAC-4527-95E7-DD43349DA602}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+															</ChildrenList>
+														</RandomSequenceContainer>
+														<RandomSequenceContainer Name="desolator_secondary_1_land" ID="{E6F6222C-011A-490F-AE12-48C2C7F56271}" ShortID="559148437">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<Sound Name="desolator_secondaryLand_1" ID="{D36B7835-ADA2-49E9-93D3-706E74A804D4}" ShortID="124724608">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_secondaryLand_1" ID="{957F194B-F3FA-416F-A073-0DA4C18270E4}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_secondaryLand_1.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="740431412"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_secondaryLand_1" ID="{957F194B-F3FA-416F-A073-0DA4C18270E4}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+																<Sound Name="desolator_secondaryLand_2" ID="{D9E2964B-BEB9-4494-93EC-8E96FD3AE19E}" ShortID="299955831">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_secondaryLand_2" ID="{E983F809-A316-46C8-977C-B29B4E87654F}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_secondaryLand_2.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="113487116"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_secondaryLand_2" ID="{E983F809-A316-46C8-977C-B29B4E87654F}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+															</ChildrenList>
+														</RandomSequenceContainer>
+													</ChildrenList>
+												</Folder>
+												<Folder Name="primary_1" ID="{8C138EA3-E6A3-445B-959F-81535EB001E4}" ShortID="48917246">
+													<ChildrenList>
+														<RandomSequenceContainer Name="desolator_primary_1" ID="{FDBD035F-B864-490C-BFEF-BA6597A437F3}" ShortID="758567430">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																<Property Name="RandomAvoidRepeating" Type="bool" Value="False"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<Sound Name="desolator_primary_1" ID="{352A62CE-370A-4E5A-B652-C07B67CD068D}" ShortID="361765889">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_primary_1" ID="{C2AE8C70-9D88-4768-BC13-F8367B5677C5}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_primary_1.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="723741351"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_primary_1" ID="{C2AE8C70-9D88-4768-BC13-F8367B5677C5}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+																<Sound Name="desolator_primary_2" ID="{1FD521E3-1C94-4B1D-BEF5-5928ECE03EAD}" ShortID="507668299">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_primary_2" ID="{EA540188-36E0-4328-9CE5-E94E7F038B4B}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_primary_2.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="190395894"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_primary_2" ID="{EA540188-36E0-4328-9CE5-E94E7F038B4B}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+																<Sound Name="desolator_primary_3" ID="{9FD1C601-A460-467C-83F0-7B72BE0D9DD9}" ShortID="850499646">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_primary_3" ID="{DBBBDF94-AA93-4C42-872F-897553566996}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_primary_3.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="212321077"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_primary_3" ID="{DBBBDF94-AA93-4C42-872F-897553566996}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+															</ChildrenList>
+														</RandomSequenceContainer>
+													</ChildrenList>
+												</Folder>
+												<Folder Name="utility_1" ID="{D4F5F0B7-9D0F-4ED2-94C2-D47AF104FE8B}" ShortID="1021656910">
+													<ChildrenList>
+														<Sound Name="desolator_utlityLoop" ID="{E65E0E81-4BF9-4895-AC8F-645A7B553144}" ShortID="307830002">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="desolator_utlityLoop" ID="{EC06A81E-9B8A-4C04-91CA-5C85CDD9A12E}">
+																	<PropertyList>
+																		<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>desolator_utlityLoop.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="24510839"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="desolator_utlityLoop" ID="{EC06A81E-9B8A-4C04-91CA-5C85CDD9A12E}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<Sound Name="desolator_utlityLoopEnd" ID="{357A6F12-763D-487E-B19A-1C4BFE57FF3F}" ShortID="639659565">
+															<PropertyList>
+																<Property Name="3DSpatialization" Type="int16" Value="1"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Attenuation">
+																	<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																</Reference>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<AudioFileSource Name="desolator_utlityLoopEnd" ID="{575E1D7B-B985-4811-8D9F-7B18EA8D4D3E}">
+																	<PropertyList>
+																		<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																		<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																	</PropertyList>
+																	<Language>SFX</Language>
+																	<AudioFile>desolator_utlityLoopEnd.wav</AudioFile>
+																	<MediaIDList>
+																		<MediaID ID="973145261"/>
+																	</MediaIDList>
+																</AudioFileSource>
+															</ChildrenList>
+															<ActiveSourceList>
+																<ActiveSource Name="desolator_utlityLoopEnd" ID="{575E1D7B-B985-4811-8D9F-7B18EA8D4D3E}" Platform="Linked"/>
+															</ActiveSourceList>
+														</Sound>
+														<RandomSequenceContainer Name="desolator_utility_1_apply" ID="{F0A05677-26F4-49F2-8F05-E59263CF9D5A}" ShortID="921708148">
+															<PropertyList>
+																<Property Name="RandomAvoidRepeating" Type="bool" Value="False"/>
+															</PropertyList>
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<Sound Name="desolator_utlity_1" ID="{17EBFCFC-DDAC-4C2F-8173-25978CF1BF13}" ShortID="742661459">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_utlity_1" ID="{1F36E779-27A4-4C79-9122-167F75000D30}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_utlity_1.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="269333777"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_utlity_1" ID="{1F36E779-27A4-4C79-9122-167F75000D30}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+																<Sound Name="desolator_utlity_2" ID="{95718576-CEAC-4D5C-9ACB-F36922CE3CF9}" ShortID="5431925">
+																	<PropertyList>
+																		<Property Name="3DSpatialization" Type="int16" Value="1"/>
+																	</PropertyList>
+																	<ReferenceList>
+																		<Reference Name="Attenuation">
+																			<ObjectRef Name="ranged" ID="{80CDBC5D-C445-4836-AADC-52A8E16E905F}" WorkUnitID="{5DE001C2-0B19-420A-80DE-DFDE1A186FD9}"/>
+																		</Reference>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{F4D87EEC-FC92-4A55-A4B2-250A8842D618}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{B91E43ED-F2F4-48E9-9773-DFE06237C754}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="desolator_utlity_2" ID="{D8B8EBFF-0A9F-469F-833A-C1A0D430DA5E}">
+																			<PropertyList>
+																				<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+																				<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+																			</PropertyList>
+																			<Language>SFX</Language>
+																			<AudioFile>desolator_utlity_2.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="915159605"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="desolator_utlity_2" ID="{D8B8EBFF-0A9F-469F-833A-C1A0D430DA5E}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+															</ChildrenList>
+														</RandomSequenceContainer>
+													</ChildrenList>
+												</Folder>
 											</ChildrenList>
 										</ActorMixer>
 									</ChildrenList>

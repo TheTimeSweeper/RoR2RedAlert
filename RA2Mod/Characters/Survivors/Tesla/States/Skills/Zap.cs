@@ -315,6 +315,9 @@ namespace RA2Mod.Survivors.Tesla.States
 
             string sound = "Play_itesatta";
             if (_crit) sound = "Play_zap_crit";// "Play_trooper_itesat2b_tesla_trooper_attack";
+
+            //string sound = GeneralConfig.ClassicSounds ? "Play_itesatta" : "Play_ttrooper_primary1";
+            //if (_crit) sound = GeneralConfig.ClassicSounds ? "Play_zap_crit" : "Play_ttrooper_primary1";// "Play_trooper_itesat2b_tesla_trooper_attack";
             //sound = EntityStates.Mage.Weapon.FireLaserbolt.attackString;
 
             Util.PlaySound(sound, gameObject);

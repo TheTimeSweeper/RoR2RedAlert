@@ -51,6 +51,7 @@ namespace RA2Mod.Survivors.Tesla.Orbs
                     break;
 
             }
+            base.isElectric = true;
             EffectData effectData = new EffectData
             {
                 origin = origin,

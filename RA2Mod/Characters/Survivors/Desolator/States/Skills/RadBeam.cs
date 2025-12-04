@@ -1,5 +1,6 @@
 ﻿using EntityStates;
 using R2API;
+using RA2Mod.General;
 using RA2Mod.Modules.BaseStates;
 using RoR2;
 using System;
@@ -49,7 +50,7 @@ namespace RA2Mod.Survivors.Desolator.States
         {
             characterBody.AddSpreadBloom(2000f);//uh
             EffectManager.SimpleMuzzleFlash(DesolatorAssets.DesolatorSmokeRing, gameObject, muzzleString, false);
-            Util.PlaySound("Play_Desolator_Beam_Short", gameObject);
+            Util.PlaySound(GeneralConfig.ClassicSounds ? "Play_Desolator_Beam_Short" : "Play_desolator_primary_1", gameObject);
 
             if (isAuthority)
             {

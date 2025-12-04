@@ -18,7 +18,7 @@ namespace RA2Mod.Survivors.Chrono.Components
         }
 
         [ClientRpc]
-        private void RpcSendMarker(GameObject markerObject)
+        public void RpcSendMarker(GameObject markerObject)
         {
             marker = markerObject.GetComponent<ChronoProjectionMotor>();
         }
@@ -48,13 +48,13 @@ namespace RA2Mod.Survivors.Chrono.Components
         }
 
         [Command]
-        private void CmdMove(Vector3 deltaPosition)
+        public void CmdMove(Vector3 deltaPosition)
         {
             marker.SimpleMove(deltaPosition);
         }
 
         [ClientRpc]
-        private void RpcMove(Vector3 deltaPosition)
+        public void RpcMove(Vector3 deltaPosition)
         {
             marker.SimpleMove(deltaPosition);
         }

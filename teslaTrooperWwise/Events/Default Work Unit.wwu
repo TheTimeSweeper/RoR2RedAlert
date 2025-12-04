@@ -1752,38 +1752,24 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Play_ttrooper_primary1" ID="{4D4ACD7E-33D0-432F-AA3E-B4F5A95EFB12}">
+							<ChildrenList>
+								<Action Name="" ID="{A064A207-AF97-4805-8B92-84F5CEF8F624}" ShortID="503075759">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ttrooper_primary1" ID="{8149F031-88C1-47AC-922F-FF4EA3FDBD11}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Desolator" ID="{5F9071F2-7074-4763-B291-CBD1D0BF2C19}" ShortID="582821650">
 					<ChildrenList>
-						<Event Name="Play_Desolator_Beam" ID="{1BADFF2D-C983-48E3-8C63-C8A360683F35}">
-							<ChildrenList>
-								<Action Name="" ID="{D25A2E67-0447-4660-8EF9-3FB6EEA814E9}" ShortID="803015209">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="1"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="idesat1a_attack" ID="{7A9F5E43-77C3-40D0-81C8-C2EA24762C4B}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="Play_Desolator_Deploy" ID="{9849596B-24DA-4D8B-97F0-A920E2DBD4E0}">
-							<ChildrenList>
-								<Action Name="" ID="{060C72B7-151A-4822-98FC-6B6020B997F7}" ShortID="258621844">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="1"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="idesat2a_deploy" ID="{CA92D3CC-EACA-47CA-981C-2175D42E528A}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
 						<Folder Name="VoiceLInes" ID="{6A7A8BB9-E075-4210-BFAC-C446EBE6ADA7}" ShortID="676786168">
 							<ChildrenList>
 								<Event Name="Play_Desolator_Voiceline_Attack" ID="{66708FCC-077A-433B-8EC5-301AB826AD02}">
@@ -2068,57 +2054,327 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
-						<Event Name="Play_Desolator_Beam_Short" ID="{688428D0-9151-47DE-A8AC-C14EAC7AD445}">
+						<Event Name="Play_desolator_special_2_Stick" ID="{727C08D9-1172-45AE-A978-C81703CE6F79}">
 							<ChildrenList>
-								<Action Name="" ID="{A7CAA09D-02EA-4810-B140-6D5CEE3F51FC}" ShortID="284230061">
+								<Action Name="" ID="{42267B7C-C44D-4CFF-9B79-182EC16EEE20}" ShortID="886021119">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="AttackShort" ID="{EE6831DD-AA94-4AA3-8443-D1B525F2B842}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+											<ObjectRef Name="desolator_special_2_Stick" ID="{96948B27-B997-4EE0-9B6A-904182F94112}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Play_Desolator_Beam_Deep" ID="{D99BF522-D5AD-456E-834B-2BB9D92E002B}">
+						<Event Name="Play_desolator_utilityLoop" ID="{3C65362F-8834-4550-B16B-BE683204B27E}">
 							<ChildrenList>
-								<Action Name="" ID="{8AA8B11D-DE97-4EDC-B4DD-5525455A1C3F}" ShortID="894053007">
+								<Action Name="" ID="{98F6B199-AD43-4B0F-A3E4-7DE844745FC4}" ShortID="397607047">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+										<Property Name="Delay" Type="Real64" Value="0.5"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_utlityLoop" ID="{E65E0E81-4BF9-4895-AC8F-645A7B553144}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{6275F1A8-EA4C-466D-94FA-E22853922ED8}" ShortID="482394111">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="idesat1a_attack_deep_short" ID="{2E6FE9F8-0590-499D-AA61-839FE6C651F6}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+											<ObjectRef Name="desolator_utility_1_apply" ID="{F0A05677-26F4-49F2-8F05-E59263CF9D5A}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Play_Desolator_Beam_Deep2" ID="{4B2143B8-EAC9-4916-827A-FA55F62A432C}">
+						<Event Name="Play_desolator_special_1_Hit" ID="{CF1BDD0B-3A7F-4C66-A60F-AB2B3AD47AFD}">
 							<ChildrenList>
-								<Action Name="" ID="{E6267C5F-C4B0-4407-8CF7-59442830ABDB}" ShortID="547688222">
+								<Action Name="" ID="{D29AC561-2316-4378-9DCA-CC8A00A5AA16}" ShortID="111960020">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="idesat1a_attack_shift" ID="{C855C0EE-294D-4C2E-89E8-25C3907AAFEB}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+											<ObjectRef Name="desolator_special_1_Hit" ID="{C8E370DC-8128-4EDB-AD82-8505B7B82190}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="Play_Desolator_Deploy_High" ID="{82445562-3B31-4859-8646-E9FC4DEE522E}">
+						<Event Name="Play_desolator_secondary_1_land" ID="{D46431FC-D3F8-4F46-9B08-A6445AD123D5}">
 							<ChildrenList>
-								<Action Name="" ID="{FDDF9774-A4B1-4372-9098-3A5E1AC4820C}" ShortID="588078698">
+								<Action Name="" ID="{C6AC4CC2-3A75-4EDB-803C-C9AC49731E86}" ShortID="8016784">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="1"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="idesat2a_deploy_high" ID="{81F55BB9-E107-44BE-9DC4-8AB166ABA233}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+											<ObjectRef Name="desolator_secondary_1_land" ID="{E6F6222C-011A-490F-AE12-48C2C7F56271}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_desolator_special_1_place" ID="{7840629F-2272-4783-B1F5-2D94D971FCDF}">
+							<ChildrenList>
+								<Action Name="" ID="{4F83CA9D-455B-46ED-8139-7F6327C34CFF}" ShortID="575971538">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_special_1_place" ID="{F83D38B1-A5B5-4F9E-90B2-B2944AD21F40}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_desolator_debuff_loop" ID="{1AADD0EB-5B5A-43BB-B55B-A563F1A522BC}">
+							<ChildrenList>
+								<Action Name="" ID="{550DF986-BD6F-440B-B46F-FFB2A23E87FC}" ShortID="261636636">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_debuff_loop" ID="{B8017483-F5DF-44EE-B599-F1EB809F226E}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{BBB4E898-7D1B-48B0-A5A1-1B92032F7A28}" ShortID="58659929">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_debuff_apply" ID="{F19938C2-73E4-461E-B8EE-E617CAE8D6B2}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_desolator_special_1_HitFinal" ID="{DD695A10-6E67-45D4-8149-38C5944D2D9B}">
+							<ChildrenList>
+								<Action Name="" ID="{E95C2D36-2A5E-4D6B-BAE2-2FC4870F94B1}" ShortID="872799640">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_special_1_HitFinal" ID="{AED24D20-4B12-44A1-85F1-048B0765266A}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_desolator_special_2_throw" ID="{99CE2DD9-C538-4CA1-B73C-A9484F5D6925}">
+							<ChildrenList>
+								<Action Name="" ID="{348964FD-92C5-49C9-9DB5-10FEE4EB8B85}" ShortID="864128386">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_special_2_throw" ID="{F323DCCF-3716-4B71-ACF4-DF7CEF9F46CD}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_desolator_special_1_Charge" ID="{C1F05D5C-A260-44BD-8D06-0A861466F3A4}">
+							<ChildrenList>
+								<Action Name="" ID="{BE8E7E8B-8EC8-48A6-BDBF-4F63115EE202}" ShortID="50880968">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_special_1_Charge" ID="{5344634F-6B18-429F-953B-1A049597B260}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_desolator_primary_1" ID="{F1188CF0-C722-466C-9FA1-769E11F511DA}">
+							<ChildrenList>
+								<Action Name="" ID="{E32D39FC-09E0-42AF-985E-7BBC41935526}" ShortID="142795353">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_primary_1" ID="{FDBD035F-B864-490C-BFEF-BA6597A437F3}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_desolator_secondary_1_fire" ID="{78B6231B-B3F6-4900-9EB9-2556515D119C}">
+							<ChildrenList>
+								<Action Name="" ID="{6D3ED720-0673-4991-B97A-7C5DF0475E51}" ShortID="245297783">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_secondary_1_fire" ID="{AC966FB3-6CCB-4C99-8B27-129E935F5DA5}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="Old" ID="{0D872227-8684-4042-9AE7-D1ED93197380}" ShortID="864355271">
+							<ChildrenList>
+								<Event Name="Play_Desolator_Beam" ID="{1BADFF2D-C983-48E3-8C63-C8A360683F35}">
+									<ChildrenList>
+										<Action Name="" ID="{D25A2E67-0447-4660-8EF9-3FB6EEA814E9}" ShortID="803015209">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="idesat1a_attack" ID="{7A9F5E43-77C3-40D0-81C8-C2EA24762C4B}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Desolator_Deploy" ID="{9849596B-24DA-4D8B-97F0-A920E2DBD4E0}">
+									<ChildrenList>
+										<Action Name="" ID="{060C72B7-151A-4822-98FC-6B6020B997F7}" ShortID="258621844">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="idesat2a_deploy" ID="{CA92D3CC-EACA-47CA-981C-2175D42E528A}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Desolator_Deploy_High" ID="{82445562-3B31-4859-8646-E9FC4DEE522E}">
+									<ChildrenList>
+										<Action Name="" ID="{FDDF9774-A4B1-4372-9098-3A5E1AC4820C}" ShortID="588078698">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="idesat2a_deploy_high" ID="{81F55BB9-E107-44BE-9DC4-8AB166ABA233}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Desolator_Beam_Deep2" ID="{4B2143B8-EAC9-4916-827A-FA55F62A432C}">
+									<ChildrenList>
+										<Action Name="" ID="{E6267C5F-C4B0-4407-8CF7-59442830ABDB}" ShortID="547688222">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="idesat1a_attack_shift" ID="{C855C0EE-294D-4C2E-89E8-25C3907AAFEB}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Desolator_Beam_Deep" ID="{D99BF522-D5AD-456E-834B-2BB9D92E002B}">
+									<ChildrenList>
+										<Action Name="" ID="{8AA8B11D-DE97-4EDC-B4DD-5525455A1C3F}" ShortID="894053007">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="idesat1a_attack_deep_short" ID="{2E6FE9F8-0590-499D-AA61-839FE6C651F6}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_Desolator_Beam_Short" ID="{688428D0-9151-47DE-A8AC-C14EAC7AD445}">
+									<ChildrenList>
+										<Action Name="" ID="{A7CAA09D-02EA-4810-B140-6D5CEE3F51FC}" ShortID="284230061">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="1"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="AttackShort" ID="{EE6831DD-AA94-4AA3-8443-D1B525F2B842}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Event Name="Stop_desolator_debuff_loop" ID="{0C5CEABA-9E7F-4BA0-B5C0-A433FA54A2C4}">
+							<ChildrenList>
+								<Action Name="" ID="{CEACDAED-32D1-4883-A43D-82DFAA9164BA}" ShortID="669496082">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_debuff_loop" ID="{B8017483-F5DF-44EE-B599-F1EB809F226E}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Stop_desolator_utilityLoop" ID="{B5DB5701-CD4A-4F3A-87A0-A3FDA6B012B0}">
+							<ChildrenList>
+								<Action Name="" ID="{43197116-E974-4716-BA47-D80F87E83943}" ShortID="971566925">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_utlityLoop" ID="{E65E0E81-4BF9-4895-AC8F-645A7B553144}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{BC654C0A-682B-4CD8-B46A-63A3C3C71221}" ShortID="329812682">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_utlityLoopEnd" ID="{357A6F12-763D-487E-B19A-1C4BFE57FF3F}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="Play_desolator_special_1_place2" ID="{9221460E-6D48-446F-9B11-91B2D2A12330}">
+							<ChildrenList>
+								<Action Name="" ID="{804686C1-D6F2-4A3F-91CF-54E235E8B726}" ShortID="672554071">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="desolator_special_1_place" ID="{F83D38B1-A5B5-4F9E-90B2-B2944AD21F40}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{42D3BED8-01B9-4FCE-ADF5-283D696E486C}" ShortID="6499758">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="1"/>
+										<Property Name="Delay" Type="Real64" Value="0.2"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="idesat2a_deploy" ID="{CA92D3CC-EACA-47CA-981C-2175D42E528A}" WorkUnitID="{A5E43C36-3150-4618-AC50-22591D8150E6}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

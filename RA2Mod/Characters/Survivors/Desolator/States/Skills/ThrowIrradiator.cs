@@ -1,4 +1,5 @@
-﻿using RA2Mod.Modules.BaseStates;
+﻿using RA2Mod.General;
+using RA2Mod.Modules.BaseStates;
 using RoR2;
 using RoR2.Projectile;
 using UnityEngine;
@@ -38,7 +39,6 @@ namespace RA2Mod.Survivors.Desolator.States
                 ModifyProjectile(ref fireProjectileInfo);
                 ProjectileManager.instance.FireProjectile(fireProjectileInfo);
             }
-            Util.PlaySound("Play_Desolator_Deploy", base.gameObject);
         }
 
         protected virtual void ModifyProjectile(ref FireProjectileInfo fireProjectileInfo) { }
