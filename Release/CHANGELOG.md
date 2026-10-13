@@ -1,4 +1,8 @@
 ## Changelog
+`3.3.8`
+- Temp update for dlc4, item displays disabled for now
+- Added awesome lore for Chrono Legionnaire written by plnk (thanks!)
+
 `3.3.7`
 - oops uploaded with language printing
 

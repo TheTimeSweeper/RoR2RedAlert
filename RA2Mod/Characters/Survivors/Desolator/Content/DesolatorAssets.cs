@@ -252,7 +252,7 @@ namespace RA2Mod.Survivors.Desolator
             leapAcidProjectile.GetComponent<ProjectileDamage>().damageType.AddModdedDamageType(DesolatorDamageTypes.DesolatorDot);
 
             ProjectileController projectileController = leapAcidProjectile.GetComponent<ProjectileController>();
-            GameObject leapAcidProjectileGhost = PrefabAPI.InstantiateClone(projectileController.ghostPrefab, "DesolatorLeapAcidGhost");
+            GameObject leapAcidProjectileGhost = PrefabAPI.InstantiateClone(projectileController.ghostPrefabAddress.LoadAssetAsync().WaitForCompletion(), "DesolatorLeapAcidGhost");
             projectileController.ghostPrefab = leapAcidProjectileGhost;
             
             Transform transformFindFX = leapAcidProjectileGhost.transform.Find("FX");

@@ -175,7 +175,8 @@ namespace RA2Mod.Modules.Characters
 
             if (itemDisplays != null)
             {
-                itemDisplays.SetItemDisplays(prefabCharacterModel.itemDisplayRuleSet);
+                //todo dlc4 item displays
+                //itemDisplays.SetItemDisplays(prefabCharacterModel.itemDisplayRuleSet);
             }
         }
 

@@ -89,6 +89,7 @@ ___
 - Domi - Animations
 - Blast - Sounds
 - GoodGuy - Icons
+- PlNK - Lore
 
 ### Conscript
 - SkeletorChampion - Model

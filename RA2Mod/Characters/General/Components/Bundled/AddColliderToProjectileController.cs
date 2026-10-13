@@ -1,7 +1,8 @@
 ﻿using RoR2.Projectile;
 using UnityEngine;
 
-namespace RA2Mod.General.Components.Bundled
+//todo update namespace to RA2Mod.General.Components.Bundled on here and on script in unity
+namespace RA2Mod.General.Components
 {
     public class AddColliderToProjectileController : MonoBehaviour
     {
@@ -16,7 +17,7 @@ namespace RA2Mod.General.Components.Bundled
             for (int i = 0; i < colliders.Length; i++)
             {
                 colliders[i].enabled = false;
-                HG.ArrayUtils.ArrayAppend<Collider>(ref projectileController.myColliders, in colliders[i]);
+                HG.ArrayUtils.ArrayAppend(ref projectileController.myColliders, in colliders[i]);
             }
         }
     }

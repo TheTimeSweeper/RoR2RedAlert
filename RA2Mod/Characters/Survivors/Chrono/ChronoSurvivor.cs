@@ -656,7 +656,7 @@ namespace RA2Mod.Survivors.Chrono
             orig(self, buffDef);
             if(buffDef == ChronoBuffs.chronoSicknessDebuff)
             {
-                self.inventory.RemoveItem(ChronoItems.chronoSicknessItemDef, self.inventory.GetItemCount(ChronoItems.chronoSicknessItemDef));
+                self.inventory.RemoveItemPermanent(ChronoItems.chronoSicknessItemDef, self.inventory.GetItemCountPermanent(ChronoItems.chronoSicknessItemDef));
             }
         }
 
@@ -716,7 +716,7 @@ namespace RA2Mod.Survivors.Chrono
                 body.AddTimedBuff(ChronoBuffs.chronoSicknessDebuff, 5);
             }
             int stacks = body.isChampion ? 1 : 2;
-            body.inventory?.GiveItem(ChronoItems.chronoSicknessItemDef.itemIndex, stacks);
+            body.inventory?.GiveItemPermanent(ChronoItems.chronoSicknessItemDef.itemIndex, stacks);
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, R2API.RecalculateStatsAPI.StatHookEventArgs args)

@@ -21,6 +21,7 @@ namespace RA2Mod.General
             Language.Add(prefix + "_RECOLOR_PURPLE_NAME", "Purple");
             Language.Add(prefix + "_RECOLOR_PINK_NAME", "Pink");
             Language.Add(prefix + "_RECOLOR_BLACK_NAME", "Black");
+            Language.Add(prefix + "_RECOLOR_WHITE_NAME", "White");
             #endregion
         }
     }

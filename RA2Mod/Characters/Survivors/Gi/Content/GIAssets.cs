@@ -41,7 +41,7 @@ namespace RA2Mod.Survivors.GI
 
             //heavy missile
             heavyMissilePrefab = _assetBundle.LoadAsset<GameObject>("GIHeavyMissileProjectile").InstantiateClone("GIHeavyMissileProjectile");
-            heavyMissilePrefab.GetComponent<ProjectileController>().ghostPrefab = missileController.ghostPrefab;
+            heavyMissilePrefab.GetComponent<ProjectileController>().ghostPrefabAddress = missileController.ghostPrefabAddress;
             
             ProjectileImpactExplosion heavyMissileImpact = heavyMissilePrefab.GetComponent<ProjectileImpactExplosion>();
             heavyMissileImpact.falloffModel = BlastAttack.FalloffModel.None;

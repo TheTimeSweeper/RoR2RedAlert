@@ -50,7 +50,7 @@ namespace RA2Mod.Survivors.Tesla.States
                 }
             }
         }
-
+        //rip this out of main state and put it in henryAPI
         private void CheckEmote<T>(KeyboardShortcut keybind) where T : EntityState, new()
         {
             if (Config.GetKeyPressed(keybind))

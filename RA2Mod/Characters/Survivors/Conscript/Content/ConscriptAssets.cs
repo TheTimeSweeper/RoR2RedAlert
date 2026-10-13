@@ -91,7 +91,7 @@ namespace RA2Mod.Survivors.Conscript
                 Molotov = resultMolotov.DebugClone(true);
                 GameObject equipMolotov = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Molotov/MolotovSingleProjectile.prefab").WaitForCompletion();
 
-                Molotov.GetComponent<ProjectileController>().ghostPrefab = equipMolotov.GetComponent<ProjectileController>().ghostPrefab;
+                Molotov.GetComponent<ProjectileController>().ghostPrefabAddress = equipMolotov.GetComponent<ProjectileController>().ghostPrefabAddress;
 
                 Molotov.GetComponentInChildren<TerrorDroneHurtBox>().trackedTarget = Molotov.AddComponent<TerrorDroneTrackedTarget>();
 
